@@ -86,7 +86,7 @@ dependencies {
 }
 
 mixin {
-    add sourceSets.main, 'tbz.refmap.json'
+    add sourceSets.main, 'tbz.mixin.refmap.json'
     config 'tbz.mixins.json'
 }
 
