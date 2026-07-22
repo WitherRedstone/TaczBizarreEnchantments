@@ -2,6 +2,7 @@ package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.tbz.config.TBZConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
+import com.chinaex123.tbz.utils.ShotTriggerHelper;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.api.item.IGun;
@@ -31,17 +32,21 @@ import java.util.List;
  * 6. 若弹匣已满则不回复弹药，但爆头记录仍会被清空
  * 7. 时间窗口和所需爆头次数均可通过配置调整
  * 8. 每个玩家独立维护爆头记录列表，互不干扰
+ * 9. 每次射击只触发一次，防止霰弹枪多次触发
  */
 public class TripleTapEvent {
 
-    // 记录每个玩家的爆头时间戳列表
+    /** 射击触发标签前缀 */
+    private static final String TRIGGER_TAG_PREFIX = "TripleTap";
+
+    /** 记录每个玩家的爆头时间戳列表 */
     private static final Map<UUID, List<Long>> headshotTimesMap = new ConcurrentHashMap<>();
 
     /**
-     * 枪械命中实体事件处理
+     * 枪械伤害事件：精准连击
      * 检测爆头并记录时间，在满足条件时触发弹药回复
      *
-     * @param event 枪械伤害事件（Pre阶段）
+     * @param event 枪械伤害事件
      */
     public static void onEntityHurtByGun(EntityHurtByGunEvent.Pre event) {
         LivingEntity attacker = event.getAttacker();
@@ -62,6 +67,11 @@ public class TripleTapEvent {
 
         // 仅处理爆头命中
         if (!event.isHeadShot()) return;
+
+        // 检查当前射击是否已触发
+        if (ShotTriggerHelper.checkAndMarkTriggered(gun, TRIGGER_TAG_PREFIX)) {
+            return;
+        }
 
         UUID playerId = player.getUUID();
         long currentTime = player.level().getGameTime();  // 使用游戏刻作为时间单位
@@ -107,7 +117,7 @@ public class TripleTapEvent {
     }
 
     /**
-     * 清除玩家数据（用于玩家退出等场景，防止内存泄漏）
+     * 清除玩家数据
      *
      * @param playerId 玩家UUID
      */

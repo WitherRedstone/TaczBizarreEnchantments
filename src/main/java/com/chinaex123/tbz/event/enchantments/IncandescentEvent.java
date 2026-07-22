@@ -14,24 +14,30 @@ import net.minecraft.world.phys.AABB;
  * 辉耀炽热附魔的事件处理类
  * <p>
  * 功能：击败目标会让附近生物获得灼烧效果
+ * <p>
  * 机制：
- * 1. 玩家击杀目标时触发效果检测
- * 2. 以被击杀目标为中心，在配置范围内搜索所有生物实体
- * 3. 排除被击杀目标和击杀者本人
- * 4. 对范围内的每个生物判断是否已有灼烧效果：
- *    a. 已有灼烧效果 → 延长效果持续时间（不超过最大持续时间上限）
- *    b. 无灼烧效果 → 施加新的灼烧效果（持续时间和等级从配置读取）
- * 5. 延长效果时使用配置的固定效果等级（不改变原有效果等级）
- * 6. 范围检测使用立方体区域（AABB），而非球形范围
+ * <ol>
+ *   <li>玩家击杀目标时触发效果检测</li>
+ *   <li>以被击杀目标为中心，在配置范围内搜索所有生物实体</li>
+ *   <li>排除被击杀目标和击杀者本人</li>
+ *   <li>对范围内的每个生物判断是否已有灼烧效果：
+ *     <ol type="a">
+ *       <li>已有灼烧效果 → 延长效果持续时间（不超过最大持续时间上限）</li>
+ *       <li>无灼烧效果 → 施加新的灼烧效果（持续时间和等级从配置读取）</li>
+ *     </ol>
+ *   </li>
+ *   <li>延长效果时使用配置的固定效果等级（不改变原有效果等级）</li>
+ *   <li>范围检测使用立方体区域（AABB），而非球形范围</li>
+ * </ol>
  */
 public class IncandescentEvent {
 
     /**
-     * 击杀事件处理
+     * 实体死亡事件：辉耀炽热
      * 在击杀目标位置附近产生范围效果，对周围生物施加灼烧效果
      *
      * @param player 击杀者
-     * @param gun    使用的枪械
+     * @param gun 使用的枪械
      * @param target 被击杀的目标
      */
     public static void onKill(Player player, ItemStack gun, LivingEntity target) {
@@ -39,7 +45,7 @@ public class IncandescentEvent {
         int enchantLevel = gun.getEnchantmentLevel(TBZEnchantments.INCANDESCENT.get());
         if (enchantLevel <= 0) return;
 
-        // 获取效果范围（从配置读取，单位：格）
+        // 获取效果范围
         double range = TBZConfig.INCANDESCENT_RANGE.get();
 
         // 创建一个以目标为中心的立方体碰撞箱（AABB）

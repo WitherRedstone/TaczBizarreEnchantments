@@ -7,13 +7,12 @@ import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-/**
- * 焕光伤害事件处理类
- */
+/** 焕光伤害事件处理类 **/
 @Mod.EventBusSubscriber
 public class RadiantDamageEvent {
 
-    private static final float RADIANT_DAMAGE_BONUS = 0.35f; // 35% 伤害加成
+    /** 伤害加成 */
+    private static final float RADIANT_DAMAGE_BONUS = 0.35f;
 
     @SubscribeEvent
     public static void onEntityHurtByGun(EntityHurtByGunEvent.Pre event) {

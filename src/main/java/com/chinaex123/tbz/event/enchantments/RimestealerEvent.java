@@ -13,24 +13,30 @@ import net.minecraft.world.item.ItemStack;
  * 霜华窃取者附魔的事件处理类
  * <p>
  * 功能：使用此武器击败拥有霜寒效果的目标可获得冰霜护甲
+ * <p>
  * 机制：
- * 1. 玩家击杀目标时检测目标是否拥有霜寒效果
- * 2. 目标无霜寒效果 → 不触发任何效果
- * 3. 目标有霜寒效果 → 判断玩家当前是否已有冰霜护甲效果：
- *    a. 已有冰霜护甲 → 延长效果持续时间（不超过最大持续时间上限）
- *    b. 无冰霜护甲 → 检查冷却时间是否结束
- * 4. 冷却时间内击杀不会施加新效果（防止频繁触发）
- * 5. 施加新效果时持续时间和等级从配置读取
- * 6. 延长效果时保持原有效果等级不变，仅增加持续时间
- * 7. 触发后更新最后击杀时间（用于冷却判断）
+ * <ol>
+ *   <li>玩家击杀目标时检测目标是否拥有霜寒效果</li>
+ *   <li>目标无霜寒效果 → 不触发任何效果</li>
+ *   <li>目标有霜寒效果 → 判断玩家当前是否已有冰霜护甲效果：
+ *     <ol type="a">
+ *       <li>已有冰霜护甲 → 延长效果持续时间（不超过最大持续时间上限）</li>
+ *       <li>无冰霜护甲 → 检查冷却时间是否结束</li>
+ *     </ol>
+ *   </li>
+ *   <li>冷却时间内击杀不会施加新效果（防止频繁触发）</li>
+ *   <li>施加新效果时持续时间和等级从配置读取</li>
+ *   <li>延长效果时保持原有效果等级不变，仅增加持续时间</li>
+ *   <li>触发后更新最后击杀时间（用于冷却判断）</li>
+ * </ol>
  */
 public class RimestealerEvent {
 
-    // NBT标签：记录上次触发效果的击杀时间（游戏刻）
+    /** 记录上次触发效果的击杀时间 */
     private static final String LAST_KILL_TIME_TAG = "RimestealerLastKillTime";
 
     /**
-     * 击杀事件处理
+     * 实体死亡事件：霜华窃取者
      * 如果目标拥有霜寒效果，则给予玩家冰霜护甲效果
      *
      * @param player 击杀者
@@ -42,7 +48,7 @@ public class RimestealerEvent {
         int enchantLevel = gun.getEnchantmentLevel(TBZEnchantments.RIMESTEALER.get());
         if (enchantLevel <= 0) return;
 
-        // 关键条件：目标必须拥有"霜寒"效果
+        // 目标必须拥有"霜寒"效果
         if (!target.hasEffect(FELEffects.FROSTBITE.get())) return;
 
         long currentTime = player.level().getGameTime();
@@ -54,8 +60,8 @@ public class RimestealerEvent {
 
         if (currentEffect != null) {
             // 情况1：已有冰霜护甲效果 -> 延长持续时间
-            int extendDuration = TBZConfig.RIMESTEALER_EXTEND_DURATION.get();   // 每次延长的刻数
-            int maxDuration = TBZConfig.RIMESTEALER_MAX_DURATION.get(); // 最大持续时间
+            int extendDuration = TBZConfig.RIMESTEALER_EXTEND_DURATION.get();
+            int maxDuration = TBZConfig.RIMESTEALER_MAX_DURATION.get();
             int newDuration = Math.min(currentEffect.getDuration() + extendDuration, maxDuration);
 
             // 获取效果等级

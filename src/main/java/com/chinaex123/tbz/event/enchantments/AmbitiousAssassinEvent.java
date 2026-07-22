@@ -18,28 +18,31 @@ import java.util.concurrent.ConcurrentHashMap;
  * 刺客野心附魔的事件处理类
  * <p>
  * 功能：根据填装之前完成的击杀数可过量填充弹匣
+ * <p>
  * 机制：
- * 1. 每击杀一个敌人增加1层连续击杀计数
- * 2. 换弹时根据累积的击杀数计算额外弹药量：基础值 + 击杀数 × 每击杀增量
- * 3. 额外弹药量受最大上限限制
- * 4. 计算后的额外弹药量暂存至枪械NBT，待弹匣装填满后自动应用
- * 5. 应用成功后重置击杀计数和暂存标记
- * 6. 若弹匣未满则保留暂存标记，等待下次满弹时应用
+ * <ol>
+ *   <li>每击杀一个敌人增加1层连续击杀计数
+ *   <li>换弹时根据累积的击杀数计算额外弹药量：基础值 + 击杀数 × 每击杀增量
+ *   <li>额外弹药量受最大上限限制
+ *   <li>计算后的额外弹药量暂存至枪械NBT，待弹匣装填满后自动应用
+ *   <li>应用成功后重置击杀计数和暂存标记
+ *   <li>若弹匣未满则保留暂存标记，等待下次满弹时应用
+ * </ol>
  */
 public class AmbitiousAssassinEvent {
 
-    // NBT标签常量
-    private static final String OVERFILL_TAG = "AmbitiousAssassinOverfill"; // 待应用的刺客野心数量
+    /** 待应用的刺客野心数量 */
+    private static final String OVERFILL_TAG = "AmbitiousAssassinOverfill";
 
-    // 记录每个玩家当前的连续击杀数
+    /** 记录每个玩家当前的连续击杀数 */
     private static final Map<UUID, Integer> killCountMap = new ConcurrentHashMap<>();
 
     /**
-     * 击杀事件处理
+     * 实体死亡事件：刺客野心
      * 增加当前玩家的击杀计数
      *
      * @param player 击杀者
-     * @param gun    使用的枪械
+     * @param gun 使用的枪械
      */
     public static void onKill(Player player, ItemStack gun) {
         // 检查附魔等级
@@ -54,13 +57,13 @@ public class AmbitiousAssassinEvent {
     }
 
     /**
-     * 换弹事件处理
+     * 换弹开始事件：刺客野心
      * 根据累积的击杀数计算刺客野心量，并存储到枪械NBT中，然后重置击杀计数
      *
      * @param player 换弹的玩家
-     * @param gun    正在换弹的枪械
+     * @param gun 正在换弹的枪械
      */
-    public static void onReload(Player player, ItemStack gun) {
+    public static void onGunReload(Player player, ItemStack gun) {
         // 检查附魔等级
         int enchantLevel = gun.getEnchantmentLevel(TBZEnchantments.AMBITIOUS_ASSASSIN.get());
         if (enchantLevel <= 0) return;
@@ -77,9 +80,9 @@ public class AmbitiousAssassinEvent {
         if (gunIndexOpt.isEmpty()) return;
 
         // 从配置获取刺客野心参数
-        int baseOverfill = TBZConfig.AMBITIOUS_ASSASSIN_BASE_OVERFILL.get();           // 基础刺客野心
-        int overfillPerKill = TBZConfig.AMBITIOUS_ASSASSIN_OVERFILL_PER_KILL.get();   // 每击杀额外弹药
-        int maxOverfill = TBZConfig.AMBITIOUS_ASSASSIN_MAX_OVERFILL.get();             // 最大刺客野心上限
+        int baseOverfill = TBZConfig.AMBITIOUS_ASSASSIN_BASE_OVERFILL.get(); // 基础刺客野心
+        int overfillPerKill = TBZConfig.AMBITIOUS_ASSASSIN_OVERFILL_PER_KILL.get(); // 每击杀额外弹药
+        int maxOverfill = TBZConfig.AMBITIOUS_ASSASSIN_MAX_OVERFILL.get(); // 最大刺客野心上限
 
         // 计算总刺客野心量 = 基础值 + 击杀数 × 每击杀增量
         int totalOverfill = baseOverfill + (kills * overfillPerKill);
@@ -94,13 +97,13 @@ public class AmbitiousAssassinEvent {
     }
 
     /**
-     * 应用刺客野心
+     * 玩家每帧更新事件：刺客野心
      * 在弹药装填完成后调用，将刺客野心添加到弹匣中
      * 注意：仅当弹匣已满（currentAmmo >= magazineSize）时才应用刺客野心
      *
      * @param gun 枪械物品
      */
-    public static void applyOverfill(ItemStack gun) {
+    public static void onPlayerTick(ItemStack gun) {
         // 检查附魔等级
         int enchantLevel = gun.getEnchantmentLevel(TBZEnchantments.AMBITIOUS_ASSASSIN.get());
         if (enchantLevel <= 0) return;
@@ -135,7 +138,7 @@ public class AmbitiousAssassinEvent {
     }
 
     /**
-     * 清除玩家的击杀计数（用于玩家退出等场景）
+     * 清除玩家的击杀计数
      *
      * @param playerId 玩家UUID
      */

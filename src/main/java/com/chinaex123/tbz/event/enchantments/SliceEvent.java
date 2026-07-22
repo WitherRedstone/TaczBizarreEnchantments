@@ -13,29 +13,35 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 /**
- * 切割的事件处理类
+ * 切割附魔的事件处理类
  * <p>
  * 功能：持续攻击可对目标施加瓦解效果
+ * <p>
  * 机制：
- * 1. 每次命中目标时独立计算触发概率
- * 2. 触发后判断目标当前是否已有瓦解效果：
- *    a. 已有瓦解效果 → 延长效果持续时间（不超过最大持续时间上限）
- *    b. 无瓦解效果 → 检查是否在冷却时间内，若冷却结束则施加新效果
- * 3. 施加新效果时，效果等级在配置的最小/最大等级范围内随机生成
- * 4. 每次成功触发（无论是施加还是延长）都会更新冷却计时
- * 5. 冷却期间命中目标不会施加新瓦解效果，但延长效果不受冷却影响
- * 6. 延长效果时保持原有效果等级不变，仅增加持续时间
+ * <ol>
+ *   <li>每次命中目标时独立计算触发概率</li>
+ *   <li>触发后判断目标当前是否已有瓦解效果：
+ *     <ol type="a">
+ *       <li>已有瓦解效果 → 延长效果持续时间（不超过最大持续时间上限）</li>
+ *       <li>无瓦解效果 → 检查是否在冷却时间内，若冷却结束则施加新效果</li>
+ *     </ol>
+ *   </li>
+ *   <li>施加新效果时，效果等级在配置的最小/最大等级范围内随机生成</li>
+ *   <li>每次成功触发（无论是施加还是延长）都会更新冷却计时</li>
+ *   <li>冷却期间命中目标不会施加新瓦解效果，但延长效果不受冷却影响</li>
+ *   <li>延长效果时保持原有效果等级不变，仅增加持续时间</li>
+ * </ol>
  */
 public class SliceEvent {
 
-    // NBT标签：记录上次触发效果的命中时间（游戏刻）
+    /** 记录上次触发效果的命中时间 */
     private static final String LAST_HIT_TIME_TAG = "SliceLastHitTime";
 
     /**
-     * 处理枪械命中事件
+     * 处理枪械伤害事件：切割
      * 概率触发并施加瓦解效果给目标
      *
-     * @param event 伤害事件（Pre阶段）
+     * @param event 伤害事件
      */
     public static void onEntityHurtByGun(EntityHurtByGunEvent.Pre event) {
         // 获取攻击者
@@ -69,8 +75,8 @@ public class SliceEvent {
 
         if (currentEffect != null) {
             // 情况1：已有瓦解效果 -> 延长持续时间
-            int extendDuration = TBZConfig.SLICE_EXTEND_DURATION.get();   // 每次延长的刻数
-            int maxDuration = TBZConfig.SLICE_MAX_DURATION.get();         // 最大持续时间（刻）
+            int extendDuration = TBZConfig.SLICE_EXTEND_DURATION.get();
+            int maxDuration = TBZConfig.SLICE_MAX_DURATION.get();
             int newDuration = Math.min(currentEffect.getDuration() + extendDuration, maxDuration);
 
             // 保留原有效果的等级（不改变效果强度）
@@ -89,10 +95,10 @@ public class SliceEvent {
                 return;
             }
 
-            // 获取瓦解效果的持续时间和等级范围（从配置读取）
+            // 获取瓦解效果的持续时间和等级范围
             int severDuration = TBZConfig.SLICE_SEVER_DURATION.get();
-            int severMinAmplifier = TBZConfig.SLICE_SEVER_MIN_AMPLIFIER.get();  // 最小等级
-            int severMaxAmplifier = TBZConfig.SLICE_SEVER_MAX_AMPLIFIER.get();  // 最大等级
+            int severMinAmplifier = TBZConfig.SLICE_SEVER_MIN_AMPLIFIER.get();
+            int severMaxAmplifier = TBZConfig.SLICE_SEVER_MAX_AMPLIFIER.get();
 
             // 随机生成效果等级（在最小和最大之间随机）
             int severAmplifier = severMinAmplifier

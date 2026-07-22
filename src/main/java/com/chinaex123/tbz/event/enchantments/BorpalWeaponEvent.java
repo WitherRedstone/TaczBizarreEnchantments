@@ -12,24 +12,27 @@ import net.minecraftforge.common.Tags;
  * 斩首武器附魔的事件处理类
  * <p>
  * 功能：对Boss生物造成额外伤害
+ * <p>
  * 机制：
- * 1. 检测被射击目标是否为Boss类实体（通过Tags.EntityTypes.BOSSES标签）
- * 2. 非Boss目标不触发任何效果
- * 3. 对Boss目标根据附魔等级计算伤害倍率：基础伤害 × (1 + 每级加成值 × 等级)
- * 4. 将计算后的伤害值直接覆盖原伤害，实现伤害倍率调整
- * 5. 伤害加成仅作用于Boss目标，对普通实体无任何影响
+ * <ol>
+ *   <li>检测被射击目标是否为Boss类实体
+ *   <li>非Boss目标不触发任何效果
+ *   <li>对Boss目标根据附魔等级计算伤害倍率：基础伤害 × (1 + 每级加成值 × 等级)
+ *   <li>将计算后的伤害值直接覆盖原伤害，实现伤害倍率调整
+ *   <li>伤害加成仅作用于Boss目标，对普通实体无任何影响
+ * </ol>
  */
 public class BorpalWeaponEvent {
 
     /**
-     * 应用斩首武器的伤害加成效果
+     * 枪械伤害事件：斩首武器
      * 当目标为Boss实体时，根据附魔等级提高造成的伤害
      *
-     * @param event  枪械伤害事件（Pre阶段，可修改伤害值）
-     * @param gun    使用的枪械物品
+     * @param event 枪械伤害事件
+     * @param gun 使用的枪械物品
      * @param target 被击中的目标实体
      */
-    public static void apply(EntityHurtByGunEvent.Pre event, ItemStack gun, LivingEntity target) {
+    public static void onEntityHurtByGun(EntityHurtByGunEvent.Pre event, ItemStack gun, LivingEntity target) {
         // 检查目标是否为Boss类实体
         boolean isBoss = target.getType().is(Tags.EntityTypes.BOSSES);
         if (!isBoss) return;

@@ -4,6 +4,8 @@ import com.chinaex123.tbz.config.TBZConfig;
 import com.chinaex123.tbz.init.TBZCreativeTabs;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.network.PacketHandler;
+import com.chinaex123.tbz.recoil.modifier.EyeOfStormEyeRecoilModifier;
+import com.chinaex123.tbz.recoil.modifier.FirmlyPlantedRecoilModifier;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -25,6 +27,10 @@ public class TBZMod {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TBZConfig.SPEC);
         TBZEnchantments.ENCHANTMENTS.register(modEventBus);
         PacketHandler.register();
+
+        FirmlyPlantedRecoilModifier.register();
+        EyeOfStormEyeRecoilModifier.register();
+
         TBZCreativeTabs.CREATIVE_MODE_TAB.register(modEventBus);
     }
 

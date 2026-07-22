@@ -21,29 +21,38 @@ import java.util.Optional;
  * 回转弹药附魔的事件处理类
  * <p>
  * 功能：射空此武器的弹匣时，会根据命中次数从储存弹药中填装
+ * <p>
  * 机制：
- * 1. 换弹时重置所有计数，记录当前弹匣容量
- * 2. 射击时累计射击次数（每次减少的弹药量累加）
- * 3. 命中时累计命中次数（每次命中+1）
- * 4. 弹匣打空时（弹药从1变为0）触发恢复判定：
- *    a. 检查射击次数是否达到最低要求（弹匣容量 × 最小射击比例）
- *    b. 未达到最低射击次数 → 不恢复弹药，等待下次换弹重置
- *    c. 达到最低射击次数 → 计算恢复弹药量 = 命中次数 × 恢复比例（四舍五入）
- * 5. 从背包扣除对应弹药并装填到枪械
- * 6. 恢复后重置所有计数，以本次恢复的弹药量作为新的弹匣容量
- * 7. 恢复弹药量受背包可用弹药限制
- * 8. 不满足条件时不恢复弹药，计数在下次换弹时重置
+ * <ol>
+ *   <li>换弹时重置所有计数，记录当前弹匣容量</li>
+ *   <li>射击时累计射击次数（每次减少的弹药量累加）</li>
+ *   <li>命中时累计命中次数（每次命中+1）</li>
+ *   <li>弹匣打空时（弹药从1变为0）触发恢复判定：
+ *     <ol type="a">
+ *       <li>检查射击次数是否达到最低要求（弹匣容量 × 最小射击比例）</li>
+ *       <li>未达到最低射击次数 → 不恢复弹药，等待下次换弹重置</li>
+ *       <li>达到最低射击次数 → 计算恢复弹药量 = 命中次数 × 恢复比例（四舍五入）</li>
+ *     </ol>
+ *   </li>
+ *   <li>从背包扣除对应弹药并装填到枪械</li>
+ *   <li>恢复后重置所有计数，以本次恢复的弹药量作为新的弹匣容量</li>
+ *   <li>恢复弹药量受背包可用弹药限制</li>
+ *   <li>不满足条件时不恢复弹药，计数在下次换弹时重置</li>
+ * </ol>
  */
 public class RewindRoundsEvent {
 
-    // NBT标签常量
-    private static final String HIT_COUNT_TAG = "RewindRoundsHitCount"; // 当前弹匣累计命中次数
-    private static final String MAGAZINE_SIZE_TAG = "RewindRoundsMagazineSize"; // 弹匣容量
-    private static final String SHOTS_FIRED_TAG = "RewindRoundsShotsFired"; // 当前弹匣累计射击次数
-    private static final String PREV_AMMO_TAG = "RewindRoundsPrevAmmo"; // 上一tick的弹药数（用于检测射击）
+    /** 当前弹匣累计命中次数 */
+    private static final String HIT_COUNT_TAG = "RewindRoundsHitCount";
+    /** 弹匣容量 */
+    private static final String MAGAZINE_SIZE_TAG = "RewindRoundsMagazineSize";
+    /** 当前弹匣累计射击次数 */
+    private static final String SHOTS_FIRED_TAG = "RewindRoundsShotsFired";
+    /** 上一tick的弹药数 */
+    private static final String PREV_AMMO_TAG = "RewindRoundsPrevAmmo";
 
     /**
-     * 换弹完成事件处理
+     * 换弹开始事件：回转弹药
      * 重置所有计数，记录新的弹匣容量
      */
     public static void onGunReload(GunReloadEvent event) {
@@ -70,7 +79,7 @@ public class RewindRoundsEvent {
     }
 
     /**
-     * 枪械命中实体事件处理
+     * 枪械伤害事件：回转弹药
      * 增加当前弹匣的命中计数
      */
     public static void onEntityHurtByGun(EntityHurtByGunEvent.Pre event) {
@@ -97,9 +106,8 @@ public class RewindRoundsEvent {
     }
 
     /**
-     * 玩家Tick事件处理（核心逻辑）
-     * 1. 检测射击行为并累计射击次数
-     * 2. 当弹药从1变为0时（弹匣打空），判断是否满足恢复条件并执行弹药恢复
+     * 玩家每帧更新事件：回转弹药
+     * 检测射击行为并累计射击次数，当弹药从1变为0时，判断是否满足恢复条件并执行弹药恢复
      */
     public static void onPlayerTick(Player player) {
         ItemStack gun = player.getMainHandItem();
@@ -153,8 +161,11 @@ public class RewindRoundsEvent {
                 int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoId);
 
                 if (availableAmmo > 0) {
-                    // 实际恢复数不能超过背包可用弹药
+                    // 获取枪械的弹匣容量上限
+                    int maxMagazineSize = gunIndexOpt.get().getGunData().getAmmoAmount();
+                    // 实际恢复数不能超过：背包可用弹药、弹匣容量上限
                     ammoToRestore = Math.min(ammoToRestore, availableAmmo);
+                    ammoToRestore = Math.min(ammoToRestore, maxMagazineSize);
                     // 从背包扣除弹药
                     AmmoUtils.consumeAmmoFromInventory(player, ammoId, ammoToRestore);
                     // 装填到枪械

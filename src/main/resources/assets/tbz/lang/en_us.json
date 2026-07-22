@@ -1,9 +1,19 @@
 {
   "itemGroup.tbz": "Tacz's Peculiar Enchantments",
 
+  "_enchantment.exotic":"[Exotic] Enchantment Category",
+  "enchantment.tbz.protective_weave": "Protective Weave",
+  "enchantment.tbz.protective_weave.desc": "Kills grant Woven Armor, which increases damage dealt while active.",
+
   "_enchantment.bonus_damage": "[Bonus Damage] Enchantment Category",
   "enchantment.tbz.borpal_weapon": "Borpal Weapon",
   "enchantment.tbz.borpal_weapon.desc": "Deals bonus damage to Boss-type entities.",
+  "enchantment.tbz.precision_instrument": "Precision Instrument",
+  "enchantment.tbz.precision_instrument.desc": "Landing precision hits increases the headshot damage multiplier.",
+  "enchantment.tbz.target_lock": "Target Lock",
+  "enchantment.tbz.target_lock.desc": "Damage increases the longer the weapon's reticle remains on target.",
+  "enchantment.tbz.gutshot_straight": "Gutshot Straight",
+  "enchantment.tbz.gutshot_straight.desc": "Aiming increases body-shot damage.",
 
   "_enchantment.bonus_bullet": "[Ammo Refund] Enchantment Category",
   "enchantment.tbz.subsistence": "Subsistence",
@@ -21,17 +31,9 @@
   "enchantment.tbz.mulligan": "Mulligan",
   "enchantment.tbz.mulligan.desc": "Missed shots have a chance to refund ammunition directly to the magazine.",
 
-  "_enchantment.continuous_damage": "[Damage over Time] Enchantment Category",
-  "enchantment.tbz.attrition_orbs": "Attrition Orbs",
-  "enchantment.tbz.attrition_orbs.desc": "Dealing sustained damage to the same target generates experience orbs.",
-  "enchantment.tbz.target_lock": "Target Lock",
-  "enchantment.tbz.target_lock.desc": "Damage increases the longer the weapon's reticle remains on target.",
-
   "_enchantment.application_effect": "[Status Application] Enchantment Category",
   "enchantment.tbz.heal_clip": "Heal Clip",
   "enchantment.tbz.heal_clip.desc": "Reloading shortly after a final blow heals you.",
-  "enchantment.tbz.protective_weave": "Protective Weave",
-  "enchantment.tbz.protective_weave.desc": "Kills grant Woven Armor, which increases damage dealt while active.",
   "enchantment.tbz.rolling_storm": "Rolling Storm",
   "enchantment.tbz.rolling_storm.desc": "Final blows grant a damage-boosting effect.",
   "enchantment.tbz.destabilizing_rounds": "Destabilizing Rounds",
@@ -44,16 +46,6 @@
   "enchantment.tbz.rimestealer.desc": "Defeating a target affected by Freezing grants you Frost Armor.",
   "enchantment.tbz.slice": "Slice",
   "enchantment.tbz.slice.desc": "Hitting enemies applies a Debilitating effect.",
-
-  "_enchantment.headshot": "[Precision Hit] Enchantment Category",
-  "enchantment.tbz.precision_instrument": "Precision Instrument",
-  "enchantment.tbz.precision_instrument.desc": "Landing precision hits increases the headshot damage multiplier.",
-  "enchantment.tbz.outlaw": "Outlaw (WIP)",
-  "enchantment.tbz.outlaw.desc": "Precision kills dramatically reduce reload time.",
-
-  "_enchantment.aim": "[Aiming] Enchantment Category",
-  "enchantment.tbz.gutshot_straight": "Gutshot Straight",
-  "enchantment.tbz.gutshot_straight.desc": "Aiming increases body-shot damage.",
   "enchantment.tbz.withering_gaze": "Withering Gaze",
   "enchantment.tbz.withering_gaze.desc": "Aiming the weapon for a short period without firing weakens your next target.",
 
@@ -67,5 +59,13 @@
   "enchantment.tbz.dragonfly": "Dragonfly",
   "enchantment.tbz.dragonfly.desc": "Precision kills cause an explosion.",
   "enchantment.tbz.meganeura": "Meganeura",
-  "enchantment.tbz.meganeura.desc": "Precision final blows cause an explosion that deals additional damage based on the number of precision hits landed beforehand."
+  "enchantment.tbz.meganeura.desc": "Precision final blows cause an explosion that deals additional damage based on the number of precision hits landed beforehand.",
+
+  "_enchantment.continuous_damage": "[Damage over Time] Enchantment Category",
+  "enchantment.tbz.attrition_orbs": "Attrition Orbs",
+  "enchantment.tbz.attrition_orbs.desc": "Dealing sustained damage to the same target generates experience orbs.",
+
+  "_enchantment.load": "[Reload] Enchantment Category",
+  "enchantment.tbz.outlaw": "Outlaw",
+  "enchantment.tbz.outlaw.desc": "Precision kills dramatically reduce reload time."
 }

@@ -7,19 +7,17 @@ import com.chinaex123.tbz.capability.ModCapabilities;
 
 import java.util.function.Supplier;
 
-/** 枪械瞄准状态网络数据包 - 同步玩家的枪械瞄准状态 **/
-public class GunAimingPacket {
-
-    // 瞄准状态：true=正在瞄准，false=未瞄准
-    private final boolean isAiming;
-
-    /**
-     * 构造方法 - 初始化数据包实例，设置瞄准状态
-     * @param isAiming 瞄准状态
-     */
-    public GunAimingPacket(boolean isAiming) {
-        this.isAiming = isAiming;
-    }
+/**
+ * 枪械瞄准状态网络数据包（客户端 → 服务端）
+ * <p>
+ * 功能：将客户端的枪械瞄准状态同步到服务端
+ * <p>
+ * 字段说明：
+ * <ul>
+ *   <li>isAiming - 玩家是否正在瞄准（true=瞄准中，false=未瞄准）</li>
+ * </ul>
+ */
+public record GunAimingPacket(boolean isAiming) {
 
     /**
      * 编码方法 - 将数据包内容写入网络缓冲区
@@ -29,7 +27,7 @@ public class GunAimingPacket {
      * @param buf 网络缓冲区
      */
     public static void encode(GunAimingPacket msg, FriendlyByteBuf buf) {
-        buf.writeBoolean(msg.isAiming);  // 写入布尔值（1字节）
+        buf.writeBoolean(msg.isAiming());  // 写入布尔值（1字节）
     }
 
     /**
@@ -59,10 +57,10 @@ public class GunAimingPacket {
             if (player != null) {
                 // 通过能力系统（Capability）更新瞄准状态
                 player.getCapability(ModCapabilities.GUN_AIMING).ifPresent(cap -> {
-                    cap.setAiming(msg.isAiming);  // 设置瞄准状态
+                    cap.setAiming(msg.isAiming());  // 设置瞄准状态
                 });
-                // 同时更新 AimingState 状态
-                AimingState.setAiming(player, msg.isAiming);
+                // 同时更新静态的 AimingState 状态（用于非能力系统访问）
+                AimingState.setAiming(player, msg.isAiming());
             }
         });
         // 标记数据包已处理完成

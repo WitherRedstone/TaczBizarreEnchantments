@@ -13,10 +13,30 @@ public interface TBZEnchantments {
     DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, TBZMod.MOD_ID);
     EnchantmentCategory DESTINY_GUN = EnchantmentCategory.create("destiny_gun", item -> false);
 
+    // ==================== [异域]类型附魔 ====================
+    /** 防护编织 **/
+    RegistryObject<ProtectiveWeaveEnchantment> PROTECTIVE_WEAVE = ENCHANTMENTS.register("protective_weave",
+            () -> new ProtectiveWeaveEnchantment(Enchantment.Rarity.VERY_RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+    /** 统治浩劫 **/
+    RegistryObject<ReignHavocEnchantment> REIGN_HAVOC = ENCHANTMENTS.register("reign_havoc",
+            () -> new ReignHavocEnchantment(Enchantment.Rarity.VERY_RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+
     // ==================== [增伤]类型附魔 ====================
     /** 斩首武器 **/
     RegistryObject<BorpalWeaponEnchantment> BORPAL_WEAPON = ENCHANTMENTS.register("borpal_weapon",
             () -> new BorpalWeaponEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+    /** 精准工具 **/
+    RegistryObject<PrecisionInstrumentEnchantment> PRECISION_INSTRUMENT = ENCHANTMENTS.register("precision_instrument",
+            () -> new PrecisionInstrumentEnchantment(Enchantment.Rarity.VERY_RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+    /** 目标锁定 **/
+    RegistryObject<TargetLockEnchantment> TARGET_LOCK = ENCHANTMENTS.register("target_lock",
+            () -> new TargetLockEnchantment(Enchantment.Rarity.VERY_RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+    /** 直击要害 **/
+    RegistryObject<GutshotStraightEnchantment> GUTSHOT_STRAIGHT = ENCHANTMENTS.register("gutshot_straight",
+            () -> new GutshotStraightEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+    /** 热能雾化 **/
+    RegistryObject<ThermalAtomizationEnchantment> THERMAL_ATOMIZATION = ENCHANTMENTS.register("thermal_atomization",
+            () -> new ThermalAtomizationEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
 
     // ==================== [回子弹]类型附魔 ====================
     /** 维持生计 **/
@@ -40,22 +60,20 @@ public interface TBZEnchantments {
     /** 重新调度 **/
     RegistryObject<MulliganEnchantment> MULLIGAN = ENCHANTMENTS.register("mulligan",
             () -> new MulliganEnchantment(Enchantment.Rarity.VERY_RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
-
-    // ==================== [持续伤害]类型附魔 ====================
-    /** 羸弱能量球 **/
-    RegistryObject<AttritionOrbsEnchantment> ATTRITION_ORBS = ENCHANTMENTS.register("attrition_orbs",
-            () -> new AttritionOrbsEnchantment(Enchantment.Rarity.VERY_RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
-    /** 目标锁定 **/
-    RegistryObject<TargetLockEnchantment> TARGET_LOCK = ENCHANTMENTS.register("target_lock",
-            () -> new TargetLockEnchantment(Enchantment.Rarity.VERY_RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+    /** 涓流充能 **/
+    RegistryObject<TrickleChargeEnchantment> TRICKLE_CHARGE = ENCHANTMENTS.register("trickle_charge",
+            () -> new TrickleChargeEnchantment(Enchantment.Rarity.VERY_RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+    /** 超充弹匣 **/
+    RegistryObject<SuperchargedMagazineEnchantment> SUPERCHARGED_MAGAZINE = ENCHANTMENTS.register("supercharged_magazine",
+            () -> new SuperchargedMagazineEnchantment(Enchantment.Rarity.VERY_RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+    /** 命运的逆转 **/
+    RegistryObject<ReversalOfFortuneEnchantment> REVERSAL_OF_FORTUNE = ENCHANTMENTS.register("reversal_of_fortune",
+            () -> new ReversalOfFortuneEnchantment(Enchantment.Rarity.VERY_RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
 
     // ==================== [应用效果]类型附魔 ====================
     /** 治疗弹匣 **/
     RegistryObject<HealClipEnchantment> HEAL_CLIP = ENCHANTMENTS.register("heal_clip",
             () -> new HealClipEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
-    /** 防护编织 **/
-    RegistryObject<ProtectiveWeaveEnchantment> PROTECTIVE_WEAVE = ENCHANTMENTS.register("protective_weave",
-            () -> new ProtectiveWeaveEnchantment(Enchantment.Rarity.VERY_RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
     /** 风暴涌动 **/
     RegistryObject<RollingStormEnchantment> ROLLING_STORM = ENCHANTMENTS.register("rolling_storm",
             () -> new RollingStormEnchantment(Enchantment.Rarity.VERY_RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
@@ -74,19 +92,6 @@ public interface TBZEnchantments {
     /** 切割 **/
     RegistryObject<SliceEnchantment> SLICE = ENCHANTMENTS.register("slice",
             () -> new SliceEnchantment(Enchantment.Rarity.VERY_RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
-
-    // ==================== [爆头]类型附魔 ====================
-    /** 精准工具 **/
-    RegistryObject<PrecisionInstrumentEnchantment> PRECISION_INSTRUMENT = ENCHANTMENTS.register("precision_instrument",
-            () -> new PrecisionInstrumentEnchantment(Enchantment.Rarity.VERY_RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
-    /** 不法之徒 **/
-    RegistryObject<OutlawEnchantment> OUTLAW = ENCHANTMENTS.register("outlaw",
-            () -> new OutlawEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
-
-    // ==================== [瞄准]类型附魔 ====================
-    /** 直击要害 **/
-    RegistryObject<GutshotStraightEnchantment> GUTSHOT_STRAIGHT = ENCHANTMENTS.register("gutshot_straight",
-            () -> new GutshotStraightEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
     /** 枯萎凝视 **/
     RegistryObject<WitheringGazeEnchantment> WITHERING_GAZE = ENCHANTMENTS.register("withering_gaze",
             () -> new WitheringGazeEnchantment(Enchantment.Rarity.VERY_RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
@@ -108,18 +113,43 @@ public interface TBZEnchantments {
     RegistryObject<MeganeuraEnchantment> MEGANEURA = ENCHANTMENTS.register("meganeura",
             () -> new MeganeuraEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
 
-
-
-
-
-
-
-
-
-
+    // ==================== [配件数值]类型附魔 ====================
+    /** 速射瞄准 **/
+    RegistryObject<SnapshotSightsEnchantment> SNAPSHOT_SIGHTS = ENCHANTMENTS.register("snapshot_sights",
+            () -> new SnapshotSightsEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+    /** 稳若磐石 **/
+    RegistryObject<FirmlyPlantedEnchantment> FIRMLY_PLANTED = ENCHANTMENTS.register("firmly_planted",
+            () -> new FirmlyPlantedEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
     /** 柔缓 **/
-//    RegistryObject<AdagioEnchantment> ADAGIO = ENCHANTMENTS.register("adagio",
-//            () -> new AdagioEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+    RegistryObject<AdagioEnchantment> ADAGIO = ENCHANTMENTS.register("adagio",
+            () -> new AdagioEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+    /** 猛攻 **/
+    RegistryObject<OnslaughtEnchantment> ONSLAUGHT = ENCHANTMENTS.register("onslaught",
+            () -> new OnslaughtEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+    /** 风暴之眼 **/
+    RegistryObject<EyeOfStormEyeEnchantment> EYE_OF_STORM_EYE = ENCHANTMENTS.register("eye_of_storm_eye",
+            () -> new EyeOfStormEyeEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+
+    // ==================== [持续伤害]类型附魔 ====================
+    /** 羸弱能量球 **/
+    RegistryObject<AttritionOrbsEnchantment> ATTRITION_ORBS = ENCHANTMENTS.register("attrition_orbs",
+            () -> new AttritionOrbsEnchantment(Enchantment.Rarity.VERY_RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+
+    // ==================== [填装]类型附魔 ====================
+    /** 不法之徒 **/
+    RegistryObject<OutlawEnchantment> OUTLAW = ENCHANTMENTS.register("outlaw",
+            () -> new OutlawEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+
+    // ==================== [其他]类型附魔 ====================
+    /** 泉源 **/
+    RegistryObject<WellspringEnchantment> WELLSPRING = ENCHANTMENTS.register("wellspring",
+            () -> new WellspringEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+    /** 冷却饰物 **/
+    RegistryObject<CoolingBaublesEnchantment> COOLING_BAUBLES = ENCHANTMENTS.register("cooling_baubles",
+            () -> new CoolingBaublesEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+    /** 边打边劫 **/
+    RegistryObject<ShootTpLootEnchantment> SHOOT_TP_LOOT = ENCHANTMENTS.register("shoot_tp_loot",
+            () -> new ShootTpLootEnchantment(Enchantment.Rarity.RARE, DESTINY_GUN, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
 
     static void init() {}
 }

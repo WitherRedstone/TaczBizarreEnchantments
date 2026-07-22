@@ -30,144 +30,223 @@ public class TBZEnchantmentConfig {
 
     // 静态初始化块：注册附魔及其对应的配置项
     static {
-        // 注册斩首武器附魔配置
-        ENCHANTMENT_CONFIGS.put("borpal_weapon", new EnchantmentConfigEntry(
-            TBZConfig.BORPAL_WEAPON_WHITELIST_MODE,
-            TBZConfig.BORPAL_WEAPON_APPLICABLE_GUNS
-        ));
-        // 注册治疗弹匣附魔配置
-        ENCHANTMENT_CONFIGS.put("heal_clip", new EnchantmentConfigEntry(
-            TBZConfig.HEAL_CLIP_WHITELIST_MODE,
-            TBZConfig.HEAL_CLIP_APPLICABLE_GUNS
-        ));
-        // 注册维持生计附魔配置
-        ENCHANTMENT_CONFIGS.put("subsistence", new EnchantmentConfigEntry(
-            TBZConfig.SUBSISTENCE_WHITELIST_MODE,
-            TBZConfig.SUBSISTENCE_APPLICABLE_GUNS
-        ));
-        // 注册刺客野心附魔配置
-        ENCHANTMENT_CONFIGS.put("ambitious_assassin", new EnchantmentConfigEntry(
-            TBZConfig.AMBITIOUS_ASSASSIN_WHITELIST_MODE,
-            TBZConfig.AMBITIOUS_ASSASSIN_APPLICABLE_GUNS
-        ));
-        // 注册重建附魔配置
-        ENCHANTMENT_CONFIGS.put("reconstruction", new EnchantmentConfigEntry(
-            TBZConfig.RECONSTRUCTION_WHITELIST_MODE,
-            TBZConfig.RECONSTRUCTION_APPLICABLE_GUNS
-        ));
-        // 注册精准连击附魔配置
-        ENCHANTMENT_CONFIGS.put("triple_tap", new EnchantmentConfigEntry(
-            TBZConfig.TRIPLE_TAP_WHITELIST_MODE,
-            TBZConfig.TRIPLE_TAP_APPLICABLE_GUNS
-        ));
-        // 注册事不过四附魔配置
-        ENCHANTMENT_CONFIGS.put("fourth_time_the_charm", new EnchantmentConfigEntry(
-            TBZConfig.FOURTH_TIME_THE_CHARM_WHITELIST_MODE,
-            TBZConfig.FOURTH_TIME_THE_CHARM_APPLICABLE_GUNS
-        ));
-        // 注册回转弹药附魔配置
-        ENCHANTMENT_CONFIGS.put("rewind_rounds", new EnchantmentConfigEntry(
-            TBZConfig.REWIND_ROUNDS_WHITELIST_MODE,
-            TBZConfig.REWIND_ROUNDS_APPLICABLE_GUNS
-        ));
-        // 注册羸弱能量球附魔配置
-        ENCHANTMENT_CONFIGS.put("attrition_orbs", new EnchantmentConfigEntry(
-                TBZConfig.ATTRITION_ORBS_WHITELIST_MODE,
-                TBZConfig.ATTRITION_ORBS_APPLICABLE_GUNS
-        ));
-        // 注册防护编织附魔配置
+        // ========== [异域]类型附魔 ==========
+        // 防护编织
         ENCHANTMENT_CONFIGS.put("protective_weave", new EnchantmentConfigEntry(
                 TBZConfig.PROTECTIVE_WEAVE_WHITELIST_MODE,
                 TBZConfig.PROTECTIVE_WEAVE_APPLICABLE_GUNS
         ));
-        // 注册精准工具附魔配置
+        // 统治浩劫
+        ENCHANTMENT_CONFIGS.put("reign_havoc", new EnchantmentConfigEntry(
+                TBZConfig.REIGN_HAVOC_WHITELIST_MODE,
+                TBZConfig.REIGN_HAVOC_APPLICABLE_GUNS
+        ));
+
+        // ========== [增伤]类型附魔 ==========
+        // 斩首武器
+        ENCHANTMENT_CONFIGS.put("borpal_weapon", new EnchantmentConfigEntry(
+                TBZConfig.BORPAL_WEAPON_WHITELIST_MODE,
+                TBZConfig.BORPAL_WEAPON_APPLICABLE_GUNS
+        ));
+        // 精准工具
         ENCHANTMENT_CONFIGS.put("precision_instrument", new EnchantmentConfigEntry(
                 TBZConfig.PRECISION_INSTRUMENT_WHITELIST_MODE,
                 TBZConfig.PRECISION_INSTRUMENT_APPLICABLE_GUNS
         ));
-        // 注册重新调度附魔配置
-        ENCHANTMENT_CONFIGS.put("mulligan", new EnchantmentConfigEntry(
-                TBZConfig.MULLIGAN_WHITELIST_MODE,
-                TBZConfig.MULLIGAN_APPLICABLE_GUNS
-        ));
-        // 注册不法之徒附魔配置
-        ENCHANTMENT_CONFIGS.put("outlaw", new EnchantmentConfigEntry(
-                TBZConfig.OUTLAW_WHITELIST_MODE,
-                TBZConfig.OUTLAW_APPLICABLE_GUNS
-        ));
-        // 注册直击要害附魔配置
-        ENCHANTMENT_CONFIGS.put("gutshot_straight", new EnchantmentConfigEntry(
-                TBZConfig.GUTSHOT_STRAIGHT_WHITELIST_MODE,
-                TBZConfig.GUTSHOT_STRAIGHT_APPLICABLE_GUNS
-        ));
-        // 注册枯萎凝视附魔配置
-        ENCHANTMENT_CONFIGS.put("withering_gaze", new EnchantmentConfigEntry(
-                TBZConfig.WITHERING_GAZE_WHITELIST_MODE,
-                TBZConfig.WITHERING_GAZE_APPLICABLE_GUNS
-        ));
-        // 注册蝴蝶附魔配置
-        ENCHANTMENT_CONFIGS.put("butterfly", new EnchantmentConfigEntry(
-                TBZConfig.BUTTERFLY_WHITELIST_MODE,
-                TBZConfig.BUTTERFLY_APPLICABLE_GUNS
-        ));
-        // 注册高爆载荷附魔配置
-        ENCHANTMENT_CONFIGS.put("explosive_payload", new EnchantmentConfigEntry(
-                TBZConfig.EXPLOSIVE_PAYLOAD_WHITELIST_MODE,
-                TBZConfig.EXPLOSIVE_PAYLOAD_APPLICABLE_GUNS
-        ));
-        // 注册萤火虫附魔配置
-        ENCHANTMENT_CONFIGS.put("firefly", new EnchantmentConfigEntry(
-                TBZConfig.FIREFLY_WHITELIST_MODE,
-                TBZConfig.FIREFLY_APPLICABLE_GUNS
-        ));
-        // 注册蜻蜓附魔配置
-        ENCHANTMENT_CONFIGS.put("dragonfly", new EnchantmentConfigEntry(
-                TBZConfig.DRAGONFLY_WHITELIST_MODE,
-                TBZConfig.DRAGONFLY_APPLICABLE_GUNS
-        ));
-        // 注册巨脉蜻蜓附魔配置
-        ENCHANTMENT_CONFIGS.put("meganeura", new EnchantmentConfigEntry(
-                TBZConfig.MEGANEURA_WHITELIST_MODE,
-                TBZConfig.MEGANEURA_APPLICABLE_GUNS
-        ));
-        // 注册风暴涌动附魔配置
-        ENCHANTMENT_CONFIGS.put("rolling_storm", new EnchantmentConfigEntry(
-                TBZConfig.ROLLING_STORM_WHITELIST_MODE,
-                TBZConfig.ROLLING_STORM_APPLICABLE_GUNS
-        ));
-        // 注册失衡弹药附魔配置
-        ENCHANTMENT_CONFIGS.put("destabilizing_rounds", new EnchantmentConfigEntry(
-                TBZConfig.DESTABILIZING_ROUNDS_WHITELIST_MODE,
-                TBZConfig.DESTABILIZING_ROUNDS_APPLICABLE_GUNS
-        ));
-        // 注册辉耀炽热附魔配置
-        ENCHANTMENT_CONFIGS.put("incandescent", new EnchantmentConfigEntry(
-                TBZConfig.INCANDESCENT_WHITELIST_MODE,
-                TBZConfig.INCANDESCENT_APPLICABLE_GUNS
-        ));
-        // 注册冰冷弹匣附魔配置
-        ENCHANTMENT_CONFIGS.put("chill_clip", new EnchantmentConfigEntry(
-                TBZConfig.CHILL_CLIP_WHITELIST_MODE,
-                TBZConfig.CHILL_CLIP_APPLICABLE_GUNS
-        ));
-        // 注册霜华窃取者附魔配置
-        ENCHANTMENT_CONFIGS.put("rimestealer", new EnchantmentConfigEntry(
-                TBZConfig.RIMESTEALER_WHITELIST_MODE,
-                TBZConfig.RIMESTEALER_APPLICABLE_GUNS
-        ));
-        // 注册目标锁定附魔配置
+        // 目标锁定
         ENCHANTMENT_CONFIGS.put("target_lock", new EnchantmentConfigEntry(
                 TBZConfig.TARGET_LOCK_WHITELIST_MODE,
                 TBZConfig.TARGET_LOCK_APPLICABLE_GUNS
         ));
-        // 注册切割附魔配置
+        // 直击要害
+        ENCHANTMENT_CONFIGS.put("gutshot_straight", new EnchantmentConfigEntry(
+                TBZConfig.GUTSHOT_STRAIGHT_WHITELIST_MODE,
+                TBZConfig.GUTSHOT_STRAIGHT_APPLICABLE_GUNS
+        ));
+        // 热能雾化
+        ENCHANTMENT_CONFIGS.put("thermal_atomization", new EnchantmentConfigEntry(
+                TBZConfig.THERMAL_ATOMIZATION_WHITELIST_MODE,
+                TBZConfig.THERMAL_ATOMIZATION_APPLICABLE_GUNS
+        ));
+
+        // ========== [回子弹]类型附魔 ==========
+        // 维持生计
+        ENCHANTMENT_CONFIGS.put("subsistence", new EnchantmentConfigEntry(
+                TBZConfig.SUBSISTENCE_WHITELIST_MODE,
+                TBZConfig.SUBSISTENCE_APPLICABLE_GUNS
+        ));
+        // 刺客野心
+        ENCHANTMENT_CONFIGS.put("ambitious_assassin", new EnchantmentConfigEntry(
+                TBZConfig.AMBITIOUS_ASSASSIN_WHITELIST_MODE,
+                TBZConfig.AMBITIOUS_ASSASSIN_APPLICABLE_GUNS
+        ));
+        // 重建
+        ENCHANTMENT_CONFIGS.put("reconstruction", new EnchantmentConfigEntry(
+                TBZConfig.RECONSTRUCTION_WHITELIST_MODE,
+                TBZConfig.RECONSTRUCTION_APPLICABLE_GUNS
+        ));
+        // 精准连击
+        ENCHANTMENT_CONFIGS.put("triple_tap", new EnchantmentConfigEntry(
+                TBZConfig.TRIPLE_TAP_WHITELIST_MODE,
+                TBZConfig.TRIPLE_TAP_APPLICABLE_GUNS
+        ));
+        // 事不过四
+        ENCHANTMENT_CONFIGS.put("fourth_time_the_charm", new EnchantmentConfigEntry(
+                TBZConfig.FOURTH_TIME_THE_CHARM_WHITELIST_MODE,
+                TBZConfig.FOURTH_TIME_THE_CHARM_APPLICABLE_GUNS
+        ));
+        // 回转弹药
+        ENCHANTMENT_CONFIGS.put("rewind_rounds", new EnchantmentConfigEntry(
+                TBZConfig.REWIND_ROUNDS_WHITELIST_MODE,
+                TBZConfig.REWIND_ROUNDS_APPLICABLE_GUNS
+        ));
+        // 重新调度
+        ENCHANTMENT_CONFIGS.put("mulligan", new EnchantmentConfigEntry(
+                TBZConfig.MULLIGAN_WHITELIST_MODE,
+                TBZConfig.MULLIGAN_APPLICABLE_GUNS
+        ));
+        // 涓流充能
+        ENCHANTMENT_CONFIGS.put("trickle_charge", new EnchantmentConfigEntry(
+                TBZConfig.TRICKLE_CHARGE_WHITELIST_MODE,
+                TBZConfig.TRICKLE_CHARGE_APPLICABLE_GUNS
+        ));
+        // 超充弹匣
+        ENCHANTMENT_CONFIGS.put("supercharged_magazine", new EnchantmentConfigEntry(
+                TBZConfig.SUPERCHARGED_MAGAZINE_WHITELIST_MODE,
+                TBZConfig.SUPERCHARGED_MAGAZINE_APPLICABLE_GUNS
+        ));
+        // 命运的逆转
+        ENCHANTMENT_CONFIGS.put("reversal_of_fortune", new EnchantmentConfigEntry(
+                TBZConfig.REVERSAL_OF_FORTUNE_WHITELIST_MODE,
+                TBZConfig.REVERSAL_OF_FORTUNE_APPLICABLE_GUNS
+        ));
+
+        // ========== [应用效果]类型附魔 ==========
+        // 治疗弹匣
+        ENCHANTMENT_CONFIGS.put("heal_clip", new EnchantmentConfigEntry(
+                TBZConfig.HEAL_CLIP_WHITELIST_MODE,
+                TBZConfig.HEAL_CLIP_APPLICABLE_GUNS
+        ));
+        // 风暴涌动
+        ENCHANTMENT_CONFIGS.put("rolling_storm", new EnchantmentConfigEntry(
+                TBZConfig.ROLLING_STORM_WHITELIST_MODE,
+                TBZConfig.ROLLING_STORM_APPLICABLE_GUNS
+        ));
+        // 失衡弹药
+        ENCHANTMENT_CONFIGS.put("destabilizing_rounds", new EnchantmentConfigEntry(
+                TBZConfig.DESTABILIZING_ROUNDS_WHITELIST_MODE,
+                TBZConfig.DESTABILIZING_ROUNDS_APPLICABLE_GUNS
+        ));
+        // 辉耀炽热
+        ENCHANTMENT_CONFIGS.put("incandescent", new EnchantmentConfigEntry(
+                TBZConfig.INCANDESCENT_WHITELIST_MODE,
+                TBZConfig.INCANDESCENT_APPLICABLE_GUNS
+        ));
+        // 冰冷弹匣
+        ENCHANTMENT_CONFIGS.put("chill_clip", new EnchantmentConfigEntry(
+                TBZConfig.CHILL_CLIP_WHITELIST_MODE,
+                TBZConfig.CHILL_CLIP_APPLICABLE_GUNS
+        ));
+        // 霜华窃取者
+        ENCHANTMENT_CONFIGS.put("rimestealer", new EnchantmentConfigEntry(
+                TBZConfig.RIMESTEALER_WHITELIST_MODE,
+                TBZConfig.RIMESTEALER_APPLICABLE_GUNS
+        ));
+        // 切割
         ENCHANTMENT_CONFIGS.put("slice", new EnchantmentConfigEntry(
                 TBZConfig.SLICE_WHITELIST_MODE,
                 TBZConfig.SLICE_APPLICABLE_GUNS
         ));
+        // 枯萎凝视
+        ENCHANTMENT_CONFIGS.put("withering_gaze", new EnchantmentConfigEntry(
+                TBZConfig.WITHERING_GAZE_WHITELIST_MODE,
+                TBZConfig.WITHERING_GAZE_APPLICABLE_GUNS
+        ));
 
+        // ========== [爆炸]类型附魔 ==========
+        // 蝴蝶
+        ENCHANTMENT_CONFIGS.put("butterfly", new EnchantmentConfigEntry(
+                TBZConfig.BUTTERFLY_WHITELIST_MODE,
+                TBZConfig.BUTTERFLY_APPLICABLE_GUNS
+        ));
+        // 高爆载荷
+        ENCHANTMENT_CONFIGS.put("explosive_payload", new EnchantmentConfigEntry(
+                TBZConfig.EXPLOSIVE_PAYLOAD_WHITELIST_MODE,
+                TBZConfig.EXPLOSIVE_PAYLOAD_APPLICABLE_GUNS
+        ));
+        // 萤火虫
+        ENCHANTMENT_CONFIGS.put("firefly", new EnchantmentConfigEntry(
+                TBZConfig.FIREFLY_WHITELIST_MODE,
+                TBZConfig.FIREFLY_APPLICABLE_GUNS
+        ));
+        // 蜻蜓
+        ENCHANTMENT_CONFIGS.put("dragonfly", new EnchantmentConfigEntry(
+                TBZConfig.DRAGONFLY_WHITELIST_MODE,
+                TBZConfig.DRAGONFLY_APPLICABLE_GUNS
+        ));
+        // 巨脉蜻蜓
+        ENCHANTMENT_CONFIGS.put("meganeura", new EnchantmentConfigEntry(
+                TBZConfig.MEGANEURA_WHITELIST_MODE,
+                TBZConfig.MEGANEURA_APPLICABLE_GUNS
+        ));
 
+        // ========== [配件数值]类型附魔 ==========
+        // 速射瞄准
+        ENCHANTMENT_CONFIGS.put("snapshot_sights", new EnchantmentConfigEntry(
+                TBZConfig.SNAPSHOT_SIGHTS_WHITELIST_MODE,
+                TBZConfig.SNAPSHOT_SIGHTS_APPLICABLE_GUNS
+        ));
+        // 稳若磐石
+        ENCHANTMENT_CONFIGS.put("firmly_planted", new EnchantmentConfigEntry(
+                TBZConfig.FIRMLY_PLANTED_WHITELIST_MODE,
+                TBZConfig.FIRMLY_PLANTED_APPLICABLE_GUNS
+        ));
+        // 柔缓
+        ENCHANTMENT_CONFIGS.put("adagio", new EnchantmentConfigEntry(
+                TBZConfig.ADAGIO_WHITELIST_MODE,
+                TBZConfig.ADAGIO_APPLICABLE_GUNS
+        ));
+        // 猛攻
+        ENCHANTMENT_CONFIGS.put("onslaught", new EnchantmentConfigEntry(
+                TBZConfig.ONSLAUGHT_WHITELIST_MODE,
+                TBZConfig.ONSLAUGHT_APPLICABLE_GUNS
+        ));
+        // 风暴之眼
+        ENCHANTMENT_CONFIGS.put("eye_of_storm_eye", new EnchantmentConfigEntry(
+                TBZConfig.EYE_OF_STORM_EYE_WHITELIST_MODE,
+                TBZConfig.EYE_OF_STORM_EYE_APPLICABLE_GUNS
+        ));
 
+        // ========== [持续伤害]类型附魔 ==========
+        // 羸弱能量球
+        ENCHANTMENT_CONFIGS.put("attrition_orbs", new EnchantmentConfigEntry(
+                TBZConfig.ATTRITION_ORBS_WHITELIST_MODE,
+                TBZConfig.ATTRITION_ORBS_APPLICABLE_GUNS
+        ));
+
+        // ========== [填装]类型附魔 ==========
+        // 不法之徒
+        ENCHANTMENT_CONFIGS.put("outlaw", new EnchantmentConfigEntry(
+                TBZConfig.OUTLAW_WHITELIST_MODE,
+                TBZConfig.OUTLAW_APPLICABLE_GUNS
+        ));
+
+        // ========== [其他]类型附魔 ==========
+        // 泉源
+        ENCHANTMENT_CONFIGS.put("wellspring", new EnchantmentConfigEntry(
+                TBZConfig.WELLSPRING_WHITELIST_MODE,
+                TBZConfig.WELLSPRING_APPLICABLE_GUNS
+        ));
+        // 冷却饰物
+        ENCHANTMENT_CONFIGS.put("cooling_baubles", new EnchantmentConfigEntry(
+                TBZConfig.COOLING_BAUBLES_WHITELIST_MODE,
+                TBZConfig.COOLING_BAUBLES_APPLICABLE_GUNS
+        ));
+        // 边打边劫
+        ENCHANTMENT_CONFIGS.put("shoot_tp_loot", new EnchantmentConfigEntry(
+                TBZConfig.SHOOT_TP_LOOT_WHITELIST_MODE,
+                TBZConfig.SHOOT_TP_LOOT_APPLICABLE_GUNS
+        ));
 
 
 
@@ -200,8 +279,8 @@ public class TBZEnchantmentConfig {
                 List<? extends String> configGuns = configEntry.gunList.get();
 
                 // 将字符串列表转换为ResourceLocation列表
-                List<ResourceLocation> gunList = configGuns == null || configGuns.isEmpty() ? 
-                    Collections.emptyList() : 
+                List<ResourceLocation> gunList = configGuns == null || configGuns.isEmpty() ?
+                    Collections.emptyList() :
                     configGuns.stream()
                         .map(ResourceLocation::new)
                         .collect(Collectors.toList());

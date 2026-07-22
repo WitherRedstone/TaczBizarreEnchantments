@@ -14,30 +14,38 @@ import net.minecraft.world.item.ItemStack;
  * 巨脉蜻蜓附魔的事件处理类
  * <p>
  * 功能：精准最后一击会产生爆炸伤害，该爆炸会根据先前造成的精准命中次数造成额外伤害
+ * <p>
  * 机制：
- * 1. 每次爆头命中时增加爆头计数，并更新最后一次爆头时间
- * 2. 非爆头命中时仅检查时间窗口，不增加计数
- * 3. 爆头计数在60刻（3秒）内无任何爆头命中时自动重置
- * 4. 击杀目标时根据累积的爆头次数计算爆炸伤害加成：
- *    a. 每达到配置的阈值次数（默认5次）获得一档伤害加成
- *    b. 每档加成比例为配置值（默认5%），有最大加成上限（默认25%）
- *    c. 最终爆炸伤害 = 基础伤害 × (1 + 伤害加成百分比)
- * 5. 触发爆炸后重置爆头计数和时间记录
- * 6. 若击杀时无爆头记录或在时间窗口外，不触发爆炸效果
- * 7. 玩家Tick中持续检查时间窗口，超时自动重置计数（防止玩家挂机累积）
+ * <ol>
+ *   <li>每次爆头命中时增加爆头计数，并更新最后一次爆头时间</li>
+ *   <li>非爆头命中时仅检查时间窗口，不增加计数</li>
+ *   <li>爆头计数在60刻（3秒）内无任何爆头命中时自动重置</li>
+ *   <li>击杀目标时根据累积的爆头次数计算爆炸伤害加成：
+ *     <ol type="a">
+ *       <li>每达到配置的阈值次数（默认5次）获得一档伤害加成</li>
+ *       <li>每档加成比例为配置值（默认5%），有最大加成上限（默认25%）</li>
+ *       <li>最终爆炸伤害 = 基础伤害 × (1 + 伤害加成百分比)</li>
+ *     </ol>
+ *   </li>
+ *   <li>触发爆炸后重置爆头计数和时间记录</li>
+ *   <li>若击杀时无爆头记录或在时间窗口外，不触发爆炸效果</li>
+ *   <li>玩家Tick中持续检查时间窗口，超时自动重置计数（防止玩家挂机累积）</li>
+ * </ol>
  */
 public class MeganeuraEvent {
 
-    // NBT标签常量
-    public static final String HEADSHOT_COUNT_TAG = "MeganeuraHeadshotCount"; // 爆头命中次数
-    public static final String LAST_HEADSHOT_TIME_TAG = "MeganeuraLastHeadshotTime"; // 最后一次爆头时间
-    public static final int VALID_KILL_TICKS = 60; // 有效时间窗口
+    /** 爆头命中次数 */
+    public static final String HEADSHOT_COUNT_TAG = "MeganeuraHeadshotCount";
+    /** 最后一次爆头时间 */
+    public static final String LAST_HEADSHOT_TIME_TAG = "MeganeuraLastHeadshotTime";
+    /** 有效时间窗口 */
+    public static final int VALID_KILL_TICKS = 60;
 
     /**
-     * 枪械命中实体事件处理
+     * 枪械伤害事件：巨脉蜻蜓
      * 记录爆头命中次数，并检查是否超过有效时间窗口
      *
-     * @param event 枪械伤害事件（Pre阶段）
+     * @param event 枪械伤害事件
      */
     public static void onEntityHurtByGun(EntityHurtByGunEvent.Pre event) {
         LivingEntity attacker = event.getAttacker();
@@ -86,7 +94,7 @@ public class MeganeuraEvent {
     }
 
     /**
-     * 击杀事件处理
+     * 实体死亡事件：巨脉蜻蜓
      * 验证爆头命中是否导致了击杀，如果有效则根据爆头次数计算伤害加成并触发爆炸效果
      *
      * @param player 击杀者
@@ -144,11 +152,11 @@ public class MeganeuraEvent {
     }
 
     /**
-     * 玩家tick事件处理
+     * 玩家每帧更新事件：巨脉蜻蜓
      * 检查是否超过有效时间窗口，如果超过则重置爆头次数
      *
      * @param player 玩家
-     * @param gun    玩家主手物品
+     * @param gun 玩家主手物品
      */
     public static void onPlayerTick(Player player, ItemStack gun) {
         // 检查附魔等级

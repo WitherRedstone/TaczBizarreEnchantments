@@ -2,6 +2,7 @@ package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.tbz.config.TBZConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
+import com.chinaex123.tbz.utils.ShotTriggerHelper;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.api.item.IGun;
@@ -22,26 +23,33 @@ import java.util.List;
  * 事不过四附魔的事件处理类
  * <p>
  * 功能：快速精准命中目标会向弹匣里返还两枚弹药
+ * <p>
  * 机制：
- * 1. 每次爆头命中时记录当前游戏刻时间戳
- * 2. 定期清理超出时间窗口的旧记录（时间窗口从配置读取）
- * 3. 统计时间窗口内的爆头总数，达到配置要求的数量时触发效果
- * 4. 触发后回复固定数量的弹药到弹匣（不超过弹匣容量上限）
- * 5. 触发后立即清空该玩家的所有爆头记录，防止连续触发
- * 6. 若弹匣已满则不回复弹药，但爆头记录仍会被清空
- * 7. 时间窗口和所需爆头次数均可通过配置调整
- * 8. 每个玩家独立维护爆头记录列表，互不干扰
+ * <ol>
+ *   <li>每次爆头命中时记录当前游戏刻时间戳</li>
+ *   <li>定期清理超出时间窗口的旧记录（时间窗口从配置读取）</li>
+ *   <li>统计时间窗口内的爆头总数，达到配置要求的数量时触发效果</li>
+ *   <li>触发后回复固定数量的弹药到弹匣（不超过弹匣容量上限）</li>
+ *   <li>触发后立即清空该玩家的所有爆头记录，防止连续触发</li>
+ *   <li>若弹匣已满则不回复弹药，但爆头记录仍会被清空</li>
+ *   <li>时间窗口和所需爆头次数均可通过配置调整</li>
+ *   <li>每个玩家独立维护爆头记录列表，互不干扰</li>
+ *   <li>每次射击只触发一次，防止霰弹枪多次触发</li>
+ * </ol>
  */
 public class FourthTimeTheCharmEvent {
 
-    // 记录每个玩家的爆头时间戳列表
+    /** 射击触发标签前缀 */
+    private static final String TRIGGER_TAG_PREFIX = "FourthTimeTheCharm";
+
+    /** 记录每个玩家的爆头时间戳列表 */
     private static final Map<UUID, List<Long>> headshotTimesMap = new ConcurrentHashMap<>();
 
     /**
-     * 枪械命中实体事件处理
+     * 枪械伤害事件：事不过四
      * 检测爆头并记录时间，在满足条件时触发弹药回复
      *
-     * @param event 枪械伤害事件（Pre阶段）
+     * @param event 枪械伤害事件
      */
     public static void onEntityHurtByGun(EntityHurtByGunEvent.Pre event) {
         LivingEntity attacker = event.getAttacker();
@@ -62,6 +70,11 @@ public class FourthTimeTheCharmEvent {
 
         // 仅处理爆头命中
         if (!event.isHeadShot()) return;
+
+        // 检查当前射击是否已触发
+        if (ShotTriggerHelper.checkAndMarkTriggered(gun, TRIGGER_TAG_PREFIX)) {
+            return;
+        }
 
         UUID playerId = player.getUUID();
         long currentTime = player.level().getGameTime();  // 使用游戏刻作为时间单位

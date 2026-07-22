@@ -20,34 +20,42 @@ import java.util.UUID;
  * 目标锁定附魔的事件处理类
  * <p>
  * 功能：随着此武器准星在目标上停留的时间增加伤害
+ * <p>
  * 机制：
- * 1. 每次命中目标时增加1层命中计数
- * 2. 命中计数达到"弹匣容量 × 配置比例"时触发伤害加成叠加
- * 3. 每达到一个触发阈值增加1层伤害加成
- * 4. 伤害加成计算：每层加成 = 层数 × 每层加成比例 × 附魔等级
- * 5. 最终伤害 = 原伤害 × (1 + 总加成比例)
- * 6. 以下情况会重置所有加成和锁定状态：
- *    a. 切换到不同的目标
- *    b. 超过20刻（1秒）未命中当前目标
- *    c. 进行换弹操作
- * 7. 锁定状态（目标UUID、命中计数、伤害层数、最后命中时间）存储在枪械NBT中
+ * <ol>
+ *   <li>每次命中目标时增加1层命中计数</li>
+ *   <li>命中计数达到"弹匣容量 × 配置比例"时触发伤害加成叠加</li>
+ *   <li>每达到一个触发阈值增加1层伤害加成</li>
+ *   <li>伤害加成计算：每层加成 = 层数 × 每层加成比例 × 附魔等级</li>
+ *   <li>最终伤害 = 原伤害 × (1 + 总加成比例)</li>
+ *   <li>以下情况会重置所有加成和锁定状态：
+ *     <ol type="a">
+ *       <li>切换到不同的目标</li>
+ *       <li>超过20刻（1秒）未命中当前目标</li>
+ *       <li>进行换弹操作</li>
+ *     </ol>
+ *   </li>
+ *   <li>锁定状态（目标UUID、命中计数、伤害层数、最后命中时间）存储在枪械NBT中</li>
+ * </ol>
  */
 public class TargetLockEvent {
 
-    // NBT标签常量
-    private static final String TARGET_UUID_TAG = "TargetLockTargetUUID"; // 当前锁定的目标UUID
-    private static final String HIT_COUNT_TAG = "TargetLockHitCount"; // 当前弹匣内命中同一目标的次数
-    private static final String DAMAGE_STACK_TAG = "TargetLockDamageStack"; // 伤害加成层数
-    private static final String LAST_HIT_TIME_TAG = "TargetLockLastHitTime"; // 上次命中的时间（游戏刻）
-
-    // 超时时间：如果超过指定时间未命中目标，重置锁定状态
+    /** 当前锁定的目标UUID */
+    private static final String TARGET_UUID_TAG = "TargetLockTargetUUID";
+    /** 当前弹匣内命中同一目标的次数 */
+    private static final String HIT_COUNT_TAG = "TargetLockHitCount";
+    /** 伤害加成层数 */
+    private static final String DAMAGE_STACK_TAG = "TargetLockDamageStack";
+    /** 上次命中的时间（游戏刻） */
+    private static final String LAST_HIT_TIME_TAG = "TargetLockLastHitTime";
+    /** 如果超过指定时间未命中目标，重置锁定状态 */
     private static final long TIMEOUT_TICKS = 20;
 
     /**
-     * 枪械命中实体事件处理（核心逻辑）
+     * 枪械伤害事件：目标锁定
      * 追踪命中目标，累积伤害加成层数
      *
-     * @param event 枪械伤害事件（Pre阶段）
+     * @param event 枪械伤害事件
      */
     public static void onEntityHurtByGun(EntityHurtByGunEvent.Pre event) {
         LivingEntity attacker = event.getAttacker();
@@ -102,7 +110,9 @@ public class TargetLockEvent {
 
         // 计算触发所需命中次数 = 弹匣容量 × 配置比例（向上取整）
         double requiredPercent = TBZConfig.TARGET_LOCK_REQUIRED_MAGAZINE_PERCENT.get();
-        int requiredHits = (int) (magazineSize * requiredPercent);
+        int requiredHits = (int) Math.ceil(magazineSize * requiredPercent);
+        // 确保至少需要命中1次才能触发
+        requiredHits = Math.max(requiredHits, 1);
 
         // 检查是否达到触发条件
         if (hitCount >= requiredHits) {
@@ -124,12 +134,12 @@ public class TargetLockEvent {
     }
 
     /**
-     * 换弹事件处理
+     * 换弹开始事件：目标锁定
      * 换弹时重置锁定状态（失去所有累积的加成）
      *
      * @param event 枪械换弹事件
      */
-    public static void onReload(GunReloadEvent event) {
+    public static void onGunReload(GunReloadEvent event) {
         LivingEntity entity = event.getEntity();
         if (!(entity instanceof Player player)) return;
 

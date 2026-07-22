@@ -14,7 +14,12 @@ import net.minecraftforge.fml.common.Mod;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-/** 枪械瞄准能力附着器 **/
+/**
+ * 枪械瞄准能力附着器
+ * <p>
+ * 负责为所有生物实体附加枪械瞄准能力（GunAimingCapability）
+ * 该能力用于管理实体瞄准相关的数据和行为
+ */
 @Mod.EventBusSubscriber
 public class GunAimingAttacher {
 
@@ -23,13 +28,13 @@ public class GunAimingAttacher {
 
     /**
      * 附加能力事件处理
-     * 当实体被创建时，检查是否为 生物实体，如果是则附加枪械瞄准能力
+     * 当实体被创建时，检查是否为生物实体，如果是则附加枪械瞄准能力
      *
      * @param event 附加能力事件
      */
     @SubscribeEvent
     public static void attachCapability(AttachCapabilitiesEvent<Entity> event) {
-        // 仅为 生物实体 附加能力
+        // 仅为生物实体附加能力
         if (event.getObject() instanceof LivingEntity) {
             // 添加能力提供者到实体
             event.addCapability(CAPABILITY_ID, new Provider());
@@ -38,6 +43,7 @@ public class GunAimingAttacher {
 
     /**
      * 能力提供者内部类
+     * 实现 ICapabilityProvider 接口，负责提供枪械瞄准能力实例
      */
     private static class Provider implements ICapabilityProvider {
 
@@ -49,11 +55,11 @@ public class GunAimingAttacher {
 
         /**
          * 获取能力实例
-         * 当其他地方通过 Capability 查询时，返回对应的能力对象
          *
-         * @param cap  请求的能力类型
-         * @param side 方向（Forge 能力系统支持方向性，这里不使用）
-         * @return 能力实例的懒加载包装器
+         * @param cap 请求的能力类型
+         * @param side 方向（可为null）
+         * @param <T> 能力类型
+         * @return 能力实例的懒加载包装器，如果类型不匹配则返回空
          */
         @Nonnull
         @Override

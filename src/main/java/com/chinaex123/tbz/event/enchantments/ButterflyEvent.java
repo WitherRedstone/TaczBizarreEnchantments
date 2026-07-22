@@ -17,25 +17,30 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
  * 蝴蝶附魔的事件处理类
  * <p>
  * 功能：瞄准此武器一小段时间而不射击会使你的目标在你剩余弹匣内造成最后一击时爆炸
+ * <p>
  * 机制：
- * 1. 玩家开镜瞄准时开始计时，记录瞄准开始时间
- * 2. 持续瞄准达到50刻（2.5秒）后激活附魔状态（标记为已激活）
- * 3. 松开瞄准（关闭镜）时清除计时，但保留激活状态（若已激活）
- * 4. 激活状态下击杀任意敌人时，在目标位置触发范围爆炸伤害
- * 5. 爆炸伤害随附魔等级提升：基础伤害 + 每级额外伤害
- * 6. 爆炸有随机溅射伤害范围（最小值~最大值之间随机）
- * 7. 爆炸影响范围内的所有实体（造成伤害）
- * 8. 换弹时重置激活状态，需要重新瞄准充能才能再次激活
+ * <ol>
+ *   <li>玩家开镜瞄准时开始计时，记录瞄准开始时间
+ *   <li>持续瞄准达到50刻（2.5秒）后激活附魔状态（标记为已激活）
+ *   <li>松开瞄准（关闭镜）时清除计时，但保留激活状态（若已激活）
+ *   <li>激活状态下击杀任意敌人时，在目标位置触发范围爆炸伤害
+ *   <li>爆炸伤害随附魔等级提升：基础伤害 + 每级额外伤害
+ *   <li>爆炸有随机溅射伤害范围（最小值~最大值之间随机）
+ *   <li>爆炸影响范围内的所有实体（造成伤害）
+ *   <li>换弹时重置激活状态，需要重新瞄准充能才能再次激活
+ * </ol>
  */
 public class ButterflyEvent {
 
-    // NBT标签常量
-    private static final String AIMING_START_TIME_TAG = "ButterflyAimingStartTime"; // 开始瞄准的时间
-    private static final String ACTIVE_TAG = "ButterflyActive"; // 附魔是否已激活
-    private static final int AIMING_REQUIRED_TICKS = 50; // 需要持续瞄准的刻数
+    /** 开始瞄准的时间 */
+    private static final String AIMING_START_TIME_TAG = "ButterflyAimingStartTime";
+    /** 附魔是否已激活 */
+    private static final String ACTIVE_TAG = "ButterflyActive";
+    /** 需要持续瞄准的刻数 */
+    private static final int AIMING_REQUIRED_TICKS = 50;
 
     /**
-     * 实体死亡事件处理
+     * 实体死亡事件：蝴蝶
      * 如果附魔已激活，对死亡的实体造成额外爆炸伤害并播放效果
      *
      * @param event 实体死亡事件
@@ -45,7 +50,7 @@ public class ButterflyEvent {
         Entity source = event.getSource().getEntity();
         if (!(source instanceof Player player)) return;
 
-        LivingEntity target = event.getEntity();  // 被击杀的目标
+        LivingEntity target = event.getEntity();
         ItemStack gun = player.getMainHandItem();
         if (gun.isEmpty()) return;
 
@@ -71,7 +76,7 @@ public class ButterflyEvent {
     }
 
     /**
-     * 玩家Tick事件处理
+     * 玩家每帧更新事件：蝴蝶
      * 追踪玩家的瞄准持续时间，达到阈值后激活附魔
      *
      * @param player 玩家实体
@@ -112,7 +117,7 @@ public class ButterflyEvent {
     }
 
     /**
-     * 换弹事件处理
+     * 换弹开始事件：蝴蝶
      * 换弹时重置附魔状态（失去所有充能）
      *
      * @param event 枪械换弹事件

@@ -1,9 +1,23 @@
 {
   "itemGroup.tbz": "Tacz的奇特附魔",
 
+  "_enchantment.exotic":"[异域]类型附魔",
+  "enchantment.tbz.protective_weave": "防护编织",
+  "enchantment.tbz.protective_weave.desc": "击杀生物获得织造铠甲，当你拥有织造铠甲时会造成更多伤害",
+  "enchantment.tbz.reign_havoc": "统治浩劫",
+  "enchantment.tbz.reign_havoc.desc": "持续造成精准伤害或造成最后一击可产生从天而降的闪电打击，并填装部分弹匣。闪电打击会提供1层电光充能",
+
   "_enchantment.bonus_damage":"[增伤]类型附魔",
   "enchantment.tbz.borpal_weapon": "斩首武器",
   "enchantment.tbz.borpal_weapon.desc": "对Boss生物造成额外伤害",
+  "enchantment.tbz.precision_instrument": "精准工具",
+  "enchantment.tbz.precision_instrument.desc": "造成精准伤害会提升爆头倍率",
+  "enchantment.tbz.target_lock": "目标锁定",
+  "enchantment.tbz.target_lock.desc": "随着此武器准星在目标上停留的时间增加伤害",
+  "enchantment.tbz.gutshot_straight": "直击要害",
+  "enchantment.tbz.gutshot_straight.desc": "瞄准可提升身体射击伤害",
+  "enchantment.tbz.thermal_atomization": "热能雾化",
+  "enchantment.tbz.thermal_atomization.desc": "在高热量状态下，此武器造成更高伤害，并使目标在被击败时爆炸",
 
   "_enchantment.bonus_bullet":"[回子弹]类型附魔",
   "enchantment.tbz.subsistence": "维持生计",
@@ -20,18 +34,16 @@
   "enchantment.tbz.rewind_rounds.desc": "射空此武器的弹匣时，会根据命中次数从储存弹药中填装",
   "enchantment.tbz.mulligan": "重新调度",
   "enchantment.tbz.mulligan.desc": "子弹未命中时有几率直接向弹匣返还弹药",
-
-  "_enchantment.continuous_damage":"[持续伤害]类型附魔",
-  "enchantment.tbz.attrition_orbs": "羸弱能量球",
-  "enchantment.tbz.attrition_orbs.desc": "对同一目标造成持续伤害会生成经验球",
-  "enchantment.tbz.target_lock": "目标锁定",
-  "enchantment.tbz.target_lock.desc": "随着此武器准星在目标上停留的时间增加伤害",
+  "enchantment.tbz.trickle_charge": "涓流充能",
+  "enchantment.tbz.trickle_charge.desc": "接收或释放电光充能会从备弹中填装弹匣的一部分",
+  "enchantment.tbz.supercharged_magazine": "超充弹匣",
+  "enchantment.tbz.supercharged_magazine.desc": "处于增幅状态时，弹药会逐渐从备弹转移到弹匣中",
+  "enchantment.tbz.reversal_of_fortune": "命运的逆转",
+  "enchantment.tbz.reversal_of_fortune.desc": "射偏2发子弹会在短时间后将1发子弹返回弹匣",
 
   "_enchantment.application_effect":"[应用效果]类型附魔",
   "enchantment.tbz.heal_clip": "治疗弹匣",
   "enchantment.tbz.heal_clip.desc": "最后一击后短时间内填装，可为自身提供治愈",
-  "enchantment.tbz.protective_weave": "防护编织",
-  "enchantment.tbz.protective_weave.desc": "击杀生物获得织造铠甲，当你拥有织造铠甲时会造成更多伤害",
   "enchantment.tbz.rolling_storm": "风暴涌动",
   "enchantment.tbz.rolling_storm.desc": "最后一击会提供增幅效果",
   "enchantment.tbz.destabilizing_rounds": "失衡弹药",
@@ -44,16 +56,6 @@
   "enchantment.tbz.rimestealer.desc": "使用此武器击败拥有霜寒效果的目标可获得冰霜护甲",
   "enchantment.tbz.slice": "切割",
   "enchantment.tbz.slice.desc": "击中生物时给生物施加瓦解效果",
-
-  "_enchantment.headshot":"[爆头]类型附魔",
-  "enchantment.tbz.precision_instrument": "精准工具",
-  "enchantment.tbz.precision_instrument.desc": "造成精准伤害会提升爆头倍率",
-  "enchantment.tbz.outlaw": "不法之徒(不完善)",
-  "enchantment.tbz.outlaw.desc": "精准击杀可大幅缩短填装时间",
-
-  "_enchantment.aim":"[瞄准]类型附魔",
-  "enchantment.tbz.gutshot_straight": "直击要害",
-  "enchantment.tbz.gutshot_straight.desc": "瞄准可提升身体射击伤害",
   "enchantment.tbz.withering_gaze": "枯萎凝视",
   "enchantment.tbz.withering_gaze.desc": "瞄准此武器一小段时间而不射击，你将能够削弱下一个目标",
 
@@ -67,5 +69,33 @@
   "enchantment.tbz.dragonfly": "蜻蜓",
   "enchantment.tbz.dragonfly.desc": "精准击杀可产生爆炸伤害",
   "enchantment.tbz.meganeura": "巨脉蜻蜓",
-  "enchantment.tbz.meganeura.desc": "精准最后一击会产生爆炸伤害，该爆炸会根据先前造成的精准命中次数造成额外伤害"
+  "enchantment.tbz.meganeura.desc": "精准最后一击会产生爆炸伤害，该爆炸会根据先前造成的精准命中次数造成额外伤害",
+
+  "_enchantment.part_specifications":"[配件数值]类型附魔",
+  "enchantment.tbz.snapshot_sights": "速射瞄准",
+  "enchantment.tbz.snapshot_sights.desc": "大幅提高瞄准速度",
+  "enchantment.tbz.firmly_planted": "稳若磐石",
+  "enchantment.tbz.firmly_planted.desc": "潜行射击时可提高瞄准精度并减少垂直后坐力",
+  "enchantment.tbz.adagio": "柔缓",
+  "enchantment.tbz.adagio.desc": "在击败目标后，此武器的射速减慢，但是会在短时间内造成额外伤害",
+  "enchantment.tbz.onslaught": "猛攻",
+  "enchantment.tbz.onslaught.desc": "使用此武器完成最后一击可提高其射速，多次击杀可刷新增益",
+  "enchantment.tbz.eye_of_storm_eye": "风暴之眼",
+  "enchantment.tbz.eye_of_storm_eye.desc": "你的生命值越低，武器的瞄准精度越好并略微降低水平后坐力",
+
+  "_enchantment.continuous_damage":"[持续伤害]类型附魔",
+  "enchantment.tbz.attrition_orbs": "羸弱能量球",
+  "enchantment.tbz.attrition_orbs.desc": "对同一目标造成持续伤害会生成经验球",
+
+  "_enchantment.load":"[填装]类型附魔",
+  "enchantment.tbz.outlaw": "不法之徒",
+  "enchantment.tbz.outlaw.desc": "精准击杀可大幅缩短填装时间",
+
+  "_enchantment.other":"[其他]类型附魔",
+  "enchantment.tbz.wellspring": "泉源",
+  "enchantment.tbz.wellspring.desc": "使用此武器造成击杀会产生经验球",
+  "enchantment.tbz.cooling_baubles": "冷却饰物",
+  "enchantment.tbz.cooling_baubles.desc": "拾取经验球时有几率降低枪械的热量",
+  "enchantment.tbz.shoot_tp_loot": "边打边劫",
+  "enchantment.tbz.shoot_tp_loot.desc": "远程射击物品和经验球会立即将其拾起并放到物品栏内"
 }

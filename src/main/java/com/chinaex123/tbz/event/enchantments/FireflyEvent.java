@@ -22,29 +22,37 @@ import java.util.Optional;
  * 萤火虫附魔的事件处理类
  * <p>
  * 功能：完成精准击杀可以提高填装速度并使目标爆炸
+ * <p>
  * 机制：
- * 1. 枪械命中目标时检测是否为爆头，记录爆头标记和命中时间
- * 2. 击杀目标时检查是否存在有效的爆头命中标记
- * 3. 若爆头时间到击杀时间的间隔在有效窗口内（60刻/3秒），判定为有效爆头击杀
- * 4. 有效爆头击杀触发爆炸效果，对目标造成范围溅射伤害
- * 5. 爆炸伤害随附魔等级提升：基础伤害 + 每级额外伤害
- * 6. 换弹时触发弹药补给效果（无论是否有爆头标记）：
- *    a. 根据附魔等级计算装填速度倍率（装填倍率 = 基础值 + 每级额外值）
- *    b. 计算可补充弹药量 = 弹匣容量 × 装填倍率（向上取整）
- *    c. 从玩家背包消耗对应弹药，补充到枪械弹匣中（不超过弹匣剩余空间）
- * 7. 仅当弹匣未满且背包有足够弹药时才会补充
- * 8. 爆头标记触发后或超时后自动清除，防止重复触发
+ * <ol>
+ *   <li>枪械命中目标时检测是否为爆头，记录爆头标记和命中时间</li>
+ *   <li>击杀目标时检查是否存在有效的爆头命中标记</li>
+ *   <li>若爆头时间到击杀时间的间隔在有效窗口内（60刻/3秒），判定为有效爆头击杀</li>
+ *   <li>有效爆头击杀触发爆炸效果，对目标造成范围溅射伤害</li>
+ *   <li>爆炸伤害随附魔等级提升：基础伤害 + 每级额外伤害</li>
+ *   <li>换弹时触发弹药补给效果（无论是否有爆头标记）：
+ *     <ol type="a">
+ *       <li>根据附魔等级计算装填速度倍率（装填倍率 = 基础值 + 每级额外值）</li>
+ *       <li>计算可补充弹药量 = 弹匣容量 × 装填倍率（向上取整）</li>
+ *       <li>从玩家背包消耗对应弹药，补充到枪械弹匣中（不超过弹匣剩余空间）</li>
+ *     </ol>
+ *   </li>
+ *   <li>仅当弹匣未满且背包有足够弹药时才会补充</li>
+ *   <li>爆头标记触发后或超时后自动清除，防止重复触发</li>
+ * </ol>
  */
 public class FireflyEvent {
 
-    // NBT标签常量
-    public static final String HEADSHOT_KILL_TAG = "FireflyHeadshotKill"; // 是否获得爆头击杀标记
-    public static final String KILL_TIME_TAG = "FireflyKillTime"; // 爆头击杀发生时间
-    public static final int VALID_KILL_TICKS = 60; // 有效时间窗口
+    /** 是否获得爆头击杀标记 */
+    public static final String HEADSHOT_KILL_TAG = "FireflyHeadshotKill";
+    /** 爆头击杀发生时间 */
+    public static final String KILL_TIME_TAG = "FireflyKillTime";
+    /** 有效时间窗口 */
+    public static final int VALID_KILL_TICKS = 60;
 
     /**
-     * 枪械命中实体事件处理
-     * 记录爆头命中，等待后续击杀确认
+     * 枪械伤害事件：萤火虫
+     * 记录爆头命中次数，等待后续击杀确认
      *
      * @param event 枪械伤害事件
      */
@@ -72,11 +80,11 @@ public class FireflyEvent {
     }
 
     /**
-     * 击杀事件处理
+     * 实体死亡事件：萤火虫
      * 验证爆头命中是否导致了击杀，如果有效则触发爆炸效果
      *
      * @param player 击杀者
-     * @param gun    使用的枪械
+     * @param gun 使用的枪械
      * @param target 被击杀的目标
      */
     public static void onKill(Player player, ItemStack gun, LivingEntity target) {
@@ -110,7 +118,7 @@ public class FireflyEvent {
     }
 
     /**
-     * 换弹事件处理
+     * 换弹开始事件：萤火虫
      * 如果有爆头击杀标记，则直接向弹匣补充弹药
      *
      * @param event 枪械换弹事件

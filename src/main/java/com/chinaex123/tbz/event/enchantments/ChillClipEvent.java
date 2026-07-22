@@ -16,26 +16,32 @@ import net.minecraft.world.level.Level;
  * 冰冷弹匣附魔的事件处理类
  * <p>
  * 功能：持续攻击可对目标施加霜寒效果
+ * <p>
  * 机制：
- * 1. 每次命中目标时独立计算触发概率
- * 2. 触发后判断目标当前是否已有霜寒效果：
- *    a. 已有霜寒效果 → 延长效果持续时间（不超过最大持续时间上限）
- *    b. 无霜寒效果 → 检查是否在冷却时间内，若冷却结束则施加新效果
- * 3. 施加新效果时，效果等级在配置的最小/最大等级范围内随机生成
- * 4. 每次成功触发（无论是施加还是延长）都会更新冷却计时
- * 5. 冷却期间命中目标不会施加新霜寒效果，但延长效果不受冷却影响
- * 6. 延长效果时保持原有效果等级不变，仅增加持续时间
+ * <ol>
+ *   <li>每次命中目标时独立计算触发概率
+ *   <li>触发后判断目标当前是否已有霜寒效果：
+ *     <ol type="a">
+ *       <li>已有霜寒效果 → 延长效果持续时间（不超过最大持续时间上限）</li>
+ *       <li>无霜寒效果 → 检查是否在冷却时间内，若冷却结束则施加新效果</li>
+ *     </ol>
+ *   </li>
+ *   <li>施加新效果时，效果等级在配置的最小/最大等级范围内随机生成</li>
+ *   <li>每次成功触发（无论是施加还是延长）都会更新冷却计时</li>
+ *   <li>冷却期间命中目标不会施加新霜寒效果，但延长效果不受冷却影响</li>
+ *   <li>延长效果时保持原有效果等级不变，仅增加持续时间</li>
+ * </ol>
  */
 public class ChillClipEvent {
 
-    // NBT标签：记录上次触发效果的命中时间（游戏刻）
+    /** 记录上次触发效果的命中时间 */
     private static final String LAST_HIT_TIME_TAG = "ChillClipLastHitTime";
 
     /**
-     * 枪械命中实体事件处理
+     * 枪械伤害事件：冰冷弹匣
      * 概率触发并施加霜寒效果给目标
      *
-     * @param event 枪械伤害事件（Pre阶段）
+     * @param event 枪械伤害事件
      */
     public static void onEntityHurtByGun(EntityHurtByGunEvent.Pre event) {
         LivingEntity attacker = event.getAttacker();
@@ -51,7 +57,7 @@ public class ChillClipEvent {
         int enchantLevel = gun.getEnchantmentLevel(TBZEnchantments.CHILL_CLIP.get());
         if (enchantLevel <= 0) return;
 
-        // 触发概率判定：每次命中独立计算（从配置读取）
+        // 触发概率判定：每次命中独立计算
         double triggerChance = TBZConfig.CHILL_CLIP_TRIGGER_CHANCE.get();
         if (player.getRandom().nextDouble() >= triggerChance) return;
 
@@ -66,7 +72,7 @@ public class ChillClipEvent {
         if (currentEffect != null) {
             // 情况1：已有霜寒效果 -> 延长持续时间
             int extendDuration = TBZConfig.CHILL_CLIP_EXTEND_DURATION.get();   // 每次延长的刻数
-            int maxDuration = TBZConfig.CHILL_CLIP_MAX_DURATION.get();         // 最大持续时间（刻）
+            int maxDuration = TBZConfig.CHILL_CLIP_MAX_DURATION.get();  // 最大持续时间（刻）
             int newDuration = Math.min(currentEffect.getDuration() + extendDuration, maxDuration);
 
             // 保留原有效果的等级（不改变效果强度）
@@ -85,7 +91,7 @@ public class ChillClipEvent {
                 return;
             }
 
-            // 获取霜寒效果的持续时间和等级范围（从配置读取）
+            // 获取霜寒效果的持续时间和等级范围
             int frostbiteDuration = TBZConfig.CHILL_CLIP_FROSTBITE_DURATION.get();
             int frostbiteMinAmplifier = TBZConfig.CHILL_CLIP_FROSTBITE_MIN_AMPLIFIER.get();  // 最小等级
             int frostbiteMaxAmplifier = TBZConfig.CHILL_CLIP_FROSTBITE_MAX_AMPLIFIER.get();  // 最大等级
@@ -103,7 +109,7 @@ public class ChillClipEvent {
             target.addEffect(frostbiteEffect);
         }
 
-        // 更新最后命中时间（用于冷却判断）
+        // 更新最后命中时间
         tag.putLong(LAST_HIT_TIME_TAG, currentTime);
     }
 }

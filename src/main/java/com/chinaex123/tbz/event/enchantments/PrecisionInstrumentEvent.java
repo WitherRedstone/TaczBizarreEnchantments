@@ -2,8 +2,10 @@ package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.tbz.config.TBZConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
+import com.chinaex123.tbz.utils.ShotTriggerHelper;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
+import com.tacz.guns.api.event.common.GunReloadEvent;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.resource.index.CommonGunIndex;
 import net.minecraft.nbt.CompoundTag;
@@ -18,38 +20,45 @@ import java.util.Optional;
  * 精准工具附魔的事件处理类
  * <p>
  * 功能：造成精准伤害会提升爆头倍率
+ * <p>
  * 机制：
- * 1. 每发射一颗子弹增加1层射击计数（通过检测弹药减少量实现）
- * 2. 首次射击时缓存当前枪械的弹匣容量
- * 3. 射击计数达到"弹匣容量 × 配置比例"时触发加成叠加
- * 4. 每次触发增加固定值的伤害加成（从配置读取），可多次叠加
- * 5. 伤害加成对所有命中生效（不仅限于爆头）
- * 6. 最终伤害 = 原伤害 × (1 + 累计加成值)
- * 7. 触发后重置射击计数，准备下一次叠加
- * 8. 换弹时重置所有计数和伤害加成（失去所有积累）
+ * <ol>
+ *   <li>每发射一颗子弹增加1层射击计数（通过检测弹药减少量实现）</li>
+ *   <li>首次射击时缓存当前枪械的弹匣容量</li>
+ *   <li>射击计数达到"弹匣容量 × 配置比例"时触发加成叠加</li>
+ *   <li>每次触发增加固定值的伤害加成（从配置读取），可多次叠加</li>
+ *   <li>伤害加成对所有命中生效（不仅限于爆头）</li>
+ *   <li>最终伤害 = 原伤害 × (1 + 累计加成值)</li>
+ *   <li>触发后重置射击计数，准备下一次叠加</li>
+ *   <li>换弹时重置所有计数和伤害加成（失去所有积累）</li>
+ *   <li>每次射击只应用一次伤害加成，防止霰弹枪多次触发</li>
+ * </ol>
  */
 public class PrecisionInstrumentEvent {
 
-    // NBT标签常量
-    private static final String SHOT_COUNT_TAG = "PrecisionInstrumentShotCount"; // 当前弹匣累计射击次数
-    private static final String MAGAZINE_SIZE_TAG = "PrecisionInstrumentMagazineSize"; // 弹匣容量（缓存）
-    private static final String PREV_AMMO_TAG = "PrecisionInstrumentPrevAmmo"; // 上一tick的弹药数（用于检测射击）
-    private static final String HEADSHOT_MULTIPLIER_TAG = "PrecisionInstrumentHeadshotMultiplier"; // 爆头伤害加成（累加值）
+    /** 射击触发标签前缀 */
+    private static final String TRIGGER_TAG_PREFIX = "PrecisionInstrument";
+    /** 当前弹匣累计射击次数 */
+    private static final String SHOT_COUNT_TAG = "PrecisionInstrumentShotCount";
+    /** 当前弹匣容量 */
+    private static final String MAGAZINE_SIZE_TAG = "PrecisionInstrumentMagazineSize";
+    /** 上一tick的弹药数 */
+    private static final String PREV_AMMO_TAG = "PrecisionInstrumentPrevAmmo";
+    /** 爆头伤害加成 */
+    private static final String HEADSHOT_MULTIPLIER_TAG = "PrecisionInstrumentHeadshotMultiplier";
 
     /**
-     * 枪械命中实体事件处理
-     * 1. 检测射击行为并累计射击次数
-     * 2. 达到阈值时增加爆头伤害加成
-     * 3. 应用当前的爆头伤害加成到本次伤害中
+     * 枪械伤害事件：精准工具
+     * 累计射击次数，达到阈值后增加爆头伤害加成
      *
-     * @param event 枪械伤害事件（Pre阶段，可修改伤害值）
+     * @param event 枪械伤害事件
      */
     public static void onEntityHurtByGun(EntityHurtByGunEvent.Pre event) {
         LivingEntity attacker = event.getAttacker();
         if (!(attacker instanceof Player player)) return;
 
         Entity hurtEntity = event.getHurtEntity();
-        if (!(hurtEntity instanceof LivingEntity target)) return;
+        if (!(hurtEntity instanceof LivingEntity)) return;
 
         ItemStack gun = player.getMainHandItem();
         if (gun.isEmpty()) return;
@@ -87,7 +96,7 @@ public class PrecisionInstrumentEvent {
 
                 // 检查是否达到触发条件
                 if (shotsFired >= requiredShots) {
-                    // 获取每次触发增加的爆头伤害加成（从配置读取）
+                    // 获取每次触发增加的爆头伤害加成
                     float multiplierBonus = TBZConfig.PRECISION_INSTRUMENT_MULTIPLIER_BONUS.get().floatValue();
                     float currentMultiplier = tag.getFloat(HEADSHOT_MULTIPLIER_TAG);
                     float newMultiplier = currentMultiplier + multiplierBonus;  // 累加加成
@@ -99,8 +108,12 @@ public class PrecisionInstrumentEvent {
             }
         }
 
+        // 检查当前射击是否已应用伤害加成
+        if (ShotTriggerHelper.checkAndMarkTriggered(gun, TRIGGER_TAG_PREFIX)) {
+            return;
+        }
+
         // 应用爆头伤害加成到本次伤害中
-        // 注意：加成对所有命中生效（不仅仅是爆头），这是当前实现的特点
         float headshotMultiplier = tag.getFloat(HEADSHOT_MULTIPLIER_TAG);
         if (headshotMultiplier > 0) {
             // 伤害公式：原伤害 × (1 + 累计加成)
@@ -110,12 +123,12 @@ public class PrecisionInstrumentEvent {
     }
 
     /**
-     * 换弹完成事件处理
-     * 重置所有计数，清除爆头伤害加成（失去所有积累）
+     * 换弹开始事件：精准工具
+     * 重置所有计数，清除爆头伤害加成
      *
      * @param event 枪械换弹事件
      */
-    public static void onGunReload(com.tacz.guns.api.event.common.GunReloadEvent event) {
+    public static void onGunReload(GunReloadEvent event) {
         net.minecraft.world.entity.LivingEntity entity = event.getEntity();
         if (!(entity instanceof Player player)) return;
 
@@ -126,11 +139,11 @@ public class PrecisionInstrumentEvent {
         int enchantLevel = gun.getEnchantmentLevel(TBZEnchantments.PRECISION_INSTRUMENT.get());
         if (enchantLevel <= 0) return;
 
-        // 重置所有计数器（换弹会失去所有加成）
+        // 重置所有计数器
         CompoundTag tag = gun.getOrCreateTag();
-        tag.putInt(SHOT_COUNT_TAG, 0);              // 重置射击计数
-        tag.putInt(MAGAZINE_SIZE_TAG, 0);           // 清除缓存的弹匣容量
-        tag.putInt(PREV_AMMO_TAG, 0);               // 重置弹药追踪
-        tag.putFloat(HEADSHOT_MULTIPLIER_TAG, 0);   // 清除爆头伤害加成
+        tag.putInt(SHOT_COUNT_TAG, 0);
+        tag.putInt(MAGAZINE_SIZE_TAG, 0);
+        tag.putInt(PREV_AMMO_TAG, 0);
+        tag.putFloat(HEADSHOT_MULTIPLIER_TAG, 0);
     }
 }

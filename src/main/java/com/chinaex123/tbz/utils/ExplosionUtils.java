@@ -12,7 +12,8 @@ import net.minecraft.world.phys.Vec3;
 
 /**
  * 爆炸效果工具类
- * 提供通用的爆炸伤害和视觉效果方法，供附魔系统复用
+ * <p>
+ * 功能：提供通用的爆炸伤害和视觉效果方法，供附魔系统复用
  */
 public class ExplosionUtils {
 

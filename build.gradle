@@ -56,7 +56,9 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    mavenLocal()
+    flatDir {
+        dir 'libs'
+    }
     maven {
         url "https://cursemaven.com"
         content {
@@ -69,9 +71,13 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
+    implementation(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.4"))
+    jarJar(implementation("io.github.llamalad7:mixinextras-forge:0.5.4"))
+
     // 前置
     implementation fg.deobf("curse.maven:timeless-and-classics-zero-1028108:8141310")
-    implementation fg.deobf("curse.maven:funky-effect-lib-1568522:8215009")
+    implementation fg.deobf('libs:funky_effect_lib:1.1.1-mc1.20.1-forge')
+    //implementation fg.deobf(files("libs/funky_effect_lib-1.1.1-mc1.20.1-forge.jar"))
 
     // 辅助
     runtimeOnly fg.deobf("curse.maven:jei-238222:7391695")
