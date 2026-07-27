@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.funky_effect_lib.api.BoltChargeAPI;
+import com.chinaex123.funky_effect_lib.api.event.BoltCharge.BoltChargeAPI;
 import com.chinaex123.funky_effect_lib.init.FELEffects;
 import com.chinaex123.tbz.config.TBZConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;

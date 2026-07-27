@@ -4,11 +4,8 @@ import com.chinaex123.tbz.config.TBZConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.ReloadContextHolder;
 import com.tacz.guns.resource.pojo.data.gun.GunReloadTime;
-import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.util.thread.EffectiveSide;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -42,16 +39,7 @@ public class GunReloadTimeMixin {
     @Unique
     private boolean tbz$shouldAccelerate() {
         try {
-            Player player = null;
-            LogicalSide side = EffectiveSide.get();
-
-            // 根据当前逻辑侧获取玩家对象
-            if (side == LogicalSide.CLIENT) {
-                player = Minecraft.getInstance().player;
-            } else {
-                // 服务端从上下文持有器中获取玩家
-                player = ReloadContextHolder.getPlayer();
-            }
+            Player player = ReloadContextHolder.getPlayer();
 
             if (player == null) return false;
 

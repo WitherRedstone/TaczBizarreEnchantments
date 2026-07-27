@@ -2,14 +2,14 @@ package com.chinaex123.tbz.mixin;
 
 import com.chinaex123.tbz.config.TBZConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
+import com.chinaex123.tbz.utils.ReloadContextHolder;
 import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.tacz.guns.resource.pojo.data.gun.InaccuracyType;
 import com.tacz.guns.item.ModernKineticGunScriptAPI;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -42,8 +42,7 @@ public class ModernKineticGunScriptAPIMixin {
             at = @At("MIXINEXTRAS:EXPRESSION")
     )
     private float applyEnchantmentAccuracyBonus(float original, @Local(name = "inaccuracyType") InaccuracyType inaccuracyType) {
-        LocalPlayer player = Minecraft.getInstance().player;
-
+        Player player = ReloadContextHolder.getPlayer();
         if (player == null || itemStack == null || itemStack.isEmpty()) {
             return original;
         }

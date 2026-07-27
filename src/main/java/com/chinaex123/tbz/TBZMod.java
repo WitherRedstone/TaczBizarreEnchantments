@@ -21,20 +21,18 @@ public class TBZMod {
     public static final String MOD_ID = "tbz";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public TBZMod(FMLJavaModLoadingContext context) {
-        IEventBus modEventBus = context.getModEventBus();
+    public TBZMod() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TBZConfig.SPEC);
         TBZEnchantments.ENCHANTMENTS.register(modEventBus);
         PacketHandler.register();
-
         FirmlyPlantedRecoilModifier.register();
         EyeOfStormEyeRecoilModifier.register();
-
         TBZCreativeTabs.CREATIVE_MODE_TAB.register(modEventBus);
     }
 
     public static ResourceLocation id(String path) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+        return new ResourceLocation(MOD_ID, path);
     }
 }

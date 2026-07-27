@@ -44,6 +44,7 @@ public class TBZGunEventHandler {
 
         // ==================== [异域]类型附魔 ====================
         ProtectiveWeaveEvent.onEntityHurtByGun(event, gun);
+        ReignHavocEvent.onEntityHurtByGun(event);
         // ==================== [增伤]类型附魔 ====================
         BorpalWeaponEvent.onEntityHurtByGun(event, gun, target);
         PrecisionInstrumentEvent.onEntityHurtByGun(event);
@@ -117,6 +118,7 @@ public class TBZGunEventHandler {
 
         // ==================== [异域]类型附魔 ====================
         ProtectiveWeaveEvent.onKill(player, mainHand);
+        ReignHavocEvent.onLivingDeath(event);
         // ==================== [增伤]类型附魔 ====================
         ThermalAtomizationEvent.onKill(player, event.getEntity(), mainHand);
         // ==================== [回子弹]类型附魔 ====================

@@ -76,7 +76,7 @@ dependencies {
 
     // 前置
     implementation fg.deobf("curse.maven:timeless-and-classics-zero-1028108:8141310")
-    implementation fg.deobf('libs:funky_effect_lib:1.1.1-mc1.20.1-forge')
+    implementation fg.deobf('libs:funky_effect_lib:1.1.2-mc1.20.1-forge')
     //implementation fg.deobf(files("libs/funky_effect_lib-1.1.1-mc1.20.1-forge.jar"))
 
     // 辅助

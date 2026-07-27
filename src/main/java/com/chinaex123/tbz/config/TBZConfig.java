@@ -32,6 +32,7 @@ public class TBZConfig {
     public static ForgeConfigSpec.IntValue REIGN_HAVOC_REQUIRED_HEADSHOTS;
     public static ForgeConfigSpec.DoubleValue REIGN_HAVOC_LIGHTNING_DAMAGE;
     public static ForgeConfigSpec.DoubleValue REIGN_HAVOC_REFILL_PERCENTAGE;
+    public static ForgeConfigSpec.BooleanValue REIGN_HAVOC_FIRE_DAMAGE;
     public static ForgeConfigSpec.BooleanValue REIGN_HAVOC_WHITELIST_MODE;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> REIGN_HAVOC_APPLICABLE_GUNS;
     public static ForgeConfigSpec.BooleanValue REIGN_HAVOC_WEAPON_TYPE_WHITELIST_MODE;
@@ -643,6 +644,9 @@ public class TBZConfig {
         REIGN_HAVOC_REFILL_PERCENTAGE = builder
                 .comment("闪电打击时弹匣填装百分比")
                 .defineInRange("refillPercentage", 0.10, 0.0, 1.0);
+        REIGN_HAVOC_FIRE_DAMAGE = builder
+                .comment("闪电打击是否造成火焰伤害")
+                .define("fireDamage", false);
         builder.push("Whitelist & Blacklist");
         REIGN_HAVOC_WHITELIST_MODE = builder
                 .comment("是否使用白名单模式（true=白名单，false=黑名单）")

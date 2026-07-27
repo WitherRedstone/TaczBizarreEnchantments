@@ -11,6 +11,6 @@
 //    TagKey<EntityType<?>> BOSS = bind("boss");
 //
 //    private static TagKey<EntityType<?>> bind(String name) {
-//        return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(TBZMod.MOD_ID, name));
+//        return TagKey.create(Registries.ENTITY_TYPE, TBZMod.id(name));
 //    }
 //}

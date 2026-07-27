@@ -1,5 +1,6 @@
 package com.chinaex123.tbz.capability;
 
+import com.chinaex123.tbz.TBZMod;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -24,7 +25,7 @@ import javax.annotation.Nullable;
 public class GunAimingAttacher {
 
     // 能力的唯一标识符
-    private static final ResourceLocation CAPABILITY_ID = ResourceLocation.fromNamespaceAndPath("tbz", "gun_aiming");
+    private static final ResourceLocation CAPABILITY_ID = TBZMod.id("gun_aiming");
 
     /**
      * 附加能力事件处理
