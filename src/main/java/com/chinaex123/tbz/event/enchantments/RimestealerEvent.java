@@ -1,7 +1,7 @@
 package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.funky_effect_lib.init.FELEffects;
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -60,12 +60,12 @@ public class RimestealerEvent {
 
         if (currentEffect != null) {
             // 情况1：已有冰霜护甲效果 -> 延长持续时间
-            int extendDuration = TBZConfig.RIMESTEALER_EXTEND_DURATION.get();
-            int maxDuration = TBZConfig.RIMESTEALER_MAX_DURATION.get();
+            int extendDuration = TBZServerConfig.RIMESTEALER_EXTEND_DURATION.get();
+            int maxDuration = TBZServerConfig.RIMESTEALER_MAX_DURATION.get();
             int newDuration = Math.min(currentEffect.getDuration() + extendDuration, maxDuration);
 
             // 获取效果等级
-            int frostArmorAmplifier = TBZConfig.RIMESTEALER_FROST_ARMOR_AMPLIFIER.get();
+            int frostArmorAmplifier = TBZServerConfig.RIMESTEALER_FROST_ARMOR_AMPLIFIER.get();
 
             // 施加新的冰霜护甲效果
             player.addEffect(new MobEffectInstance(
@@ -76,7 +76,7 @@ public class RimestealerEvent {
             tag.putLong(LAST_KILL_TIME_TAG, currentTime);
         } else {
             // 情况2：没有冰霜护甲效果 -> 检查冷却，尝试施加新效果
-            int cooldownTicks = TBZConfig.RIMESTEALER_COOLDOWN_TICKS.get();
+            int cooldownTicks = TBZServerConfig.RIMESTEALER_COOLDOWN_TICKS.get();
 
             // 如果在冷却时间内，不触发效果
             if (currentTime - lastKillTime < cooldownTicks) {
@@ -84,8 +84,8 @@ public class RimestealerEvent {
             }
 
             // 获取冰霜护甲效果的持续时间和等级
-            int frostArmorDuration = TBZConfig.RIMESTEALER_FROST_ARMOR_DURATION.get();
-            int frostArmorAmplifier = TBZConfig.RIMESTEALER_FROST_ARMOR_AMPLIFIER.get();
+            int frostArmorDuration = TBZServerConfig.RIMESTEALER_FROST_ARMOR_DURATION.get();
+            int frostArmorAmplifier = TBZServerConfig.RIMESTEALER_FROST_ARMOR_AMPLIFIER.get();
 
             // 创建新的冰霜护甲效果
             MobEffectInstance frostArmor = new MobEffectInstance(

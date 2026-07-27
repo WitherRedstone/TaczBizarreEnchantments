@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.ExplosionUtils;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
@@ -93,11 +93,11 @@ public class DragonflyEvent {
         }
 
         // 触发爆炸效果
-        float damage = TBZConfig.DRAGONFLY_BASE_DAMAGE.get().floatValue()
-                + TBZConfig.DRAGONFLY_DAMAGE_PER_LEVEL.get().floatValue() * enchantLevel;
-        float splashMin = TBZConfig.DRAGONFLY_SPLASH_MIN.get().floatValue();
-        float splashMax = TBZConfig.DRAGONFLY_SPLASH_MAX.get().floatValue();
-        double range = TBZConfig.DRAGONFLY_RANGE.get();
+        float damage = TBZServerConfig.DRAGONFLY_BASE_DAMAGE.get().floatValue()
+                + TBZServerConfig.DRAGONFLY_DAMAGE_PER_LEVEL.get().floatValue() * enchantLevel;
+        float splashMin = TBZServerConfig.DRAGONFLY_SPLASH_MIN.get().floatValue();
+        float splashMax = TBZServerConfig.DRAGONFLY_SPLASH_MAX.get().floatValue();
+        double range = TBZServerConfig.DRAGONFLY_RANGE.get();
         ExplosionUtils.dealSmallExplosionDamage(target, damage, splashMin, splashMax, range);
 
         // 清除爆头击杀标记

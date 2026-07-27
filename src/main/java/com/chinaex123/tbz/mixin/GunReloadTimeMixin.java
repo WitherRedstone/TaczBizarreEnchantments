@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.mixin;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.ReloadContextHolder;
 import com.tacz.guns.resource.pojo.data.gun.GunReloadTime;
@@ -82,7 +82,7 @@ public class GunReloadTimeMixin {
             // 判断是否需要加速
             if (tbz$shouldAccelerate()) {
                 // 从配置获取加速比例
-                float multiplier = TBZConfig.OUTLAW_RELOAD_SPEED_MULTIPLIER.get().floatValue();
+                float multiplier = TBZServerConfig.OUTLAW_RELOAD_SPEED_MULTIPLIER.get().floatValue();
                 // 限制范围避免负值
                 float clamped = Math.min(Math.max(multiplier, 0.0f), 0.99f);
                 // 计算新的换弹时间：原始时间 * (1 - 加速比例)，最小为0.01秒
@@ -117,7 +117,7 @@ public class GunReloadTimeMixin {
             // 判断是否需要加速
             if (tbz$shouldAccelerate()) {
                 // 从配置获取加速比例
-                float multiplier = TBZConfig.OUTLAW_RELOAD_SPEED_MULTIPLIER.get().floatValue();
+                float multiplier = TBZServerConfig.OUTLAW_RELOAD_SPEED_MULTIPLIER.get().floatValue();
                 // 限制范围避免负值
                 float clamped = Math.min(Math.max(multiplier, 0.0f), 0.99f);
                 // 计算新的换弹时间：原始时间 * (1 - 加速比例)，最小为0.01秒

@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.AmmoUtils;
 import com.tacz.guns.api.TimelessAPI;
@@ -67,7 +67,7 @@ public class SubsistenceEvent {
         killCountMap.put(playerId, currentKills);
 
         // 获取触发弹药补充所需的击杀阈值（从配置读取）
-        int threshold = TBZConfig.SUBSISTENCE_KILL_THRESHOLD.get();
+        int threshold = TBZServerConfig.SUBSISTENCE_KILL_THRESHOLD.get();
 
         // 未达到阈值，继续累积
         if (currentKills < threshold) {
@@ -147,8 +147,8 @@ public class SubsistenceEvent {
      * @return 弹药补充百分比（0-100）
      */
     private static int getAmmoPercentage(int level) {
-        int basePercentage = TBZConfig.SUBSISTENCE_BASE_AMMO_PERCENTAGE.get();
-        int incrementPerLevel = TBZConfig.SUBSISTENCE_AMMO_PERCENTAGE_PER_LEVEL.get();
+        int basePercentage = TBZServerConfig.SUBSISTENCE_BASE_AMMO_PERCENTAGE.get();
+        int incrementPerLevel = TBZServerConfig.SUBSISTENCE_AMMO_PERCENTAGE_PER_LEVEL.get();
         return basePercentage + (level - 1) * incrementPerLevel;
     }
 }

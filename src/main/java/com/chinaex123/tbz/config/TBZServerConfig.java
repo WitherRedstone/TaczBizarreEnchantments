@@ -3,7 +3,7 @@ package com.chinaex123.tbz.config;
 import net.minecraftforge.common.ForgeConfigSpec;
 import java.util.List;
 
-public class TBZConfig {
+public class TBZServerConfig {
 
     // ========== 通用设置 ==========
     public static ForgeConfigSpec.IntValue MAX_ENCHANTMENTS_PER_GUN;
@@ -67,6 +67,7 @@ public class TBZConfig {
     public static ForgeConfigSpec.IntValue TARGET_LOCK_ENCHANTABILITY_SPAN;
     public static ForgeConfigSpec.IntValue TARGET_LOCK_MAX_LEVEL;
     public static ForgeConfigSpec.DoubleValue TARGET_LOCK_DAMAGE_BONUS_PER_STACK;
+    public static ForgeConfigSpec.IntValue TARGET_LOCK_MAX_STACKS;
     public static ForgeConfigSpec.DoubleValue TARGET_LOCK_REQUIRED_MAGAZINE_PERCENT;
     public static ForgeConfigSpec.BooleanValue TARGET_LOCK_WHITELIST_MODE;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> TARGET_LOCK_APPLICABLE_GUNS;
@@ -800,6 +801,9 @@ public class TBZConfig {
         TARGET_LOCK_DAMAGE_BONUS_PER_STACK = builder
                 .comment("每层伤害加成（0.12表示12%）")
                 .defineInRange("damageBonusPerStack", 0.12, 0.01, 0.5);
+        TARGET_LOCK_MAX_STACKS = builder
+                .comment("最大伤害加成层数")
+                .defineInRange("maxStacks", 5, 1, 20);
         TARGET_LOCK_REQUIRED_MAGAZINE_PERCENT = builder
                 .comment("需要射击弹夹的百分比来触发加成（0.15表示15%）")
                 .defineInRange("requiredMagazinePercent", 0.15, 0.01, 0.5);

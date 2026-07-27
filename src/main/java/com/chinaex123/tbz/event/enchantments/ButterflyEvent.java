@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.network.AimingState;
 import com.chinaex123.tbz.utils.ExplosionUtils;
@@ -66,11 +66,11 @@ public class ButterflyEvent {
 
         // 如果附魔已激活，触发爆炸伤害
         if (isActive) {
-            float damage = TBZConfig.BUTTERFLY_BASE_DAMAGE.get().floatValue()
-                    + TBZConfig.BUTTERFLY_DAMAGE_PER_LEVEL.get().floatValue() * enchantLevel;
-            float splashMin = TBZConfig.BUTTERFLY_SPLASH_MIN.get().floatValue();
-            float splashMax = TBZConfig.BUTTERFLY_SPLASH_MAX.get().floatValue();
-            double range = TBZConfig.BUTTERFLY_RANGE.get();
+            float damage = TBZServerConfig.BUTTERFLY_BASE_DAMAGE.get().floatValue()
+                    + TBZServerConfig.BUTTERFLY_DAMAGE_PER_LEVEL.get().floatValue() * enchantLevel;
+            float splashMin = TBZServerConfig.BUTTERFLY_SPLASH_MIN.get().floatValue();
+            float splashMax = TBZServerConfig.BUTTERFLY_SPLASH_MAX.get().floatValue();
+            double range = TBZServerConfig.BUTTERFLY_RANGE.get();
             ExplosionUtils.dealExplosionDamage(target, damage, splashMin, splashMax, range);
         }
     }

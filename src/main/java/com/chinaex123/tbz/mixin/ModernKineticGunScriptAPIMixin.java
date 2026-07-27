@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.mixin;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.ReloadContextHolder;
 import com.llamalad7.mixinextras.expression.Definition;
@@ -53,7 +53,7 @@ public class ModernKineticGunScriptAPIMixin {
         int firmlyPlantedLevel = itemStack.getEnchantmentLevel(TBZEnchantments.FIRMLY_PLANTED.get());
         if (firmlyPlantedLevel > 0 && player.isShiftKeyDown() && inaccuracyType == InaccuracyType.AIM) {
             // 仅在瞄准状态下潜行时生效
-            totalAccuracyBonus += TBZConfig.FIRMLY_PLANTED_SPREAD_REDUCTION.get().floatValue();
+            totalAccuracyBonus += TBZServerConfig.FIRMLY_PLANTED_SPREAD_REDUCTION.get().floatValue();
         }
 
         // 风暴之眼（Eye of Storm）：生命值越低，精度越高
@@ -61,7 +61,7 @@ public class ModernKineticGunScriptAPIMixin {
         if (eyeOfStormEyeLevel > 0) {
             // 计算生命值比例：生命值越低，加成越高
             float healthRatio = player.getHealth() / player.getMaxHealth();
-            float healthBonus = (1.0f - healthRatio) * TBZConfig.EYE_OF_STORM_EYE_ACCURACY_BONUS.get().floatValue();
+            float healthBonus = (1.0f - healthRatio) * TBZServerConfig.EYE_OF_STORM_EYE_ACCURACY_BONUS.get().floatValue();
             totalAccuracyBonus += healthBonus;
         }
 

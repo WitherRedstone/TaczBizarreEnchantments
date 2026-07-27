@@ -1,9 +1,8 @@
 package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.funky_effect_lib.init.FELEffects;
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -46,7 +45,7 @@ public class IncandescentEvent {
         if (enchantLevel <= 0) return;
 
         // 获取效果范围
-        double range = TBZConfig.INCANDESCENT_RANGE.get();
+        double range = TBZServerConfig.INCANDESCENT_RANGE.get();
 
         // 创建一个以目标为中心的立方体碰撞箱（AABB）
         AABB aabb = new AABB(
@@ -70,12 +69,12 @@ public class IncandescentEvent {
 
             if (currentEffect != null) {
                 // 情况1：已有灼烧效果 -> 延长持续时间
-                int extendDuration = TBZConfig.INCANDESCENT_EXTEND_DURATION.get();   // 每次延长的刻数
-                int maxDuration = TBZConfig.INCANDESCENT_MAX_DURATION.get(); // 最大持续时间（刻）
+                int extendDuration = TBZServerConfig.INCANDESCENT_EXTEND_DURATION.get();   // 每次延长的刻数
+                int maxDuration = TBZServerConfig.INCANDESCENT_MAX_DURATION.get(); // 最大持续时间（刻）
                 int newDuration = Math.min(currentEffect.getDuration() + extendDuration, maxDuration);
 
                 // 获取效果等级
-                int scorchAmplifier = TBZConfig.INCANDESCENT_SCORCH_AMPLIFIER.get();
+                int scorchAmplifier = TBZServerConfig.INCANDESCENT_SCORCH_AMPLIFIER.get();
 
                 // 施加新的灼烧效果
                 nearbyEntity.addEffect(new MobEffectInstance(
@@ -84,8 +83,8 @@ public class IncandescentEvent {
             } else {
                 // 情况2：没有灼烧效果 -> 给予新效果
                 // 获取灼烧效果的持续时间和等级
-                int scorchDuration = TBZConfig.INCANDESCENT_SCORCH_DURATION.get();
-                int scorchAmplifier = TBZConfig.INCANDESCENT_SCORCH_AMPLIFIER.get();
+                int scorchDuration = TBZServerConfig.INCANDESCENT_SCORCH_DURATION.get();
+                int scorchAmplifier = TBZServerConfig.INCANDESCENT_SCORCH_AMPLIFIER.get();
 
                 // 创建新的灼烧效果
                 MobEffectInstance scorchEffect = new MobEffectInstance(

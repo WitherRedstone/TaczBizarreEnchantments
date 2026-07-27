@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.recoil.modifier;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.recoil.RecoilModifierRegistry;
 import net.minecraft.world.entity.LivingEntity;
@@ -50,7 +50,7 @@ public class EyeOfStormEyeRecoilModifier implements RecoilModifierRegistry.Recoi
         float healthRatio = player.getHealth() / player.getMaxHealth();
 
         // 从配置获取最大减少比例
-        float maxReduction = TBZConfig.EYE_OF_STORM_EYE_RECOIL_REDUCTION.get().floatValue();
+        float maxReduction = TBZServerConfig.EYE_OF_STORM_EYE_RECOIL_REDUCTION.get().floatValue();
 
         // 生命值越低，减少效果越强：reduction = (1 - healthRatio) * maxReduction
         // 满血时 reduction = 0，无效果；濒死时 reduction = maxReduction，效果最大

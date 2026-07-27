@@ -1,7 +1,7 @@
 package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.funky_effect_lib.init.FELEffects;
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -45,7 +45,7 @@ public class DestabilizingRoundsEvent {
         if (enchantLevel <= 0) return;
 
         // 获取效果范围
-        double range = TBZConfig.DESTABILIZING_ROUNDS_RANGE.get();
+        double range = TBZServerConfig.DESTABILIZING_ROUNDS_RANGE.get();
 
         // 创建一个以目标为中心的立方体碰撞箱
         AABB aabb = new AABB(
@@ -69,12 +69,12 @@ public class DestabilizingRoundsEvent {
 
             if (currentEffect != null) {
                 // 情况1：已有不稳定效果 -> 延长持续时间
-                int extendDuration = TBZConfig.DESTABILIZING_ROUNDS_EXTEND_DURATION.get(); // 每次延长的刻数
-                int maxDuration = TBZConfig.DESTABILIZING_ROUNDS_MAX_DURATION.get(); // 最大持续时间
+                int extendDuration = TBZServerConfig.DESTABILIZING_ROUNDS_EXTEND_DURATION.get(); // 每次延长的刻数
+                int maxDuration = TBZServerConfig.DESTABILIZING_ROUNDS_MAX_DURATION.get(); // 最大持续时间
                 int newDuration = Math.min(currentEffect.getDuration() + extendDuration, maxDuration);
 
                 // 获取效果等级
-                int volatileAmplifier = TBZConfig.DESTABILIZING_ROUNDS_VOLATILE_AMPLIFIER.get();
+                int volatileAmplifier = TBZServerConfig.DESTABILIZING_ROUNDS_VOLATILE_AMPLIFIER.get();
 
                 // 施加新的不稳定效果
                 nearbyEntity.addEffect(new MobEffectInstance(
@@ -83,8 +83,8 @@ public class DestabilizingRoundsEvent {
             } else {
                 // 情况2：没有不稳定效果 -> 给予新效果
                 // 获取不稳定效果的持续时间和等级
-                int volatileDuration = TBZConfig.DESTABILIZING_ROUNDS_VOLATILE_DURATION.get();
-                int volatileAmplifier = TBZConfig.DESTABILIZING_ROUNDS_VOLATILE_AMPLIFIER.get();
+                int volatileDuration = TBZServerConfig.DESTABILIZING_ROUNDS_VOLATILE_DURATION.get();
+                int volatileAmplifier = TBZServerConfig.DESTABILIZING_ROUNDS_VOLATILE_AMPLIFIER.get();
 
                 // 创建新的不稳定效果
                 MobEffectInstance volatileEffect = new MobEffectInstance(

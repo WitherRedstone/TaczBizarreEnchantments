@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.ExplosionUtils;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
@@ -125,9 +125,9 @@ public class MeganeuraEvent {
         }
 
         // 计算伤害加成
-        int threshold = TBZConfig.MEGANEURA_HEADSHOT_THRESHOLD.get();
-        double bonusPerThreshold = TBZConfig.MEGANEURA_DAMAGE_BONUS_PER_THRESHOLD.get();
-        double maxBonus = TBZConfig.MEGANEURA_MAX_DAMAGE_BONUS.get();
+        int threshold = TBZServerConfig.MEGANEURA_HEADSHOT_THRESHOLD.get();
+        double bonusPerThreshold = TBZServerConfig.MEGANEURA_DAMAGE_BONUS_PER_THRESHOLD.get();
+        double maxBonus = TBZServerConfig.MEGANEURA_MAX_DAMAGE_BONUS.get();
 
         // 计算阈值数量（每5次爆头为一个阈值）
         int thresholdCount = headshotCount / threshold;
@@ -135,13 +135,13 @@ public class MeganeuraEvent {
         double damageBonus = Math.min(thresholdCount * bonusPerThreshold, maxBonus);
 
         // 计算最终伤害
-        float baseDamage = TBZConfig.MEGANEURA_BASE_DAMAGE.get().floatValue();
+        float baseDamage = TBZServerConfig.MEGANEURA_BASE_DAMAGE.get().floatValue();
         float finalDamage = baseDamage * (1.0f + (float) damageBonus);
 
         // 获取溅射伤害范围和数值
-        float splashMin = TBZConfig.MEGANEURA_SPLASH_MIN.get().floatValue();
-        float splashMax = TBZConfig.MEGANEURA_SPLASH_MAX.get().floatValue();
-        double range = TBZConfig.MEGANEURA_RANGE.get();
+        float splashMin = TBZServerConfig.MEGANEURA_SPLASH_MIN.get().floatValue();
+        float splashMax = TBZServerConfig.MEGANEURA_SPLASH_MAX.get().floatValue();
+        double range = TBZServerConfig.MEGANEURA_RANGE.get();
 
         // 触发爆炸效果
         ExplosionUtils.dealSmallExplosionDamage(target, finalDamage, splashMin, splashMax, range);

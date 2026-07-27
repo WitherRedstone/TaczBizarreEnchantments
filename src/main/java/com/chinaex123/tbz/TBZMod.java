@@ -1,9 +1,11 @@
 package com.chinaex123.tbz;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZClientConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZCreativeTabs;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.network.PacketHandler;
+import com.chinaex123.tbz.network.hud.HUDPacketHandler;
 import com.chinaex123.tbz.recoil.modifier.EyeOfStormEyeRecoilModifier;
 import com.chinaex123.tbz.recoil.modifier.FirmlyPlantedRecoilModifier;
 import com.mojang.logging.LogUtils;
@@ -24,9 +26,11 @@ public class TBZMod {
     public TBZMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TBZConfig.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, TBZServerConfig.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, TBZClientConfig.SPEC);
         TBZEnchantments.ENCHANTMENTS.register(modEventBus);
         PacketHandler.register();
+        HUDPacketHandler.register();
         FirmlyPlantedRecoilModifier.register();
         EyeOfStormEyeRecoilModifier.register();
         TBZCreativeTabs.CREATIVE_MODE_TAB.register(modEventBus);

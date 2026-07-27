@@ -97,5 +97,7 @@
   "enchantment.tbz.cooling_baubles": "Cooling Baubles",
   "enchantment.tbz.cooling_baubles.desc": "Picking up experience orbs has a chance to reduce the weapon's heat.",
   "enchantment.tbz.shoot_tp_loot": "Shoot & Loot",
-  "enchantment.tbz.shoot_tp_loot.desc": "Shooting items and experience orbs from a distance immediately picks them up and places them in your inventory."
+  "enchantment.tbz.shoot_tp_loot.desc": "Shooting items and experience orbs from a distance immediately picks them up and places them in your inventory.",
+
+  "gui.tbz.target_lock": "Target Lock x%s"
 }

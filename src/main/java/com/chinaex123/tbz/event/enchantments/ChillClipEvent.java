@@ -1,7 +1,7 @@
 package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.funky_effect_lib.init.FELEffects;
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import net.minecraft.nbt.CompoundTag;
@@ -58,7 +58,7 @@ public class ChillClipEvent {
         if (enchantLevel <= 0) return;
 
         // 触发概率判定：每次命中独立计算
-        double triggerChance = TBZConfig.CHILL_CLIP_TRIGGER_CHANCE.get();
+        double triggerChance = TBZServerConfig.CHILL_CLIP_TRIGGER_CHANCE.get();
         if (player.getRandom().nextDouble() >= triggerChance) return;
 
         Level level = player.level();
@@ -71,8 +71,8 @@ public class ChillClipEvent {
 
         if (currentEffect != null) {
             // 情况1：已有霜寒效果 -> 延长持续时间
-            int extendDuration = TBZConfig.CHILL_CLIP_EXTEND_DURATION.get();   // 每次延长的刻数
-            int maxDuration = TBZConfig.CHILL_CLIP_MAX_DURATION.get();  // 最大持续时间（刻）
+            int extendDuration = TBZServerConfig.CHILL_CLIP_EXTEND_DURATION.get();   // 每次延长的刻数
+            int maxDuration = TBZServerConfig.CHILL_CLIP_MAX_DURATION.get();  // 最大持续时间（刻）
             int newDuration = Math.min(currentEffect.getDuration() + extendDuration, maxDuration);
 
             // 保留原有效果的等级（不改变效果强度）
@@ -84,7 +84,7 @@ public class ChillClipEvent {
             ));
         } else {
             // 情况2：没有霜寒效果 -> 检查冷却，尝试施加新效果
-            int cooldownTicks = TBZConfig.CHILL_CLIP_COOLDOWN_TICKS.get();
+            int cooldownTicks = TBZServerConfig.CHILL_CLIP_COOLDOWN_TICKS.get();
 
             // 如果在上次触发后的冷却时间内，不触发新效果
             if (currentTime - lastHitTime < cooldownTicks) {
@@ -92,9 +92,9 @@ public class ChillClipEvent {
             }
 
             // 获取霜寒效果的持续时间和等级范围
-            int frostbiteDuration = TBZConfig.CHILL_CLIP_FROSTBITE_DURATION.get();
-            int frostbiteMinAmplifier = TBZConfig.CHILL_CLIP_FROSTBITE_MIN_AMPLIFIER.get();  // 最小等级
-            int frostbiteMaxAmplifier = TBZConfig.CHILL_CLIP_FROSTBITE_MAX_AMPLIFIER.get();  // 最大等级
+            int frostbiteDuration = TBZServerConfig.CHILL_CLIP_FROSTBITE_DURATION.get();
+            int frostbiteMinAmplifier = TBZServerConfig.CHILL_CLIP_FROSTBITE_MIN_AMPLIFIER.get();  // 最小等级
+            int frostbiteMaxAmplifier = TBZServerConfig.CHILL_CLIP_FROSTBITE_MAX_AMPLIFIER.get();  // 最大等级
 
             // 随机生成效果等级（在最小和最大之间随机）
             int frostbiteAmplifier = frostbiteMinAmplifier

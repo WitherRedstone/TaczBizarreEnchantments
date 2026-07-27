@@ -1,7 +1,7 @@
 package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.tbz.api.IShootIntervalAdjuster;
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.network.FireRateSyncPacket;
 import com.chinaex123.tbz.network.PacketHandler;
@@ -67,7 +67,7 @@ public class AdagioEvent {
 
         // 如果柔缓状态激活，增加伤害
         if (isAdagioActive(gun)) {
-            float bonusDamage = TBZConfig.ADAGIO_BONUS_DAMAGE.get().floatValue() * enchantLevel;
+            float bonusDamage = TBZServerConfig.ADAGIO_BONUS_DAMAGE.get().floatValue() * enchantLevel;
             float originalDamage = event.getBaseAmount();
             float newDamage = originalDamage * (1.0f + bonusDamage);
             event.setBaseAmount(newDamage);
@@ -99,12 +99,12 @@ public class AdagioEvent {
             adjuster.tbz$RestoreFireRate(); // 重置之前的柔缓状态
             
             // 使用通用方法应用射速修改
-            float slowPercent = TBZConfig.ADAGIO_FIRE_RATE_SLOWDOWN.get().floatValue();
-            adjuster.tbz$ApplyFireRateModifier(player, enchantLevel, gun, slowPercent, TBZConfig.ADAGIO_DURATION.get());
+            float slowPercent = TBZServerConfig.ADAGIO_FIRE_RATE_SLOWDOWN.get().floatValue();
+            adjuster.tbz$ApplyFireRateModifier(player, enchantLevel, gun, slowPercent, TBZServerConfig.ADAGIO_DURATION.get());
 
             // 通过网络同步射速调整数据
             long additionalInterval = adjuster.tbz$GetAdditionalInterval();
-            long endTime = System.currentTimeMillis() + (long)(TBZConfig.ADAGIO_DURATION.get() * 1000L);
+            long endTime = System.currentTimeMillis() + (long)(TBZServerConfig.ADAGIO_DURATION.get() * 1000L);
 
             PacketHandler.INSTANCE.send(
                     PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> player),
@@ -117,8 +117,8 @@ public class AdagioEvent {
         tag.putBoolean(ADAGIO_ACTIVE, true);
         tag.putLong(ADAGIO_START_TIME, System.currentTimeMillis());
         tag.putInt(ADAGIO_LEVEL, enchantLevel);
-        tag.putLong(ADAGIO_DURATION, (long)(TBZConfig.ADAGIO_DURATION.get() * 1000L));
-        tag.putFloat(ADAGIO_SLOW_PERCENT, TBZConfig.ADAGIO_FIRE_RATE_SLOWDOWN.get().floatValue() * enchantLevel);
+        tag.putLong(ADAGIO_DURATION, (long)(TBZServerConfig.ADAGIO_DURATION.get() * 1000L));
+        tag.putFloat(ADAGIO_SLOW_PERCENT, TBZServerConfig.ADAGIO_FIRE_RATE_SLOWDOWN.get().floatValue() * enchantLevel);
 
         // 增加击杀计数
         int killCount = tag.getInt(ADAGIO_KILL_COUNT) + 1;
@@ -216,7 +216,7 @@ public class AdagioEvent {
         long duration = tag.getLong(ADAGIO_DURATION);
 
         if (duration <= 0) {
-            duration = (long)(TBZConfig.ADAGIO_DURATION.get() * 1000L);
+            duration = (long)(TBZServerConfig.ADAGIO_DURATION.get() * 1000L);
         }
 
         // 检查是否在有效时间内

@@ -97,5 +97,7 @@
   "enchantment.tbz.cooling_baubles": "冷却饰物",
   "enchantment.tbz.cooling_baubles.desc": "拾取经验球时有几率降低枪械的热量",
   "enchantment.tbz.shoot_tp_loot": "边打边劫",
-  "enchantment.tbz.shoot_tp_loot.desc": "远程射击物品和经验球会立即将其拾起并放到物品栏内"
+  "enchantment.tbz.shoot_tp_loot.desc": "远程射击物品和经验球会立即将其拾起并放到物品栏内",
+
+  "gui.tbz.target_lock": "目标锁定 x%s"
 }

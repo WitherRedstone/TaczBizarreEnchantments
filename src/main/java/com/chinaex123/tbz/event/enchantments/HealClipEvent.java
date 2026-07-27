@@ -1,7 +1,7 @@
 package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.funky_effect_lib.init.FELEffects;
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
@@ -99,8 +99,8 @@ public class HealClipEvent {
      * @return 效果放大器值
      */
     private static int getCureAmplifier(int level) {
-        return TBZConfig.HEAL_CLIP_BASE_AMPLIFIER.get()
-                + (level - 1) * TBZConfig.HEAL_CLIP_AMPLIFIER_PER_LEVEL.get();
+        return TBZServerConfig.HEAL_CLIP_BASE_AMPLIFIER.get()
+                + (level - 1) * TBZServerConfig.HEAL_CLIP_AMPLIFIER_PER_LEVEL.get();
     }
 
     /**

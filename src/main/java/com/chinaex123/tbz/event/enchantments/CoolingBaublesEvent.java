@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.tacz.guns.api.entity.IGunOperator;
 import com.tacz.guns.item.ModernKineticGunScriptAPI;
@@ -48,8 +48,8 @@ public class CoolingBaublesEvent {
 
         try {
             // 从配置读取触发几率和热量减少比例
-            float chance = TBZConfig.COOLING_BAUBLES_COOL_CHANCE.get().floatValue();
-            float heatReduction = TBZConfig.COOLING_BAUBLES_HEAT_REDUCTION.get().floatValue();
+            float chance = TBZServerConfig.COOLING_BAUBLES_COOL_CHANCE.get().floatValue();
+            float heatReduction = TBZServerConfig.COOLING_BAUBLES_HEAT_REDUCTION.get().floatValue();
 
             // 根据几率判定是否触发冷却效果
             if (player.level().random.nextFloat() < chance) {

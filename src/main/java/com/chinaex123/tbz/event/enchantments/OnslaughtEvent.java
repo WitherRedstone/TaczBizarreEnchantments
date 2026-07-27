@@ -1,7 +1,7 @@
 package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.tbz.api.IShootIntervalAdjuster;
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.network.FireRateSyncPacket;
 import com.chinaex123.tbz.network.PacketHandler;
@@ -69,13 +69,13 @@ public class OnslaughtEvent {
             adjuster.tbz$RestoreFireRate();
 
             // 从配置获取射速提升百分比（负值表示加速）
-            float boostPercent = TBZConfig.ONSLAUGHT_FIRE_RATE_BOOST.get().floatValue();
+            float boostPercent = TBZServerConfig.ONSLAUGHT_FIRE_RATE_BOOST.get().floatValue();
             // 应用射速修改器：传入选中的玩家、附魔等级、武器、提升百分比和持续时间
-            adjuster.tbz$ApplyFireRateModifier(player, enchantLevel, gun, -boostPercent, TBZConfig.ONSLAUGHT_DURATION.get());
+            adjuster.tbz$ApplyFireRateModifier(player, enchantLevel, gun, -boostPercent, TBZServerConfig.ONSLAUGHT_DURATION.get());
 
             // 获取调整后的额外间隔和结束时间
             long additionalInterval = adjuster.tbz$GetAdditionalInterval();
-            long endTime = System.currentTimeMillis() + (long)(TBZConfig.ONSLAUGHT_DURATION.get() * 1000L);
+            long endTime = System.currentTimeMillis() + (long)(TBZServerConfig.ONSLAUGHT_DURATION.get() * 1000L);
 
             // 通过网络同步射速数据到客户端
             PacketHandler.INSTANCE.send(
@@ -89,8 +89,8 @@ public class OnslaughtEvent {
         tag.putBoolean(ONSLAUGHT_ACTIVE, true);
         tag.putLong(ONSLAUGHT_START_TIME, System.currentTimeMillis());
         tag.putInt(ONSLAUGHT_LEVEL, enchantLevel);
-        tag.putLong(ONSLAUGHT_DURATION, (long)(TBZConfig.ONSLAUGHT_DURATION.get() * 1000L));
-        tag.putFloat(ONSLAUGHT_BOOST_PERCENT, TBZConfig.ONSLAUGHT_FIRE_RATE_BOOST.get().floatValue() * enchantLevel);
+        tag.putLong(ONSLAUGHT_DURATION, (long)(TBZServerConfig.ONSLAUGHT_DURATION.get() * 1000L));
+        tag.putFloat(ONSLAUGHT_BOOST_PERCENT, TBZServerConfig.ONSLAUGHT_FIRE_RATE_BOOST.get().floatValue() * enchantLevel);
 
         // 增加击杀计数
         int killCount = tag.getInt(ONSLAUGHT_KILL_COUNT) + 1;
@@ -188,7 +188,7 @@ public class OnslaughtEvent {
         long duration = tag.getLong(ONSLAUGHT_DURATION);
 
         if (duration <= 0) {
-            duration = (long)(TBZConfig.ONSLAUGHT_DURATION.get() * 1000L);
+            duration = (long)(TBZServerConfig.ONSLAUGHT_DURATION.get() * 1000L);
         }
 
         // 检查是否在有效时间内

@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
@@ -88,15 +88,15 @@ public class AttritionOrbsEvent {
             if (magazineSize > 0) {
                 // 计算触发所需射击比例（附魔等级越高，所需比例越低）
                 // 公式：基础比例 - (等级 - 1) × 每级减少量
-                double requiredPercentage = TBZConfig.ATTRITION_ORBS_BASE_PERCENTAGE.get()
-                        - (enchantLevel - 1) * TBZConfig.ATTRITION_ORBS_PERCENTAGE_REDUCTION_PER_LEVEL.get();
+                double requiredPercentage = TBZServerConfig.ATTRITION_ORBS_BASE_PERCENTAGE.get()
+                        - (enchantLevel - 1) * TBZServerConfig.ATTRITION_ORBS_PERCENTAGE_REDUCTION_PER_LEVEL.get();
                 int requiredShots = (int) Math.ceil(magazineSize * requiredPercentage);
 
                 // 检查是否达到触发条件
                 if (shotsFired >= requiredShots) {
                     // 获取生成经验球的数量范围
-                    int minOrbs = TBZConfig.ATTRITION_ORBS_MIN_ORBS.get();
-                    int maxOrbs = TBZConfig.ATTRITION_ORBS_MAX_ORBS.get();
+                    int minOrbs = TBZServerConfig.ATTRITION_ORBS_MIN_ORBS.get();
+                    int maxOrbs = TBZServerConfig.ATTRITION_ORBS_MAX_ORBS.get();
                     // 随机生成数量（范围内）
                     int orbCount = player.getRandom().nextInt(maxOrbs - minOrbs + 1) + minOrbs;
 

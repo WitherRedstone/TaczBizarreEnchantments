@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.mixin.client;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.tacz.guns.api.client.animation.ObjectAnimation;
 import net.minecraft.client.Minecraft;
@@ -62,7 +62,7 @@ public class ObjectAnimationMixin {
             if (!hasSpeedTag) return timeNs;
 
             // 从配置获取加速比例并计算速度因子
-            float multiplier = TBZConfig.OUTLAW_RELOAD_SPEED_MULTIPLIER.get().floatValue();
+            float multiplier = TBZServerConfig.OUTLAW_RELOAD_SPEED_MULTIPLIER.get().floatValue();
             float clamped = Math.min(Math.max(multiplier, 0.0f), 0.99f);
             // 速度因子 = 1 / (1 - 加速比例)
             // 例如：加速30% => 因子 = 1 / 0.7 ≈ 1.428

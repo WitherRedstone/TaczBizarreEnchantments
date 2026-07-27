@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.ExplosionUtils;
 import com.chinaex123.tbz.utils.ShotTriggerHelper;
@@ -63,13 +63,13 @@ public class ExplosivePayloadEvent {
         }
 
         // 计算爆炸伤害：基础伤害 + 等级 × 每级伤害增量
-        float damage = TBZConfig.EXPLOSIVE_PAYLOAD_BASE_DAMAGE.get().floatValue()
-                + TBZConfig.EXPLOSIVE_PAYLOAD_DAMAGE_PER_LEVEL.get().floatValue() * enchantLevel;
+        float damage = TBZServerConfig.EXPLOSIVE_PAYLOAD_BASE_DAMAGE.get().floatValue()
+                + TBZServerConfig.EXPLOSIVE_PAYLOAD_DAMAGE_PER_LEVEL.get().floatValue() * enchantLevel;
 
         // 获取溅射伤害范围和数值（从配置读取）
-        float splashMin = TBZConfig.EXPLOSIVE_PAYLOAD_SPLASH_MIN.get().floatValue(); // 溅射伤害最小值
-        float splashMax = TBZConfig.EXPLOSIVE_PAYLOAD_SPLASH_MAX.get().floatValue(); // 溅射伤害最大值
-        double range = TBZConfig.EXPLOSIVE_PAYLOAD_RANGE.get(); // 爆炸范围（半径，格）
+        float splashMin = TBZServerConfig.EXPLOSIVE_PAYLOAD_SPLASH_MIN.get().floatValue(); // 溅射伤害最小值
+        float splashMax = TBZServerConfig.EXPLOSIVE_PAYLOAD_SPLASH_MAX.get().floatValue(); // 溅射伤害最大值
+        double range = TBZServerConfig.EXPLOSIVE_PAYLOAD_RANGE.get(); // 爆炸范围（半径，格）
 
         // 在目标位置触发小爆炸效果
         ExplosionUtils.dealSmallExplosionDamage(target, damage, splashMin, splashMax, range);
@@ -99,9 +99,9 @@ public class ExplosivePayloadEvent {
         }
 
         // 获取溅射伤害范围和数值
-        float splashMin = TBZConfig.EXPLOSIVE_PAYLOAD_SPLASH_MIN.get().floatValue();
-        float splashMax = TBZConfig.EXPLOSIVE_PAYLOAD_SPLASH_MAX.get().floatValue();
-        double range = TBZConfig.EXPLOSIVE_PAYLOAD_RANGE.get();
+        float splashMin = TBZServerConfig.EXPLOSIVE_PAYLOAD_SPLASH_MIN.get().floatValue();
+        float splashMax = TBZServerConfig.EXPLOSIVE_PAYLOAD_SPLASH_MAX.get().floatValue();
+        double range = TBZServerConfig.EXPLOSIVE_PAYLOAD_RANGE.get();
 
         // 获取子弹命中方块的位置
         Vec3 hitPos = event.getHitResult().getLocation();

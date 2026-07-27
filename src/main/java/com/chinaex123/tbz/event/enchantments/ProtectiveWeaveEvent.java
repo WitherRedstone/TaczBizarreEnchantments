@@ -1,7 +1,7 @@
 package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.funky_effect_lib.init.FELEffects;
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import net.minecraft.nbt.CompoundTag;
@@ -58,10 +58,10 @@ public class ProtectiveWeaveEvent {
 
         if (currentEffect != null) {
             // 已有织造铠甲效果 → 延长持续时间
-            int extendDuration = TBZConfig.PROTECTIVE_WEAVE_EXTEND_DURATION.get();
-            int maxDuration = TBZConfig.PROTECTIVE_WEAVE_MAX_DURATION.get();
+            int extendDuration = TBZServerConfig.PROTECTIVE_WEAVE_EXTEND_DURATION.get();
+            int maxDuration = TBZServerConfig.PROTECTIVE_WEAVE_MAX_DURATION.get();
             int newDuration = Math.min(currentEffect.getDuration() + extendDuration, maxDuration);
-            int wovenMailAmplifier = TBZConfig.PROTECTIVE_WEAVE_WOVEN_MAIL_AMPLIFIER.get();
+            int wovenMailAmplifier = TBZServerConfig.PROTECTIVE_WEAVE_WOVEN_MAIL_AMPLIFIER.get();
 
             // 重新添加效果，保持等级不变，只更新持续时间
             player.addEffect(new MobEffectInstance(
@@ -75,15 +75,15 @@ public class ProtectiveWeaveEvent {
             tag.putLong(LAST_KILL_TIME_TAG, currentTime);
         } else {
             // 无织造铠甲效果 → 检查冷却时间
-            int cooldownTicks = TBZConfig.PROTECTIVE_WEAVE_COOLDOWN_TICKS.get();
+            int cooldownTicks = TBZServerConfig.PROTECTIVE_WEAVE_COOLDOWN_TICKS.get();
             if (currentTime - lastKillTime < cooldownTicks) {
                 // 冷却中，不施加新效果
                 return;
             }
 
             // 冷却结束，施加新的织造铠甲效果
-            int wovenMailDuration = TBZConfig.PROTECTIVE_WEAVE_WOVEN_MAIL_DURATION.get();
-            int wovenMailAmplifier = TBZConfig.PROTECTIVE_WEAVE_WOVEN_MAIL_AMPLIFIER.get();
+            int wovenMailDuration = TBZServerConfig.PROTECTIVE_WEAVE_WOVEN_MAIL_DURATION.get();
+            int wovenMailAmplifier = TBZServerConfig.PROTECTIVE_WEAVE_WOVEN_MAIL_AMPLIFIER.get();
             MobEffectInstance wovenMail = new MobEffectInstance(
                     FELEffects.WOVEN_MAIL.get(),
                     wovenMailDuration,
@@ -119,7 +119,7 @@ public class ProtectiveWeaveEvent {
         if (enchantLevel <= 0) return;
 
         // 从配置获取伤害加成比例
-        float damageBonus = TBZConfig.PROTECTIVE_WEAVE_DAMAGE_BONUS.get().floatValue();
+        float damageBonus = TBZServerConfig.PROTECTIVE_WEAVE_DAMAGE_BONUS.get().floatValue();
         // 计算新伤害：原始伤害 × (1 + 伤害加成比例)
         float newDamage = event.getBaseAmount() * (1.0f + damageBonus);
 

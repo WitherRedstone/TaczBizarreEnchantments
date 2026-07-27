@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
@@ -118,8 +118,8 @@ public class MulliganEvent {
             if (shotTime != null && player.level().getGameTime() - shotTime >= CHECK_DELAY_TICKS) {
                 // 计算弹药返还概率
                 // 公式：基础概率 + (等级 - 1) × 每级增加概率
-                float baseChance = TBZConfig.MULLIGAN_BASE_CHANCE.get().floatValue();
-                float chancePerLevel = TBZConfig.MULLIGAN_CHANCE_PER_LEVEL.get().floatValue();
+                float baseChance = TBZServerConfig.MULLIGAN_BASE_CHANCE.get().floatValue();
+                float chancePerLevel = TBZServerConfig.MULLIGAN_CHANCE_PER_LEVEL.get().floatValue();
                 float totalChance = baseChance + (enchantLevel - 1) * chancePerLevel;
 
                 // 概率判定：成功则返还1发弹药

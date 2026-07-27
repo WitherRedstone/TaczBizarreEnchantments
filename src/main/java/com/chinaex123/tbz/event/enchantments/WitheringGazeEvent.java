@@ -1,7 +1,7 @@
 package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.funky_effect_lib.init.FELEffects;
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.network.AimingState;
 import com.chinaex123.tbz.utils.SoundUtils;
@@ -74,8 +74,8 @@ public class WitheringGazeEvent {
         // 如果已准备就绪且未触发过，触发易伤效果
         if (isReady && !isTriggered) {
             // 获取效果持续时间和等级
-            int duration = TBZConfig.WITHERING_GAZE_EFFECT_DURATION.get();
-            int amplifier = TBZConfig.WITHERING_GAZE_EFFECT_LEVEL.get() - 1;
+            int duration = TBZServerConfig.WITHERING_GAZE_EFFECT_DURATION.get();
+            int amplifier = TBZServerConfig.WITHERING_GAZE_EFFECT_LEVEL.get() - 1;
 
             // 对目标施加易伤效果
             target.addEffect(new MobEffectInstance(FELEffects.VULNERABLE.get(), duration * 20, amplifier, false, false));

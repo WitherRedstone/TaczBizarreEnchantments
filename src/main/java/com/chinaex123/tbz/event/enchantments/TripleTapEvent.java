@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.ShotTriggerHelper;
 import com.tacz.guns.api.TimelessAPI;
@@ -81,8 +81,8 @@ public class TripleTapEvent {
         headshotTimes.add(currentTime);  // 记录本次爆头时间
 
         // 从配置获取时间窗口（刻）和所需爆头次数
-        int timeWindow = TBZConfig.TRIPLE_TAP_TIME_WINDOW.get();
-        int requiredHits = TBZConfig.TRIPLE_TAP_HIT_COUNT.get();
+        int timeWindow = TBZServerConfig.TRIPLE_TAP_TIME_WINDOW.get();
+        int requiredHits = TBZServerConfig.TRIPLE_TAP_HIT_COUNT.get();
 
         // 清理超出时间窗口的旧记录
         headshotTimes.removeIf(time -> currentTime - time > timeWindow);
@@ -137,7 +137,7 @@ public class TripleTapEvent {
         List<Long> headshotTimes = headshotTimesMap.get(playerId);
         if (headshotTimes == null || headshotTimes.isEmpty()) return 0;
 
-        int timeWindow = TBZConfig.TRIPLE_TAP_TIME_WINDOW.get();
+        int timeWindow = TBZServerConfig.TRIPLE_TAP_TIME_WINDOW.get();
         // 统计仍在时间窗口内的爆头数量
         return (int) headshotTimes.stream()
                 .filter(time -> currentTime - time <= timeWindow)

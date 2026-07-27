@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.recoil.modifier;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.recoil.RecoilModifierRegistry;
 import com.chinaex123.tbz.utils.GunTypeHelper;
@@ -53,7 +53,7 @@ public class FirmlyPlantedRecoilModifier implements RecoilModifierRegistry.Recoi
         }
 
         // 从配置获取后坐力减少比例
-        float reduction = TBZConfig.FIRMLY_PLANTED_RECOIL_REDUCTION.get().floatValue();
+        float reduction = TBZServerConfig.FIRMLY_PLANTED_RECOIL_REDUCTION.get().floatValue();
 
         // 霰弹枪特殊处理：效果减半
         if (GunTypeHelper.isShotgun(itemStack)) {

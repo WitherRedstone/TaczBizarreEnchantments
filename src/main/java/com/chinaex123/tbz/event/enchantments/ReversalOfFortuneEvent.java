@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.AmmoUtils;
 import com.tacz.guns.api.TimelessAPI;
@@ -104,9 +104,9 @@ public class ReversalOfFortuneEvent {
         long currentTime = System.currentTimeMillis();
 
         // 获取配置参数
-        long missTimeout = (long) (TBZConfig.REVERSAL_OF_FORTUNE_MISS_TIMEOUT.get() * 1000);
-        long cooldown = (long) (TBZConfig.REVERSAL_OF_FORTUNE_COOLDOWN.get() * 1000);
-        int requiredMisses = TBZConfig.REVERSAL_OF_FORTUNE_REQUIRED_MISSES.get();
+        long missTimeout = (long) (TBZServerConfig.REVERSAL_OF_FORTUNE_MISS_TIMEOUT.get() * 1000);
+        long cooldown = (long) (TBZServerConfig.REVERSAL_OF_FORTUNE_COOLDOWN.get() * 1000);
+        int requiredMisses = TBZServerConfig.REVERSAL_OF_FORTUNE_REQUIRED_MISSES.get();
 
         // 获取当前弹匣弹药数，并与上一 tick 对比检测是否开火
         int currentAmmo = iGun.getCurrentAmmoCount(gun);
@@ -216,7 +216,7 @@ public class ReversalOfFortuneEvent {
         if (availableAmmo <= 0) return 0;
 
         // 计算实际返还数量（取 配置返还量 / 弹匣空位 / 背包可用 的最小值）
-        int ammoToRefund = TBZConfig.REVERSAL_OF_FORTUNE_REFUND_AMOUNT.get();
+        int ammoToRefund = TBZServerConfig.REVERSAL_OF_FORTUNE_REFUND_AMOUNT.get();
         int ammoNeeded = magazineSize - currentAmmo;
         int actualRefund = Math.min(ammoToRefund, ammoNeeded);
         int ammoToTransfer = Math.min(actualRefund, availableAmmo);

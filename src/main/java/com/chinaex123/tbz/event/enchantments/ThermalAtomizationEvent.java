@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.ExplosionUtils;
 import com.tacz.guns.api.entity.IGunOperator;
@@ -75,7 +75,7 @@ public class ThermalAtomizationEvent {
             // 如果热度超过阈值，增加伤害
             if (heatRatio > HEAT_THRESHOLD) {
                 // 从配置获取伤害加成比例
-                float damageBonus = TBZConfig.THERMAL_ATOMIZATION_DAMAGE_BONUS.get().floatValue();
+                float damageBonus = TBZServerConfig.THERMAL_ATOMIZATION_DAMAGE_BONUS.get().floatValue();
                 float originalDamage = event.getBaseAmount();
                 // 计算新伤害：原始伤害 × (1 + 伤害加成)
                 float newDamage = originalDamage * (1.0f + damageBonus);
@@ -139,9 +139,9 @@ public class ThermalAtomizationEvent {
             }
 
             // 从配置读取爆炸参数
-            float explosionMinDamage = TBZConfig.THERMAL_ATOMIZATION_EXPLOSION_MIN_DAMAGE.get().floatValue();
-            float explosionMaxDamage = TBZConfig.THERMAL_ATOMIZATION_EXPLOSION_MAX_DAMAGE.get().floatValue();
-            double explosionRange = TBZConfig.THERMAL_ATOMIZATION_EXPLOSION_RANGE.get();
+            float explosionMinDamage = TBZServerConfig.THERMAL_ATOMIZATION_EXPLOSION_MIN_DAMAGE.get().floatValue();
+            float explosionMaxDamage = TBZServerConfig.THERMAL_ATOMIZATION_EXPLOSION_MAX_DAMAGE.get().floatValue();
+            double explosionRange = TBZServerConfig.THERMAL_ATOMIZATION_EXPLOSION_RANGE.get();
 
             // 在目标位置触发小范围爆炸
             ExplosionUtils.dealSmallExplosionDamage(target, 0, explosionMinDamage, explosionMaxDamage, explosionRange);

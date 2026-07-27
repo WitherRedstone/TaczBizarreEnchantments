@@ -2,7 +2,7 @@ package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.tbz.capability.IGunAimingCapability;
 import com.chinaex123.tbz.capability.ModCapabilities;
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import net.minecraft.world.entity.LivingEntity;
@@ -59,7 +59,7 @@ public class GutshotStraightEvent {
         if (!isAiming) return;
 
         // 从配置获取伤害加成比例
-        float damageBonus = TBZConfig.GUTSHOT_STRAIGHT_DAMAGE_BONUS.get().floatValue();
+        float damageBonus = TBZServerConfig.GUTSHOT_STRAIGHT_DAMAGE_BONUS.get().floatValue();
 
         // 应用伤害加成：原伤害 × (1 + 伤害加成)
         event.setBaseAmount(event.getBaseAmount() * (1 + damageBonus));

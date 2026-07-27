@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.AmmoUtils;
 import com.tacz.guns.api.TimelessAPI;
@@ -142,14 +142,14 @@ public class RewindRoundsEvent {
 
             int shotsFired = tag.getInt(SHOTS_FIRED_TAG);
             // 从配置获取最小射击比例，计算恢复弹药所需的最低射击次数
-            double minFirePercentage = TBZConfig.REWIND_ROUNDS_MIN_FIRE_PERCENTAGE.get();
+            double minFirePercentage = TBZServerConfig.REWIND_ROUNDS_MIN_FIRE_PERCENTAGE.get();
             int minShotsRequired = (int) Math.ceil(magazineSize * minFirePercentage);
 
             // 判断射击次数是否达到最低要求
             if (shotsFired >= minShotsRequired) {
                 int hitCount = tag.getInt(HIT_COUNT_TAG);
                 // 根据配置的恢复比例，计算应恢复的弹药数 = 命中次数 × 恢复比例
-                double restorePercentage = TBZConfig.REWIND_ROUNDS_RESTORE_PERCENTAGE.get();
+                double restorePercentage = TBZServerConfig.REWIND_ROUNDS_RESTORE_PERCENTAGE.get();
                 int ammoToRestore = (int) Math.round(hitCount * restorePercentage);
 
                 // 获取枪械使用的弹药类型

@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.item.IGun;
@@ -80,9 +80,9 @@ public class AmbitiousAssassinEvent {
         if (gunIndexOpt.isEmpty()) return;
 
         // 从配置获取刺客野心参数
-        int baseOverfill = TBZConfig.AMBITIOUS_ASSASSIN_BASE_OVERFILL.get(); // 基础刺客野心
-        int overfillPerKill = TBZConfig.AMBITIOUS_ASSASSIN_OVERFILL_PER_KILL.get(); // 每击杀额外弹药
-        int maxOverfill = TBZConfig.AMBITIOUS_ASSASSIN_MAX_OVERFILL.get(); // 最大刺客野心上限
+        int baseOverfill = TBZServerConfig.AMBITIOUS_ASSASSIN_BASE_OVERFILL.get(); // 基础刺客野心
+        int overfillPerKill = TBZServerConfig.AMBITIOUS_ASSASSIN_OVERFILL_PER_KILL.get(); // 每击杀额外弹药
+        int maxOverfill = TBZServerConfig.AMBITIOUS_ASSASSIN_MAX_OVERFILL.get(); // 最大刺客野心上限
 
         // 计算总刺客野心量 = 基础值 + 击杀数 × 每击杀增量
         int totalOverfill = baseOverfill + (kills * overfillPerKill);

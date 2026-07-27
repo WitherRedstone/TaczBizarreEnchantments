@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.AmmoUtils;
 import com.tacz.guns.api.TimelessAPI;
@@ -52,7 +52,7 @@ public class TrickleChargeEvent {
         int currentAmmo = iGun.getCurrentAmmoCount(gun);
 
         // 计算需要补充的弹药量（弹匣容量的10%）
-        double reloadPercentage = TBZConfig.TRICKLE_CHARGE_RECEIVE_PERCENTAGE.get();
+        double reloadPercentage = TBZServerConfig.TRICKLE_CHARGE_RECEIVE_PERCENTAGE.get();
         int ammoToReload = (int) Math.ceil(magazineSize * reloadPercentage);
 
         // 计算实际可补充的弹药量（不超过弹匣容量）
@@ -107,7 +107,7 @@ public class TrickleChargeEvent {
         int currentAmmo = iGun.getCurrentAmmoCount(gun);
 
         // 计算需要补充的弹药量（弹匣容量的20%）
-        double reloadPercentage = TBZConfig.TRICKLE_CHARGE_RELEASE_PERCENTAGE.get();
+        double reloadPercentage = TBZServerConfig.TRICKLE_CHARGE_RELEASE_PERCENTAGE.get();
         int ammoToReload = (int) Math.ceil(magazineSize * reloadPercentage);
 
         // 计算实际可补充的弹药量（不超过弹匣容量）

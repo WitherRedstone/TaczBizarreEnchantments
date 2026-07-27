@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.tacz.guns.api.event.server.AmmoHitBlockEvent;
 import com.tacz.guns.api.item.IGun;
@@ -64,9 +64,9 @@ public class ShootTpLootEvent {
             // 获取子弹命中位置
             Vec3 hitPos = event.getHitResult().getLocation();
 
-            double pickupRange = TBZConfig.SHOOT_TP_LOOT_PICKUP_RANGE.get();
-            boolean canPickupXpOrb = TBZConfig.SHOOT_TP_LOOT_CAN_PICKUP_XP_ORB.get();
-            boolean limitOneItemType = TBZConfig.SHOOT_TP_LOOT_LIMIT_ONE_ITEM_TYPE.get();
+            double pickupRange = TBZServerConfig.SHOOT_TP_LOOT_PICKUP_RANGE.get();
+            boolean canPickupXpOrb = TBZServerConfig.SHOOT_TP_LOOT_CAN_PICKUP_XP_ORB.get();
+            boolean limitOneItemType = TBZServerConfig.SHOOT_TP_LOOT_LIMIT_ONE_ITEM_TYPE.get();
 
             // 创建搜索区域（以命中位置为中心的立方体区域）
             AABB searchArea = new AABB(
@@ -82,7 +82,7 @@ public class ShootTpLootEvent {
                 }
 
                 // 根据配置的几率判定是否拾取
-                float pickupChance = TBZConfig.SHOOT_TP_LOOT_PICKUP_CHANCE.get().floatValue();
+                float pickupChance = TBZServerConfig.SHOOT_TP_LOOT_PICKUP_CHANCE.get().floatValue();
                 if (player.level().random.nextFloat() > pickupChance) {
                     continue;
                 }
@@ -110,7 +110,7 @@ public class ShootTpLootEvent {
             if (canPickupXpOrb) {
                 for (ExperienceOrb xpOrb : player.level().getEntities(EntityType.EXPERIENCE_ORB, searchArea, e -> true)) {
                     // 根据配置的几率判定是否拾取
-                    float pickupChance = TBZConfig.SHOOT_TP_LOOT_PICKUP_CHANCE.get().floatValue();
+                    float pickupChance = TBZServerConfig.SHOOT_TP_LOOT_PICKUP_CHANCE.get().floatValue();
                     if (player.level().random.nextFloat() > pickupChance) {
                         continue;
                     }

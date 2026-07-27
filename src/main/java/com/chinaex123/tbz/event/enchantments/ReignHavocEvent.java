@@ -2,7 +2,7 @@ package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.funky_effect_lib.api.event.BoltCharge.BoltChargeAPI;
 import com.chinaex123.funky_effect_lib.api.LightningStrikeAPI;
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.AmmoUtils;
 import com.tacz.guns.api.TimelessAPI;
@@ -66,7 +66,7 @@ public class ReignHavocEvent {
                 tag.putInt(HEADSHOT_COUNT_TAG, headshotCount);
 
                 // 从配置获取所需爆头次数
-                int requiredHeadshots = TBZConfig.REIGN_HAVOC_REQUIRED_HEADSHOTS.get();
+                int requiredHeadshots = TBZServerConfig.REIGN_HAVOC_REQUIRED_HEADSHOTS.get();
                 // 达到阈值时触发闪电打击
                 if (headshotCount >= requiredHeadshots) {
                     triggerLightningStrike(player, gun, target);
@@ -112,16 +112,16 @@ public class ReignHavocEvent {
     private static void triggerLightningStrike(Player player, ItemStack gun, LivingEntity target) {
         try {
             // 从配置获取闪电伤害值
-            float lightningDamage = TBZConfig.REIGN_HAVOC_LIGHTNING_DAMAGE.get().floatValue();
+            float lightningDamage = TBZServerConfig.REIGN_HAVOC_LIGHTNING_DAMAGE.get().floatValue();
             // 从配置获取是否开启火焰伤害
-            boolean fireDamage = TBZConfig.REIGN_HAVOC_FIRE_DAMAGE.get();
+            boolean fireDamage = TBZServerConfig.REIGN_HAVOC_FIRE_DAMAGE.get();
             // 对目标触发闪电打击
             LightningStrikeAPI.strike(target, player, lightningDamage, true, fireDamage);
             // 增加1层电光充能
             BoltChargeAPI.addCharge(player, 1);
 
             // 从配置获取弹药补充百分比
-            float refillPercentage = TBZConfig.REIGN_HAVOC_REFILL_PERCENTAGE.get().floatValue();
+            float refillPercentage = TBZServerConfig.REIGN_HAVOC_REFILL_PERCENTAGE.get().floatValue();
 
             // 获取枪械实例
             IGun iGun = IGun.getIGunOrNull(gun);

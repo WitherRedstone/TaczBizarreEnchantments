@@ -1,7 +1,7 @@
 package com.chinaex123.tbz.enchantment;
 
 import com.chinaex123.tbz.TBZMod;
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.utils.GunEnchantmentHelper;
 import com.tacz.guns.api.item.IGun;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -20,19 +20,19 @@ public class ReconstructionEnchantment extends Enchantment {
     /** 最小附魔成本 **/
     @Override
     public int getMinCost(int level) {
-        return TBZConfig.RECONSTRUCTION_BASE_ENCHANTABILITY.get() + (level - 1) * TBZConfig.RECONSTRUCTION_LEVEL_ENCHANTABILITY.get();
+        return TBZServerConfig.RECONSTRUCTION_BASE_ENCHANTABILITY.get() + (level - 1) * TBZServerConfig.RECONSTRUCTION_LEVEL_ENCHANTABILITY.get();
     }
 
     /** 最大附魔成本 **/
     @Override
     public int getMaxCost(int level) {
-        return this.getMinCost(level) + TBZConfig.RECONSTRUCTION_ENCHANTABILITY_SPAN.get();
+        return this.getMinCost(level) + TBZServerConfig.RECONSTRUCTION_ENCHANTABILITY_SPAN.get();
     }
 
     /** 最大附魔等级 **/
     @Override
     public int getMaxLevel() {
-        return TBZConfig.RECONSTRUCTION_MAX_LEVEL.get();
+        return TBZServerConfig.RECONSTRUCTION_MAX_LEVEL.get();
     }
 
     /** 检查物品是否是枪械 **/

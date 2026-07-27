@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.AmmoUtils;
 import com.tacz.guns.api.TimelessAPI;
@@ -98,8 +98,8 @@ public class ReconstructionEvent {
         long lastReloadTime = tag.getLong(LAST_RELOAD_TIME_TAG);
 
         // 从配置获取冷却时间参数
-        int shootCooldown = TBZConfig.RECONSTRUCTION_SHOOT_COOLDOWN.get();
-        int reloadInterval = TBZConfig.RECONSTRUCTION_RELOAD_INTERVAL.get();
+        int shootCooldown = TBZServerConfig.RECONSTRUCTION_SHOOT_COOLDOWN.get();
+        int reloadInterval = TBZServerConfig.RECONSTRUCTION_RELOAD_INTERVAL.get();
 
         // 条件1：射击冷却期间不进行自动装填
         if (currentTime - lastShootTime < shootCooldown) {
@@ -130,7 +130,7 @@ public class ReconstructionEvent {
         if (availableAmmo <= 0) return;
 
         // 每次自动装填的弹药数量
-        int ammoPerReload = TBZConfig.RECONSTRUCTION_AMMO_PER_RELOAD.get();
+        int ammoPerReload = TBZServerConfig.RECONSTRUCTION_AMMO_PER_RELOAD.get();
 
         // 计算需要补充的弹药量
         int ammoNeeded = maxAmmo - currentAmmo;

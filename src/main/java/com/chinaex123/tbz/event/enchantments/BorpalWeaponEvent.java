@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.enchantment.BorpalWeaponEnchantment;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
@@ -45,7 +45,7 @@ public class BorpalWeaponEvent {
         if (level <= 0) return;
 
         // 根据附魔等级计算对Boss的伤害倍率
-        float multiplier = 1.0f + TBZConfig.BORPAL_WEAPON_BOSS_DAMAGE_BONUS.get().floatValue() * level;
+        float multiplier = 1.0f + TBZServerConfig.BORPAL_WEAPON_BOSS_DAMAGE_BONUS.get().floatValue() * level;
 
         // 计算加成后的新伤害 = 原伤害 × 倍率
         float newDamage = event.getBaseAmount() * multiplier;

@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.ShotTriggerHelper;
 import com.tacz.guns.api.TimelessAPI;
@@ -92,12 +92,12 @@ public class PrecisionInstrumentEvent {
             int magazineSize = tag.getInt(MAGAZINE_SIZE_TAG);
             if (magazineSize > 0) {
                 // 计算触发所需射击次数（弹匣容量 × 配置比例）
-                int requiredShots = (int) Math.ceil(magazineSize * TBZConfig.PRECISION_INSTRUMENT_FIRE_PERCENTAGE.get());
+                int requiredShots = (int) Math.ceil(magazineSize * TBZServerConfig.PRECISION_INSTRUMENT_FIRE_PERCENTAGE.get());
 
                 // 检查是否达到触发条件
                 if (shotsFired >= requiredShots) {
                     // 获取每次触发增加的爆头伤害加成
-                    float multiplierBonus = TBZConfig.PRECISION_INSTRUMENT_MULTIPLIER_BONUS.get().floatValue();
+                    float multiplierBonus = TBZServerConfig.PRECISION_INSTRUMENT_MULTIPLIER_BONUS.get().floatValue();
                     float currentMultiplier = tag.getFloat(HEADSHOT_MULTIPLIER_TAG);
                     float newMultiplier = currentMultiplier + multiplierBonus;  // 累加加成
                     tag.putFloat(HEADSHOT_MULTIPLIER_TAG, newMultiplier);

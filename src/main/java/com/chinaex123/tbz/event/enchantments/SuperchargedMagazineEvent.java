@@ -1,7 +1,7 @@
 package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.funky_effect_lib.init.FELEffects;
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.AmmoUtils;
 import com.tacz.guns.api.TimelessAPI;
@@ -68,13 +68,13 @@ public class SuperchargedMagazineEvent {
         UUID playerId = player.getUUID();
         long currentTime = System.currentTimeMillis();
         long lastReloadTime = lastReloadTimeMap.getOrDefault(playerId, 0L);
-        long reloadInterval = (long) (TBZConfig.SUPERCHARGED_MAGAZINE_RELOAD_INTERVAL.get() * 1000);
+        long reloadInterval = (long) (TBZServerConfig.SUPERCHARGED_MAGAZINE_RELOAD_INTERVAL.get() * 1000);
 
         // 如果距离上次补充时间小于冷却间隔，则跳过本次补充
         if (currentTime - lastReloadTime < reloadInterval) return;
 
         // 计算应该补充的弹药数量
-        double reloadPercentage = TBZConfig.SUPERCHARGED_MAGAZINE_RELOAD_PERCENTAGE.get();
+        double reloadPercentage = TBZServerConfig.SUPERCHARGED_MAGAZINE_RELOAD_PERCENTAGE.get();
         // 计算理论补充量 = 弹匣容量 × 补充百分比，向上取整
         int ammoToReload = (int) Math.ceil(magazineSize * reloadPercentage);
         // 计算弹匣还需要的弹药数量

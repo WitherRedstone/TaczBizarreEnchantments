@@ -2,7 +2,6 @@ package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.funky_effect_lib.api.event.BoltCharge.BoltChargeAPI;
 import com.chinaex123.funky_effect_lib.init.FELEffects;
-import com.chinaex123.tbz.config.TBZConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;

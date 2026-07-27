@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.AmmoUtils;
 import com.chinaex123.tbz.utils.ExplosionUtils;
@@ -106,11 +106,11 @@ public class FireflyEvent {
         }
 
         // 触发爆炸效果
-        float damage = TBZConfig.FIREFLY_BASE_DAMAGE.get().floatValue()
-                + TBZConfig.FIREFLY_DAMAGE_PER_LEVEL.get().floatValue() * enchantLevel;
-        float splashMin = TBZConfig.FIREFLY_SPLASH_MIN.get().floatValue();
-        float splashMax = TBZConfig.FIREFLY_SPLASH_MAX.get().floatValue();
-        double range = TBZConfig.FIREFLY_RANGE.get();
+        float damage = TBZServerConfig.FIREFLY_BASE_DAMAGE.get().floatValue()
+                + TBZServerConfig.FIREFLY_DAMAGE_PER_LEVEL.get().floatValue() * enchantLevel;
+        float splashMin = TBZServerConfig.FIREFLY_SPLASH_MIN.get().floatValue();
+        float splashMax = TBZServerConfig.FIREFLY_SPLASH_MAX.get().floatValue();
+        double range = TBZServerConfig.FIREFLY_RANGE.get();
         ExplosionUtils.dealSmallExplosionDamage(target, damage, splashMin, splashMax, range);
 
         // 清除爆头击杀标记
@@ -147,8 +147,8 @@ public class FireflyEvent {
         // 仅在弹匣未满时补充弹药
         if (currentAmmo < magazineSize) {
             // 获取装填速度倍率（从配置读取）
-            float reloadSpeedMultiplier = TBZConfig.FIREFLY_BASE_RELOAD_SPEED.get().floatValue()
-                    + TBZConfig.FIREFLY_RELOAD_SPEED_PER_LEVEL.get().floatValue() * enchantLevel;
+            float reloadSpeedMultiplier = TBZServerConfig.FIREFLY_BASE_RELOAD_SPEED.get().floatValue()
+                    + TBZServerConfig.FIREFLY_RELOAD_SPEED_PER_LEVEL.get().floatValue() * enchantLevel;
             // 计算应补充的弹药量 = 弹匣容量 × 倍率（向上取整）
             int ammoToAdd = (int) Math.ceil(magazineSize * reloadSpeedMultiplier);
             // 限制不超过弹匣剩余空间

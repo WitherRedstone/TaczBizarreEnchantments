@@ -1,14 +1,12 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
-import com.mojang.logging.LogUtils;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import org.slf4j.Logger;
 
 /**
  * 泉源附魔的事件处理类
@@ -41,8 +39,8 @@ public class WellspringEvent {
         if (enchantLevel <= 0) return;
 
         // 从配置获取经验值范围
-        int minExp = TBZConfig.WELLSPRING_MIN_EXP.get();
-        int maxExp = TBZConfig.WELLSPRING_MAX_EXP.get();
+        int minExp = TBZServerConfig.WELLSPRING_MIN_EXP.get();
+        int maxExp = TBZServerConfig.WELLSPRING_MAX_EXP.get();
 
         // 随机产生经验值
         int expAmount = player.getRandom().nextInt(maxExp - minExp + 1) + minExp;

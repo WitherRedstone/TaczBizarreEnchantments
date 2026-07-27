@@ -1,7 +1,7 @@
 package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.funky_effect_lib.init.FELEffects;
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import net.minecraft.nbt.CompoundTag;
@@ -61,7 +61,7 @@ public class SliceEvent {
         if (enchantLevel <= 0) return;
 
         // 触发概率判定：每次命中独立计算（从配置读取）
-        double triggerChance = TBZConfig.SLICE_TRIGGER_CHANCE.get();
+        double triggerChance = TBZServerConfig.SLICE_TRIGGER_CHANCE.get();
         if (player.getRandom().nextDouble() >= triggerChance) return;
 
         // 获取时间和标签
@@ -75,8 +75,8 @@ public class SliceEvent {
 
         if (currentEffect != null) {
             // 情况1：已有瓦解效果 -> 延长持续时间
-            int extendDuration = TBZConfig.SLICE_EXTEND_DURATION.get();
-            int maxDuration = TBZConfig.SLICE_MAX_DURATION.get();
+            int extendDuration = TBZServerConfig.SLICE_EXTEND_DURATION.get();
+            int maxDuration = TBZServerConfig.SLICE_MAX_DURATION.get();
             int newDuration = Math.min(currentEffect.getDuration() + extendDuration, maxDuration);
 
             // 保留原有效果的等级（不改变效果强度）
@@ -88,7 +88,7 @@ public class SliceEvent {
             ));
         } else {
             // 情况2：没有瓦解效果 -> 检查冷却，尝试施加新效果
-            int cooldownTicks = TBZConfig.SLICE_COOLDOWN_TICKS.get();
+            int cooldownTicks = TBZServerConfig.SLICE_COOLDOWN_TICKS.get();
 
             // 如果在上次触发后的冷却时间内，不触发新效果
             if (currentTime - lastHitTime < cooldownTicks) {
@@ -96,9 +96,9 @@ public class SliceEvent {
             }
 
             // 获取瓦解效果的持续时间和等级范围
-            int severDuration = TBZConfig.SLICE_SEVER_DURATION.get();
-            int severMinAmplifier = TBZConfig.SLICE_SEVER_MIN_AMPLIFIER.get();
-            int severMaxAmplifier = TBZConfig.SLICE_SEVER_MAX_AMPLIFIER.get();
+            int severDuration = TBZServerConfig.SLICE_SEVER_DURATION.get();
+            int severMinAmplifier = TBZServerConfig.SLICE_SEVER_MIN_AMPLIFIER.get();
+            int severMaxAmplifier = TBZServerConfig.SLICE_SEVER_MAX_AMPLIFIER.get();
 
             // 随机生成效果等级（在最小和最大之间随机）
             int severAmplifier = severMinAmplifier

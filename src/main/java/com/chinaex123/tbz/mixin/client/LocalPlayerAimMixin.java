@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.mixin.client;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.tacz.guns.client.gameplay.LocalPlayerAim;
 import net.minecraft.client.player.LocalPlayer;
@@ -72,7 +72,7 @@ public class LocalPlayerAimMixin {
         float originalProgress = cir.getReturnValue();
 
         // 从配置中获取瞄准速度加成值，并计算速度倍率
-        float bonus = TBZConfig.SNAPSHOT_SIGHTS_AIM_SPEED_BONUS.get().floatValue();
+        float bonus = TBZServerConfig.SNAPSHOT_SIGHTS_AIM_SPEED_BONUS.get().floatValue();
         float speedMultiplier = 1.0f + bonus;
 
         // 计算新的瞄准进度

@@ -1,17 +1,21 @@
 package com.chinaex123.tbz.event.enchantments;
 
-import com.chinaex123.tbz.config.TBZConfig;
+import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
+import com.chinaex123.tbz.network.hud.HUDPacketHandler;
+import com.chinaex123.tbz.network.hud.TargetLockSyncPacket;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.api.event.common.GunReloadEvent;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.resource.index.CommonGunIndex;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.network.PacketDistributor;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -49,7 +53,7 @@ public class TargetLockEvent {
     /** 上次命中的时间（游戏刻） */
     private static final String LAST_HIT_TIME_TAG = "TargetLockLastHitTime";
     /** 如果超过指定时间未命中目标，重置锁定状态 */
-    private static final long TIMEOUT_TICKS = 20;
+    public static final long TIMEOUT_TICKS = 20;
 
     /**
      * 枪械伤害事件：目标锁定
@@ -82,7 +86,7 @@ public class TargetLockEvent {
         // 条件1：检查是否切换了目标
         if (storedTargetUUID == null || !storedTargetUUID.equals(targetUUID)) {
             // 切换到新目标，重置所有状态
-            resetLock(tag);
+            resetLock(tag, player);
             tag.putUUID(TARGET_UUID_TAG, targetUUID);
         }
 
@@ -90,7 +94,7 @@ public class TargetLockEvent {
         long lastHitTime = tag.getLong(LAST_HIT_TIME_TAG);
         if (currentTime - lastHitTime > TIMEOUT_TICKS) {
             // 超时未命中，重置所有状态
-            resetLock(tag);
+            resetLock(tag, player);
             tag.putUUID(TARGET_UUID_TAG, targetUUID);
         }
 
@@ -109,7 +113,7 @@ public class TargetLockEvent {
         int magazineSize = gunIndexOpt.get().getGunData().getAmmoAmount();
 
         // 计算触发所需命中次数 = 弹匣容量 × 配置比例（向上取整）
-        double requiredPercent = TBZConfig.TARGET_LOCK_REQUIRED_MAGAZINE_PERCENT.get();
+        double requiredPercent = TBZServerConfig.TARGET_LOCK_REQUIRED_MAGAZINE_PERCENT.get();
         int requiredHits = (int) Math.ceil(magazineSize * requiredPercent);
         // 确保至少需要命中1次才能触发
         requiredHits = Math.max(requiredHits, 1);
@@ -119,12 +123,23 @@ public class TargetLockEvent {
             // 计算伤害加成层数：每达到一个"requiredHits"就增加一层
             // 例如：requiredHits=5，hitCount=12 -> (12-5)/5 + 1 = 2层
             int damageStack = (hitCount - requiredHits) / requiredHits + 1;
+            // 限制最大层数
+            int maxStacks = TBZServerConfig.TARGET_LOCK_MAX_STACKS.get();
+            damageStack = Math.min(damageStack, maxStacks);
             tag.putInt(DAMAGE_STACK_TAG, damageStack);
+
+            // 同步目标锁定状态到客户端
+            if (player instanceof ServerPlayer serverPlayer) {
+                HUDPacketHandler.INSTANCE.send(
+                        PacketDistributor.PLAYER.with(() -> serverPlayer),
+                        new TargetLockSyncPacket(player.getUUID(), damageStack, currentTime)
+                );
+            }
 
             // 应用伤害加成：每层增加固定比例的伤害 × 附魔等级
             // 公式：原伤害 × (1 + 层数 × 每层加成 × 附魔等级)
             double damageBonus = damageStack
-                    * TBZConfig.TARGET_LOCK_DAMAGE_BONUS_PER_STACK.get()
+                    * TBZServerConfig.TARGET_LOCK_DAMAGE_BONUS_PER_STACK.get()
                     * enchantLevel;
 
             float currentDamage = event.getBaseAmount();
@@ -151,7 +166,7 @@ public class TargetLockEvent {
         if (enchantLevel <= 0) return;
 
         // 换弹时重置所有锁定状态
-        resetLock(gun.getOrCreateTag());
+        resetLock(gun.getOrCreateTag(), player);
     }
 
 
@@ -160,11 +175,20 @@ public class TargetLockEvent {
      * 清除目标UUID、命中计数、伤害层数和最后命中时间
      *
      * @param tag 枪械的NBT标签
+     * @param player 玩家对象，用于发送网络包
      */
-    private static void resetLock(CompoundTag tag) {
+    private static void resetLock(CompoundTag tag, Player player) {
         tag.remove(TARGET_UUID_TAG); // 移除目标UUID
         tag.putInt(HIT_COUNT_TAG, 0); // 重置命中计数
         tag.putInt(DAMAGE_STACK_TAG, 0); // 重置伤害层数
         tag.putLong(LAST_HIT_TIME_TAG, 0); // 重置最后命中时间
+
+        // 同步重置状态到客户端
+        if (player instanceof ServerPlayer serverPlayer) {
+            HUDPacketHandler.INSTANCE.send(
+                    PacketDistributor.PLAYER.with(() -> serverPlayer),
+                    new TargetLockSyncPacket(player.getUUID(), 0, 0)
+            );
+        }
     }
 }
