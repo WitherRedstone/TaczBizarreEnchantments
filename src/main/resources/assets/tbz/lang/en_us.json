@@ -4,6 +4,8 @@
   "_enchantment.exotic":"[Exotic] Enchantment Category",
   "enchantment.tbz.protective_weave": "Protective Weave",
   "enchantment.tbz.protective_weave.desc": "Kills grant Woven Armor, which increases damage dealt while active.",
+  "enchantment.tbz.reign_havoc": "Reign Havoc",
+  "enchantment.tbz.reign_havoc.desc": "Sustained precision hits or final blows generate lightning strikes from the sky, partially refill the magazine, and provide 1 Bolt Charge.",
 
   "_enchantment.bonus_damage": "[Bonus Damage] Enchantment Category",
   "enchantment.tbz.borpal_weapon": "Borpal Weapon",
@@ -14,6 +16,8 @@
   "enchantment.tbz.target_lock.desc": "Damage increases the longer the weapon's reticle remains on target.",
   "enchantment.tbz.gutshot_straight": "Gutshot Straight",
   "enchantment.tbz.gutshot_straight.desc": "Aiming increases body-shot damage.",
+  "enchantment.tbz.thermal_atomization": "Thermal Atomization",
+  "enchantment.tbz.thermal_atomization.desc": "In high heat state, this weapon deals more damage and causes targets to explode when defeated.",
 
   "_enchantment.bonus_bullet": "[Ammo Refund] Enchantment Category",
   "enchantment.tbz.subsistence": "Subsistence",
@@ -30,6 +34,12 @@
   "enchantment.tbz.rewind_rounds.desc": "When the magazine is emptied, a portion is refilled from reserves based on the number of hits landed.",
   "enchantment.tbz.mulligan": "Mulligan",
   "enchantment.tbz.mulligan.desc": "Missed shots have a chance to refund ammunition directly to the magazine.",
+  "enchantment.tbz.trickle_charge": "Trickle Charge",
+  "enchantment.tbz.trickle_charge.desc": "Receiving or releasing Bolt Charge refills a portion of the magazine from reserve ammo.",
+  "enchantment.tbz.supercharged_magazine": "Supercharged Magazine",
+  "enchantment.tbz.supercharged_magazine.desc": "While amplified, ammunition gradually transfers from reserves to the magazine.",
+  "enchantment.tbz.reversal_of_fortune": "Reversal of Fortune",
+  "enchantment.tbz.reversal_of_fortune.desc": "Missing 2 shots returns 1 round to the magazine after a short delay.",
 
   "_enchantment.application_effect": "[Status Application] Enchantment Category",
   "enchantment.tbz.heal_clip": "Heal Clip",
@@ -61,11 +71,31 @@
   "enchantment.tbz.meganeura": "Meganeura",
   "enchantment.tbz.meganeura.desc": "Precision final blows cause an explosion that deals additional damage based on the number of precision hits landed beforehand.",
 
+  "_enchantment.part_specifications":"[Part Specifications] Enchantment Category",
+  "enchantment.tbz.snapshot_sights": "Snapshot Sights",
+  "enchantment.tbz.snapshot_sights.desc": "Significantly increases aiming speed.",
+  "enchantment.tbz.firmly_planted": "Firmly Planted",
+  "enchantment.tbz.firmly_planted.desc": "Crouching while shooting improves aiming precision and reduces vertical recoil.",
+  "enchantment.tbz.adagio": "Adagio",
+  "enchantment.tbz.adagio.desc": "After defeating a target, this weapon's fire rate slows down, but deals additional damage for a short time.",
+  "enchantment.tbz.onslaught": "Onslaught",
+  "enchantment.tbz.onslaught.desc": "Final blows with this weapon increase its fire rate, and multiple kills can refresh the buff.",
+  "enchantment.tbz.eye_of_storm_eye": "Eye of Storm Eye",
+  "enchantment.tbz.eye_of_storm_eye.desc": "The lower your health, the better the weapon's aiming precision and slightly reduced horizontal recoil.",
+
   "_enchantment.continuous_damage": "[Damage over Time] Enchantment Category",
   "enchantment.tbz.attrition_orbs": "Attrition Orbs",
   "enchantment.tbz.attrition_orbs.desc": "Dealing sustained damage to the same target generates experience orbs.",
 
   "_enchantment.load": "[Reload] Enchantment Category",
   "enchantment.tbz.outlaw": "Outlaw",
-  "enchantment.tbz.outlaw.desc": "Precision kills dramatically reduce reload time."
+  "enchantment.tbz.outlaw.desc": "Precision kills dramatically reduce reload time.",
+
+  "_enchantment.other":"[Other] Enchantment Category",
+  "enchantment.tbz.wellspring": "Wellspring",
+  "enchantment.tbz.wellspring.desc": "Defeating enemies with this weapon generates experience orbs.",
+  "enchantment.tbz.cooling_baubles": "Cooling Baubles",
+  "enchantment.tbz.cooling_baubles.desc": "Picking up experience orbs has a chance to reduce the weapon's heat.",
+  "enchantment.tbz.shoot_tp_loot": "Shoot & Loot",
+  "enchantment.tbz.shoot_tp_loot.desc": "Shooting items and experience orbs from a distance immediately picks them up and places them in your inventory."
 }
