@@ -3,10 +3,9 @@ package com.chinaex123.tbz.event.enchantments;
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.AmmoUtils;
-import com.tacz.guns.api.TimelessAPI;
+import com.chinaex123.tbz.utils.GunEnchantmentHelper;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.resource.index.CommonGunIndex;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -45,9 +44,9 @@ import java.util.Optional;
  */
 public class ReconstructionEvent {
 
-    /** 上次自动装填时间 */
+    /** NBT存储键：上次自动装填时间 */
     private static final String LAST_RELOAD_TIME_TAG = "ReconstructionLastReloadTime";
-    /** 上次射击时间 */
+    /** NBT存储键：上次射击时间 */
     private static final String LAST_SHOOT_TIME_TAG = "ReconstructionLastShootTime";
     /** 最大弹匣容量倍数 */
     private static final int MAX_MAGAZINE_MULTIPLIER = 2;
@@ -75,7 +74,7 @@ public class ReconstructionEvent {
     }
 
     /**
-     * 玩家每帧更新事件：重建
+     * 玩家Tick事件：重建
      * 检查条件并自动从背包补充弹药到枪械
      *
      * @param player 玩家实体
@@ -112,21 +111,18 @@ public class ReconstructionEvent {
         }
 
         // 获取枪械数据
-        Optional<CommonGunIndex> gunIndexOpt = TimelessAPI.getCommonGunIndex(iGun.getGunId(mainHand));
-        if (gunIndexOpt.isEmpty()) return;
+        int magazineSize = GunEnchantmentHelper.getMagazineSize(mainHand);
+        int currentAmmo = GunEnchantmentHelper.getCurrentAmmo(mainHand);
+        Optional<ResourceLocation> ammoId = GunEnchantmentHelper.getAmmoId(mainHand);
+        if (magazineSize <= 0 || currentAmmo < 0 || ammoId.isEmpty()) return;
 
-        int magazineSize = gunIndexOpt.get().getGunData().getAmmoAmount(); // 标准弹匣容量
         int maxAmmo = magazineSize * MAX_MAGAZINE_MULTIPLIER;
-        int currentAmmo = iGun.getCurrentAmmoCount(mainHand);
 
         // 条件3：已达到最大弹药上限，无需补充
         if (currentAmmo >= maxAmmo) return;
 
-        // 获取该枪械使用的弹药类型
-        ResourceLocation ammoId = gunIndexOpt.get().getGunData().getAmmoId();
-
         // 检查玩家背包中该弹药的可用数量
-        int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoId);
+        int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoId.get());
         if (availableAmmo <= 0) return;
 
         // 每次自动装填的弹药数量
@@ -139,7 +135,8 @@ public class ReconstructionEvent {
         int ammoToTransfer = Math.min(ammoNeeded, Math.min(ammoPerReload, availableAmmo));
 
         // 从玩家背包扣除弹药
-        AmmoUtils.consumeAmmoFromInventory(player, ammoId, ammoToTransfer);
+        ResourceLocation ammoIdValue = ammoId.get();
+        AmmoUtils.consumeAmmoFromInventory(player, ammoIdValue, ammoToTransfer);
 
         // 装填到枪械
         int newAmmo = currentAmmo + ammoToTransfer;

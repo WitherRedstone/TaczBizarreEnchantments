@@ -22,6 +22,15 @@ public class TBZCreativeTabs {
                     .displayItems((parameters, output) -> {
                         // ==================== [异域]类型附魔 ====================
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.PROTECTIVE_WEAVE.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.REIGN_HAVOC.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.SUROS_LEGACY.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.PRIMEVALS_TORMENT.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.FULL_STOP.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.CREEPING_ATTRITION.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.TOUCH_OF_MALICE.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.THE_RIGHT_CHOICE.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.VEXADECIMAL.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.PERSONAL_ASSISTANT.get());
 
                         // ==================== [增伤]类型附魔 ====================
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.BORPAL_WEAPON.get());
@@ -30,6 +39,13 @@ public class TBZCreativeTabs {
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.GUTSHOT_STRAIGHT.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.THERMAL_ATOMIZATION.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.COOLING_BAUBLES.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.SWASHBUCKLER.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.ONE_FOR_ALL.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.MASTER_OF_ARMS.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.AGGREGATE_CHARGE.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.FIRING_LINE_CHARGE.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.BOX_BREATHING.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.EXPLOSIVE_LIGHT.get());
 
                         // ==================== [回子弹]类型附魔 ====================
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.SUBSISTENCE.get());
@@ -42,6 +58,7 @@ public class TBZCreativeTabs {
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.TRICKLE_CHARGE.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.SUPERCHARGED_MAGAZINE.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.REVERSAL_OF_FORTUNE.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.CLOWN_CARTRIDGE.get());
 
                         // ==================== [应用效果]类型附魔 ====================
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.HEAL_CLIP.get());
@@ -52,6 +69,7 @@ public class TBZCreativeTabs {
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.RIMESTEALER.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.SLICE.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.WITHERING_GAZE.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.BURNING_AMBITION.get());
 
                         // ==================== [爆炸]类型附魔 ====================
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.BUTTERFLY.get());
@@ -61,6 +79,7 @@ public class TBZCreativeTabs {
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.MEGANEURA.get());
 
                         // ==================== [配件数值]类型附魔 ====================
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.OUTLAW.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.SNAPSHOT_SIGHTS.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.FIRMLY_PLANTED.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.ADAGIO.get());
@@ -69,9 +88,6 @@ public class TBZCreativeTabs {
 
                         // ==================== [持续伤害]类型附魔 ====================
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.ATTRITION_ORBS.get());
-
-                        // ==================== [填装]类型附魔 ====================
-                        addAllLevelEnchantmentBooks(output, TBZEnchantments.OUTLAW.get());
 
                         // ==================== [其他]类型附魔 ====================
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.WELLSPRING.get());

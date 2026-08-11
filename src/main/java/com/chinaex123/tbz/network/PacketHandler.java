@@ -1,8 +1,6 @@
 package com.chinaex123.tbz.network;
 
 import com.chinaex123.tbz.TBZMod;
-import com.chinaex123.tbz.network.hud.TargetLockSyncPacket;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 

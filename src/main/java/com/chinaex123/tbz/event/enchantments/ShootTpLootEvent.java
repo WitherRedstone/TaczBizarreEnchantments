@@ -31,7 +31,7 @@ import net.minecraft.world.phys.Vec3;
 public class ShootTpLootEvent {
 
     /**
-     * 子弹击中方块事件处理 - 边打边劫
+     * 子弹击中方块事件 - 边打边劫
      * 在子弹命中位置拾取范围内的掉落物和经验球
      *
      * @param event 子弹击中方块事件

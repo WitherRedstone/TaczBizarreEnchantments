@@ -3,9 +3,11 @@ package com.chinaex123.tbz.event.enchantments;
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.ExplosionUtils;
+import com.chinaex123.tbz.utils.ParticleUtils;
 import com.tacz.guns.api.entity.IGunOperator;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.item.ModernKineticGunScriptAPI;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -27,7 +29,7 @@ import net.minecraft.world.item.ItemStack;
  */
 public class ThermalAtomizationEvent {
 
-    /** 标记当前伤害是否有加成 */
+    /** NBT存储键：标记当前伤害是否有加成 */
     private static final String HEAT_DAMAGE_TAG = "ThermalAtomizationHeatDamage";
 
     /** 热度阈值，超过此比例时触发效果 */
@@ -145,6 +147,11 @@ public class ThermalAtomizationEvent {
 
             // 在目标位置触发小范围爆炸
             ExplosionUtils.dealSmallExplosionDamage(target, 0, explosionMinDamage, explosionMaxDamage, explosionRange);
+            
+            // 显示粒子效果
+            if (TBZServerConfig.THERMAL_ATOMIZATION_SHOW_PARTICLES.get() && target.level() instanceof ServerLevel serverLevel) {
+                ParticleUtils.spawnCircleRadiusParticle(serverLevel, target.getX(), target.getY(), target.getZ(), explosionRange, 1.0f, 0.5f, 0.0f, 0.5f);
+            }
 
         } catch (Exception e) {
             // 忽略异常

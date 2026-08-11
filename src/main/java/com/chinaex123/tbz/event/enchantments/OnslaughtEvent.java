@@ -119,7 +119,7 @@ public class OnslaughtEvent {
     }
 
     /**
-     * 玩家每帧更新事件:猛攻
+     * 玩家Tick事件：猛攻
      * 管理猛攻状态的持续和清理
      *
      * @param player 玩家对象

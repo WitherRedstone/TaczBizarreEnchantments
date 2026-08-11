@@ -30,9 +30,9 @@ import net.minecraft.world.item.ItemStack;
  */
 public class DragonflyEvent {
 
-    /** 是否获得爆头击杀标记 */
+    /** NBT存储键：是否获得爆头击杀标记 */
     public static final String HEADSHOT_KILL_TAG = "DragonflyHeadshotKill";
-    /** 爆头击杀发生时间 */
+    /** NBT存储键：爆头击杀发生时间 */
     public static final String KILL_TIME_TAG = "DragonflyKillTime";
     /** 有效时间窗口 */
     public static final int VALID_KILL_TICKS = 60;

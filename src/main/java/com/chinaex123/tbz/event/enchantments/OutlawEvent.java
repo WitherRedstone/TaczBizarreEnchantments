@@ -24,11 +24,11 @@ import net.minecraftforge.fml.LogicalSide;
  */
 public class OutlawEvent {
 
-    /** 爆头击杀标记 */
+    /** NBT存储键：爆头击杀标记 */
     private static final String HEADSHOT_KILL_TAG = "OutlawHeadshotKill";
-    /** 击杀时间戳 */
+    /** NBT存储键：击杀时间戳 */
     private static final String KILL_TIME_TAG = "OutlawKillTime";
-    /** 换弹加速标记 */
+    /** NBT存储键：换弹加速标记 */
     private static final String RELOAD_SPEED_TAG = "OutlawReloadSpeed";
     /** 有效时间窗口（游戏刻） */
     private static final int VALID_KILL_TICKS = 60;

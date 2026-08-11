@@ -2,15 +2,18 @@ package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
+import com.chinaex123.tbz.network.hud.HUDPacketHandler;
+import com.chinaex123.tbz.network.hud.TriggeredEnchantmentSyncPacket;
+import com.chinaex123.tbz.utils.GunEnchantmentHelper;
 import com.chinaex123.tbz.utils.ShotTriggerHelper;
-import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.resource.index.CommonGunIndex;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.network.PacketDistributor;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -39,7 +42,7 @@ import java.util.List;
  */
 public class FourthTimeTheCharmEvent {
 
-    /** 射击触发标签前缀 */
+    /** NBT存储键：射击触发标签前缀 */
     private static final String TRIGGER_TAG_PREFIX = "FourthTimeTheCharm";
 
     /** 记录每个玩家的爆头时间戳列表 */
@@ -94,6 +97,14 @@ public class FourthTimeTheCharmEvent {
         if (headshotTimes.size() >= requiredHits) {
             addAmmo(gun, iGun); // 回复弹药
             headshotTimes.clear(); // 重置爆头记录，防止连续触发
+
+            // 同步到客户端，显示事不过四触发
+            if (player instanceof ServerPlayer serverPlayer) {
+                HUDPacketHandler.INSTANCE.send(
+                        PacketDistributor.PLAYER.with(() -> serverPlayer),
+                        new TriggeredEnchantmentSyncPacket(player.getUUID(), "fourth_time_the_charm", currentTime)
+                );
+            }
         }
     }
 
@@ -106,11 +117,9 @@ public class FourthTimeTheCharmEvent {
      */
     private static void addAmmo(ItemStack gun, IGun iGun) {
         // 获取枪械数据以读取弹匣容量
-        Optional<CommonGunIndex> gunIndexOpt = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun));
-        if (gunIndexOpt.isEmpty()) return;
-
-        int magazineSize = gunIndexOpt.get().getGunData().getAmmoAmount();
-        int currentAmmo = iGun.getCurrentAmmoCount(gun);
+        int magazineSize = GunEnchantmentHelper.getMagazineSize(gun);
+        int currentAmmo = GunEnchantmentHelper.getCurrentAmmo(gun);
+        if (magazineSize <= 0 || currentAmmo < 0) return;
 
         // 获取每次触发回复的弹药量（从配置读取）
         int ammoToReturn = TBZServerConfig.FOURTH_TIME_THE_CHARM_AMMO_RETURN.get();

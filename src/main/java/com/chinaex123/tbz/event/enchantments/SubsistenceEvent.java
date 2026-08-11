@@ -3,9 +3,8 @@ package com.chinaex123.tbz.event.enchantments;
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.AmmoUtils;
-import com.tacz.guns.api.TimelessAPI;
+import com.chinaex123.tbz.utils.GunEnchantmentHelper;
 import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.resource.index.CommonGunIndex;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.resources.ResourceLocation;
@@ -77,16 +76,12 @@ public class SubsistenceEvent {
         // 达到阈值，重置击杀计数
         killCountMap.put(playerId, 0);
 
-        // 获取当前弹匣弹药数
-        int currentAmmo = iGun.getCurrentAmmoCount(gun);
+        // 获取枪械数据
+        int magazineSize = GunEnchantmentHelper.getMagazineSize(gun);
+        int currentAmmo = GunEnchantmentHelper.getCurrentAmmo(gun);
+        Optional<ResourceLocation> ammoId = GunEnchantmentHelper.getAmmoId(gun);
+        if (magazineSize <= 0 || currentAmmo < 0 || ammoId.isEmpty()) return;
 
-        // 获取枪械数据以读取弹匣容量和弹药类型
-        Optional<CommonGunIndex> gunIndexOpt = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun));
-        if (gunIndexOpt.isEmpty()) {
-            return;
-        }
-
-        int magazineSize = gunIndexOpt.get().getGunData().getAmmoAmount();
         int ammoNeeded = magazineSize - currentAmmo;  // 需要补充的弹药量
 
         // 弹匣已满，无需补充
@@ -94,11 +89,8 @@ public class SubsistenceEvent {
             return;
         }
 
-        // 获取该枪械使用的弹药类型
-        ResourceLocation ammoId = gunIndexOpt.get().getGunData().getAmmoId();
-
         // 检查玩家背包中该弹药的可用数量
-        int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoId);
+        int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoId.get());
         if (availableAmmo <= 0) {
             return;
         }
@@ -113,7 +105,8 @@ public class SubsistenceEvent {
         ammoToTransfer = Math.min(ammoToTransfer, availableAmmo);
 
         // 从玩家背包扣除弹药
-        AmmoUtils.consumeAmmoFromInventory(player, ammoId, ammoToTransfer);
+        ResourceLocation ammoIdValue = ammoId.get();
+        AmmoUtils.consumeAmmoFromInventory(player, ammoIdValue, ammoToTransfer);
 
         // 装填到枪械
         int newAmmo = currentAmmo + ammoToTransfer;

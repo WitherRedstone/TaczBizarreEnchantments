@@ -41,6 +41,47 @@ public class TBZEnchantmentConfig {
                 TBZServerConfig.REIGN_HAVOC_WHITELIST_MODE,
                 TBZServerConfig.REIGN_HAVOC_APPLICABLE_GUNS
         ));
+        // SUROS遗产
+        ENCHANTMENT_CONFIGS.put("suros_legacy", new EnchantmentConfigEntry(
+                TBZServerConfig.SUROS_LEGACY_WHITELIST_MODE,
+                TBZServerConfig.SUROS_LEGACY_APPLICABLE_GUNS
+        ));
+        // 古昧的折磨
+        ENCHANTMENT_CONFIGS.put("primevals_torment", new EnchantmentConfigEntry(
+                TBZServerConfig.PRIMEVALS_TORMENT_WHITELIST_MODE,
+                TBZServerConfig.PRIMEVALS_TORMENT_APPLICABLE_GUNS
+        ));
+        // 到此为止
+        ENCHANTMENT_CONFIGS.put("full_stop", new EnchantmentConfigEntry(
+                TBZServerConfig.FULL_STOP_WHITELIST_MODE,
+                TBZServerConfig.FULL_STOP_APPLICABLE_GUNS
+        ));
+        // 蔓延羸弱
+        ENCHANTMENT_CONFIGS.put("creeping_attrition", new EnchantmentConfigEntry(
+                TBZServerConfig.CREEPING_ATTRITION_WEAPON_TYPE_WHITELIST_MODE,
+                TBZServerConfig.CREEPING_ATTRITION_APPLICABLE_GUNS
+        ));
+        // 恶意触碰
+        ENCHANTMENT_CONFIGS.put("touch_of_malice", new EnchantmentConfigEntry(
+                TBZServerConfig.TOUCH_OF_MALICE_WEAPON_TYPE_WHITELIST_MODE,
+                TBZServerConfig.TOUCH_OF_MALICE_APPLICABLE_GUNS
+        ));
+        // 正确抉择
+        ENCHANTMENT_CONFIGS.put("the_right_choice", new EnchantmentConfigEntry(
+                TBZServerConfig.THE_RIGHT_CHOICE_WEAPON_TYPE_WHITELIST_MODE,
+                TBZServerConfig.THE_RIGHT_CHOICE_APPLICABLE_GUNS
+        ));
+        // 十六进制
+        ENCHANTMENT_CONFIGS.put("vexadecimal", new EnchantmentConfigEntry(
+                TBZServerConfig.VEXADECIMAL_WHITELIST_MODE,
+                TBZServerConfig.VEXADECIMAL_APPLICABLE_GUNS
+        ));
+        // 私人助手
+        ENCHANTMENT_CONFIGS.put("personal_assistant", new EnchantmentConfigEntry(
+                TBZServerConfig.PERSONAL_ASSISTANT_WHITELIST_MODE,
+                TBZServerConfig.PERSONAL_ASSISTANT_APPLICABLE_GUNS
+        ));
+
 
         // ========== [增伤]类型附魔 ==========
         // 斩首武器
@@ -67,6 +108,41 @@ public class TBZEnchantmentConfig {
         ENCHANTMENT_CONFIGS.put("thermal_atomization", new EnchantmentConfigEntry(
                 TBZServerConfig.THERMAL_ATOMIZATION_WHITELIST_MODE,
                 TBZServerConfig.THERMAL_ATOMIZATION_APPLICABLE_GUNS
+        ));
+        // 斗剑士
+        ENCHANTMENT_CONFIGS.put("swashbuckler", new EnchantmentConfigEntry(
+                TBZServerConfig.SWASHBUCKLER_WHITELIST_MODE,
+                TBZServerConfig.SWASHBUCKLER_APPLICABLE_GUNS
+        ));
+        // 我为人人
+        ENCHANTMENT_CONFIGS.put("one_for_all", new EnchantmentConfigEntry(
+                TBZServerConfig.ONE_FOR_ALL_WHITELIST_MODE,
+                TBZServerConfig.ONE_FOR_ALL_APPLICABLE_GUNS
+        ));
+        // 武器大师
+        ENCHANTMENT_CONFIGS.put("master_of_arms", new EnchantmentConfigEntry(
+                TBZServerConfig.MASTER_OF_ARMS_WHITELIST_MODE,
+                TBZServerConfig.MASTER_OF_ARMS_APPLICABLE_GUNS
+        ));
+        // 聚合充能
+        ENCHANTMENT_CONFIGS.put("aggregate_charge", new EnchantmentConfigEntry(
+                TBZServerConfig.AGGREGATE_CHARGE_WHITELIST_MODE,
+                TBZServerConfig.AGGREGATE_CHARGE_APPLICABLE_GUNS
+        ));
+        // 火线
+        ENCHANTMENT_CONFIGS.put("firing_line", new EnchantmentConfigEntry(
+                TBZServerConfig.FIRING_LINE_WHITELIST_MODE,
+                TBZServerConfig.FIRING_LINE_APPLICABLE_GUNS
+        ));
+        // 盒式呼吸法
+        ENCHANTMENT_CONFIGS.put("box_breathing", new EnchantmentConfigEntry(
+                TBZServerConfig.BOX_BREATHING_WHITELIST_MODE,
+                TBZServerConfig.BOX_BREATHING_APPLICABLE_GUNS
+        ));
+        // 爆炸光能
+        ENCHANTMENT_CONFIGS.put("explosive_light", new EnchantmentConfigEntry(
+                TBZServerConfig.EXPLOSIVE_LIGHT_WHITELIST_MODE,
+                TBZServerConfig.EXPLOSIVE_LIGHT_APPLICABLE_GUNS
         ));
 
         // ========== [回子弹]类型附魔 ==========
@@ -120,6 +196,11 @@ public class TBZEnchantmentConfig {
                 TBZServerConfig.REVERSAL_OF_FORTUNE_WHITELIST_MODE,
                 TBZServerConfig.REVERSAL_OF_FORTUNE_APPLICABLE_GUNS
         ));
+        // 小丑皇弹药筒
+        ENCHANTMENT_CONFIGS.put("clown_cartridge", new EnchantmentConfigEntry(
+                TBZServerConfig.CLOWN_CARTRIDGE_WHITELIST_MODE,
+                TBZServerConfig.CLOWN_CARTRIDGE_APPLICABLE_GUNS
+        ));
 
         // ========== [应用效果]类型附魔 ==========
         // 治疗弹匣
@@ -162,6 +243,11 @@ public class TBZEnchantmentConfig {
                 TBZServerConfig.WITHERING_GAZE_WHITELIST_MODE,
                 TBZServerConfig.WITHERING_GAZE_APPLICABLE_GUNS
         ));
+        // 燃烧野心
+        ENCHANTMENT_CONFIGS.put("burning_ambition", new EnchantmentConfigEntry(
+                TBZServerConfig.BURNING_AMBITION_WHITELIST_MODE,
+                TBZServerConfig.BURNING_AMBITION_APPLICABLE_GUNS
+        ));
 
         // ========== [爆炸]类型附魔 ==========
         // 蝴蝶
@@ -191,6 +277,11 @@ public class TBZEnchantmentConfig {
         ));
 
         // ========== [配件数值]类型附魔 ==========
+        // 不法之徒
+        ENCHANTMENT_CONFIGS.put("outlaw", new EnchantmentConfigEntry(
+                TBZServerConfig.OUTLAW_WHITELIST_MODE,
+                TBZServerConfig.OUTLAW_APPLICABLE_GUNS
+        ));
         // 速射瞄准
         ENCHANTMENT_CONFIGS.put("snapshot_sights", new EnchantmentConfigEntry(
                 TBZServerConfig.SNAPSHOT_SIGHTS_WHITELIST_MODE,
@@ -222,13 +313,6 @@ public class TBZEnchantmentConfig {
         ENCHANTMENT_CONFIGS.put("attrition_orbs", new EnchantmentConfigEntry(
                 TBZServerConfig.ATTRITION_ORBS_WHITELIST_MODE,
                 TBZServerConfig.ATTRITION_ORBS_APPLICABLE_GUNS
-        ));
-
-        // ========== [填装]类型附魔 ==========
-        // 不法之徒
-        ENCHANTMENT_CONFIGS.put("outlaw", new EnchantmentConfigEntry(
-                TBZServerConfig.OUTLAW_WHITELIST_MODE,
-                TBZServerConfig.OUTLAW_APPLICABLE_GUNS
         ));
 
         // ========== [其他]类型附魔 ==========

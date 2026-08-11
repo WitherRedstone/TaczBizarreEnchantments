@@ -1,175 +1,328 @@
-//package com.chinaex123.tbz.event;
-//
-//import com.chinaex123.tbz.init.TBZEnchantments;
-//import net.minecraft.util.RandomSource;
-//import net.minecraft.world.entity.npc.VillagerProfession;
-//import net.minecraft.world.entity.npc.VillagerTrades;
-//import net.minecraft.world.item.EnchantedBookItem;
-//import net.minecraft.world.item.ItemStack;
-//import net.minecraft.world.item.Items;
-//import net.minecraft.world.item.enchantment.Enchantment;
-//import net.minecraft.world.item.enchantment.EnchantmentInstance;
-//import net.minecraft.world.item.trading.MerchantOffer;
-//import net.minecraftforge.event.village.VillagerTradesEvent;
-//import net.minecraftforge.eventbus.api.SubscribeEvent;
-//import net.minecraftforge.fml.common.Mod;
-//
-//import java.util.HashMap;
-//import java.util.List;
-//import java.util.Map;
-//import java.util.function.Supplier;
-//
-///**
-// * 村民交易事件处理类
-// * 功能：为图书管理员村民添加模组附魔书的交易选项
-// * 机制：每个附魔有独立的出现概率，价格根据附魔稀有度、交易等级和附魔等级动态计算
-// */
-//@Mod.EventBusSubscriber(modid = "tbz")
-//public class TBZVillagerTradesEvent {
-//
-//    // 存储所有附魔及其出现概率
-//    private static final Map<Supplier<? extends Enchantment>, Float> ENCHANTMENTS = new HashMap<>();
-//
-//    // 初始化附魔列表和出现概率
-//    static {
-//        ENCHANTMENTS.put(TBZEnchantments.AMBITIOUS_ASSASSIN, 0.20f);
-//        ENCHANTMENTS.put(TBZEnchantments.BORPAL_WEAPON, 0.15f);
-//        ENCHANTMENTS.put(TBZEnchantments.HEAL_CLIP, 0.20f);
-//        ENCHANTMENTS.put(TBZEnchantments.SUBSISTENCE, 0.10f);
-//        ENCHANTMENTS.put(TBZEnchantments.RECONSTRUCTION, 0.15f);
-//        ENCHANTMENTS.put(TBZEnchantments.TRIPLE_TAP, 0.08f);
-//        ENCHANTMENTS.put(TBZEnchantments.FOURTH_TIME_THE_CHARM, 0.08f);
-//        ENCHANTMENTS.put(TBZEnchantments.REWIND_ROUNDS, 0.08f);
-//        ENCHANTMENTS.put(TBZEnchantments.ATTRITION_ORBS, 0.18f);
-//    }
-//
-//    /**
-//     * 村民交易事件处理
-//     * 仅为图书管理员职业添加附魔书交易
-//     *
-//     * @param event 村民交易事件
-//     */
-//    @SubscribeEvent
-//    public static void onVillagerTrades(VillagerTradesEvent event) {
-//        // 仅处理图书管理员村民
-//        if (event.getType() != VillagerProfession.LIBRARIAN) {
-//            return;
-//        }
-//
-//        // 遍历1-5级交易
-//        for (int level = 1; level <= 5; level++) {
-//            List<VillagerTrades.ItemListing> trades = event.getTrades().get(level);
-//            if (trades == null) continue;
-//
-//            // 为所有注册的附魔添加交易
-//            for (Map.Entry<Supplier<? extends Enchantment>, Float> entry : ENCHANTMENTS.entrySet()) {
-//                addEnchantmentTrade(trades, entry.getKey().get(), level, entry.getValue());
-//            }
-//        }
-//    }
-//
-//    /**
-//     * 为指定交易等级添加单个附魔的交易
-//     *
-//     * @param trades      交易列表
-//     * @param enchantment 附魔实例
-//     * @param tradeLevel  交易等级（1-5）
-//     * @param spawnChance 出现概率（0-1）
-//     */
-//    private static void addEnchantmentTrade(List<VillagerTrades.ItemListing> trades,
-//                                            Enchantment enchantment, int tradeLevel, float spawnChance) {
-//        trades.add((trader, rand) -> {
-//            // 根据概率决定是否生成此交易
-//            if (rand.nextFloat() > spawnChance) {
-//                return null;
-//            }
-//
-//            // 获取当前交易等级允许的最大附魔等级
-//            int maxLevelForTrade = getMaxLevelForTradeLevel(tradeLevel);
-//            int actualMaxLevel = Math.min(maxLevelForTrade, enchantment.getMaxLevel());
-//
-//            // 如果最大等级小于1，无法生成有效交易
-//            if (actualMaxLevel < 1) return null;
-//
-//            // 随机生成附魔等级
-//            int enchantLevel = 1 + rand.nextInt(actualMaxLevel);
-//
-//            // 计算价格（绿宝石数量）
-//            int cost = calculatePrice(enchantment, tradeLevel, enchantLevel, rand);
-//
-//            // 创建附魔书
-//            ItemStack enchantedBook = EnchantedBookItem.createForEnchantment(
-//                    new EnchantmentInstance(enchantment, enchantLevel)
-//            );
-//
-//            // 创建交易选项
-//            // 参数：成本物品（绿宝石x数量）、卖出物品（书x1）、交易物品（附魔书）、最大使用次数、经验值、价格乘数
-//            return new MerchantOffer(
-//                    new ItemStack(Items.EMERALD, cost), // 玩家支付：cost个绿宝石
-//                    new ItemStack(Items.BOOK, 1), // 玩家提供：1本书
-//                    enchantedBook, // 村民提供：附魔书
-//                    12, // 最大交易次数
-//                    tradeLevel + 4, // 给予的经验值
-//                    0.05f // 价格乘数（影响涨价幅度）
-//            );
-//        });
-//    }
-//
-//    /**
-//     * 根据交易等级获取允许的附魔最大等级
-//     * 等级越高，可获得的附魔等级上限越高
-//     *
-//     * @param tradeLevel 村民交易等级（1-5）
-//     * @return 允许的最大附魔等级
-//     */
-//    private static int getMaxLevelForTradeLevel(int tradeLevel) {
-//        return switch (tradeLevel) {
-//            case 1 -> 2;   // 新手：最高附魔等级2
-//            case 2 -> 3;   // 学徒：最高附魔等级3
-//            case 3 -> 4;   // 老手：最高附魔等级4
-//            case 4 -> 5;   // 专家：最高附魔等级5
-//            case 5 -> 10;  // 大师：最高附魔等级10（支持自定义高等级）
-//            default -> 3;  // 默认值
-//        };
-//    }
-//
-//    /**
-//     * 计算附魔书的价格（绿宝石数量）
-//     * 价格受以下因素影响：
-//     * - 附魔稀有度（基础价格）
-//     * - 交易等级（等级越高，价格越优惠）
-//     * - 附魔等级（等级越高，价格越贵）
-//     * - 随机浮动（85%-115%）
-//     *
-//     * @param enchantment  附魔实例
-//     * @param tradeLevel   交易等级
-//     * @param enchantLevel 附魔等级
-//     * @param rand         随机数生成器
-//     * @return 最终价格（限制在5-64之间）
-//     */
-//    private static int calculatePrice(Enchantment enchantment, int tradeLevel, int enchantLevel, RandomSource rand) {
-//        // 根据附魔稀有度确定基础价格
-//        int basePrice = switch (enchantment.getRarity()) {
-//            case COMMON -> 5;        // 普通：5绿宝石
-//            case UNCOMMON -> 8;      // 罕见：8绿宝石
-//            case RARE -> 10;         // 稀有：10绿宝石
-//            case VERY_RARE -> 15;    // 极其稀有：15绿宝石
-//        };
-//
-//        // 交易等级修正：高等级村民提供更优惠的价格（减价）
-//        int levelModifier = (5 - tradeLevel) * 2;  // 交易等级5时0，等级1时+8
-//
-//        // 附魔等级附加成本：每级增加3绿宝石
-//        int levelCost = enchantLevel * 3;
-//
-//        // 基础价格计算
-//        int cost = basePrice + levelCost + levelModifier;
-//
-//        // 随机价格浮动：85% - 115%
-//        float variation = 0.85f + rand.nextFloat() * 0.3f;
-//        cost = Math.round(cost * variation);
-//
-//        // 限制价格范围：最小5绿宝石，最大64绿宝石
-//        return Math.min(Math.max(cost, 5), 64);
-//    }
-//}
+package com.chinaex123.tbz.event;
+
+import com.chinaex123.tbz.init.TBZEnchantments;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.item.EnchantedBookItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraftforge.event.village.VillagerTradesEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.RegistryObject;
+
+import java.lang.reflect.Field;
+import java.util.*;
+import java.util.function.Supplier;
+
+/**
+ * 村庄交易事件处理类
+ * <p>
+ * 功能：为图书管理员村民添加自定义附魔书的交易
+ * <p>
+ * 优化特性：
+ * <ol>
+ *   <li>交易缓存机制 - 只初始化一次，减少内存开销</li>
+ *   <li>优化价格计算 - 更合理的价格曲线，稀有度影响更明显</li>
+ *   <li>权重随机选择 - 每个等级随机出现部分附魔，增加多样性</li>
+ *   <li>价格范围 5~55 绿宝石，分布更均匀</li>
+ * </ol>
+ */
+@Mod.EventBusSubscriber(modid = "tbz")
+public class TBZVillagerTradesEvent {
+
+    /** 所有自定义附魔列表 **/
+    private static final List<Supplier<? extends Enchantment>> ENCHANTMENTS = new ArrayList<>();
+
+    /** 缓存所有交易 - 只初始化一次 **/
+    private static final Map<Integer, List<VillagerTrades.ItemListing>> CACHED_TRADES = new HashMap<>();
+
+    /** 价格配置缓存 - 避免重复计算 **/
+    private static final Map<Enchantment.Rarity, PriceConfig> PRICE_CONFIGS = new EnumMap<>(Enchantment.Rarity.class);
+
+    /** 是否已初始化交易 **/
+    private static boolean initialized = false;
+
+    static {
+        // 初始化价格配置
+        PRICE_CONFIGS.put(Enchantment.Rarity.COMMON, new PriceConfig(8, 1.0, 2));
+        PRICE_CONFIGS.put(Enchantment.Rarity.UNCOMMON, new PriceConfig(14, 1.25, 4));
+        PRICE_CONFIGS.put(Enchantment.Rarity.RARE, new PriceConfig(20, 1.5, 6));
+        PRICE_CONFIGS.put(Enchantment.Rarity.VERY_RARE, new PriceConfig(28, 1.75, 8));
+
+        // 自动扫描TBZEnchantments类中的所有附魔
+        autoRegisterEnchantments();
+    }
+
+    /**
+     * 自动扫描TBZEnchantments类中的所有附魔并注册
+     * 使用反射自动获取所有RegistryObject<Enchantment>类型的字段
+     */
+    private static void autoRegisterEnchantments() {
+        try {
+            Field[] fields = TBZEnchantments.class.getDeclaredFields();
+            for (Field field : fields) {
+                // 检查字段类型是否为RegistryObject<Enchantment>
+                if (field.getType() == RegistryObject.class) {
+                    try {
+                        @SuppressWarnings("unchecked")
+                        RegistryObject<Enchantment> enchantmentObj = (RegistryObject<Enchantment>) field.get(null);
+                        if (enchantmentObj != null) {
+                            ENCHANTMENTS.add(enchantmentObj);
+                        }
+                    } catch (IllegalAccessException e) {
+                        // 忽略无法访问的字段
+                        System.err.println("[TBZVillagerTradesEvent.autoRegisterEnchantments] Failed to access field: " + field.getName() + " - " + e.getMessage());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            // 反射失败时使用空列表
+            System.err.println("[TBZVillagerTradesEvent.autoRegisterEnchantments] Failed to auto-register enchantments: " + e.getMessage());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onVillagerTrades(VillagerTradesEvent event) {
+        if (event.getType() != VillagerProfession.LIBRARIAN) {
+            return;
+        }
+
+        // 首次初始化时生成所有交易（只执行一次）
+        if (!initialized) {
+            initializeTrades();
+            initialized = true;
+        }
+
+        // 使用缓存的交易列表
+        for (int level = 1; level <= 5; level++) {
+            List<VillagerTrades.ItemListing> trades = event.getTrades().get(level);
+            if (trades != null && CACHED_TRADES.containsKey(level)) {
+                trades.addAll(CACHED_TRADES.get(level));
+            }
+        }
+    }
+
+    /**
+     * 初始化所有交易（只执行一次）
+     * 每个等级随机选择部分附魔，而不是全部
+     */
+    private static void initializeTrades() {
+        RandomSource rand = RandomSource.create();
+
+        for (int level = 1; level <= 5; level++) {
+            List<VillagerTrades.ItemListing> levelTrades = new ArrayList<>();
+
+            // 为每个等级选择 3~7 种附魔（新手少，大师多）
+            List<Enchantment> selectedEnchantments = selectEnchantmentsForLevel(level, rand);
+
+            for (Enchantment enchantment : selectedEnchantments) {
+                int maxLevelForTrade = getMaxLevelForTradeLevel(level);
+                int actualMaxLevel = Math.min(maxLevelForTrade, enchantment.getMaxLevel());
+                if (actualMaxLevel < 1) continue;
+
+                PriceConfig priceConfig = PRICE_CONFIGS.get(enchantment.getRarity());
+                if (priceConfig == null) continue;
+
+                int finalLevel = level;
+
+                // 创建并缓存交易
+                VillagerTrades.ItemListing trade = (trader, randSource) -> {
+                    // 随机生成附魔等级（1~实际最大等级）
+                    int enchantLevel = 1 + randSource.nextInt(actualMaxLevel);
+
+                    // 使用优化后的价格计算
+                    int cost = calculatePriceOptimized(enchantment, finalLevel, enchantLevel, randSource, priceConfig);
+
+                    // 创建附魔书
+                    ItemStack enchantedBook = EnchantedBookItem.createForEnchantment(
+                            new EnchantmentInstance(enchantment, enchantLevel)
+                    );
+
+                    // 返回交易对象
+                    return new MerchantOffer(
+                            new ItemStack(Items.EMERALD, cost),
+                            new ItemStack(Items.BOOK, 1),
+                            enchantedBook,
+                            8,  // 最大交易次数
+                            finalLevel + 4,  // 经验值奖励
+                            0.05f  // 价格乘数
+                    );
+                };
+
+                levelTrades.add(trade);
+            }
+
+            CACHED_TRADES.put(level, levelTrades);
+        }
+    }
+
+    /**
+     * 为指定等级选择附魔（基于权重随机）
+     * <p>
+     * 分级限制规则：
+     * <ul>
+     *   <li>1级（新手）：只刷 UNCOMMON 附魔</li>
+     *   <li>2级（学徒）：刷 UNCOMMON + RARE 附魔</li>
+     *   <li>3级（老手）：刷 UNCOMMON + RARE 附魔</li>
+     *   <li>4级（专家）：刷 UNCOMMON + RARE + VERY_RARE 附魔</li>
+     *   <li>5级（大师）：所有稀有度均可出现</li>
+     * </ul>
+     *
+     * @param level 交易等级（1~5）
+     * @param rand  随机源
+     * @return 选中的附魔列表
+     */
+    private static List<Enchantment> selectEnchantmentsForLevel(int level, RandomSource rand) {
+        List<EnchantmentWithWeight> candidates = new ArrayList<>();
+        float totalWeight = 0;
+
+        for (Supplier<? extends Enchantment> supplier : ENCHANTMENTS) {
+            Enchantment enchantment = supplier.get();
+            int maxLevel = Math.min(getMaxLevelForTradeLevel(level), enchantment.getMaxLevel());
+            if (maxLevel < 1) continue;
+
+            // 分级限制：根据交易等级决定哪些稀有度可以出现
+            boolean canAppear = switch (level) {
+                case 1 -> enchantment.getRarity() == Enchantment.Rarity.UNCOMMON;   // 1级：只刷 UNCOMMON
+                case 2 -> enchantment.getRarity() == Enchantment.Rarity.RARE; // 2级：只刷 RARE
+                case 3 -> enchantment.getRarity() == Enchantment.Rarity.RARE; // 3级：只刷 RARE
+                case 4 -> enchantment.getRarity() == Enchantment.Rarity.RARE;  // 4级：只刷 VERY_RARE
+                case 5 -> enchantment.getRarity() == Enchantment.Rarity.VERY_RARE;  // 5级：只刷 VERY_RARE
+                default -> false;
+            };
+//            boolean canAppear = switch (level) {
+//                // 1级：只刷 UNCOMMON
+//                case 1 -> enchantment.getRarity() == Enchantment.Rarity.UNCOMMON;
+//                // 2级：UNCOMMON + RARE
+//                case 2 -> enchantment.getRarity() == Enchantment.Rarity.UNCOMMON ||
+//                        enchantment.getRarity() == Enchantment.Rarity.RARE;
+//                // 3级：UNCOMMON + RARE
+//                case 3 -> enchantment.getRarity() == Enchantment.Rarity.UNCOMMON ||
+//                        enchantment.getRarity() == Enchantment.Rarity.RARE;
+//                // 4级：UNCOMMON + RARE + VERY_RARE
+//                case 4 -> enchantment.getRarity() != Enchantment.Rarity.COMMON;
+//                case 5 -> true; // 5级：全部可刷
+//                default -> false;
+//            };
+
+            if (!canAppear) continue;
+
+            // 获取基础权重（稀有度决定）
+            float weight = switch (enchantment.getRarity()) {
+                case COMMON -> 0.65f;
+                case UNCOMMON -> 0.45f;
+                case RARE -> 0.25f;
+                case VERY_RARE -> 0.05f;
+            };
+
+            // 高级村民能遇到更多稀有附魔（权重提升）
+            float levelBonus = 1.0f + (level - 1) * 0.1f;
+            weight *= levelBonus;
+
+            candidates.add(new EnchantmentWithWeight(enchantment, weight));
+            totalWeight += weight;
+        }
+
+        // 每个等级选择数量（3 + level，即 4~8 个）
+        int count = Math.min(3 + level, candidates.size());
+        List<Enchantment> selected = new ArrayList<>();
+
+        for (int i = 0; i < count && !candidates.isEmpty(); i++) {
+            float random = rand.nextFloat() * totalWeight;
+            float cumulative = 0;
+
+            Iterator<EnchantmentWithWeight> iterator = candidates.iterator();
+            while (iterator.hasNext()) {
+                EnchantmentWithWeight ew = iterator.next();
+                cumulative += ew.weight;
+                if (random <= cumulative) {
+                    selected.add(ew.enchantment);
+                    totalWeight -= ew.weight;
+                    iterator.remove();
+                    break;
+                }
+            }
+        }
+
+        return selected;
+    }
+
+    /**
+     * 获取交易等级对应的最大附魔等级
+     *
+     * @param tradeLevel 交易等级（1~5）
+     * @return 最大附魔等级
+     */
+    private static int getMaxLevelForTradeLevel(int tradeLevel) {
+        return switch (tradeLevel) {
+            case 1 -> 2;
+            case 2 -> 3;
+            case 3 -> 4;
+            case 4 -> 5;
+            case 5 -> 10;
+            default -> 3;
+        };
+    }
+
+    /**
+     * 优化后的价格计算
+     * <p>
+     * 价格因素：
+     * <ol>
+     *   <li>附魔稀有度（原版稀有度决定基础价格和倍率）</li>
+     *   <li>交易等级（高等级村民更优惠，最多-20%）</li>
+     *   <li>附魔等级（非线性增长，高等级更贵）</li>
+     *   <li>随机浮动（95%~105%，更稳定）</li>
+     * </ol>
+     *
+     * @param enchantment 附魔类型
+     * @param tradeLevel 交易等级
+     * @param enchantLevel 附魔等级
+     * @param rand 随机源
+     * @param priceConfig 价格配置
+     * @return 价格（绿宝石数量，范围5~55）
+     */
+    private static int calculatePriceOptimized(Enchantment enchantment, int tradeLevel, int enchantLevel, RandomSource rand, PriceConfig priceConfig) {
+        /* 基础价格 */
+        int basePrice = priceConfig.basePrice();
+
+        /* 稀有度价格系数 */
+        double rarityFactor = priceConfig.rarityMultiplier();
+
+        /* 每级固定增量 */
+        int perLevelIncrease = priceConfig.perLevelIncrease();
+
+        /* 计算交易等级折扣 */
+        double discount = 1.0 - (tradeLevel - 1) * 0.03;
+
+        /* 计算基础价格 */
+        double cost = (basePrice + (enchantLevel - 1) * perLevelIncrease) * rarityFactor * discount;
+
+        /* 计算随机浮动系数 */
+        double variation = 0.95 + rand.nextDouble() * 0.10;
+        cost *= variation;
+
+        /* 四舍五入并裁剪*/
+        return Math.min(Math.max((int) Math.round(cost), 8), 64);
+    }
+
+    /**
+     * 价格配置记录类
+     * @param basePrice 基础价格
+     * @param rarityMultiplier 稀有度价格系数
+     * @param perLevelIncrease 每级增加的价格
+     */
+    private record PriceConfig(int basePrice, double rarityMultiplier, int perLevelIncrease) {}
+
+    /**
+     * 附魔权重记录类
+     * @param enchantment 附魔
+     * @param weight 出现权重
+     */
+    private record EnchantmentWithWeight(Enchantment enchantment, float weight) {}
+}

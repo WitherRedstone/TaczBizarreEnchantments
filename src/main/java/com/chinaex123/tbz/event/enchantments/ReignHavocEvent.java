@@ -5,6 +5,7 @@ import com.chinaex123.funky_effect_lib.api.LightningStrikeAPI;
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.AmmoUtils;
+import com.chinaex123.tbz.utils.GunEnchantmentHelper;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.api.item.IGun;
@@ -15,6 +16,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+
+import java.util.Optional;
 
 /**
  * 统治浩劫附魔的事件处理类
@@ -34,11 +37,11 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
  */
 public class ReignHavocEvent {
 
-    /** 记录连续爆头次数 */
+    /** NBT存储键：记录连续爆头次数 */
     private static final String HEADSHOT_COUNT_TAG = "reign_havoc_headshot_count";
 
     /**
-     * 实体死亡事件：统治浩劫
+     * 枪械伤害事件：统治浩劫
      * 当玩家爆头命中时增加计数，达到阈值时触发闪电打击
      *
      * @param event 枪械伤害事件
@@ -123,31 +126,28 @@ public class ReignHavocEvent {
             // 从配置获取弹药补充百分比
             float refillPercentage = TBZServerConfig.REIGN_HAVOC_REFILL_PERCENTAGE.get().floatValue();
 
-            // 获取枪械实例
-            IGun iGun = IGun.getIGunOrNull(gun);
-            if (iGun != null) {
-                // 获取枪械数据
-                var gunIndexOpt = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun));
-                if (gunIndexOpt.isPresent()) {
-                    CommonGunIndex gunIndex = gunIndexOpt.get();
-                    int magazineSize = gunIndex.getGunData().getAmmoAmount();
-                    int currentAmmo = iGun.getCurrentAmmoCount(gun);
+            // 获取枪械数据
+            int magazineSize = GunEnchantmentHelper.getMagazineSize(gun);
+            int currentAmmo = GunEnchantmentHelper.getCurrentAmmo(gun);
+            Optional<ResourceLocation> ammoId = GunEnchantmentHelper.getAmmoId(gun);
+            if (magazineSize <= 0 || currentAmmo < 0 || ammoId.isEmpty()) return;
 
-                    // 计算需要补充的弹药数量
-                    int refillAmount = (int) (magazineSize * refillPercentage);
-                    int ammoNeeded = magazineSize - currentAmmo;
-                    int actualReload = Math.min(refillAmount, ammoNeeded);
+            // 计算需要补充的弹药数量
+            int refillAmount = (int) (magazineSize * refillPercentage);
+            int ammoNeeded = magazineSize - currentAmmo;
+            int actualReload = Math.min(refillAmount, ammoNeeded);
 
-                    // 如果有弹药需要补充且备弹充足
-                    if (actualReload > 0) {
-                        ResourceLocation ammoId = gunIndex.getGunData().getAmmoId();
-                        int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoId);
-                        if (availableAmmo > 0) {
-                            // 从备弹转移到弹匣
-                            int ammoToTransfer = Math.min(actualReload, availableAmmo);
-                            AmmoUtils.consumeAmmoFromInventory(player, ammoId, ammoToTransfer);
-                            iGun.setCurrentAmmoCount(gun, currentAmmo + ammoToTransfer);
-                        }
+            // 如果有弹药需要补充且备弹充足
+            if (actualReload > 0) {
+                ResourceLocation ammoIdValue = ammoId.get();
+                int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoIdValue);
+                if (availableAmmo > 0) {
+                    // 从备弹转移到弹匣
+                    int ammoToTransfer = Math.min(actualReload, availableAmmo);
+                    AmmoUtils.consumeAmmoFromInventory(player, ammoIdValue, ammoToTransfer);
+                    IGun iGun = GunEnchantmentHelper.getIGun(gun);
+                    if (iGun != null) {
+                        iGun.setCurrentAmmoCount(gun, currentAmmo + ammoToTransfer);
                     }
                 }
             }

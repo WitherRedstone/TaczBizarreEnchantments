@@ -34,7 +34,7 @@ import net.minecraft.world.item.ItemStack;
  */
 public class ProtectiveWeaveEvent {
 
-    /** 记录上次击杀时间 */
+    /** NBT存储键：记录上次击杀时间 */
     private static final String LAST_KILL_TIME_TAG = "ProtectiveWeaveLastKillTime";
 
     /**

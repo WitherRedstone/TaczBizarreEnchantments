@@ -4,11 +4,10 @@ import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.AmmoUtils;
 import com.chinaex123.tbz.utils.ExplosionUtils;
-import com.tacz.guns.api.TimelessAPI;
+import com.chinaex123.tbz.utils.GunEnchantmentHelper;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.api.event.common.GunReloadEvent;
 import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.resource.index.CommonGunIndex;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -43,9 +42,9 @@ import java.util.Optional;
  */
 public class FireflyEvent {
 
-    /** 是否获得爆头击杀标记 */
+    /** NBT存储键：是否获得爆头击杀标记 */
     public static final String HEADSHOT_KILL_TAG = "FireflyHeadshotKill";
-    /** 爆头击杀发生时间 */
+    /** NBT存储键：爆头击杀发生时间 */
     public static final String KILL_TIME_TAG = "FireflyKillTime";
     /** 有效时间窗口 */
     public static final int VALID_KILL_TICKS = 60;
@@ -134,15 +133,11 @@ public class FireflyEvent {
         int enchantLevel = gun.getEnchantmentLevel(TBZEnchantments.FIREFLY.get());
         if (enchantLevel <= 0) return;
 
-        IGun iGun = IGun.getIGunOrNull(gun);
-        if (iGun == null) return;
-
         // 获取枪械数据
-        Optional<CommonGunIndex> gunIndexOpt = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun));
-        if (gunIndexOpt.isEmpty()) return;
-
-        int magazineSize = gunIndexOpt.get().getGunData().getAmmoAmount();
-        int currentAmmo = iGun.getCurrentAmmoCount(gun);
+        int magazineSize = GunEnchantmentHelper.getMagazineSize(gun);
+        int currentAmmo = GunEnchantmentHelper.getCurrentAmmo(gun);
+        Optional<ResourceLocation> ammoId = GunEnchantmentHelper.getAmmoId(gun);
+        if (magazineSize <= 0 || currentAmmo < 0 || ammoId.isEmpty()) return;
 
         // 仅在弹匣未满时补充弹药
         if (currentAmmo < magazineSize) {
@@ -155,17 +150,20 @@ public class FireflyEvent {
             ammoToAdd = Math.min(ammoToAdd, magazineSize - currentAmmo);
 
             // 获取枪械使用的弹药类型
-            ResourceLocation ammoId = gunIndexOpt.get().getGunData().getAmmoId();
-            int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoId);
+            ResourceLocation ammoIdValue = ammoId.get();
+            int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoIdValue);
 
             // 背包有弹药才进行补充
             if (availableAmmo > 0) {
                 // 实际补充量不超过背包可用弹药
                 ammoToAdd = Math.min(ammoToAdd, availableAmmo);
                 // 从背包扣除弹药
-                AmmoUtils.consumeAmmoFromInventory(player, ammoId, ammoToAdd);
+                AmmoUtils.consumeAmmoFromInventory(player, ammoIdValue, ammoToAdd);
                 // 装填到枪械
-                iGun.setCurrentAmmoCount(gun, currentAmmo + ammoToAdd);
+                IGun iGun = GunEnchantmentHelper.getIGun(gun);
+                if (iGun != null) {
+                    iGun.setCurrentAmmoCount(gun, currentAmmo + ammoToAdd);
+                }
             }
         }
     }

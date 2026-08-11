@@ -2,15 +2,18 @@ package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
+import com.chinaex123.tbz.network.hud.HUDPacketHandler;
+import com.chinaex123.tbz.network.hud.TriggeredEnchantmentSyncPacket;
+import com.chinaex123.tbz.utils.GunEnchantmentHelper;
 import com.chinaex123.tbz.utils.ShotTriggerHelper;
-import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.resource.index.CommonGunIndex;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.network.PacketDistributor;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -91,6 +94,14 @@ public class TripleTapEvent {
         if (headshotTimes.size() >= requiredHits) {
             addAmmo(gun, iGun); // 回复弹药
             headshotTimes.clear(); // 重置爆头记录，防止连续触发
+
+            // 同步到客户端，显示精准连击触发
+            if (player instanceof ServerPlayer serverPlayer) {
+                HUDPacketHandler.INSTANCE.send(
+                        PacketDistributor.PLAYER.with(() -> serverPlayer),
+                        new TriggeredEnchantmentSyncPacket(player.getUUID(), "triple_tap", currentTime)
+                );
+            }
         }
     }
 
@@ -103,11 +114,9 @@ public class TripleTapEvent {
      */
     private static void addAmmo(ItemStack gun, IGun iGun) {
         // 获取枪械数据以读取弹匣容量
-        Optional<CommonGunIndex> gunIndexOpt = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun));
-        if (gunIndexOpt.isEmpty()) return;
-
-        int magazineSize = gunIndexOpt.get().getGunData().getAmmoAmount();
-        int currentAmmo = iGun.getCurrentAmmoCount(gun);
+        int magazineSize = GunEnchantmentHelper.getMagazineSize(gun);
+        int currentAmmo = GunEnchantmentHelper.getCurrentAmmo(gun);
+        if (magazineSize <= 0 || currentAmmo < 0) return;
 
         // 仅在未达到弹匣容量时添加弹药
         if (currentAmmo < magazineSize) {

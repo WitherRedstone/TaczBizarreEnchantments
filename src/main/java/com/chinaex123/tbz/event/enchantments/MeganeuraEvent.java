@@ -34,9 +34,9 @@ import net.minecraft.world.item.ItemStack;
  */
 public class MeganeuraEvent {
 
-    /** 爆头命中次数 */
+    /** NBT存储键：爆头命中次数 */
     public static final String HEADSHOT_COUNT_TAG = "MeganeuraHeadshotCount";
-    /** 最后一次爆头时间 */
+    /** NBT存储键：最后一次爆头时间 */
     public static final String LAST_HEADSHOT_TIME_TAG = "MeganeuraLastHeadshotTime";
     /** 有效时间窗口 */
     public static final int VALID_KILL_TICKS = 60;
@@ -152,7 +152,7 @@ public class MeganeuraEvent {
     }
 
     /**
-     * 玩家每帧更新事件：巨脉蜻蜓
+     * 玩家Tick事件：巨脉蜻蜓
      * 检查是否超过有效时间窗口，如果超过则重置爆头次数
      *
      * @param player 玩家

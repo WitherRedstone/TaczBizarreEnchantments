@@ -2,12 +2,11 @@ package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
+import com.chinaex123.tbz.utils.GunEnchantmentHelper;
 import com.chinaex123.tbz.utils.ShotTriggerHelper;
-import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.api.event.common.GunReloadEvent;
 import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.resource.index.CommonGunIndex;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -38,13 +37,13 @@ public class PrecisionInstrumentEvent {
 
     /** 射击触发标签前缀 */
     private static final String TRIGGER_TAG_PREFIX = "PrecisionInstrument";
-    /** 当前弹匣累计射击次数 */
+    /** NBT存储键：当前弹匣累计射击次数 */
     private static final String SHOT_COUNT_TAG = "PrecisionInstrumentShotCount";
-    /** 当前弹匣容量 */
+    /** NBT存储键：当前弹匣容量 */
     private static final String MAGAZINE_SIZE_TAG = "PrecisionInstrumentMagazineSize";
-    /** 上一tick的弹药数 */
+    /** NBT存储键：上一tick的弹药数 */
     private static final String PREV_AMMO_TAG = "PrecisionInstrumentPrevAmmo";
-    /** 爆头伤害加成 */
+    /** NBT存储键：爆头伤害加成 */
     private static final String HEADSHOT_MULTIPLIER_TAG = "PrecisionInstrumentHeadshotMultiplier";
 
     /**
@@ -82,9 +81,8 @@ public class PrecisionInstrumentEvent {
 
             // 首次射击时获取并缓存弹匣容量
             if (tag.getInt(MAGAZINE_SIZE_TAG) == 0) {
-                Optional<CommonGunIndex> gunIndexOpt = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun));
-                if (gunIndexOpt.isPresent()) {
-                    int magazineSize = gunIndexOpt.get().getGunData().getAmmoAmount();
+                int magazineSize = GunEnchantmentHelper.getMagazineSize(gun);
+                if (magazineSize > 0) {
                     tag.putInt(MAGAZINE_SIZE_TAG, magazineSize);
                 }
             }

@@ -2,10 +2,9 @@ package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
-import com.tacz.guns.api.TimelessAPI;
+import com.chinaex123.tbz.utils.GunEnchantmentHelper;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.resource.index.CommonGunIndex;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -40,14 +39,14 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class MulliganEvent {
 
-    /** 射击时间记录 */
+    /** NBT存储键：射击时间记录 */
     private static final String SHOT_TIME_TAG = "MulliganShotTime";
-    /** 是否等待弹药返还判定 */
+    /** NBT存储键：是否等待弹药返还判定 */
     private static final String PENDING_RETURN_TAG = "MulliganPendingReturn";
     /** 射击后等待5刻（0.25秒）再检查是否命中 */
     private static final int CHECK_DELAY_TICKS = 5;
 
-    // 记录每个玩家最后一次射击的时间（线程安全）
+    // 记录每个玩家最后一次射击的时间
     private static final Map<UUID, Long> lastShotTimeMap = new ConcurrentHashMap<>();
 
     /**
@@ -82,7 +81,7 @@ public class MulliganEvent {
     }
 
     /**
-     * 玩家每帧更新事件：重新调度
+     * 玩家Tick事件：重新调度
      * 检测射击行为，标记待返还状态，等待延迟后，如果没有被命中事件取消，则根据概率返还弹药
      *
      * @param player 玩家实体
@@ -124,13 +123,10 @@ public class MulliganEvent {
 
                 // 概率判定：成功则返还1发弹药
                 if (player.getRandom().nextFloat() < totalChance) {
-                    Optional<CommonGunIndex> gunIndexOpt = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun));
-                    if (gunIndexOpt.isPresent()) {
-                        int magazineSize = gunIndexOpt.get().getGunData().getAmmoAmount();
-                        // 仅在未达到弹匣容量时返还弹药
-                        if (currentAmmo < magazineSize) {
-                            iGun.setCurrentAmmoCount(gun, currentAmmo + 1);
-                        }
+                    int magazineSize = GunEnchantmentHelper.getMagazineSize(gun);
+                    // 仅在未达到弹匣容量时返还弹药
+                    if (magazineSize > 0 && currentAmmo < magazineSize) {
+                        iGun.setCurrentAmmoCount(gun, currentAmmo + 1);
                     }
                 }
 

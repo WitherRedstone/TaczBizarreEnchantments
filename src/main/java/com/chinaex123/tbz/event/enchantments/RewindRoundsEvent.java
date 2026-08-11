@@ -2,18 +2,21 @@ package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
+import com.chinaex123.tbz.network.hud.HUDPacketHandler;
+import com.chinaex123.tbz.network.hud.TriggeredEnchantmentSyncPacket;
 import com.chinaex123.tbz.utils.AmmoUtils;
-import com.tacz.guns.api.TimelessAPI;
+import com.chinaex123.tbz.utils.GunEnchantmentHelper;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.api.event.common.GunReloadEvent;
 import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.resource.index.CommonGunIndex;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.network.PacketDistributor;
 
 import java.util.Optional;
 
@@ -42,13 +45,13 @@ import java.util.Optional;
  */
 public class RewindRoundsEvent {
 
-    /** 当前弹匣累计命中次数 */
+    /** NBT存储键：当前弹匣累计命中次数 */
     private static final String HIT_COUNT_TAG = "RewindRoundsHitCount";
-    /** 弹匣容量 */
+    /** NBT存储键：弹匣容量 */
     private static final String MAGAZINE_SIZE_TAG = "RewindRoundsMagazineSize";
-    /** 当前弹匣累计射击次数 */
+    /** NBT存储键：当前弹匣累计射击次数 */
     private static final String SHOTS_FIRED_TAG = "RewindRoundsShotsFired";
-    /** 上一tick的弹药数 */
+    /** NBT存储键：上一tick的弹药数 */
     private static final String PREV_AMMO_TAG = "RewindRoundsPrevAmmo";
 
     /**
@@ -106,8 +109,10 @@ public class RewindRoundsEvent {
     }
 
     /**
-     * 玩家每帧更新事件：回转弹药
+     * 玩家Tick事件：回转弹药
      * 检测射击行为并累计射击次数，当弹药从1变为0时，判断是否满足恢复条件并执行弹药恢复
+     *
+     * @param player 玩家实体
      */
     public static void onPlayerTick(Player player) {
         ItemStack gun = player.getMainHandItem();
@@ -152,22 +157,20 @@ public class RewindRoundsEvent {
                 double restorePercentage = TBZServerConfig.REWIND_ROUNDS_RESTORE_PERCENTAGE.get();
                 int ammoToRestore = (int) Math.round(hitCount * restorePercentage);
 
-                // 获取枪械使用的弹药类型
-                Optional<CommonGunIndex> gunIndexOpt = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun));
-                if (gunIndexOpt.isEmpty()) return;
+                // 获取枪械使用的弹药类型和弹匣容量
+                Optional<ResourceLocation> ammoId = GunEnchantmentHelper.getAmmoId(gun);
+                int maxMagazineSize = GunEnchantmentHelper.getMagazineSize(gun);
+                if (ammoId.isEmpty() || maxMagazineSize <= 0) return;
 
-                ResourceLocation ammoId = gunIndexOpt.get().getGunData().getAmmoId();
                 // 检查玩家背包中该弹药的可用数量
-                int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoId);
+                int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoId.get());
 
                 if (availableAmmo > 0) {
-                    // 获取枪械的弹匣容量上限
-                    int maxMagazineSize = gunIndexOpt.get().getGunData().getAmmoAmount();
                     // 实际恢复数不能超过：背包可用弹药、弹匣容量上限
                     ammoToRestore = Math.min(ammoToRestore, availableAmmo);
                     ammoToRestore = Math.min(ammoToRestore, maxMagazineSize);
                     // 从背包扣除弹药
-                    AmmoUtils.consumeAmmoFromInventory(player, ammoId, ammoToRestore);
+                    AmmoUtils.consumeAmmoFromInventory(player, ammoId.get(), ammoToRestore);
                     // 装填到枪械
                     iGun.setCurrentAmmoCount(gun, ammoToRestore);
 
@@ -175,6 +178,15 @@ public class RewindRoundsEvent {
                     tag.putInt(MAGAZINE_SIZE_TAG, ammoToRestore);
                     tag.putInt(HIT_COUNT_TAG, 0);
                     tag.putInt(SHOTS_FIRED_TAG, 0);
+
+                    // 同步到客户端，显示回转弹药触发
+                    if (player instanceof ServerPlayer serverPlayer) {
+                        long currentTime = player.level().getGameTime();
+                        HUDPacketHandler.INSTANCE.send(
+                                PacketDistributor.PLAYER.with(() -> serverPlayer),
+                                new TriggeredEnchantmentSyncPacket(player.getUUID(), "rewind_rounds", currentTime)
+                        );
+                    }
                 }
             }
             // 不满足射击次数要求时，不恢复弹药，计数会在下次换弹时重置

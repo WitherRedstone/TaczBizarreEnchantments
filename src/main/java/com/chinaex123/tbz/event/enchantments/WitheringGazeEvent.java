@@ -33,13 +33,13 @@ import net.minecraft.world.item.ItemStack;
  */
 public class WitheringGazeEvent {
 
-    /** 开始瞄准的时间 */
+    /** NBT存储键：开始瞄准的时间 */
     private static final String AIMING_START_TIME_TAG = "WitheringGazeAimingStartTime";
-    /** 是否已准备就绪 */
+    /** NBT存储键：是否已准备就绪 */
     private static final String READY_TAG = "WitheringGazeReady";
-    /** 是否已触发过效果 */
+    /** NBT存储键：是否已触发过效果 */
     private static final String TRIGGERED_TAG = "WitheringGazeTriggered";
-    /** 是否已播放过就绪音效 */
+    /** NBT存储键：是否已播放过就绪音效 */
     private static final String SOUND_PLAYED_TAG = "WitheringGazeSoundPlayed";
     /** 需要持续瞄准的刻数 */
     private static final int AIMING_REQUIRED_TICKS = 50;
@@ -87,7 +87,7 @@ public class WitheringGazeEvent {
     }
 
     /**
-     * 玩家每帧更新事件：枯萎凝视
+     * 玩家Tick事件：枯萎凝视
      * 追踪玩家的瞄准持续时间，达到阈值后标记为"就绪"状态并播放音效
      *
      * @param player 玩家实体
@@ -127,7 +127,7 @@ public class WitheringGazeEvent {
                     if (!tag.getBoolean(SOUND_PLAYED_TAG)) {
                         tag.putBoolean(SOUND_PLAYED_TAG, true);
                         // 播放就绪音效
-                        SoundUtils.playSoundForPlayer(player, SoundEvents.EXPERIENCE_ORB_PICKUP, 0.5f, 1.5f);
+                        SoundUtils.playSoundForPlayer(player, SoundEvents.EXPERIENCE_ORB_PICKUP, 1.0f, 1.5f);
                     }
                 }
             }

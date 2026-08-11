@@ -32,7 +32,7 @@ import net.minecraft.world.item.ItemStack;
  */
 public class RimestealerEvent {
 
-    /** 记录上次触发效果的击杀时间 */
+    /** NBT存储键：记录上次触发效果的击杀时间 */
     private static final String LAST_KILL_TIME_TAG = "RimestealerLastKillTime";
 
     /**

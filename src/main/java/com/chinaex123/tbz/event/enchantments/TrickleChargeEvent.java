@@ -3,9 +3,8 @@ package com.chinaex123.tbz.event.enchantments;
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.AmmoUtils;
-import com.tacz.guns.api.TimelessAPI;
+import com.chinaex123.tbz.utils.GunEnchantmentHelper;
 import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.resource.index.CommonGunIndex;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -41,15 +40,11 @@ public class TrickleChargeEvent {
         int enchantLevel = gun.getEnchantmentLevel(TBZEnchantments.TRICKLE_CHARGE.get());
         if (enchantLevel <= 0) return;
 
-        IGun iGun = IGun.getIGunOrNull(gun);
-        if (iGun == null) return;
-
         // 获取枪械数据
-        Optional<CommonGunIndex> gunIndexOpt = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun));
-        if (gunIndexOpt.isEmpty()) return;
-
-        int magazineSize = gunIndexOpt.get().getGunData().getAmmoAmount();
-        int currentAmmo = iGun.getCurrentAmmoCount(gun);
+        int magazineSize = GunEnchantmentHelper.getMagazineSize(gun);
+        int currentAmmo = GunEnchantmentHelper.getCurrentAmmo(gun);
+        Optional<ResourceLocation> ammoId = GunEnchantmentHelper.getAmmoId(gun);
+        if (magazineSize <= 0 || currentAmmo < 0 || ammoId.isEmpty()) return;
 
         // 计算需要补充的弹药量（弹匣容量的10%）
         double reloadPercentage = TBZServerConfig.TRICKLE_CHARGE_RECEIVE_PERCENTAGE.get();
@@ -63,11 +58,8 @@ public class TrickleChargeEvent {
             return;
         }
 
-        // 获取该枪械使用的弹药类型
-        ResourceLocation ammoId = gunIndexOpt.get().getGunData().getAmmoId();
-
         // 检查玩家背包中该弹药的可用数量
-        int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoId);
+        int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoId.get());
         if (availableAmmo <= 0) {
             return;
         }
@@ -76,11 +68,14 @@ public class TrickleChargeEvent {
         int ammoToTransfer = Math.min(actualReload, availableAmmo);
 
         // 从玩家背包扣除弹药
-        AmmoUtils.consumeAmmoFromInventory(player, ammoId, ammoToTransfer);
+        AmmoUtils.consumeAmmoFromInventory(player, ammoId.get(), ammoToTransfer);
 
         // 装填到枪械
-        int newAmmo = currentAmmo + ammoToTransfer;
-        iGun.setCurrentAmmoCount(gun, newAmmo);
+        IGun iGun = GunEnchantmentHelper.getIGun(gun);
+        if (iGun != null) {
+            int newAmmo = currentAmmo + ammoToTransfer;
+            iGun.setCurrentAmmoCount(gun, newAmmo);
+        }
     }
 
     /**
@@ -96,15 +91,11 @@ public class TrickleChargeEvent {
         int enchantLevel = gun.getEnchantmentLevel(TBZEnchantments.TRICKLE_CHARGE.get());
         if (enchantLevel <= 0) return;
 
-        IGun iGun = IGun.getIGunOrNull(gun);
-        if (iGun == null) return;
-
         // 获取枪械数据
-        Optional<CommonGunIndex> gunIndexOpt = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun));
-        if (gunIndexOpt.isEmpty()) return;
-
-        int magazineSize = gunIndexOpt.get().getGunData().getAmmoAmount();
-        int currentAmmo = iGun.getCurrentAmmoCount(gun);
+        int magazineSize = GunEnchantmentHelper.getMagazineSize(gun);
+        int currentAmmo = GunEnchantmentHelper.getCurrentAmmo(gun);
+        Optional<ResourceLocation> ammoId = GunEnchantmentHelper.getAmmoId(gun);
+        if (magazineSize <= 0 || currentAmmo < 0 || ammoId.isEmpty()) return;
 
         // 计算需要补充的弹药量（弹匣容量的20%）
         double reloadPercentage = TBZServerConfig.TRICKLE_CHARGE_RELEASE_PERCENTAGE.get();
@@ -118,11 +109,8 @@ public class TrickleChargeEvent {
             return;
         }
 
-        // 获取该枪械使用的弹药类型
-        ResourceLocation ammoId = gunIndexOpt.get().getGunData().getAmmoId();
-
         // 检查玩家背包中该弹药的可用数量
-        int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoId);
+        int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoId.get());
         if (availableAmmo <= 0) {
             return;
         }
@@ -131,10 +119,13 @@ public class TrickleChargeEvent {
         int ammoToTransfer = Math.min(actualReload, availableAmmo);
 
         // 从玩家背包扣除弹药
-        AmmoUtils.consumeAmmoFromInventory(player, ammoId, ammoToTransfer);
+        AmmoUtils.consumeAmmoFromInventory(player, ammoId.get(), ammoToTransfer);
 
         // 装填到枪械
-        int newAmmo = currentAmmo + ammoToTransfer;
-        iGun.setCurrentAmmoCount(gun, newAmmo);
+        IGun iGun = GunEnchantmentHelper.getIGun(gun);
+        if (iGun != null) {
+            int newAmmo = currentAmmo + ammoToTransfer;
+            iGun.setCurrentAmmoCount(gun, newAmmo);
+        }
     }
 }

@@ -3,10 +3,9 @@ package com.chinaex123.tbz.event.enchantments;
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.AmmoUtils;
-import com.tacz.guns.api.TimelessAPI;
+import com.chinaex123.tbz.utils.GunEnchantmentHelper;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.resource.index.CommonGunIndex;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -36,15 +35,15 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ReversalOfFortuneEvent {
 
-    /** 累计射偏次数 */
+    /** NBT存储键：累计射偏次数 */
     private static final String MISS_COUNT_TAG = "ReversalOfFortuneMissCount";
-    /** 第一次射偏的时间戳（毫秒） */
+    /** NBT存储键：第一次射偏的时间戳（毫秒） */
     private static final String FIRST_MISS_TIME_TAG = "ReversalOfFortuneFirstMissTime";
-    /** 上次触发返还的时间戳（毫秒） */
+    /** NBT存储键：上次触发返还的时间戳（毫秒） */
     private static final String LAST_REFUND_TIME_TAG = "ReversalOfFortuneLastRefundTime";
-    /** 冷却结束的时间戳（毫秒） */
+    /** NBT存储键：冷却结束的时间戳（毫秒） */
     private static final String COOLDOWN_UNTIL_TAG = "ReversalOfFortuneCooldownUntil";
-    /** 待检测的开火时间戳（毫秒） */
+    /** NBT存储键：待检测的开火时间戳（毫秒） */
     private static final String PENDING_SHOT_TIME_TAG = "ReversalOfFortunePendingShotTime";
 
     /** 记录每个玩家最后一次开火时间，用于在命中事件中清除待检测状态 */
@@ -80,7 +79,7 @@ public class ReversalOfFortuneEvent {
     }
 
     /**
-     * 玩家每帧更新事件：命运的逆转
+     * 玩家Tick事件：命运的逆转
      * 开火时如果子弹在3秒内射偏两发，则立马回复一发子弹
      *
      * @param player 玩家对象
@@ -200,19 +199,17 @@ public class ReversalOfFortuneEvent {
      */
     private static int refundAmmo(Player player, ItemStack gun, IGun iGun) {
         // 获取枪械数据
-        Optional<CommonGunIndex> gunIndexOpt = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun));
-        if (gunIndexOpt.isEmpty()) return 0;
-
-        // 获取弹匣容量和当前弹药数
-        int magazineSize = gunIndexOpt.get().getGunData().getAmmoAmount();
-        int currentAmmo = iGun.getCurrentAmmoCount(gun);
+        int magazineSize = GunEnchantmentHelper.getMagazineSize(gun);
+        int currentAmmo = GunEnchantmentHelper.getCurrentAmmo(gun);
+        Optional<ResourceLocation> ammoId = GunEnchantmentHelper.getAmmoId(gun);
+        if (magazineSize <= 0 || currentAmmo < 0 || ammoId.isEmpty()) return 0;
 
         // 弹匣已满，无需返还
         if (currentAmmo >= magazineSize) return 0;
 
-        // 获取弹药 ID 和背包可用弹药数
-        ResourceLocation ammoId = gunIndexOpt.get().getGunData().getAmmoId();
-        int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoId);
+        // 获取背包可用弹药数
+        ResourceLocation ammoIdValue = ammoId.get();
+        int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoIdValue);
         if (availableAmmo <= 0) return 0;
 
         // 计算实际返还数量（取 配置返还量 / 弹匣空位 / 背包可用 的最小值）
@@ -222,7 +219,7 @@ public class ReversalOfFortuneEvent {
         int ammoToTransfer = Math.min(actualRefund, availableAmmo);
 
         // 从背包扣除弹药，填充到弹匣
-        AmmoUtils.consumeAmmoFromInventory(player, ammoId, ammoToTransfer);
+        AmmoUtils.consumeAmmoFromInventory(player, ammoIdValue, ammoToTransfer);
         int newAmmo = currentAmmo + ammoToTransfer;
         iGun.setCurrentAmmoCount(gun, newAmmo);
 

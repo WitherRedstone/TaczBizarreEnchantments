@@ -1,5 +1,6 @@
 package com.chinaex123.tbz.event.enchantments;
 
+import com.chinaex123.tbz.TBZMod;
 import com.chinaex123.tbz.api.IShootIntervalAdjuster;
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
@@ -97,7 +98,7 @@ public class AdagioEvent {
         IShootIntervalAdjuster adjuster = getShootAdjuster(player);
         if (adjuster != null) {
             adjuster.tbz$RestoreFireRate(); // 重置之前的柔缓状态
-            
+
             // 使用通用方法应用射速修改
             float slowPercent = TBZServerConfig.ADAGIO_FIRE_RATE_SLOWDOWN.get().floatValue();
             adjuster.tbz$ApplyFireRateModifier(player, enchantLevel, gun, slowPercent, TBZServerConfig.ADAGIO_DURATION.get());
@@ -141,13 +142,14 @@ public class AdagioEvent {
             }
 
             return (IShootIntervalAdjuster) dataHolder;
-        } catch (Exception e) {
+        } catch (ClassCastException e) {
+            TBZMod.LOGGER.warn("[AdagioEvent.getShootAdjuster] 类型转换失败: {}", e.getMessage());
             return null;
         }
     }
 
     /**
-     * 玩家每帧更新事件：柔缓
+     * 玩家Tick事件：柔缓
      * 管理柔缓状态的持续和清理
      *
      * @param player 玩家对象

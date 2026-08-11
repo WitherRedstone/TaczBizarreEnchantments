@@ -71,8 +71,9 @@ public class ExplosionUtils {
 
             // 对周围生物造成溅射伤害
             if (range > 0 && splashMin > 0 && splashMax > splashMin) {
+                double rangeSqr = range * range;
                 for (LivingEntity nearby : serverLevel.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(range))) {
-                    if (nearby != entity) {
+                    if (nearby != entity && entity.distanceToSqr(nearby) <= rangeSqr) {
                         float splashDamage = splashMin + (float)(Math.random() * (splashMax - splashMin));
                         nearby.hurt(nearby.damageSources().generic(), splashDamage);
                     }
@@ -146,8 +147,9 @@ public class ExplosionUtils {
 
             // 对周围生物造成溅射伤害
             if (range > 0 && splashMin > 0 && splashMax > splashMin) {
+                double rangeSqr = range * range;
                 for (LivingEntity nearby : serverLevel.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(range))) {
-                    if (nearby != entity) {
+                    if (nearby != entity && entity.distanceToSqr(nearby) <= rangeSqr) {
                         float splashDamage = splashMin + (float)(Math.random() * (splashMax - splashMin));
                         nearby.hurt(nearby.damageSources().generic(), splashDamage);
                     }
@@ -213,11 +215,14 @@ public class ExplosionUtils {
 
             // 对周围生物造成溅射伤害
             if (range > 0 && splashMin > 0 && splashMax > splashMin) {
+                double rangeSqr = range * range;
                 for (LivingEntity nearby : serverLevel.getEntitiesOfClass(LivingEntity.class, 
                         new AABB(pos.x - range, pos.y - range, pos.z - range, 
                                 pos.x + range, pos.y + range, pos.z + range))) {
-                    float splashDamage = splashMin + (float)(Math.random() * (splashMax - splashMin));
-                    nearby.hurt(nearby.damageSources().generic(), splashDamage);
+                    if (nearby.distanceToSqr(pos.x, pos.y, pos.z) <= rangeSqr) {
+                        float splashDamage = splashMin + (float)(Math.random() * (splashMax - splashMin));
+                        nearby.hurt(nearby.damageSources().generic(), splashDamage);
+                    }
                 }
             }
         }

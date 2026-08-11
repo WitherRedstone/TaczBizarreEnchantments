@@ -34,7 +34,7 @@ import net.minecraft.world.level.Level;
  */
 public class SliceEvent {
 
-    /** 记录上次触发效果的命中时间 */
+    /** NBT存储键：记录上次触发效果的命中时间 */
     private static final String LAST_HIT_TIME_TAG = "SliceLastHitTime";
 
     /**

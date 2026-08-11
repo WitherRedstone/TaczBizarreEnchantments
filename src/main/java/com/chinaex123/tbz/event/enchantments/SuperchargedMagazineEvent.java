@@ -4,9 +4,8 @@ import com.chinaex123.funky_effect_lib.init.FELEffects;
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.utils.AmmoUtils;
-import com.tacz.guns.api.TimelessAPI;
+import com.chinaex123.tbz.utils.GunEnchantmentHelper;
 import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.resource.index.CommonGunIndex;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -35,7 +34,7 @@ public class SuperchargedMagazineEvent {
     private static final Map<UUID, Long> lastReloadTimeMap = new HashMap<>();
 
     /**
-     * 玩家每帧更新事件：超充弹匣
+     * 玩家Tick事件：超充弹匣
      * 检查玩家主手的武器是否拥有超充弹匣附魔，并在满足条件时执行弹药补充
      *
      * @param player 需要检查的玩家对象
@@ -47,17 +46,11 @@ public class SuperchargedMagazineEvent {
         int enchantLevel = mainHand.getEnchantmentLevel(TBZEnchantments.SUPERCHARGED_MAGAZINE.get());
         if (enchantLevel <= 0) return;
 
-        // 检查主手物品是否为枪械，如果不是则直接返回
-        IGun iGun = IGun.getIGunOrNull(mainHand);
-        if (iGun == null) return;
-
-        // 获取枪械的数据索引，如果获取失败则直接返回
-        Optional<CommonGunIndex> gunIndexOpt = TimelessAPI.getCommonGunIndex(iGun.getGunId(mainHand));
-        if (gunIndexOpt.isEmpty()) return;
-
-        // 获取弹匣容量和当前弹药数量
-        int magazineSize = gunIndexOpt.get().getGunData().getAmmoAmount();
-        int currentAmmo = iGun.getCurrentAmmoCount(mainHand);
+        // 获取枪械数据
+        int magazineSize = GunEnchantmentHelper.getMagazineSize(mainHand);
+        int currentAmmo = GunEnchantmentHelper.getCurrentAmmo(mainHand);
+        Optional<ResourceLocation> ammoId = GunEnchantmentHelper.getAmmoId(mainHand);
+        if (magazineSize <= 0 || currentAmmo < 0 || ammoId.isEmpty()) return;
 
         // 如果弹匣已满，无需补充弹药，直接返回
         if (currentAmmo >= magazineSize) return;
@@ -86,19 +79,22 @@ public class SuperchargedMagazineEvent {
         if (actualReload <= 0) return;
 
         // 检查玩家背包中是否有足够的备弹
-        ResourceLocation ammoId = gunIndexOpt.get().getGunData().getAmmoId();
-        int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoId);
+        ResourceLocation ammoIdValue = ammoId.get();
+        int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoIdValue);
         if (availableAmmo <= 0) return;
 
         // 计算实际可从背包转移到弹匣的弹药数量（取补充量和可用备弹的较小值）
         int ammoToTransfer = Math.min(actualReload, availableAmmo);
 
         // 从玩家背包中消耗对应的弹药
-        AmmoUtils.consumeAmmoFromInventory(player, ammoId, ammoToTransfer);
+        AmmoUtils.consumeAmmoFromInventory(player, ammoIdValue, ammoToTransfer);
 
         // 更新枪械弹匣中的弹药数量
         int newAmmo = currentAmmo + ammoToTransfer;
-        iGun.setCurrentAmmoCount(mainHand, newAmmo);
+        IGun iGun = GunEnchantmentHelper.getIGun(mainHand);
+        if (iGun != null) {
+            iGun.setCurrentAmmoCount(mainHand, newAmmo);
+        }
 
         // 记录本次补充的时间戳，用于计算下一次补充的冷却时间
         lastReloadTimeMap.put(playerId, currentTime);

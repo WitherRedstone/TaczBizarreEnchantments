@@ -32,9 +32,9 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
  */
 public class ButterflyEvent {
 
-    /** 开始瞄准的时间 */
+    /** NBT存储键：开始瞄准的时间 */
     private static final String AIMING_START_TIME_TAG = "ButterflyAimingStartTime";
-    /** 附魔是否已激活 */
+    /** NBT存储键：附魔是否已激活 */
     private static final String ACTIVE_TAG = "ButterflyActive";
     /** 需要持续瞄准的刻数 */
     private static final int AIMING_REQUIRED_TICKS = 50;
@@ -76,7 +76,7 @@ public class ButterflyEvent {
     }
 
     /**
-     * 玩家每帧更新事件：蝴蝶
+     * 玩家Tick事件：蝴蝶
      * 追踪玩家的瞄准持续时间，达到阈值后激活附魔
      *
      * @param player 玩家实体

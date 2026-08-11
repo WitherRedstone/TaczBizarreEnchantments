@@ -38,6 +38,107 @@ public class TBZServerConfig {
     public static ForgeConfigSpec.BooleanValue REIGN_HAVOC_WEAPON_TYPE_WHITELIST_MODE;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> REIGN_HAVOC_APPLICABLE_WEAPON_TYPES;
 
+    // ========== SUROS遗产 ==========
+    public static ForgeConfigSpec.IntValue SUROS_LEGACY_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue SUROS_LEGACY_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue SUROS_LEGACY_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue SUROS_LEGACY_MAX_LEVEL;
+    public static ForgeConfigSpec.DoubleValue SUROS_LEGACY_DAMAGE_BONUS;
+    public static ForgeConfigSpec.DoubleValue SUROS_LEGACY_CURE_CHANCE;
+    public static ForgeConfigSpec.BooleanValue SUROS_LEGACY_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> SUROS_LEGACY_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue SUROS_LEGACY_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> SUROS_LEGACY_APPLICABLE_WEAPON_TYPES;
+
+    // ========== 古昧的折磨 ==========
+    public static ForgeConfigSpec.IntValue PRIMEVALS_TORMENT_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue PRIMEVALS_TORMENT_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue PRIMEVALS_TORMENT_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue PRIMEVALS_TORMENT_MAX_LEVEL;
+    public static ForgeConfigSpec.DoubleValue PRIMEVALS_TORMENT_TRIGGER_CHANCE;
+    public static ForgeConfigSpec.DoubleValue PRIMEVALS_TORMENT_RANGE;
+    public static ForgeConfigSpec.IntValue PRIMEVALS_TORMENT_EFFECT_DURATION;
+    public static ForgeConfigSpec.IntValue PRIMEVALS_TORMENT_EFFECT_LEVEL;
+    public static ForgeConfigSpec.BooleanValue PRIMEVALS_TORMENT_SHOW_PARTICLES;
+    public static ForgeConfigSpec.BooleanValue PRIMEVALS_TORMENT_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> PRIMEVALS_TORMENT_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue PRIMEVALS_TORMENT_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> PRIMEVALS_TORMENT_APPLICABLE_WEAPON_TYPES;
+
+    // ========== 到此为止 ==========
+    public static ForgeConfigSpec.IntValue FULL_STOP_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue FULL_STOP_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue FULL_STOP_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue FULL_STOP_MAX_LEVEL;
+    public static ForgeConfigSpec.DoubleValue FULL_STOP_HEADSHOT_MULTIPLIER;
+    public static ForgeConfigSpec.BooleanValue FULL_STOP_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> FULL_STOP_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue FULL_STOP_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> FULL_STOP_APPLICABLE_WEAPON_TYPES;
+
+    // ========== 蔓延羸弱 ==========
+    public static ForgeConfigSpec.IntValue CREEPING_ATTRITION_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue CREEPING_ATTRITION_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue CREEPING_ATTRITION_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue CREEPING_ATTRITION_MAX_LEVEL;
+    public static ForgeConfigSpec.IntValue CREEPING_ATTRITION_REQUIRED_HEADSHOTS;
+    public static ForgeConfigSpec.IntValue CREEPING_ATTRITION_TIME_WINDOW;
+    public static ForgeConfigSpec.IntValue CREEPING_ATTRITION_SLOW_DURATION;
+    public static ForgeConfigSpec.IntValue CREEPING_ATTRITION_SLOW_LEVEL;
+    public static ForgeConfigSpec.BooleanValue CREEPING_ATTRITION_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> CREEPING_ATTRITION_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue CREEPING_ATTRITION_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> CREEPING_ATTRITION_APPLICABLE_WEAPON_TYPES;
+
+    // ========== 恶意触碰 ==========
+    public static ForgeConfigSpec.IntValue TOUCH_OF_MALICE_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue TOUCH_OF_MALICE_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue TOUCH_OF_MALICE_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue TOUCH_OF_MALICE_MAX_LEVEL;
+    public static ForgeConfigSpec.DoubleValue TOUCH_OF_MALICE_DAMAGE_BONUS_PER_HEART;
+    public static ForgeConfigSpec.BooleanValue TOUCH_OF_MALICE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> TOUCH_OF_MALICE_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue TOUCH_OF_MALICE_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> TOUCH_OF_MALICE_APPLICABLE_WEAPON_TYPES;
+
+    // ========== 正确抉择 ==========
+    public static ForgeConfigSpec.IntValue THE_RIGHT_CHOICE_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue THE_RIGHT_CHOICE_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue THE_RIGHT_CHOICE_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue THE_RIGHT_CHOICE_MAX_LEVEL;
+    public static ForgeConfigSpec.IntValue THE_RIGHT_CHOICE_TRIGGER_INTERVAL;
+    public static ForgeConfigSpec.DoubleValue THE_RIGHT_CHOICE_RANGE;
+    public static ForgeConfigSpec.BooleanValue THE_RIGHT_CHOICE_SHOW_PARTICLES;
+    public static ForgeConfigSpec.BooleanValue THE_RIGHT_CHOICE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> THE_RIGHT_CHOICE_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue THE_RIGHT_CHOICE_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> THE_RIGHT_CHOICE_APPLICABLE_WEAPON_TYPES;
+
+    // ========== 十六进制 ==========
+    public static ForgeConfigSpec.IntValue VEXADECIMAL_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue VEXADECIMAL_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue VEXADECIMAL_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue VEXADECIMAL_MAX_LEVEL;
+    public static ForgeConfigSpec.IntValue VEXADECIMAL_WEAKNESS_DURATION;
+    public static ForgeConfigSpec.IntValue VEXADECIMAL_WEAKNESS_LEVEL;
+    public static ForgeConfigSpec.DoubleValue VEXADECIMAL_EXTRA_DAMAGE_PERCENT;
+    public static ForgeConfigSpec.BooleanValue VEXADECIMAL_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> VEXADECIMAL_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue VEXADECIMAL_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> VEXADECIMAL_APPLICABLE_WEAPON_TYPES;
+
+    // ========== 私人助手 ==========
+    public static ForgeConfigSpec.IntValue PERSONAL_ASSISTANT_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue PERSONAL_ASSISTANT_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue PERSONAL_ASSISTANT_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue PERSONAL_ASSISTANT_MAX_LEVEL;
+    public static ForgeConfigSpec.IntValue PERSONAL_ASSISTANT_JOLT_DURATION;
+    public static ForgeConfigSpec.IntValue PERSONAL_ASSISTANT_JOLT_LEVEL;
+    public static ForgeConfigSpec.BooleanValue PERSONAL_ASSISTANT_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> PERSONAL_ASSISTANT_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue PERSONAL_ASSISTANT_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> PERSONAL_ASSISTANT_APPLICABLE_WEAPON_TYPES;
+
     // ========== 斩首武器 ==========
     public static ForgeConfigSpec.IntValue BORPAL_WEAPON_BASE_ENCHANTABILITY;
     public static ForgeConfigSpec.IntValue BORPAL_WEAPON_LEVEL_ENCHANTABILITY;
@@ -94,10 +195,100 @@ public class TBZServerConfig {
     public static ForgeConfigSpec.DoubleValue THERMAL_ATOMIZATION_EXPLOSION_MIN_DAMAGE;
     public static ForgeConfigSpec.DoubleValue THERMAL_ATOMIZATION_EXPLOSION_MAX_DAMAGE;
     public static ForgeConfigSpec.DoubleValue THERMAL_ATOMIZATION_EXPLOSION_RANGE;
+    public static ForgeConfigSpec.BooleanValue THERMAL_ATOMIZATION_SHOW_PARTICLES;
     public static ForgeConfigSpec.BooleanValue THERMAL_ATOMIZATION_WHITELIST_MODE;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> THERMAL_ATOMIZATION_APPLICABLE_GUNS;
     public static ForgeConfigSpec.BooleanValue THERMAL_ATOMIZATION_WEAPON_TYPE_WHITELIST_MODE;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> THERMAL_ATOMIZATION_APPLICABLE_WEAPON_TYPES;
+
+    // ========== 斗剑士 ==========
+    public static ForgeConfigSpec.IntValue SWASHBUCKLER_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue SWASHBUCKLER_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue SWASHBUCKLER_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue SWASHBUCKLER_MAX_LEVEL;
+    public static ForgeConfigSpec.IntValue SWASHBUCKLER_MAX_STACKS;
+    public static ForgeConfigSpec.DoubleValue SWASHBUCKLER_DECREASE_INTERVAL_SECONDS;
+    public static ForgeConfigSpec.BooleanValue SWASHBUCKLER_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> SWASHBUCKLER_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue SWASHBUCKLER_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> SWASHBUCKLER_APPLICABLE_WEAPON_TYPES;
+
+    // ========== 我为人人 ==========
+    public static ForgeConfigSpec.IntValue ONE_FOR_ALL_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue ONE_FOR_ALL_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue ONE_FOR_ALL_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue ONE_FOR_ALL_MAX_LEVEL;
+    public static ForgeConfigSpec.DoubleValue ONE_FOR_ALL_DAMAGE_BONUS;
+    public static ForgeConfigSpec.DoubleValue ONE_FOR_ALL_DURATION_SECONDS;
+    public static ForgeConfigSpec.IntValue ONE_FOR_ALL_REQUIRED_HITS;
+    public static ForgeConfigSpec.BooleanValue ONE_FOR_ALL_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> ONE_FOR_ALL_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue ONE_FOR_ALL_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> ONE_FOR_ALL_APPLICABLE_WEAPON_TYPES;
+
+    // ========== 武器大师 ==========
+    public static ForgeConfigSpec.IntValue MASTER_OF_ARMS_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue MASTER_OF_ARMS_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue MASTER_OF_ARMS_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue MASTER_OF_ARMS_MAX_LEVEL;
+    public static ForgeConfigSpec.DoubleValue MASTER_OF_ARMS_STACK_1_DAMAGE_BONUS;
+    public static ForgeConfigSpec.DoubleValue MASTER_OF_ARMS_STACK_1_DURATION_SECONDS;
+    public static ForgeConfigSpec.DoubleValue MASTER_OF_ARMS_STACK_2_DAMAGE_BONUS;
+    public static ForgeConfigSpec.DoubleValue MASTER_OF_ARMS_STACK_2_DURATION_SECONDS;
+    public static ForgeConfigSpec.BooleanValue MASTER_OF_ARMS_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> MASTER_OF_ARMS_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue MASTER_OF_ARMS_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> MASTER_OF_ARMS_APPLICABLE_WEAPON_TYPES;
+
+    // ========== 聚合充能 ==========
+    public static ForgeConfigSpec.IntValue AGGREGATE_CHARGE_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue AGGREGATE_CHARGE_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue AGGREGATE_CHARGE_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue AGGREGATE_CHARGE_MAX_LEVEL;
+    public static ForgeConfigSpec.DoubleValue AGGREGATE_CHARGE_DAMAGE_BONUS_PER_DEBUFF;
+    public static ForgeConfigSpec.BooleanValue AGGREGATE_CHARGE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> AGGREGATE_CHARGE_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue AGGREGATE_CHARGE_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> AGGREGATE_CHARGE_APPLICABLE_WEAPON_TYPES;
+
+    // ========== 火线 ==========
+    public static ForgeConfigSpec.IntValue FIRING_LINE_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue FIRING_LINE_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue FIRING_LINE_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue FIRING_LINE_MAX_LEVEL;
+    public static ForgeConfigSpec.DoubleValue FIRING_LINE_RADIUS;
+    public static ForgeConfigSpec.IntValue FIRING_LINE_REQUIRED_PLAYERS;
+    public static ForgeConfigSpec.DoubleValue FIRING_LINE_DAMAGE_BONUS;
+    public static ForgeConfigSpec.BooleanValue FIRING_LINE_EXCLUDE_SELF;
+    public static ForgeConfigSpec.BooleanValue FIRING_LINE_SHOW_PARTICLES;
+    public static ForgeConfigSpec.BooleanValue FIRING_LINE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> FIRING_LINE_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue FIRING_LINE_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> FIRING_LINE_APPLICABLE_WEAPON_TYPES;
+
+    // ========== 盒式呼吸法 ==========
+    public static ForgeConfigSpec.IntValue BOX_BREATHING_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue BOX_BREATHING_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue BOX_BREATHING_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue BOX_BREATHING_MAX_LEVEL;
+    public static ForgeConfigSpec.DoubleValue BOX_BREATHING_DAMAGE_BONUS;
+    public static ForgeConfigSpec.BooleanValue BOX_BREATHING_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> BOX_BREATHING_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue BOX_BREATHING_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> BOX_BREATHING_APPLICABLE_WEAPON_TYPES;
+
+    // ========== 爆炸光能 ==========
+    public static ForgeConfigSpec.IntValue EXPLOSIVE_LIGHT_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue EXPLOSIVE_LIGHT_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue EXPLOSIVE_LIGHT_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue EXPLOSIVE_LIGHT_MAX_LEVEL;
+    public static ForgeConfigSpec.DoubleValue EXPLOSIVE_LIGHT_DAMAGE_BONUS;
+    public static ForgeConfigSpec.IntValue EXPLOSIVE_LIGHT_XP_PER_STACK;
+    public static ForgeConfigSpec.IntValue EXPLOSIVE_LIGHT_MAX_STACKS;
+    public static ForgeConfigSpec.BooleanValue EXPLOSIVE_LIGHT_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> EXPLOSIVE_LIGHT_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue EXPLOSIVE_LIGHT_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> EXPLOSIVE_LIGHT_APPLICABLE_WEAPON_TYPES;
 
     // ========== 维持生计 ==========
     public static ForgeConfigSpec.IntValue SUBSISTENCE_BASE_ENCHANTABILITY;
@@ -170,6 +361,7 @@ public class TBZServerConfig {
     public static ForgeConfigSpec.IntValue REWIND_ROUNDS_MAX_LEVEL;
     public static ForgeConfigSpec.DoubleValue REWIND_ROUNDS_RESTORE_PERCENTAGE;
     public static ForgeConfigSpec.DoubleValue REWIND_ROUNDS_MIN_FIRE_PERCENTAGE;
+    public static ForgeConfigSpec.DoubleValue TARGET_LOCK_TIMEOUT_SECONDS;
     public static ForgeConfigSpec.BooleanValue REWIND_ROUNDS_WHITELIST_MODE;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> REWIND_ROUNDS_APPLICABLE_GUNS;
     public static ForgeConfigSpec.BooleanValue REWIND_ROUNDS_WEAPON_TYPE_WHITELIST_MODE;
@@ -224,6 +416,18 @@ public class TBZServerConfig {
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> REVERSAL_OF_FORTUNE_APPLICABLE_GUNS;
     public static ForgeConfigSpec.BooleanValue REVERSAL_OF_FORTUNE_WEAPON_TYPE_WHITELIST_MODE;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> REVERSAL_OF_FORTUNE_APPLICABLE_WEAPON_TYPES;
+
+    // ========== 小丑皇弹药筒 ==========
+    public static ForgeConfigSpec.IntValue CLOWN_CARTRIDGE_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue CLOWN_CARTRIDGE_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue CLOWN_CARTRIDGE_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue CLOWN_CARTRIDGE_MAX_LEVEL;
+    public static ForgeConfigSpec.DoubleValue CLOWN_CARTRIDGE_MIN_PERCENTAGE;
+    public static ForgeConfigSpec.DoubleValue CLOWN_CARTRIDGE_MAX_PERCENTAGE;
+    public static ForgeConfigSpec.BooleanValue CLOWN_CARTRIDGE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> CLOWN_CARTRIDGE_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue CLOWN_CARTRIDGE_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> CLOWN_CARTRIDGE_APPLICABLE_WEAPON_TYPES;
 
     // ========== 治疗弹匣 ==========
     public static ForgeConfigSpec.IntValue HEAL_CLIP_BASE_ENCHANTABILITY;
@@ -342,6 +546,18 @@ public class TBZServerConfig {
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> WITHERING_GAZE_APPLICABLE_GUNS;
     public static ForgeConfigSpec.BooleanValue WITHERING_GAZE_WEAPON_TYPE_WHITELIST_MODE;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> WITHERING_GAZE_APPLICABLE_WEAPON_TYPES;
+
+    // ========== 燃烧野心 ==========
+    public static ForgeConfigSpec.IntValue BURNING_AMBITION_BASE_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue BURNING_AMBITION_LEVEL_ENCHANTABILITY;
+    public static ForgeConfigSpec.IntValue BURNING_AMBITION_ENCHANTABILITY_SPAN;
+    public static ForgeConfigSpec.IntValue BURNING_AMBITION_MAX_LEVEL;
+    public static ForgeConfigSpec.IntValue BURNING_AMBITION_SHOTS_PER_STACK;
+    public static ForgeConfigSpec.IntValue BURNING_AMBITION_STACKS_PER_HIT;
+    public static ForgeConfigSpec.BooleanValue BURNING_AMBITION_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> BURNING_AMBITION_APPLICABLE_GUNS;
+    public static ForgeConfigSpec.BooleanValue BURNING_AMBITION_WEAPON_TYPE_WHITELIST_MODE;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> BURNING_AMBITION_APPLICABLE_WEAPON_TYPES;
 
     // ========== 蝴蝶 ==========
     public static ForgeConfigSpec.IntValue BUTTERFLY_BASE_ENCHANTABILITY;
@@ -561,8 +777,8 @@ public class TBZServerConfig {
         builder.push("Exotic");
         builder.comment("[异域]类型附魔");
 
-        builder.push("ProtectiveWeave");
-        builder.comment("防护编织附魔配置");
+        builder.push("Protective Weave");
+        builder.comment("防护编织");
         PROTECTIVE_WEAVE_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);
@@ -579,19 +795,19 @@ public class TBZServerConfig {
                 .comment("拥有织造铠甲时的伤害加成（0.0-1.0，0.15表示15%）")
                 .defineInRange("damageBonus", 0.15, 0.0, 1.0);
         PROTECTIVE_WEAVE_WOVEN_MAIL_DURATION = builder
-                .comment("没有织造铠甲时给予的持续时间（刻）")
+                .comment("没有织造铠甲时给予的持续时间（tick）")
                 .defineInRange("wovenMailDuration", 200, 50, 600);
         PROTECTIVE_WEAVE_WOVEN_MAIL_AMPLIFIER = builder
                 .comment("没有织造铠甲时给予的等级")
                 .defineInRange("wovenMailAmplifier", 0, 0, 2);
         PROTECTIVE_WEAVE_COOLDOWN_TICKS = builder
-                .comment("没有织造铠甲时给予效果的冷却时间（刻）")
+                .comment("没有织造铠甲时给予效果的冷却时间（tick）")
                 .defineInRange("cooldownTicks", 300, 100, 600);
         PROTECTIVE_WEAVE_EXTEND_DURATION = builder
-                .comment("有效果时延长的持续时间（刻）")
+                .comment("有效果时延长的持续时间（tick）")
                 .defineInRange("extendDuration", 100, 20, 300);
         PROTECTIVE_WEAVE_MAX_DURATION = builder
-                .comment("有效果时延长的最大持续时间（刻）")
+                .comment("有效果时延长的最大持续时间（tick）")
                 .defineInRange("maxDuration", 1200, 600, 2400);
         builder.push("Whitelist & Blacklist");
         PROTECTIVE_WEAVE_WHITELIST_MODE = builder
@@ -622,8 +838,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("ReignHavoc");
-        builder.comment("统治浩劫附魔配置");
+        builder.push("Reign Havoc");
+        builder.comment("统治浩劫");
         REIGN_HAVOC_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);
@@ -679,14 +895,439 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
+        builder.push("Suros Legacy");
+        builder.comment("SUROS遗产");
+        SUROS_LEGACY_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 5);
+        SUROS_LEGACY_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 15, 1, 100);
+        SUROS_LEGACY_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本增量")
+                .defineInRange("levelEnchantability", 10, 1, 50);
+        SUROS_LEGACY_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 30, 1, 100);
+        SUROS_LEGACY_DAMAGE_BONUS = builder
+                .comment("弹匣后半子弹造成的额外伤害比例（0.05 = 5%）")
+                .defineInRange("damageBonus", 0.05, 0.0, 1.0);
+        SUROS_LEGACY_CURE_CHANCE = builder
+                .comment("击杀时触发治愈效果的概率（0.33 = 33%）")
+                .defineInRange("cureChance", 0.33, 0.0, 1.0);
+        builder.push("Whitelist & Blacklist");
+        SUROS_LEGACY_WHITELIST_MODE = builder
+                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        SUROS_LEGACY_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:ak47\", \"tacz:m4a1\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(), obj -> obj instanceof String);
+        SUROS_LEGACY_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        SUROS_LEGACY_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "pistol", "smg", "sniper", "shotgun", "rpg", "mg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
+        builder.push("Primevals Torment");
+        builder.comment("古昧的折磨");
+        PRIMEVALS_TORMENT_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 5);
+        PRIMEVALS_TORMENT_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 20, 1, 100);
+        PRIMEVALS_TORMENT_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本增量")
+                .defineInRange("levelEnchantability", 10, 1, 50);
+        PRIMEVALS_TORMENT_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 30, 1, 100);
+        PRIMEVALS_TORMENT_TRIGGER_CHANCE = builder
+                .comment("触发概率（0.0-1.0，1.0表示100%）")
+                .defineInRange("triggerChance", 1.0, 0.0, 1.0);
+        PRIMEVALS_TORMENT_RANGE = builder
+                .comment("范围影响半径（格）")
+                .defineInRange("range", 3.0, 1.0, 10.0);
+        PRIMEVALS_TORMENT_EFFECT_DURATION = builder
+                .comment("凋零效果持续时间（秒）")
+                .defineInRange("effectDuration", 10, 1, 60);
+        PRIMEVALS_TORMENT_EFFECT_LEVEL = builder
+                .comment("凋零效果等级（1-5）")
+                .defineInRange("effectLevel", 2, 1, 5);
+        PRIMEVALS_TORMENT_SHOW_PARTICLES = builder
+                .comment("是否显示圆形粒子效果（true=显示，false=不显示）")
+                .define("showParticles", true);
+        builder.push("Whitelist & Blacklist");
+        PRIMEVALS_TORMENT_WHITELIST_MODE = builder
+                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        PRIMEVALS_TORMENT_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:scar_l\", \"tacz:hk416\", \"tacz:awp\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(), obj -> obj instanceof String);
+        PRIMEVALS_TORMENT_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", true);
+        PRIMEVALS_TORMENT_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "rpg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
+        builder.push("Full Stop");
+        builder.comment("到此为止");
+        FULL_STOP_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 5);
+        FULL_STOP_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 20, 1, 100);
+        FULL_STOP_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本增量")
+                .defineInRange("levelEnchantability", 10, 1, 50);
+        FULL_STOP_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 30, 1, 100);
+        FULL_STOP_HEADSHOT_MULTIPLIER = builder
+                .comment("爆头伤害倍率（3.0表示3倍伤害）")
+                .defineInRange("headshotMultiplier", 3.0, 1.0, 10.0);
+        builder.push("Whitelist & Blacklist");
+        FULL_STOP_WHITELIST_MODE = builder
+                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        FULL_STOP_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:scar_l\", \"tacz:hk416\", \"tacz:awp\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(), obj -> obj instanceof String);
+        FULL_STOP_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        FULL_STOP_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "sniper", "shotgun", "rpg", "mg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
+        builder.push("Creeping Attrition");
+        builder.comment("蔓延羸弱");
+        CREEPING_ATTRITION_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 5);
+        CREEPING_ATTRITION_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 20, 1, 100);
+        CREEPING_ATTRITION_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本增量")
+                .defineInRange("levelEnchantability", 10, 1, 50);
+        CREEPING_ATTRITION_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 30, 1, 100);
+        CREEPING_ATTRITION_REQUIRED_HEADSHOTS = builder
+                .comment("触发所需的爆头命中次数")
+                .defineInRange("requiredHeadshots", 5, 1, 10);
+        CREEPING_ATTRITION_TIME_WINDOW = builder
+                .comment("有效时间窗口（tick，20tick=1秒）")
+                .defineInRange("timeWindow", 60, 20, 300);
+        CREEPING_ATTRITION_SLOW_DURATION = builder
+                .comment("减速效果持续时间（tick，20tick=1秒）")
+                .defineInRange("slowDuration", 160, 20, 300);
+        CREEPING_ATTRITION_SLOW_LEVEL = builder
+                .comment("减速效果等级（1-5）")
+                .defineInRange("slowLevel", 1, 1, 5);
+        builder.push("Whitelist & Blacklist");
+        CREEPING_ATTRITION_WHITELIST_MODE = builder
+                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        CREEPING_ATTRITION_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:scar_l\", \"tacz:hk416\", \"tacz:awp\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(), obj -> obj instanceof String);
+        CREEPING_ATTRITION_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        CREEPING_ATTRITION_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "smg", "rifle", "sniper", "shotgun", "rpg", "mg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
+        builder.push("Touch of Malice");
+        builder.comment("恶意触碰");
+        TOUCH_OF_MALICE_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 5);
+        TOUCH_OF_MALICE_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 20, 1, 100);
+        TOUCH_OF_MALICE_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本增量")
+                .defineInRange("levelEnchantability", 10, 1, 50);
+        TOUCH_OF_MALICE_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 30, 1, 100);
+        TOUCH_OF_MALICE_DAMAGE_BONUS_PER_HEART = builder
+                .comment("每颗心提供的额外伤害百分比（0.05表示5%）")
+                .defineInRange("damageBonusPerHeart", 0.05, 0.01, 0.5);
+        builder.push("Whitelist & Blacklist");
+        TOUCH_OF_MALICE_WHITELIST_MODE = builder
+                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        TOUCH_OF_MALICE_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:scar_l\", \"tacz:hk416\", \"tacz:awp\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(), obj -> obj instanceof String);
+        TOUCH_OF_MALICE_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        TOUCH_OF_MALICE_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "pistol", "smg", "sniper", "shotgun", "rpg", "mg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
+        builder.push("The Right Choice");
+        builder.comment("正确抉择");
+        THE_RIGHT_CHOICE_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 5);
+        THE_RIGHT_CHOICE_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 20, 1, 100);
+        THE_RIGHT_CHOICE_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本增量")
+                .defineInRange("levelEnchantability", 10, 1, 50);
+        THE_RIGHT_CHOICE_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 30, 1, 100);
+        THE_RIGHT_CHOICE_TRIGGER_INTERVAL = builder
+                .comment("触发间隔（射击次数，默认7）")
+                .defineInRange("triggerInterval", 7, 1, 20);
+        THE_RIGHT_CHOICE_RANGE = builder
+                .comment("弹射范围（格）")
+                .defineInRange("range", 5.0, 1.0, 20.0);
+        THE_RIGHT_CHOICE_SHOW_PARTICLES = builder
+                .comment("是否显示圆形粒子效果（true=显示，false=不显示）")
+                .define("showParticles", true);
+        builder.push("Whitelist & Blacklist");
+        THE_RIGHT_CHOICE_WHITELIST_MODE = builder
+                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        THE_RIGHT_CHOICE_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:scar_l\", \"tacz:hk416\", \"tacz:awp\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(), obj -> obj instanceof String);
+        THE_RIGHT_CHOICE_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        THE_RIGHT_CHOICE_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "pistol", "smg", "sniper", "shotgun", "rpg", "mg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
+        builder.push("Vexadecimal");
+        builder.comment("十六进制");
+        VEXADECIMAL_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 5);
+        VEXADECIMAL_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 20, 1, 100);
+        VEXADECIMAL_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本增量")
+                .defineInRange("levelEnchantability", 10, 1, 50);
+        VEXADECIMAL_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 30, 1, 100);
+        VEXADECIMAL_WEAKNESS_DURATION = builder
+                .comment("虚弱效果持续时间（秒）")
+                .defineInRange("weaknessDuration", 5, 1, 60);
+        VEXADECIMAL_WEAKNESS_LEVEL = builder
+                .comment("虚弱效果等级（1-5）")
+                .defineInRange("weaknessLevel", 1, 1, 5);
+        VEXADECIMAL_EXTRA_DAMAGE_PERCENT = builder
+                .comment("额外伤害百分比（0.33表示33%）")
+                .defineInRange("extraDamagePercent", 0.33, 0.1, 2.0);
+        builder.push("Whitelist & Blacklist");
+        VEXADECIMAL_WHITELIST_MODE = builder
+                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        VEXADECIMAL_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:scar_l\", \"tacz:hk416\", \"tacz:awp\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(
+                        "tacz:minigun"
+                ), obj -> obj instanceof String);
+        VEXADECIMAL_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        VEXADECIMAL_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "pistol", "smg", "rifle", "sniper", "shotgun", "rpg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
+        builder.push("Personal Assistant");
+        builder.comment("私人助手");
+        PERSONAL_ASSISTANT_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 5);
+        PERSONAL_ASSISTANT_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 20, 1, 100);
+        PERSONAL_ASSISTANT_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本增量")
+                .defineInRange("levelEnchantability", 10, 1, 50);
+        PERSONAL_ASSISTANT_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 30, 1, 100);
+        PERSONAL_ASSISTANT_JOLT_DURATION = builder
+                .comment("震颤效果持续时间（秒）")
+                .defineInRange("joltDuration", 1, 1, 10);
+        PERSONAL_ASSISTANT_JOLT_LEVEL = builder
+                .comment("震颤效果等级（1-5）")
+                .defineInRange("joltLevel", 1, 1, 5);
+        builder.push("Whitelist & Blacklist");
+        PERSONAL_ASSISTANT_WHITELIST_MODE = builder
+                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        PERSONAL_ASSISTANT_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:scar_l\", \"tacz:hk416\", \"tacz:awp\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(), obj -> obj instanceof String);
+        PERSONAL_ASSISTANT_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        PERSONAL_ASSISTANT_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "pistol", "smg", "rifle", "shotgun", "rpg", "mg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
         builder.pop();
 
 
-        builder.push("BonusDamage");
+        builder.push("Bonus Damage");
         builder.comment("[增伤]类型附魔");
 
-        builder.push("BorpalWeapon");
-        builder.comment("斩首武器附魔配置");
+        builder.push("Borpal Weapon");
+        builder.comment("斩首武器");
         BORPAL_WEAPON_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 3, 1, 5);
@@ -731,8 +1372,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("PrecisionInstrument");
-        builder.comment("精准工具附魔配置");
+        builder.push("Precision Instrument");
+        builder.comment("精准工具");
         PRECISION_INSTRUMENT_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);
@@ -784,8 +1425,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("TargetLock");
-        builder.comment("目标锁定附魔配置");
+        builder.push("Target Lock");
+        builder.comment("目标锁定");
         TARGET_LOCK_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);
@@ -807,7 +1448,7 @@ public class TBZServerConfig {
         TARGET_LOCK_REQUIRED_MAGAZINE_PERCENT = builder
                 .comment("需要射击弹夹的百分比来触发加成（0.15表示15%）")
                 .defineInRange("requiredMagazinePercent", 0.15, 0.01, 0.5);
-        builder.push("ApplicableGuns");
+        builder.push("Whitelist & Blacklist");
         TARGET_LOCK_WHITELIST_MODE = builder
                 .comment("枪械是否使用白名单模式（true=白名单，false=黑名单）")
                 .define("whitelistMode", false);
@@ -820,8 +1461,6 @@ public class TBZServerConfig {
                         "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
                 )
                 .defineList("gunList", List.of(), obj -> obj instanceof String);
-        builder.pop();
-        builder.push("ApplicableWeaponTypes");
         TARGET_LOCK_WEAPON_TYPE_WHITELIST_MODE = builder
                 .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
                 .define("weaponTypeWhitelistMode", false);
@@ -840,8 +1479,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("GutshotStraight");
-        builder.comment("直击要害附魔配置");
+        builder.push("Gutshot Straight");
+        builder.comment("直击要害");
         GUTSHOT_STRAIGHT_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);
@@ -886,8 +1525,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("ThermalAtomization");
-        builder.comment("热能雾化附魔配置");
+        builder.push("Thermal Atomization");
+        builder.comment("热能雾化");
         THERMAL_ATOMIZATION_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);
@@ -912,6 +1551,9 @@ public class TBZServerConfig {
         THERMAL_ATOMIZATION_EXPLOSION_RANGE = builder
                 .comment("击杀爆炸范围（格）")
                 .defineInRange("explosionRange", 1.5, 0.0, 5.0);
+        THERMAL_ATOMIZATION_SHOW_PARTICLES = builder
+                .comment("是否显示圆形粒子效果（true=显示，false=不显示）")
+                .define("showParticles", true);
         builder.push("Whitelist & Blacklist");
         THERMAL_ATOMIZATION_WHITELIST_MODE = builder
                 .comment("是否使用白名单模式（true=白名单，false=黑名单）")
@@ -943,14 +1585,392 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
+        builder.push("Swashbuckler");
+        builder.comment("斗剑士");
+        SWASHBUCKLER_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 5);
+        SWASHBUCKLER_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 15, 1, 100);
+        SWASHBUCKLER_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本")
+                .defineInRange("levelEnchantability", 10, 1, 100);
+        SWASHBUCKLER_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 50, 1, 100);
+        SWASHBUCKLER_MAX_STACKS = builder
+                .comment("最大层数")
+                .defineInRange("maxStacks", 5, 1, 20);
+        SWASHBUCKLER_DECREASE_INTERVAL_SECONDS = builder
+                .comment("层数降低间隔（秒）")
+                .defineInRange("decreaseIntervalSeconds", 4.5, 0.5, 10.0);
+        builder.push("Whitelist & Blacklist");
+        SWASHBUCKLER_WHITELIST_MODE = builder
+                .comment("枪械是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        SWASHBUCKLER_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:ak47\", \"tacz:m4a1\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(
+                        "tacz:minigun"
+                ), obj -> obj instanceof String);
+        SWASHBUCKLER_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        SWASHBUCKLER_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "rpg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
+        builder.push("One For All");
+        builder.comment("我为人人");
+        ONE_FOR_ALL_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 5);
+        ONE_FOR_ALL_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 15, 1, 100);
+        ONE_FOR_ALL_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本")
+                .defineInRange("levelEnchantability", 10, 1, 100);
+        ONE_FOR_ALL_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 50, 1, 100);
+        ONE_FOR_ALL_DAMAGE_BONUS = builder
+                .comment("伤害加成（百分比，如0.2表示20%）")
+                .defineInRange("damageBonus", 0.2, 0.0, 1.0);
+        ONE_FOR_ALL_DURATION_SECONDS = builder
+                .comment("效果持续时间（秒）")
+                .defineInRange("durationSeconds", 6.0, 1.0, 30.0);
+        ONE_FOR_ALL_REQUIRED_HITS = builder
+                .comment("需要命中的不同目标数量")
+                .defineInRange("requiredHits", 3, 2, 10);
+        builder.push("Whitelist & Blacklist");
+        ONE_FOR_ALL_WHITELIST_MODE = builder
+                .comment("枪械是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        ONE_FOR_ALL_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:ak47\", \"tacz:m4a1\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(
+                        "tacz:minigun"
+                ), obj -> obj instanceof String);
+        ONE_FOR_ALL_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        ONE_FOR_ALL_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "rpg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
+        builder.push("Master of Arms");
+        builder.comment("武器大师");
+        MASTER_OF_ARMS_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 5);
+        MASTER_OF_ARMS_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 15, 1, 100);
+        MASTER_OF_ARMS_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本增量")
+                .defineInRange("levelEnchantability", 10, 1, 50);
+        MASTER_OF_ARMS_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 35, 1, 100);
+        MASTER_OF_ARMS_STACK_1_DAMAGE_BONUS = builder
+                .comment("武器大师x1的伤害加成（0.0-1.0，0.15表示15%）")
+                .defineInRange("stack1DamageBonus", 0.15, 0.0, 1.0);
+        MASTER_OF_ARMS_STACK_1_DURATION_SECONDS = builder
+                .comment("武器大师x1的持续时间（秒）")
+                .defineInRange("stack1DurationSeconds", 7.0, 1.0, 30.0);
+        MASTER_OF_ARMS_STACK_2_DAMAGE_BONUS = builder
+                .comment("武器大师x2的伤害加成（0.0-1.0，0.25表示25%）")
+                .defineInRange("stack2DamageBonus", 0.25, 0.0, 1.0);
+        MASTER_OF_ARMS_STACK_2_DURATION_SECONDS = builder
+                .comment("武器大师x2的持续时间（秒）")
+                .defineInRange("stack2DurationSeconds", 4.0, 1.0, 30.0);
+        builder.push("Whitelist & Blacklist");
+        MASTER_OF_ARMS_WHITELIST_MODE = builder
+                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        MASTER_OF_ARMS_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:scar_l\", \"tacz:hk416\", \"tacz:awp\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(
+                        "tacz:minigun"
+                ), obj -> obj instanceof String);
+        MASTER_OF_ARMS_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        MASTER_OF_ARMS_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "rpg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
+        builder.push("Aggregate Charge");
+        builder.comment("聚合充能");
+        AGGREGATE_CHARGE_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 5);
+        AGGREGATE_CHARGE_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 20, 1, 100);
+        AGGREGATE_CHARGE_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本增量")
+                .defineInRange("levelEnchantability", 10, 1, 50);
+        AGGREGATE_CHARGE_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 30, 1, 100);
+        AGGREGATE_CHARGE_DAMAGE_BONUS_PER_DEBUFF = builder
+                .comment("每个负面效果增加的伤害百分比（0.1表示10%）")
+                .defineInRange("damageBonusPerDebuff", 0.1, 0.01, 1.0);
+        builder.push("Whitelist & Blacklist");
+        AGGREGATE_CHARGE_WHITELIST_MODE = builder
+                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        AGGREGATE_CHARGE_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:scar_l\", \"tacz:hk416\", \"tacz:awp\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(), obj -> obj instanceof String);
+        AGGREGATE_CHARGE_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        AGGREGATE_CHARGE_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
+        builder.push("Firing Line");
+        builder.comment("火线");
+        FIRING_LINE_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 3);
+        FIRING_LINE_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 20, 1, 100);
+        FIRING_LINE_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本增量")
+                .defineInRange("levelEnchantability", 10, 1, 50);
+        FIRING_LINE_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 30, 1, 100);
+        FIRING_LINE_RADIUS = builder
+                .comment("检测半径（格）")
+                .defineInRange("radius", 4.0, 1.0, 16.0);
+        FIRING_LINE_REQUIRED_PLAYERS = builder
+                .comment("所需玩家数量")
+                .defineInRange("requiredPlayers", 2, 2, 10);
+        FIRING_LINE_DAMAGE_BONUS = builder
+                .comment("伤害加成百分比（0.35表示35%）")
+                .defineInRange("damageBonus", 0.35, 0.05, 1.0);
+        FIRING_LINE_EXCLUDE_SELF = builder
+                .comment("是否排除玩家自己（true=排除自己，false=包括自己）")
+                .define("excludeSelf", true);
+        FIRING_LINE_SHOW_PARTICLES = builder
+                .comment("是否显示圆形粒子效果（true=显示，false=不显示）")
+                .define("showParticles", true);
+        builder.push("Whitelist & Blacklist");
+        FIRING_LINE_WHITELIST_MODE = builder
+                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        FIRING_LINE_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:scar_l\", \"tacz:hk416\", \"tacz:awp\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(
+                        "tacz:minigun"
+                ), obj -> obj instanceof String);
+        FIRING_LINE_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        FIRING_LINE_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "pistol", "smg", "rifle", "shotgun", "rpg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
+        builder.push("Box Breathing");
+        builder.comment("盒式呼吸法");
+        BOX_BREATHING_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 5);
+        BOX_BREATHING_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 20, 1, 100);
+        BOX_BREATHING_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本增量")
+                .defineInRange("levelEnchantability", 10, 1, 50);
+        BOX_BREATHING_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 30, 1, 100);
+        BOX_BREATHING_DAMAGE_BONUS = builder
+                .comment("伤害加成（0.4 = 40%伤害提升）")
+                .defineInRange("damageBonus", 0.4, 0.1, 2.0);
+        builder.push("Whitelist & Blacklist");
+        BOX_BREATHING_WHITELIST_MODE = builder
+                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        BOX_BREATHING_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:scar_l\", \"tacz:hk416\", \"tacz:awp\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(), obj -> obj instanceof String);
+        BOX_BREATHING_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        BOX_BREATHING_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "pistol", "smg", "rifle", "shotgun", "rpg", "mg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
+        builder.push("Explosive Light");
+        builder.comment("爆炸光能");
+        EXPLOSIVE_LIGHT_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 5);
+        EXPLOSIVE_LIGHT_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 20, 1, 100);
+        EXPLOSIVE_LIGHT_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本增量")
+                .defineInRange("levelEnchantability", 10, 1, 50);
+        EXPLOSIVE_LIGHT_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 30, 1, 100);
+        EXPLOSIVE_LIGHT_DAMAGE_BONUS = builder
+                .comment("每层伤害加成（0.35 = 35%伤害提升）")
+                .defineInRange("damageBonus", 0.35, 0.1, 2.0);
+        EXPLOSIVE_LIGHT_XP_PER_STACK = builder
+                .comment("每层所需经验值")
+                .defineInRange("xpPerStack", 25, 5, 100);
+        EXPLOSIVE_LIGHT_MAX_STACKS = builder
+                .comment("最大层数")
+                .defineInRange("maxStacks", 6, 1, 10);
+        builder.push("Whitelist & Blacklist");
+        EXPLOSIVE_LIGHT_WHITELIST_MODE = builder
+                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        EXPLOSIVE_LIGHT_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:scar_l\", \"tacz:hk416\", \"tacz:awp\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(), obj -> obj instanceof String);
+        EXPLOSIVE_LIGHT_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        EXPLOSIVE_LIGHT_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rpg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "pistol", "smg", "rifle", "sniper", "shotgun", "mg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
         builder.pop();
 
 
-        builder.push("BonusBullet");
+        builder.push("Bonus Bullet");
         builder.comment("[回子弹]类型附魔");
 
         builder.push("Subsistence");
-        builder.comment("维持生计附魔配置");
+        builder.comment("维持生计");
         SUBSISTENCE_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 3, 1, 5);
@@ -1005,8 +2025,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("AmbitiousAssassin");
-        builder.comment("刺客野心附魔配置");
+        builder.push("Ambitious Assassin");
+        builder.comment("刺客野心");
         AMBITIOUS_ASSASSIN_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 3, 1, 5);
@@ -1062,7 +2082,7 @@ public class TBZServerConfig {
         builder.pop();
 
         builder.push("Reconstruction");
-        builder.comment("重建附魔配置");
+        builder.comment("重建");
         RECONSTRUCTION_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 3);
@@ -1117,8 +2137,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("TripleTap");
-        builder.comment("精准连击附魔配置");
+        builder.push("Triple Tap");
+        builder.comment("精准连击");
         TRIPLE_TAP_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 3);
@@ -1170,8 +2190,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("FourthTimeTheCharm");
-        builder.comment("事不过四附魔配置");
+        builder.push("Fourth Time The Charm");
+        builder.comment("事不过四");
         FOURTH_TIME_THE_CHARM_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 3);
@@ -1226,8 +2246,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("RewindRounds");
-        builder.comment("回转弹药附魔配置");
+        builder.push("Rewind Rounds");
+        builder.comment("回转弹药");
         REWIND_ROUNDS_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 3);
@@ -1246,6 +2266,9 @@ public class TBZServerConfig {
         REWIND_ROUNDS_MIN_FIRE_PERCENTAGE = builder
                 .comment("触发恢复所需的最小射击百分比（0.0-1.0），需要射击弹匣容量的百分比")
                 .defineInRange("minFirePercentage", 0.2875, 0.1, 1.0);
+        TARGET_LOCK_TIMEOUT_SECONDS = builder
+                .comment("超时时间（秒），超过此时间未命中目标会重置锁定状态")
+                .defineInRange("timeoutSeconds", 1.0, 0.1, 10.0);
         builder.push("Whitelist & Blacklist");
         REWIND_ROUNDS_WHITELIST_MODE = builder
                 .comment("是否使用白名单模式（true=白名单，false=黑名单）")
@@ -1280,7 +2303,7 @@ public class TBZServerConfig {
         builder.pop();
 
         builder.push("Mulligan");
-        builder.comment("重新调度附魔配置");
+        builder.comment("重新调度");
         MULLIGAN_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 3, 1, 5);
@@ -1332,8 +2355,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("TrickleCharge");
-        builder.comment("涓流充能附魔配置");
+        builder.push("Trickle Charge");
+        builder.comment("涓流充能");
         TRICKLE_CHARGE_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 3);
@@ -1385,8 +2408,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("SuperchargedMagazine");
-        builder.comment("超充弹匣附魔配置");
+        builder.push("Supercharged Magazine");
+        builder.comment("超充弹匣");
         SUPERCHARGED_MAGAZINE_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 3);
@@ -1440,8 +2463,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("ReversalOfFortune");
-        builder.comment("命运的逆转附魔配置");
+        builder.push("Reversal of Fortune");
+        builder.comment("命运的逆转");
         REVERSAL_OF_FORTUNE_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 3);
@@ -1499,14 +2522,65 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
+        builder.push("Clown Cartridge");
+        builder.comment("小丑皇弹药筒");
+        CLOWN_CARTRIDGE_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 3);
+        CLOWN_CARTRIDGE_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 15, 1, 100);
+        CLOWN_CARTRIDGE_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本增量")
+                .defineInRange("levelEnchantability", 10, 1, 50);
+        CLOWN_CARTRIDGE_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 25, 1, 100);
+        CLOWN_CARTRIDGE_MIN_PERCENTAGE = builder
+                .comment("最小额外装填百分比（0.1表示10%）")
+                .defineInRange("minPercentage", 0.1, 0.01, 1.0);
+        CLOWN_CARTRIDGE_MAX_PERCENTAGE = builder
+                .comment("最大额外装填百分比（0.5表示50%）")
+                .defineInRange("maxPercentage", 0.5, 0.01, 1.0);
+        builder.push("Whitelist & Blacklist");
+        CLOWN_CARTRIDGE_WHITELIST_MODE = builder
+                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        CLOWN_CARTRIDGE_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:scar_l\", \"tacz:hk416\", \"tacz:awp\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(), obj -> obj instanceof String);
+        CLOWN_CARTRIDGE_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        CLOWN_CARTRIDGE_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "pistol", "smg", "rifle", "sniper", "shotgun", "mg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
         builder.pop();
 
 
-        builder.push("ApplicationEffect");
+        builder.push("Application Effect");
         builder.comment("[应用效果]类型附魔");
 
-        builder.push("HealClip");
-        builder.comment("治疗弹匣附魔配置");
+        builder.push("Heal Clip");
+        builder.comment("治疗弹匣");
         HEAL_CLIP_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 3, 1, 5);
@@ -1556,8 +2630,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("RollingStorm");
-        builder.comment("风暴涌动附魔配置");
+        builder.push("Rolling Storm");
+        builder.comment("风暴涌动");
         ROLLING_STORM_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);
@@ -1571,21 +2645,21 @@ public class TBZServerConfig {
                 .comment("附魔成本跨度")
                 .defineInRange("enchantabilitySpan", 50, 1, 100);
         ROLLING_STORM_AMPLIFIED_DURATION = builder
-                .comment("没有增幅效果时给予的持续时间（刻）")
+                .comment("没有增幅效果时给予的持续时间（tick）")
                 .defineInRange("amplifiedDuration", 300, 50, 600);
         ROLLING_STORM_AMPLIFIED_AMPLIFIER = builder
                 .comment("没有增幅效果时给予的等级")
                 .defineInRange("amplifiedAmplifier", 0, 0, 2);
         ROLLING_STORM_COOLDOWN_TICKS = builder
-                .comment("没有增幅效果时给予效果的冷却时间（刻）")
+                .comment("没有增幅效果时给予效果的冷却时间（tick）")
                 .defineInRange("cooldownTicks", 400, 100, 600);
         ROLLING_STORM_EXTEND_DURATION = builder
-                .comment("有效果时延长的持续时间（刻）")
+                .comment("有效果时延长的持续时间（tick）")
                 .defineInRange("extendDuration", 100, 20, 300);
         ROLLING_STORM_MAX_DURATION = builder
-                .comment("有效果时延长的最大持续时间（刻）")
+                .comment("有效果时延长的最大持续时间（tick）")
                 .defineInRange("maxDuration", 1200, 600, 2400);
-        builder.push("ApplicableGuns");
+        builder.push("Whitelist & Blacklist");
         ROLLING_STORM_WHITELIST_MODE = builder
                 .comment("枪械是否使用白名单模式（true=白名单，false=黑名单）")
                 .define("whitelistMode", false);
@@ -1600,8 +2674,6 @@ public class TBZServerConfig {
                 .defineList("gunList", List.of(
                         "tacz:minigun"
                 ), obj -> obj instanceof String);
-        builder.pop();
-        builder.push("ApplicableWeaponTypes");
         ROLLING_STORM_WEAPON_TYPE_WHITELIST_MODE = builder
                 .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
                 .define("weaponTypeWhitelistMode", false);
@@ -1620,8 +2692,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("DestabilizingRounds");
-        builder.comment("失衡弹药附魔配置");
+        builder.push("Destabilizing Rounds");
+        builder.comment("失衡弹药");
         DESTABILIZING_ROUNDS_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);
@@ -1638,18 +2710,18 @@ public class TBZServerConfig {
                 .comment("影响范围（半径）")
                 .defineInRange("range", 3.0, 1.0, 10.0);
         DESTABILIZING_ROUNDS_VOLATILE_DURATION = builder
-                .comment("没有不稳定效果时给予的持续时间（刻）")
+                .comment("没有不稳定效果时给予的持续时间（tick）")
                 .defineInRange("volatileDuration", 200, 50, 600);
         DESTABILIZING_ROUNDS_VOLATILE_AMPLIFIER = builder
                 .comment("没有不稳定效果时给予的等级")
                 .defineInRange("volatileAmplifier", 0, 0, 2);
         DESTABILIZING_ROUNDS_EXTEND_DURATION = builder
-                .comment("有效果时延长的持续时间（刻）")
+                .comment("有效果时延长的持续时间（tick）")
                 .defineInRange("extendDuration", 100, 20, 300);
         DESTABILIZING_ROUNDS_MAX_DURATION = builder
-                .comment("有效果时延长的最大持续时间（刻）")
+                .comment("有效果时延长的最大持续时间（tick）")
                 .defineInRange("maxDuration", 1200, 600, 2400);
-        builder.push("ApplicableGuns");
+        builder.push("Whitelist & Blacklist");
         DESTABILIZING_ROUNDS_WHITELIST_MODE = builder
                 .comment("枪械是否使用白名单模式（true=白名单，false=黑名单）")
                 .define("whitelistMode", false);
@@ -1664,8 +2736,6 @@ public class TBZServerConfig {
                 .defineList("gunList", List.of(
                         "tacz:minigun"
                 ), obj -> obj instanceof String);
-        builder.pop();
-        builder.push("ApplicableWeaponTypes");
         DESTABILIZING_ROUNDS_WEAPON_TYPE_WHITELIST_MODE = builder
                 .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
                 .define("weaponTypeWhitelistMode", false);
@@ -1685,7 +2755,7 @@ public class TBZServerConfig {
         builder.pop();
 
         builder.push("Incandescent");
-        builder.comment("辉耀炽热附魔配置");
+        builder.comment("辉耀炽热");
         INCANDESCENT_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);
@@ -1702,18 +2772,18 @@ public class TBZServerConfig {
                 .comment("影响范围（半径）")
                 .defineInRange("range", 3.0, 1.0, 10.0);
         INCANDESCENT_SCORCH_DURATION = builder
-                .comment("没有灼烧效果时给予的持续时间（刻）")
+                .comment("没有灼烧效果时给予的持续时间（tick）")
                 .defineInRange("scorchDuration", 200, 50, 600);
         INCANDESCENT_SCORCH_AMPLIFIER = builder
                 .comment("没有灼烧效果时给予的等级")
                 .defineInRange("scorchAmplifier", 0, 0, 2);
         INCANDESCENT_EXTEND_DURATION = builder
-                .comment("有效果时延长的持续时间（刻）")
+                .comment("有效果时延长的持续时间（tick）")
                 .defineInRange("extendDuration", 100, 20, 300);
         INCANDESCENT_MAX_DURATION = builder
-                .comment("有效果时延长的最大持续时间（刻）")
+                .comment("有效果时延长的最大持续时间（tick）")
                 .defineInRange("maxDuration", 1200, 600, 2400);
-        builder.push("ApplicableGuns");
+        builder.push("Whitelist & Blacklist");
         INCANDESCENT_WHITELIST_MODE = builder
                 .comment("枪械是否使用白名单模式（true=白名单，false=黑名单）")
                 .define("whitelistMode", false);
@@ -1728,8 +2798,6 @@ public class TBZServerConfig {
                 .defineList("gunList", List.of(
                         "tacz:minigun"
                 ), obj -> obj instanceof String);
-        builder.pop();
-        builder.push("ApplicableWeaponTypes");
         INCANDESCENT_WEAPON_TYPE_WHITELIST_MODE = builder
                 .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
                 .define("weaponTypeWhitelistMode", false);
@@ -1748,8 +2816,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("ChillClip");
-        builder.comment("冰冷弹匣附魔配置");
+        builder.push("Chill Clip");
+        builder.comment("冰冷弹匣");
         CHILL_CLIP_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);
@@ -1766,7 +2834,7 @@ public class TBZServerConfig {
                 .comment("触发概率（0.0-1.0，0.15表示15%）")
                 .defineInRange("triggerChance", 0.15, 0.01, 1.0);
         CHILL_CLIP_FROSTBITE_DURATION = builder
-                .comment("没有霜寒效果时给予的持续时间（刻）")
+                .comment("没有霜寒效果时给予的持续时间（tick）")
                 .defineInRange("frostbiteDuration", 200, 50, 600);
         CHILL_CLIP_FROSTBITE_MIN_AMPLIFIER = builder
                 .comment("没有霜寒效果时给予的最小等级")
@@ -1775,15 +2843,15 @@ public class TBZServerConfig {
                 .comment("没有霜寒效果时给予的最大等级")
                 .defineInRange("frostbiteMaxAmplifier", 2, 0, 2);
         CHILL_CLIP_COOLDOWN_TICKS = builder
-                .comment("没有霜寒效果时给予效果的冷却时间（刻）")
+                .comment("没有霜寒效果时给予效果的冷却时间（tick）")
                 .defineInRange("cooldownTicks", 300, 100, 600);
         CHILL_CLIP_EXTEND_DURATION = builder
-                .comment("有效果时延长的持续时间（刻）")
+                .comment("有效果时延长的持续时间（tick）")
                 .defineInRange("extendDuration", 100, 20, 300);
         CHILL_CLIP_MAX_DURATION = builder
-                .comment("有效果时延长的最大持续时间（刻）")
+                .comment("有效果时延长的最大持续时间（tick）")
                 .defineInRange("maxDuration", 1200, 600, 2400);
-        builder.push("ApplicableGuns");
+        builder.push("Whitelist & Blacklist");
         CHILL_CLIP_WHITELIST_MODE = builder
                 .comment("枪械是否使用白名单模式（true=白名单，false=黑名单）")
                 .define("whitelistMode", false);
@@ -1798,8 +2866,6 @@ public class TBZServerConfig {
                 .defineList("gunList", List.of(
                         "tacz:minigun"
                 ), obj -> obj instanceof String);
-        builder.pop();
-        builder.push("ApplicableWeaponTypes");
         CHILL_CLIP_WEAPON_TYPE_WHITELIST_MODE = builder
                 .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
                 .define("weaponTypeWhitelistMode", false);
@@ -1819,7 +2885,7 @@ public class TBZServerConfig {
         builder.pop();
 
         builder.push("Rimestealer");
-        builder.comment("霜华窃取者附魔配置");
+        builder.comment("霜华窃取者");
         RIMESTEALER_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);
@@ -1833,21 +2899,21 @@ public class TBZServerConfig {
                 .comment("附魔成本跨度")
                 .defineInRange("enchantabilitySpan", 50, 1, 100);
         RIMESTEALER_FROST_ARMOR_DURATION = builder
-                .comment("没有冰霜护甲时给予的持续时间（刻）")
+                .comment("没有冰霜护甲时给予的持续时间（tick）")
                 .defineInRange("frostArmorDuration", 200, 50, 600);
         RIMESTEALER_FROST_ARMOR_AMPLIFIER = builder
                 .comment("没有冰霜护甲时给予的等级")
                 .defineInRange("frostArmorAmplifier", 0, 0, 2);
         RIMESTEALER_COOLDOWN_TICKS = builder
-                .comment("没有冰霜护甲时给予效果的冷却时间（刻）")
+                .comment("没有冰霜护甲时给予效果的冷却时间（tick）")
                 .defineInRange("cooldownTicks", 300, 100, 600);
         RIMESTEALER_EXTEND_DURATION = builder
-                .comment("有效果时延长的持续时间（刻）")
+                .comment("有效果时延长的持续时间（tick）")
                 .defineInRange("extendDuration", 100, 20, 300);
         RIMESTEALER_MAX_DURATION = builder
-                .comment("有效果时延长的最大持续时间（刻）")
+                .comment("有效果时延长的最大持续时间（tick）")
                 .defineInRange("maxDuration", 1200, 600, 2400);
-        builder.push("ApplicableGuns");
+        builder.push("Whitelist & Blacklist");
         RIMESTEALER_WHITELIST_MODE = builder
                 .comment("枪械是否使用白名单模式（true=白名单，false=黑名单）")
                 .define("whitelistMode", false);
@@ -1862,8 +2928,6 @@ public class TBZServerConfig {
                 .defineList("gunList", List.of(
                         "tacz:minigun"
                 ), obj -> obj instanceof String);
-        builder.pop();
-        builder.push("ApplicableWeaponTypes");
         RIMESTEALER_WEAPON_TYPE_WHITELIST_MODE = builder
                 .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
                 .define("weaponTypeWhitelistMode", false);
@@ -1883,7 +2947,7 @@ public class TBZServerConfig {
         builder.pop();
 
         builder.push("Slice");
-        builder.comment("切割附魔配置");
+        builder.comment("切割");
         SLICE_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);
@@ -1900,7 +2964,7 @@ public class TBZServerConfig {
                 .comment("触发概率（0.0-1.0，0.15表示15%）")
                 .defineInRange("triggerChance", 0.15, 0.01, 1.0);
         SLICE_SEVER_DURATION = builder
-                .comment("没有瓦解效果时给予的持续时间（刻）")
+                .comment("没有瓦解效果时给予的持续时间（tick）")
                 .defineInRange("severDuration", 200, 50, 600);
         SLICE_SEVER_MIN_AMPLIFIER = builder
                 .comment("没有瓦解效果时给予的最小等级")
@@ -1909,15 +2973,15 @@ public class TBZServerConfig {
                 .comment("没有瓦解效果时给予的最大等级")
                 .defineInRange("severMaxAmplifier", 2, 0, 2);
         SLICE_COOLDOWN_TICKS = builder
-                .comment("没有瓦解效果时给予效果的冷却时间（刻）")
+                .comment("没有瓦解效果时给予效果的冷却时间（tick）")
                 .defineInRange("cooldownTicks", 300, 100, 600);
         SLICE_EXTEND_DURATION = builder
-                .comment("有效果时延长的持续时间（刻）")
+                .comment("有效果时延长的持续时间（tick）")
                 .defineInRange("extendDuration", 100, 20, 300);
         SLICE_MAX_DURATION = builder
-                .comment("有效果时延长的最大持续时间（刻）")
+                .comment("有效果时延长的最大持续时间（tick）")
                 .defineInRange("maxDuration", 1200, 600, 2400);
-        builder.push("ApplicableGuns");
+        builder.push("Whitelist & Blacklist");
         SLICE_WHITELIST_MODE = builder
                 .comment("枪械是否使用白名单模式（true=白名单，false=黑名单）")
                 .define("whitelistMode", false);
@@ -1932,8 +2996,6 @@ public class TBZServerConfig {
                 .defineList("gunList", List.of(
                         "tacz:minigun"
                 ), obj -> obj instanceof String);
-        builder.pop();
-        builder.push("ApplicableWeaponTypes");
         SLICE_WEAPON_TYPE_WHITELIST_MODE = builder
                 .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
                 .define("weaponTypeWhitelistMode", false);
@@ -1952,8 +3014,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("WitheringGaze");
-        builder.comment("枯萎凝视附魔配置");
+        builder.push("Withering Gaze");
+        builder.comment("枯萎凝视");
         WITHERING_GAZE_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);
@@ -2003,14 +3065,67 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
+        builder.push("Burning Ambition");
+        builder.comment("燃烧野心");
+        BURNING_AMBITION_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 5);
+        BURNING_AMBITION_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 20, 1, 100);
+        BURNING_AMBITION_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本增量")
+                .defineInRange("levelEnchantability", 10, 1, 50);
+        BURNING_AMBITION_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 30, 1, 100);
+        BURNING_AMBITION_SHOTS_PER_STACK = builder
+                .comment("每几发子弹叠一次燃烧层数（默认1发）")
+                .defineInRange("shotsPerStack", 1, 1, 10);
+        BURNING_AMBITION_STACKS_PER_HIT = builder
+                .comment("每次命中给予的燃烧层数（默认1层）")
+                .defineInRange("stacksPerHit", 1, 1, 10);
+        builder.push("Whitelist & Blacklist");
+        BURNING_AMBITION_WHITELIST_MODE = builder
+                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        BURNING_AMBITION_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:scar_l\", \"tacz:hk416\", \"tacz:awp\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(
+                        "tacz:minigun"
+                ), obj -> obj instanceof String);
+        BURNING_AMBITION_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        BURNING_AMBITION_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "rpg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
         builder.pop();
 
 
-        builder.push("ExplosivePayload");
+        builder.push("Explosive Payload");
         builder.comment("[爆炸]类型附魔");
 
         builder.push("Butterfly");
-        builder.comment("蝴蝶附魔配置");
+        builder.comment("蝴蝶");
         BUTTERFLY_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 3, 1, 5);
@@ -2069,8 +3184,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("ExplosivePayload");
-        builder.comment("高爆载荷附魔配置");
+        builder.push("Explosive Payload");
+        builder.comment("高爆载荷");
         EXPLOSIVE_PAYLOAD_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 3, 1, 5);
@@ -2130,7 +3245,7 @@ public class TBZServerConfig {
         builder.pop();
 
         builder.push("Firefly");
-        builder.comment("萤火虫附魔配置");
+        builder.comment("萤火虫");
         FIREFLY_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 3, 1, 5);
@@ -2197,7 +3312,7 @@ public class TBZServerConfig {
         builder.pop();
 
         builder.push("Dragonfly");
-        builder.comment("蜻蜓附魔配置");
+        builder.comment("蜻蜓");
         DRAGONFLY_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 3, 1, 5);
@@ -2257,7 +3372,7 @@ public class TBZServerConfig {
         builder.pop();
 
         builder.push("Meganeura");
-        builder.comment("巨脉蜻蜓附魔配置");
+        builder.comment("巨脉蜻蜓");
         MEGANEURA_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 1);
@@ -2322,11 +3437,61 @@ public class TBZServerConfig {
         builder.pop();
 
 
-        builder.push("PartSpecifications");
+        builder.push("Part Specifications");
         builder.comment("[配件数值]类型附魔");
 
-        builder.push("SnapshotSights");
-        builder.comment("速射瞄准附魔配置");
+        builder.push("Outlaw");
+        builder.comment("不法之徒");
+        OUTLAW_MAX_LEVEL = builder
+                .comment("最大附魔等级")
+                .defineInRange("maxLevel", 1, 1, 5);
+        OUTLAW_BASE_ENCHANTABILITY = builder
+                .comment("基础附魔成本")
+                .defineInRange("baseEnchantability", 20, 1, 100);
+        OUTLAW_LEVEL_ENCHANTABILITY = builder
+                .comment("每级附魔成本增量")
+                .defineInRange("levelEnchantability", 10, 1, 50);
+        OUTLAW_ENCHANTABILITY_SPAN = builder
+                .comment("附魔成本跨度")
+                .defineInRange("enchantabilitySpan", 30, 1, 100);
+        OUTLAW_RELOAD_SPEED_MULTIPLIER = builder
+                .comment("换弹速度加成（0.0-1.0，0.5表示50%）")
+                .defineInRange("reloadSpeedMultiplier", 0.5, 0.1, 1.0);
+        builder.push("Whitelist & Blacklist");
+        OUTLAW_WHITELIST_MODE = builder
+                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("whitelistMode", false);
+        OUTLAW_APPLICABLE_GUNS = builder
+                .comment(
+                        "枪械ID列表",
+                        "白名单模式：只有列表中的枪械可以附魔",
+                        "黑名单模式：列表中的枪械不可以附魔",
+                        "示例: [\"tacz:scar_l\", \"tacz:hk416\", \"tacz:awp\"]",
+                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
+                )
+                .defineList("gunList", List.of(
+                        "tacz:minigun"
+                ), obj -> obj instanceof String);
+        OUTLAW_WEAPON_TYPE_WHITELIST_MODE = builder
+                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
+                .define("weaponTypeWhitelistMode", false);
+        OUTLAW_APPLICABLE_WEAPON_TYPES = builder
+                .comment(
+                        "武器类型列表",
+                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
+                        "白名单模式：只有列表中的武器类型可以附魔",
+                        "黑名单模式：列表中的武器类型不可以附魔",
+                        "示例: [\"rifle\", \"smg\"]",
+                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
+                )
+                .defineList("weaponTypeList", List.of(
+                        "rpg"
+                ), obj -> obj instanceof String);
+        builder.pop();
+        builder.pop();
+
+        builder.push("Snapshot Sights");
+        builder.comment("速射瞄准");
         SNAPSHOT_SIGHTS_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 3);
@@ -2358,8 +3523,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("FirmlyPlanted");
-        builder.comment("稳若磐石附魔配置");
+        builder.push("Firmly Planted");
+        builder.comment("稳若磐石");
         FIRMLY_PLANTED_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 3);
@@ -2411,7 +3576,7 @@ public class TBZServerConfig {
         builder.pop();
 
         builder.push("Adagio");
-        builder.comment("柔缓附魔配置");
+        builder.comment("柔缓");
         ADAGIO_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);
@@ -2465,7 +3630,7 @@ public class TBZServerConfig {
         builder.pop();
 
         builder.push("Onslaught");
-        builder.comment("猛攻附魔配置");
+        builder.comment("猛攻");
         ONSLAUGHT_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);
@@ -2515,8 +3680,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("EyeOfStormEye");
-        builder.comment("风暴之眼附魔配置");
+        builder.push("Eye of Storm Eye");
+        builder.comment("风暴之眼");
         EYE_OF_STORM_EYE_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);
@@ -2573,11 +3738,11 @@ public class TBZServerConfig {
         builder.pop();
 
 
-        builder.push("ContinuousDamage");
+        builder.push("Continuous Damage");
         builder.comment("[持续伤害]类型附魔");
 
-        builder.push("AttritionOrbs");
-        builder.comment("羸弱能量球附魔配置");
+        builder.push("Attrition Orbs");
+        builder.comment("羸弱能量球");
         ATTRITION_ORBS_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 3, 1, 5);
@@ -2628,62 +3793,6 @@ public class TBZServerConfig {
                         "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
                 )
                 .defineList("weaponTypeList", List.of(
-                        "rpg", "mg"
-                ), obj -> obj instanceof String);
-        builder.pop();
-        builder.pop();
-
-        builder.pop();
-
-
-        builder.push("Load");
-        builder.comment("[填装]类型附魔");
-
-        builder.push("Outlaw");
-        builder.comment("不法之徒附魔配置");
-        OUTLAW_MAX_LEVEL = builder
-                .comment("最大附魔等级")
-                .defineInRange("maxLevel", 1, 1, 5);
-        OUTLAW_BASE_ENCHANTABILITY = builder
-                .comment("基础附魔成本")
-                .defineInRange("baseEnchantability", 20, 1, 100);
-        OUTLAW_LEVEL_ENCHANTABILITY = builder
-                .comment("每级附魔成本增量")
-                .defineInRange("levelEnchantability", 10, 1, 50);
-        OUTLAW_ENCHANTABILITY_SPAN = builder
-                .comment("附魔成本跨度")
-                .defineInRange("enchantabilitySpan", 30, 1, 100);
-        OUTLAW_RELOAD_SPEED_MULTIPLIER = builder
-                .comment("换弹速度加成（0.0-1.0，0.5表示50%）")
-                .defineInRange("reloadSpeedMultiplier", 0.5, 0.1, 1.0);
-        builder.push("Whitelist & Blacklist");
-        OUTLAW_WHITELIST_MODE = builder
-                .comment("是否使用白名单模式（true=白名单，false=黑名单）")
-                .define("whitelistMode", false);
-        OUTLAW_APPLICABLE_GUNS = builder
-                .comment(
-                        "枪械ID列表",
-                        "白名单模式：只有列表中的枪械可以附魔",
-                        "黑名单模式：列表中的枪械不可以附魔",
-                        "示例: [\"tacz:scar_l\", \"tacz:hk416\", \"tacz:awp\"]",
-                        "留空表示：白名单模式=禁止所有枪械，黑名单模式=允许所有枪械"
-                )
-                .defineList("gunList", List.of(
-                        "tacz:minigun"
-                ), obj -> obj instanceof String);
-        OUTLAW_WEAPON_TYPE_WHITELIST_MODE = builder
-                .comment("武器类型是否使用白名单模式（true=白名单，false=黑名单）")
-                .define("weaponTypeWhitelistMode", false);
-        OUTLAW_APPLICABLE_WEAPON_TYPES = builder
-                .comment(
-                        "武器类型列表",
-                        "可选类型: pistol, smg, rifle, sniper, shotgun, rpg, mg",
-                        "白名单模式：只有列表中的武器类型可以附魔",
-                        "黑名单模式：列表中的武器类型不可以附魔",
-                        "示例: [\"rifle\", \"smg\"]",
-                        "留空表示：白名单模式=禁止所有类型，黑名单模式=允许所有类型"
-                )
-                .defineList("weaponTypeList", List.of(
                         "rpg"
                 ), obj -> obj instanceof String);
         builder.pop();
@@ -2695,8 +3804,8 @@ public class TBZServerConfig {
         builder.push("Other");
         builder.comment("[其他]类型附魔");
 
-        builder.push("wellspring");
-        builder.comment("泉源附魔配置");
+        builder.push("Wellspring");
+        builder.comment("泉源");
         WELLSPRING_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 3);
@@ -2748,8 +3857,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("CoolingBaubles");
-        builder.comment("冷却饰物附魔配置");
+        builder.push("Cooling Baubles");
+        builder.comment("冷却饰物");
         COOLING_BAUBLES_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 3, 1, 5);
@@ -2799,8 +3908,8 @@ public class TBZServerConfig {
         builder.pop();
         builder.pop();
 
-        builder.push("ShootTpLoot");
-        builder.comment("边打边劫附魔配置");
+        builder.push("Shoot Tp Loot");
+        builder.comment("边打边劫");
         SHOOT_TP_LOOT_MAX_LEVEL = builder
                 .comment("最大附魔等级")
                 .defineInRange("maxLevel", 1, 1, 5);

@@ -4,7 +4,11 @@ import com.chinaex123.tbz.TBZMod;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 
-/** HUD网络包处理器 - 注册HUD相关的网络通信通道 **/
+/**
+ * HUD网络包处理器
+ * <p>
+ * 注册HUD相关的网络通信通道
+ * */
 public class HUDPacketHandler {
     private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
@@ -17,13 +21,23 @@ public class HUDPacketHandler {
     private static int id = 0;
 
     public static void register() {
-        /* 目标锁定HUD同步包 */
+
+        /* 通用附魔状态同步包 */
         INSTANCE.registerMessage(
                 id++,
-                TargetLockSyncPacket.class,
-                TargetLockSyncPacket::encode,
-                TargetLockSyncPacket::decode,
-                TargetLockSyncPacket::handle
+                EnchantmentStatusSyncPacket.class,
+                EnchantmentStatusSyncPacket::encode,
+                EnchantmentStatusSyncPacket::decode,
+                EnchantmentStatusSyncPacket::handle
+        );
+
+        /* 通用触发型附魔HUD同步包 */
+        INSTANCE.registerMessage(
+                id++,
+                TriggeredEnchantmentSyncPacket.class,
+                TriggeredEnchantmentSyncPacket::encode,
+                TriggeredEnchantmentSyncPacket::decode,
+                TriggeredEnchantmentSyncPacket::handle
         );
     }
 }

@@ -2,14 +2,12 @@ package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
-import com.tacz.guns.api.TimelessAPI;
+import com.chinaex123.tbz.utils.GunEnchantmentHelper;
 import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.resource.index.CommonGunIndex;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
-import java.util.Optional;
 import java.util.UUID;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -31,7 +29,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class AmbitiousAssassinEvent {
 
-    /** 待应用的刺客野心数量 */
+    /** NBT存储键：待应用的刺客野心数量 */
     private static final String OVERFILL_TAG = "AmbitiousAssassinOverfill";
 
     /** 记录每个玩家当前的连续击杀数 */
@@ -75,9 +73,8 @@ public class AmbitiousAssassinEvent {
         int kills = killCountMap.getOrDefault(playerId, 0);
         if (kills <= 0) return;
 
-        // 获取枪械数据
-        Optional<CommonGunIndex> gunIndexOpt = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun));
-        if (gunIndexOpt.isEmpty()) return;
+        // 检查枪械数据是否有效
+        if (GunEnchantmentHelper.getMagazineSize(gun) <= 0) return;
 
         // 从配置获取刺客野心参数
         int baseOverfill = TBZServerConfig.AMBITIOUS_ASSASSIN_BASE_OVERFILL.get(); // 基础刺客野心
@@ -97,7 +94,7 @@ public class AmbitiousAssassinEvent {
     }
 
     /**
-     * 玩家每帧更新事件：刺客野心
+     * 玩家Tick事件：刺客野心
      * 在弹药装填完成后调用，将刺客野心添加到弹匣中
      * 注意：仅当弹匣已满（currentAmmo >= magazineSize）时才应用刺客野心
      *
@@ -120,12 +117,10 @@ public class AmbitiousAssassinEvent {
             return;
         }
 
-        // 获取枪械数据以读取弹匣容量
-        Optional<CommonGunIndex> gunIndexOpt = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun));
-        if (gunIndexOpt.isEmpty()) return;
-
-        int magazineSize = gunIndexOpt.get().getGunData().getAmmoAmount();
-        int currentAmmo = iGun.getCurrentAmmoCount(gun);
+        // 获取弹匣容量和当前弹药数量
+        int magazineSize = GunEnchantmentHelper.getMagazineSize(gun);
+        int currentAmmo = GunEnchantmentHelper.getCurrentAmmo(gun);
+        if (magazineSize <= 0 || currentAmmo < 0) return;
 
         // 仅在弹匣已满时应用刺客野心（避免覆盖未满弹匣）
         if (currentAmmo >= magazineSize) {

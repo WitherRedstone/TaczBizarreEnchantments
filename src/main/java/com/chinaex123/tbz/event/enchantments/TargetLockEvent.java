@@ -2,13 +2,12 @@ package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
+import com.chinaex123.tbz.network.hud.EnchantmentStatusSyncPacket;
 import com.chinaex123.tbz.network.hud.HUDPacketHandler;
-import com.chinaex123.tbz.network.hud.TargetLockSyncPacket;
-import com.tacz.guns.api.TimelessAPI;
+import com.chinaex123.tbz.utils.GunEnchantmentHelper;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.api.event.common.GunReloadEvent;
 import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.resource.index.CommonGunIndex;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -44,16 +43,14 @@ import java.util.UUID;
  */
 public class TargetLockEvent {
 
-    /** 当前锁定的目标UUID */
+    /** NBT存储键：当前锁定的目标UUID */
     private static final String TARGET_UUID_TAG = "TargetLockTargetUUID";
-    /** 当前弹匣内命中同一目标的次数 */
+    /** NBT存储键：当前弹匣内命中同一目标的次数 */
     private static final String HIT_COUNT_TAG = "TargetLockHitCount";
-    /** 伤害加成层数 */
+    /** NBT存储键：伤害加成层数 */
     private static final String DAMAGE_STACK_TAG = "TargetLockDamageStack";
-    /** 上次命中的时间（游戏刻） */
+    /** NBT存储键：上次命中的时间（游戏刻） */
     private static final String LAST_HIT_TIME_TAG = "TargetLockLastHitTime";
-    /** 如果超过指定时间未命中目标，重置锁定状态 */
-    public static final long TIMEOUT_TICKS = 20;
 
     /**
      * 枪械伤害事件：目标锁定
@@ -92,7 +89,9 @@ public class TargetLockEvent {
 
         // 条件2：检查是否超过超时时间
         long lastHitTime = tag.getLong(LAST_HIT_TIME_TAG);
-        if (currentTime - lastHitTime > TIMEOUT_TICKS) {
+
+        long timeoutTicks = (long) (TBZServerConfig.TARGET_LOCK_TIMEOUT_SECONDS.get() * 20);
+        if (currentTime - lastHitTime > timeoutTicks) {
             // 超时未命中，重置所有状态
             resetLock(tag, player);
             tag.putUUID(TARGET_UUID_TAG, targetUUID);
@@ -104,13 +103,8 @@ public class TargetLockEvent {
         tag.putLong(LAST_HIT_TIME_TAG, currentTime);
 
         // 获取弹匣信息
-        IGun iGun = IGun.getIGunOrNull(gun);
-        if (iGun == null) return;
-
-        Optional<CommonGunIndex> gunIndexOpt = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun));
-        if (gunIndexOpt.isEmpty()) return;
-
-        int magazineSize = gunIndexOpt.get().getGunData().getAmmoAmount();
+        int magazineSize = GunEnchantmentHelper.getMagazineSize(gun);
+        if (magazineSize <= 0) return;
 
         // 计算触发所需命中次数 = 弹匣容量 × 配置比例（向上取整）
         double requiredPercent = TBZServerConfig.TARGET_LOCK_REQUIRED_MAGAZINE_PERCENT.get();
@@ -132,7 +126,7 @@ public class TargetLockEvent {
             if (player instanceof ServerPlayer serverPlayer) {
                 HUDPacketHandler.INSTANCE.send(
                         PacketDistributor.PLAYER.with(() -> serverPlayer),
-                        new TargetLockSyncPacket(player.getUUID(), damageStack, currentTime)
+                        new EnchantmentStatusSyncPacket(player.getUUID(), "target_lock", damageStack, currentTime, ItemStack.EMPTY)
                 );
             }
 
@@ -187,7 +181,7 @@ public class TargetLockEvent {
         if (player instanceof ServerPlayer serverPlayer) {
             HUDPacketHandler.INSTANCE.send(
                     PacketDistributor.PLAYER.with(() -> serverPlayer),
-                    new TargetLockSyncPacket(player.getUUID(), 0, 0)
+                    new EnchantmentStatusSyncPacket(player.getUUID(), "target_lock", 0, 0, ItemStack.EMPTY)
             );
         }
     }

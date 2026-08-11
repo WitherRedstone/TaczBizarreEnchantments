@@ -26,7 +26,7 @@ public class TBZMod {
     public TBZMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, TBZServerConfig.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TBZServerConfig.SPEC);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, TBZClientConfig.SPEC);
         TBZEnchantments.ENCHANTMENTS.register(modEventBus);
         PacketHandler.register();

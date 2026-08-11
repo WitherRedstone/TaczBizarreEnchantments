@@ -7,8 +7,6 @@ import com.tacz.guns.item.ModernKineticGunScriptAPI;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
 /**
  * 冷却饰物附魔的事件处理类
@@ -24,17 +22,15 @@ import net.minecraftforge.fml.common.Mod;
  *   <li>降低后的热量不会低于0</li>
  * </ol>
  */
-@Mod.EventBusSubscriber
 public class CoolingBaublesEvent {
 
     /**
-     * 玩家拾取经验球事件处理
-     * 当玩家拾取经验球时，有几率降低主手枪械的热量
+     * 经验值变化事件：冷却饰物
+     * 当玩家经验值变化时，有几率降低主手枪械的热量
      *
-     * @param event 玩家经验球拾取事件
+     * @param event 经验值变化事件
      */
-    @SubscribeEvent
-    public static void onPlayerPickupXp(PlayerXpEvent event) {
+    public static void onPlayerXp(PlayerXpEvent event) {
         Player player = event.getEntity();
         if (player == null) return;
 
