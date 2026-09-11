@@ -1,8 +1,10 @@
 package com.chinaex123.tbz.network;
 
-import net.minecraft.client.Minecraft;
+import com.chinaex123.tbz.client.GunReloadSpeedClientHandler;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -67,13 +69,10 @@ public class GunReloadSpeedPacket {
         context.enqueueWork(() -> {
             // 客户端处理：设置加速标记
             if (context.getDirection().getReceptionSide().isClient()) {
-                if (packet.hasEffect && Minecraft.getInstance().player != null) {
-                    var player = Minecraft.getInstance().player;
-                    var weapon = player.getMainHandItem();
-                    if (!weapon.isEmpty()) {
-                        var tag = weapon.getOrCreateTag();
-                        tag.putBoolean(packet.speedTag, true);
-                    }
+                if (packet.hasEffect) {
+                    DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+                        GunReloadSpeedClientHandler.handleSync(packet.speedTag);
+                    });
                 }
             }
             // 服务端处理：清除加速标记

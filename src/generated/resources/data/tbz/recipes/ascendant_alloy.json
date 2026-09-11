@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "tbz:enhancement_prism"
+    },
+    "B": {
+      "item": "tbz:ascendant_shard"
+    },
+    "C": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "CAC",
+    "BBB"
+  ],
+  "result": {
+    "item": "tbz:ascendant_alloy"
+  },
+  "show_notification": true
+}

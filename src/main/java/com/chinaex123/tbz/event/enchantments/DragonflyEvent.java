@@ -34,8 +34,6 @@ public class DragonflyEvent {
     public static final String HEADSHOT_KILL_TAG = "DragonflyHeadshotKill";
     /** NBT存储键：爆头击杀发生时间 */
     public static final String KILL_TIME_TAG = "DragonflyKillTime";
-    /** 有效时间窗口 */
-    public static final int VALID_KILL_TICKS = 60;
 
     /**
      * 枪械伤害事件：蜻蜓
@@ -87,7 +85,7 @@ public class DragonflyEvent {
         long killTime = tag.getLong(KILL_TIME_TAG);
 
         // 如果爆头时间到击杀时间超过有效窗口，清除标记（爆头未导致击杀或超时）
-        if (currentTime - killTime > VALID_KILL_TICKS) {
+        if (currentTime - killTime > TBZServerConfig.DRAGONFLY_KILL_WINDOW_TICKS.get()) {
             tag.putBoolean(HEADSHOT_KILL_TAG, false);
             return;
         }

@@ -37,8 +37,6 @@ public class BoxBreathingEvent {
 
     /** NBT存储键：是否已播放音效 **/
     private static final String SOUND_PLAYED_TAG = "BoxBreathingSoundPlayed";
-    /** 瞄准所需时间（50刻 = 2.5秒） **/
-    private static final int AIMING_REQUIRED_TICKS = 50;
 
     /**
      * 枪械伤害事件：盒式呼吸法
@@ -112,7 +110,7 @@ public class BoxBreathingEvent {
                 long currentTime = player.level().getGameTime();
 
                 // 检查是否达到瞄准所需时间
-                if (currentTime - startTime >= AIMING_REQUIRED_TICKS) {
+                if (currentTime - startTime >= TBZServerConfig.BOX_BREATHING_AIMING_REQUIRED_TICKS.get()) {
                     // 设置就绪状态
                     tag.putBoolean(READY_TAG, true);
 

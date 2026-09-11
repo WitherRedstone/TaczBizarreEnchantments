@@ -49,11 +49,24 @@ public class ModernKineticGunScriptAPIMixin {
 
         float totalAccuracyBonus = 0;
 
+        // 测距仪（Rangefinder）：瞄准时提升精度
+        int rangefinderLevel = itemStack.getEnchantmentLevel(TBZEnchantments.RANGEFINDER.get());
+        if (rangefinderLevel > 0 && inaccuracyType == InaccuracyType.AIM) {
+            // 配置值是直观的提升比例（0.15表示提升15%），转换为因子：因子 = 1.0 - 配置值
+            float accuracyImprovementPerLevel = TBZServerConfig.RANGEFINDER_AIM_ACCURACY_IMPROVEMENT_PER_LEVEL.get().floatValue();
+            float factorPerLevel = 1.0f - accuracyImprovementPerLevel;
+            // 计算总因子：总因子 = 1.0 - (1.0 - 每级因子) × 等级
+            float totalImprovementFactor = 1.0f - (1.0f - factorPerLevel) * rangefinderLevel;
+            totalAccuracyBonus += (1.0f - totalImprovementFactor);
+        }
+
         // 稳若磐石（Firmly Planted）：潜行时提升精度
         int firmlyPlantedLevel = itemStack.getEnchantmentLevel(TBZEnchantments.FIRMLY_PLANTED.get());
         if (firmlyPlantedLevel > 0 && player.isShiftKeyDown() && inaccuracyType == InaccuracyType.AIM) {
-            // 仅在瞄准状态下潜行时生效
-            totalAccuracyBonus += TBZServerConfig.FIRMLY_PLANTED_SPREAD_REDUCTION.get().floatValue();
+            // 配置值是直观的减少比例（0.25表示减少25%），转换为因子：因子 = 1.0 - 配置值
+            float spreadReduction = TBZServerConfig.FIRMLY_PLANTED_SPREAD_REDUCTION.get().floatValue();
+            float factor = 1.0f - spreadReduction;
+            totalAccuracyBonus += (1.0f - factor);
         }
 
         // 风暴之眼（Eye of Storm）：生命值越低，精度越高
@@ -61,8 +74,12 @@ public class ModernKineticGunScriptAPIMixin {
         if (eyeOfStormEyeLevel > 0) {
             // 计算生命值比例：生命值越低，加成越高
             float healthRatio = player.getHealth() / player.getMaxHealth();
-            float healthBonus = (1.0f - healthRatio) * TBZServerConfig.EYE_OF_STORM_EYE_ACCURACY_BONUS.get().floatValue();
-            totalAccuracyBonus += healthBonus;
+            // 配置值是直观的提升比例（0.40表示提升40%），转换为因子：因子 = 1.0 - 配置值
+            float accuracyBonus = TBZServerConfig.EYE_OF_STORM_EYE_ACCURACY_BONUS.get().floatValue();
+            float baseFactor = 1.0f - accuracyBonus;
+            // 生命值越低，因子越小（精度提升越大）：因子 = 基础因子 + (1 - 基础因子) * 生命值比例
+            float dynamicFactor = baseFactor + (1.0f - baseFactor) * healthRatio;
+            totalAccuracyBonus += (1.0f - dynamicFactor);
         }
 
         // 如果没有精度加成，返回原始值

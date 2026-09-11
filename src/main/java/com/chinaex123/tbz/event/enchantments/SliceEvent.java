@@ -101,8 +101,7 @@ public class SliceEvent {
             int severMaxAmplifier = TBZServerConfig.SLICE_SEVER_MAX_AMPLIFIER.get();
 
             // 随机生成效果等级（在最小和最大之间随机）
-            int severAmplifier = severMinAmplifier
-                    + player.getRandom().nextInt(severMaxAmplifier - severMinAmplifier + 1);
+            int severAmplifier = severMinAmplifier + player.getRandom().nextInt(severMaxAmplifier - severMinAmplifier + 1);
 
             // 创建新的瓦解效果
             MobEffectInstance severEffect = new MobEffectInstance(

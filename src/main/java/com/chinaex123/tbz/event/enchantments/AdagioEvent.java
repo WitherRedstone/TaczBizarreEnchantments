@@ -105,7 +105,7 @@ public class AdagioEvent {
 
             // 通过网络同步射速调整数据
             long additionalInterval = adjuster.tbz$GetAdditionalInterval();
-            long endTime = System.currentTimeMillis() + (long)(TBZServerConfig.ADAGIO_DURATION.get() * 1000L);
+            long endTime = System.currentTimeMillis() + TBZServerConfig.ADAGIO_DURATION.get();
 
             PacketHandler.INSTANCE.send(
                     PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> player),
@@ -118,7 +118,7 @@ public class AdagioEvent {
         tag.putBoolean(ADAGIO_ACTIVE, true);
         tag.putLong(ADAGIO_START_TIME, System.currentTimeMillis());
         tag.putInt(ADAGIO_LEVEL, enchantLevel);
-        tag.putLong(ADAGIO_DURATION, (long)(TBZServerConfig.ADAGIO_DURATION.get() * 1000L));
+        tag.putInt(ADAGIO_DURATION, TBZServerConfig.ADAGIO_DURATION.get());
         tag.putFloat(ADAGIO_SLOW_PERCENT, TBZServerConfig.ADAGIO_FIRE_RATE_SLOWDOWN.get().floatValue() * enchantLevel);
 
         // 增加击杀计数

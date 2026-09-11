@@ -40,5 +40,21 @@ public class PacketHandler {
                 GunReloadSpeedPacket::decode,
                 GunReloadSpeedPacket::handle
         );
+
+        INSTANCE.registerMessage(
+                id++,
+                GunAimingSyncPacket.class,
+                GunAimingSyncPacket::encode,
+                GunAimingSyncPacket::decode,
+                GunAimingSyncPacket::handle
+        );
+
+        INSTANCE.registerMessage(
+                id++,
+                MarsSmithingTablePacket.class,
+                MarsSmithingTablePacket::encode,
+                MarsSmithingTablePacket::decode,
+                MarsSmithingTablePacket::handle
+        );
     }
 }

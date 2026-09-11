@@ -46,8 +46,6 @@ public class FireflyEvent {
     public static final String HEADSHOT_KILL_TAG = "FireflyHeadshotKill";
     /** NBT存储键：爆头击杀发生时间 */
     public static final String KILL_TIME_TAG = "FireflyKillTime";
-    /** 有效时间窗口 */
-    public static final int VALID_KILL_TICKS = 60;
 
     /**
      * 枪械伤害事件：萤火虫
@@ -99,7 +97,7 @@ public class FireflyEvent {
         long killTime = tag.getLong(KILL_TIME_TAG);
 
         // 如果爆头时间到击杀时间超过有效窗口，清除标记（爆头未导致击杀或超时）
-        if (currentTime - killTime > VALID_KILL_TICKS) {
+        if (currentTime - killTime > TBZServerConfig.FIREFLY_KILL_WINDOW_TICKS.get()) {
             tag.putBoolean(HEADSHOT_KILL_TAG, false);
             return;
         }

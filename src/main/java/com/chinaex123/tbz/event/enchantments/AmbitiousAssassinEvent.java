@@ -20,9 +20,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * 机制：
  * <ol>
  *   <li>每击杀一个敌人增加1层连续击杀计数
- *   <li>换弹时根据累积的击杀数计算额外弹药量：基础值 + 击杀数 × 每击杀增量
- *   <li>额外弹药量受最大上限限制
- *   <li>计算后的额外弹药量暂存至枪械NBT，待弹匣装填满后自动应用
+ *   <li>换弹时根据累积的击杀数计算弹匣容量提升百分比：击杀数 × 每次击杀提升百分比
+ *   <li>弹匣容量提升百分比受最大上限限制
+ *   <li>计算后的弹匣容量暂存至枪械NBT，待弹匣装填满后自动应用
  *   <li>应用成功后重置击杀计数和暂存标记
  *   <li>若弹匣未满则保留暂存标记，等待下次满弹时应用
  * </ol>
@@ -77,17 +77,15 @@ public class AmbitiousAssassinEvent {
         if (GunEnchantmentHelper.getMagazineSize(gun) <= 0) return;
 
         // 从配置获取刺客野心参数
-        int baseOverfill = TBZServerConfig.AMBITIOUS_ASSASSIN_BASE_OVERFILL.get(); // 基础刺客野心
-        int overfillPerKill = TBZServerConfig.AMBITIOUS_ASSASSIN_OVERFILL_PER_KILL.get(); // 每击杀额外弹药
-        int maxOverfill = TBZServerConfig.AMBITIOUS_ASSASSIN_MAX_OVERFILL.get(); // 最大刺客野心上限
+        double capacityBonusPercent = TBZServerConfig.AMBITIOUS_ASSASSIN_CAPACITY_BONUS_PERCENT.get(); // 每次击杀提升的弹匣容量百分比
+        double maxCapacityBonusPercent = TBZServerConfig.AMBITIOUS_ASSASSIN_MAX_CAPACITY_BONUS_PERCENT.get(); // 最大弹匣容量提升百分比
 
-        // 计算总刺客野心量 = 基础值 + 击杀数 × 每击杀增量
-        int totalOverfill = baseOverfill + (kills * overfillPerKill);
-        totalOverfill = Math.min(totalOverfill, maxOverfill);  // 限制最大超额量
+        // 计算实际提升百分比（不超过最大值）
+        double actualBonusPercent = Math.min(kills * capacityBonusPercent, maxCapacityBonusPercent);
 
-        // 将刺客野心量存入枪械NBT，待下次装填时应用
+        // 将提升百分比存入枪械NBT，待下次装填时应用
         CompoundTag tag = gun.getOrCreateTag();
-        tag.putInt(OVERFILL_TAG, totalOverfill);
+        tag.putDouble(OVERFILL_TAG, actualBonusPercent);
 
         // 重置击杀计数
         killCountMap.put(playerId, 0);
@@ -111,8 +109,8 @@ public class AmbitiousAssassinEvent {
         CompoundTag tag = gun.getTag();
         if (tag == null || !tag.contains(OVERFILL_TAG)) return;
 
-        int overfill = tag.getInt(OVERFILL_TAG);
-        if (overfill <= 0) {
+        double capacityBonusPercent = tag.getDouble(OVERFILL_TAG);
+        if (capacityBonusPercent <= 0) {
             tag.remove(OVERFILL_TAG);  // 清理无效标签
             return;
         }
@@ -124,7 +122,8 @@ public class AmbitiousAssassinEvent {
 
         // 仅在弹匣已满时应用刺客野心（避免覆盖未满弹匣）
         if (currentAmmo >= magazineSize) {
-            int newAmmo = magazineSize + overfill;  // 新弹药数 = 弹匣容量 + 刺客野心
+            // 计算新的弹匣容量：基础容量 × (1 + 提升百分比)
+            int newAmmo = (int)(magazineSize * (1.0 + capacityBonusPercent));
             iGun.setCurrentAmmoCount(gun, newAmmo);
 
             tag.remove(OVERFILL_TAG);  // 应用后清除标签

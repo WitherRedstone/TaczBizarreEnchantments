@@ -35,8 +35,6 @@ public class SwashbucklerEvent {
     private static final String STACK_TAG = "SwashbucklerStack";
     /** NBT存储键：上次击杀时间（游戏刻） */
     private static final String LAST_KILL_TIME_TAG = "SwashbucklerLastKillTime";
-    /** 层数降低间隔（游戏刻，2.5秒 = 50刻） */
-    private static final long DECREASE_INTERVAL_TICKS = 50;
 
     /**
      * 生物死亡事件：斗剑士
@@ -133,7 +131,7 @@ public class SwashbucklerEvent {
         long lastKillTime = tag.getLong(LAST_KILL_TIME_TAG);
 
         // 检查是否超时
-        if (currentTime - lastKillTime >= DECREASE_INTERVAL_TICKS) {
+        if (currentTime - lastKillTime >= TBZServerConfig.SWASHBUCKLER_DECREASE_INTERVAL_TICKS.get()) {
             // 超时，清空所有层数
             tag.putInt(STACK_TAG, 0);
             tag.putLong(LAST_KILL_TIME_TAG, currentTime);

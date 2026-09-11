@@ -1,7 +1,9 @@
 package com.chinaex123.tbz.event.enchantments;
 
+import com.chinaex123.tbz.TBZMod;
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
+import com.chinaex123.tbz.utils.EnchantmentParticleEffects;
 import com.chinaex123.tbz.utils.ExplosionUtils;
 import com.chinaex123.tbz.utils.ParticleUtils;
 import com.tacz.guns.api.entity.IGunOperator;
@@ -31,9 +33,6 @@ public class ThermalAtomizationEvent {
 
     /** NBT存储键：标记当前伤害是否有加成 */
     private static final String HEAT_DAMAGE_TAG = "ThermalAtomizationHeatDamage";
-
-    /** 热度阈值，超过此比例时触发效果 */
-    private static final float HEAT_THRESHOLD = 0.5f;
 
     /**
      * 枪械伤害事件处理 - 热能雾化增伤
@@ -75,7 +74,7 @@ public class ThermalAtomizationEvent {
             float heatRatio = heatAmount / heatMax;
 
             // 如果热度超过阈值，增加伤害
-            if (heatRatio > HEAT_THRESHOLD) {
+            if (heatRatio > TBZServerConfig.THERMAL_ATOMIZATION_HEAT_THRESHOLD.get()) {
                 // 从配置获取伤害加成比例
                 float damageBonus = TBZServerConfig.THERMAL_ATOMIZATION_DAMAGE_BONUS.get().floatValue();
                 float originalDamage = event.getBaseAmount();
@@ -98,7 +97,7 @@ public class ThermalAtomizationEvent {
     }
 
     /**
-     * 击杀事件处理 - 热能雾化爆炸
+     * 生物死亡事件：热能雾化
      * 当击杀时枪械热度超过阈值，触发小范围爆炸
      *
      * @param player 击杀者玩家
@@ -136,7 +135,7 @@ public class ThermalAtomizationEvent {
             float heatRatio = heatAmount / heatMax;
 
             // 如果热度低于阈值，不触发爆炸
-            if (heatRatio <= HEAT_THRESHOLD) {
+            if (heatRatio <= TBZServerConfig.THERMAL_ATOMIZATION_HEAT_THRESHOLD.get()) {
                 return;
             }
 
@@ -149,12 +148,12 @@ public class ThermalAtomizationEvent {
             ExplosionUtils.dealSmallExplosionDamage(target, 0, explosionMinDamage, explosionMaxDamage, explosionRange);
             
             // 显示粒子效果
-            if (TBZServerConfig.THERMAL_ATOMIZATION_SHOW_PARTICLES.get() && target.level() instanceof ServerLevel serverLevel) {
-                ParticleUtils.spawnCircleRadiusParticle(serverLevel, target.getX(), target.getY(), target.getZ(), explosionRange, 1.0f, 0.5f, 0.0f, 0.5f);
+            if (target.level() instanceof ServerLevel serverLevel) {
+                EnchantmentParticleEffects.showThermalAtomizationRadiusParticle(serverLevel, target.getX(), target.getY(), target.getZ(), explosionRange);
             }
 
         } catch (Exception e) {
-            // 忽略异常
+            TBZMod.LOGGER.warn("[ThermalAtomizationEvent.onKill] 处理热能雾化爆炸事件失败: {}", e.getMessage());
         }
     }
 }

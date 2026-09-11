@@ -2,6 +2,7 @@ package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
+import com.chinaex123.tbz.utils.EnchantmentParticleEffects;
 import com.chinaex123.tbz.utils.ParticleUtils;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.api.event.server.AmmoHitBlockEvent;
@@ -62,7 +63,7 @@ public class PrimevalsTormentEvent {
         double range = TBZServerConfig.PRIMEVALS_TORMENT_RANGE.get();
 
         // 对目标施加凋零效果
-        target.addEffect(new MobEffectInstance(MobEffects.WITHER, duration * 20, amplifier, false, false));
+        target.addEffect(new MobEffectInstance(MobEffects.WITHER, duration, amplifier, false, false));
 
         // 对范围内的其他生物施加凋零效果
         if (range > 0) {
@@ -72,13 +73,13 @@ public class PrimevalsTormentEvent {
             for (LivingEntity nearby : target.level().getEntitiesOfClass(LivingEntity.class, target.getBoundingBox().inflate(range))) {
                 if (nearby != target && target.distanceToSqr(nearby) <= rangeSqr) {
                     hasNearbyTargets = true;
-                    nearby.addEffect(new MobEffectInstance(MobEffects.WITHER, duration * 20, amplifier, false, false));
+                    nearby.addEffect(new MobEffectInstance(MobEffects.WITHER, duration, amplifier, false, false));
                 }
             }
             
             // 显示粒子效果
-            if (hasNearbyTargets && TBZServerConfig.PRIMEVALS_TORMENT_SHOW_PARTICLES.get() && target.level() instanceof ServerLevel serverLevel) {
-                ParticleUtils.spawnCircleRadiusParticle(serverLevel, target.getX(), target.getY(), target.getZ(), range, 0.3f, 0.0f, 0.3f, 0.5f);
+            if (hasNearbyTargets && target.level() instanceof ServerLevel serverLevel) {
+                EnchantmentParticleEffects.showPrimevalsTormentRadiusParticle(serverLevel, target.getX(), target.getY(), target.getZ(), range);
             }
         }
     }
@@ -122,7 +123,7 @@ public class PrimevalsTormentEvent {
         List<LivingEntity> entities = event.getLevel().getEntitiesOfClass(LivingEntity.class, aabb);
         for (LivingEntity entity : entities) {
             if (entity != player) {
-                entity.addEffect(new MobEffectInstance(MobEffects.WITHER, duration * 20, amplifier, false, false));
+                entity.addEffect(new MobEffectInstance(MobEffects.WITHER, duration, amplifier, false, false));
             }
         }
     }

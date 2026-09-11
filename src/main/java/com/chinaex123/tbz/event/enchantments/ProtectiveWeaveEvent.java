@@ -64,13 +64,8 @@ public class ProtectiveWeaveEvent {
             int wovenMailAmplifier = TBZServerConfig.PROTECTIVE_WEAVE_WOVEN_MAIL_AMPLIFIER.get();
 
             // 重新添加效果，保持等级不变，只更新持续时间
-            player.addEffect(new MobEffectInstance(
-                    FELEffects.WOVEN_MAIL.get(),
-                    newDuration,
-                    wovenMailAmplifier,
-                    false,
-                    true
-            ));
+            player.addEffect(new MobEffectInstance(FELEffects.WOVEN_MAIL.get(), newDuration, wovenMailAmplifier, false, true));
+
             // 更新击杀时间
             tag.putLong(LAST_KILL_TIME_TAG, currentTime);
         } else {
@@ -84,13 +79,7 @@ public class ProtectiveWeaveEvent {
             // 冷却结束，施加新的织造铠甲效果
             int wovenMailDuration = TBZServerConfig.PROTECTIVE_WEAVE_WOVEN_MAIL_DURATION.get();
             int wovenMailAmplifier = TBZServerConfig.PROTECTIVE_WEAVE_WOVEN_MAIL_AMPLIFIER.get();
-            MobEffectInstance wovenMail = new MobEffectInstance(
-                    FELEffects.WOVEN_MAIL.get(),
-                    wovenMailDuration,
-                    wovenMailAmplifier,
-                    false,
-                    true
-            );
+            MobEffectInstance wovenMail = new MobEffectInstance(FELEffects.WOVEN_MAIL.get(), wovenMailDuration, wovenMailAmplifier, false, true);
 
             player.addEffect(wovenMail);
             // 记录本次击杀时间

@@ -1,0 +1,22 @@
+{
+  "forge:conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mekanism"
+    }
+  ],
+  "type": "mekanism:nucleosynthesizing",
+  "duration": 800,
+  "gasInput": {
+    "amount": 5,
+    "gas": "mekanism:antimatter"
+  },
+  "itemInput": {
+    "ingredient": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "output": {
+    "item": "tbz:enhancement_prism"
+  }
+}

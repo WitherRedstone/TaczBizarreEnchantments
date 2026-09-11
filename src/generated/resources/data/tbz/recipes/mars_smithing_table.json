@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:chiseled_polished_blackstone"
+    },
+    "B": {
+      "item": "tbz:enhancement_prism"
+    },
+    "C": {
+      "item": "minecraft:echo_shard"
+    }
+  },
+  "pattern": [
+    "BCB",
+    "CAC",
+    "BCB"
+  ],
+  "result": {
+    "item": "tbz:mars_smithing_table"
+  },
+  "show_notification": true
+}

@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.network.hud;
 
-import com.chinaex123.tbz.client.hud.TriggeredEnchantmentHUD;
+import com.chinaex123.tbz.client.hud.TriggerBasedHUD;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -53,7 +53,7 @@ public record TriggeredEnchantmentSyncPacket(UUID playerId, String enchantmentTy
         NetworkEvent.Context context = contextSupplier.get();
         context.enqueueWork(() -> {
             // 更新客户端缓存
-            TriggeredEnchantmentHUD.setTriggered(packet.playerId(), packet.enchantmentType(), packet.triggerTime());
+            TriggerBasedHUD.setTriggered(packet.playerId(), packet.enchantmentType(), packet.triggerTime());
         });
         context.setPacketHandled(true);
     }

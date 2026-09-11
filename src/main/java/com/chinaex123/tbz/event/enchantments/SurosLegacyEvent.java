@@ -28,8 +28,6 @@ public class SurosLegacyEvent {
 
     /** 治疗效果持续时间（1刻，瞬间生效） **/
     private static final int CURE_DURATION = 1;
-    /** 治疗效果放大器（0级） **/
-    private static final int CURE_AMPLIFIER = 0;
 
     /**
      * 枪械伤害事件处理 - SUROS遗产增伤
@@ -80,7 +78,7 @@ public class SurosLegacyEvent {
         float cureChance = TBZServerConfig.SUROS_LEGACY_CURE_CHANCE.get().floatValue();
         // 判定是否触发治愈效果
         if (player.getRandom().nextFloat() < cureChance) {
-            player.addEffect(new MobEffectInstance(FELEffects.CURE.get(), CURE_DURATION, CURE_AMPLIFIER));
+            player.addEffect(new MobEffectInstance(FELEffects.CURE.get(), CURE_DURATION, TBZServerConfig.SUROS_LEGACY_CURE_AMPLIFIER.get()));
         }
     }
 }

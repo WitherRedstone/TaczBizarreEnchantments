@@ -1,7 +1,18 @@
 {
   "itemGroup.tbz": "Tacz's Peculiar Enchantments",
 
-  "_enchantment.exotic":"[Exotic] Enchantment Category",
+  "_enchantment.item":"Items",
+  "item.tbz.enhancement_prism": "Enhancement Prism",
+  "item.tbz.ascendant_shard": "Ascendant Shard",
+  "item.tbz.ascendant_alloy": "Ascendant Alloy",
+
+  "_enchantment.block":"Blocks",
+  "block.tbz.mars_smithing_table": "Mars Smithing Table",
+
+  "_enchantment.villager":"Villager Professions",
+  "entity.minecraft.villager.tbz.mars_smith": "Mars Smith",
+
+  "_enchantment.exotic":"Exotic Category",
   "enchantment.tbz.protective_weave": "Protective Weave",
   "enchantment.tbz.protective_weave.desc": "Kills grant Woven Armor, which increases damage dealt while active.",
   "enchantment.tbz.reign_havoc": "Reign Havoc",
@@ -23,7 +34,7 @@
   "enchantment.tbz.personal_assistant": "Personal Assistant",
   "enchantment.tbz.personal_assistant.desc": "When hitting a target, it displays its health and distance to you, and shakes when hit.",
 
-  "_enchantment.bonus_damage": "[Bonus Damage] Enchantment Category",
+  "_enchantment.bonus_damage": "Bonus Damage Category",
   "enchantment.tbz.borpal_weapon": "Borpal Weapon",
   "enchantment.tbz.borpal_weapon.desc": "Deals bonus damage to Boss-type entities.",
   "enchantment.tbz.precision_instrument": "Precision Instrument",
@@ -49,7 +60,7 @@
   "enchantment.tbz.explosive_light": "Explosive Light",
   "enchantment.tbz.explosive_light.desc": "Every 25 experience points collected increases the damage of the next fired round.",
 
-  "_enchantment.bonus_bullet": "[Ammo Refund] Enchantment Category",
+  "_enchantment.ammo": "Ammo Category",
   "enchantment.tbz.subsistence": "Subsistence",
   "enchantment.tbz.subsistence.desc": "Defeating a target transfers ammunition from reserves and partially refills the magazine.",
   "enchantment.tbz.ambitious_assassin": "Ambitious Assassin",
@@ -73,9 +84,9 @@
   "enchantment.tbz.clown_cartridge": "Clown Cartridge",
   "enchantment.tbz.clown_cartridge.desc": "Reloading this weapon will randomly load additional ammunition from reserves.",
 
-  "_enchantment.application_effect": "[Status Application] Enchantment Category",
+  "_enchantment.effect": "Effect Category",
   "enchantment.tbz.heal_clip": "Heal Clip",
-  "enchantment.tbz.heal_clip.desc": "Reloading shortly after a final blow heals you.",
+  "enchantment.tbz.heal_clip.desc": "Reloading shortly after a final blow provides healing to yourself, nearby players, or peaceful creatures.",
   "enchantment.tbz.rolling_storm": "Rolling Storm",
   "enchantment.tbz.rolling_storm.desc": "Final blows grant a damage-boosting effect.",
   "enchantment.tbz.destabilizing_rounds": "Destabilizing Rounds",
@@ -83,7 +94,7 @@
   "enchantment.tbz.incandescent": "Incandescent",
   "enchantment.tbz.incandescent.desc": "Defeating a target causes nearby enemies to be Scorched.",
   "enchantment.tbz.chill_clip": "Chill Clip",
-  "enchantment.tbz.chill_clip.desc": "Sustained attacks apply Freezing effects to the target.",
+  "enchantment.tbz.chill_clip.desc": "Continuous attacks can apply a slow effect to the target.",
   "enchantment.tbz.rimestealer": "Rimestealer",
   "enchantment.tbz.rimestealer.desc": "Defeating a target affected by Freezing grants you Frost Armor.",
   "enchantment.tbz.slice": "Slice",
@@ -92,8 +103,12 @@
   "enchantment.tbz.withering_gaze.desc": "Aiming the weapon for a short period without firing weakens your next target.",
   "enchantment.tbz.burning_ambition": "Burning Ambition",
   "enchantment.tbz.burning_ambition.desc": "Sustained damage ignites the target.",
+  "enchantment.tbz.demoralize": "Demoralize",
+  "enchantment.tbz.demoralize.desc": "Precision final blow causes nearby targets to demoralize.",
+  "enchantment.tbz.repulsor_brace": "Repulsor Brace",
+  "enchantment.tbz.repulsor_brace.desc": "Defeating a target affected by Void gives you Void Armor.",
 
-  "_enchantment.explosive_payload": "[Explosive] Enchantment Category",
+  "_enchantment.explosive": "Explosive Category",
   "enchantment.tbz.butterfly": "Butterfly",
   "enchantment.tbz.butterfly.desc": "Aiming the weapon for a short period without firing causes your target to explode upon a final blow for the remainder of the magazine.",
   "enchantment.tbz.explosive_payload": "Explosive Payload",
@@ -105,7 +120,7 @@
   "enchantment.tbz.meganeura": "Meganeura",
   "enchantment.tbz.meganeura.desc": "Precision final blows cause an explosion that deals additional damage based on the number of precision hits landed beforehand.",
 
-  "_enchantment.part_specifications":"[Part Specifications] Enchantment Category",
+  "_enchantment.accessories":"Accessories Category",
   "enchantment.tbz.outlaw": "Outlaw",
   "enchantment.tbz.outlaw.desc": "Precision kills dramatically reduce reload time.",
   "enchantment.tbz.snapshot_sights": "Snapshot Sights",
@@ -118,19 +133,22 @@
   "enchantment.tbz.onslaught.desc": "Final blows with this weapon increase its fire rate, and multiple kills can refresh the buff.",
   "enchantment.tbz.eye_of_storm_eye": "Eye of Storm Eye",
   "enchantment.tbz.eye_of_storm_eye.desc": "The lower your health, the better the weapon's aiming precision and slightly reduced horizontal recoil.",
+  "enchantment.tbz.rangefinder": "Rangefinder",
+  "enchantment.tbz.rangefinder.desc": "Aiming increases effective range and aim accuracy, while reducing vertical recoil",
+  "enchantment.tbz.keep_away": "keep Away",
+  "enchantment.tbz.keep_away.desc": "If no targets are nearby, increase effective range and aim accuracy",
 
-  "_enchantment.continuous_damage": "[Damage over Time] Enchantment Category",
+  "_enchantment.other":"Other Category",
   "enchantment.tbz.attrition_orbs": "Attrition Orbs",
   "enchantment.tbz.attrition_orbs.desc": "Dealing sustained damage to the same target generates experience orbs.",
-
-  "_enchantment.other":"[Other] Enchantment Category",
   "enchantment.tbz.wellspring": "Wellspring",
   "enchantment.tbz.wellspring.desc": "Defeating enemies with this weapon generates experience orbs.",
   "enchantment.tbz.cooling_baubles": "Cooling Baubles",
-  "enchantment.tbz.cooling_baubles.desc": "Picking up experience orbs has a chance to reduce the weapon's heat.",
+  "enchantment.tbz.cooling_baubles.desc": "Reduce weapon heat when picking up experience orbs.",
   "enchantment.tbz.shoot_tp_loot": "Shoot & Loot",
   "enchantment.tbz.shoot_tp_loot.desc": "Shooting items and experience orbs from a distance immediately picks them up and places them in your inventory.",
 
+  "_enchantment.gui":"GUI Display",
   "gui.tbz.rewind_rounds": "Rewind Rounds",
   "gui.tbz.triple_tap": "Triple Tap",
   "gui.tbz.fourth_time_the_charm": "Fourth Time's The Charm",
@@ -140,5 +158,11 @@
   "gui.tbz.swashbuckler": "Swashbuckler x%s",
   "gui.tbz.one_for_all": "One For All x%s %ss",
   "gui.tbz.master_of_arms": "Master Of Arms x%s %ss",
-  "gui.tbz.explosive_light": "Explosive Light x%s Experience: %s"
+  "gui.tbz.explosive_light": "Explosive Light x%s Experience: %s",
+  "gui.tbz.personal_assistant.health": "Health: %s/%s",
+  "gui.tbz.personal_assistant.distance": "Distance: %s blocks",
+
+  "_enchantment.tooltip":"Tooltip",
+  "tooltip.tbz.random_perk": "Random Perk",
+  "tooltip.tbz.combination_1": "Ultimate Combination!"
 }

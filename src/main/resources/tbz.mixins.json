@@ -18,6 +18,6 @@
     "ModernKineticGunScriptAPIMixin",
     "ShooterDataHolderMixin",
     "GunDataMixin",
-    "GunReloadTimeMixin"
+    "ReloadStateMixin"
   ]
 }

@@ -29,7 +29,7 @@ public class OutlawEvent {
     /** NBT存储键：击杀时间戳 */
     private static final String KILL_TIME_TAG = "OutlawKillTime";
     /** NBT存储键：换弹加速标记 */
-    private static final String RELOAD_SPEED_TAG = "OutlawReloadSpeed";
+    public static final String RELOAD_SPEED_TAG = "OutlawReloadSpeed";
     /** 有效时间窗口（游戏刻） */
     private static final int VALID_KILL_TICKS = 60;
 

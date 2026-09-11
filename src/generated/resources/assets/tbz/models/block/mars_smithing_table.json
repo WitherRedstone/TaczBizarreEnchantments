@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "tbz:block/mars_smithing_table_bottom",
+    "east": "tbz:block/mars_smithing_table_side",
+    "north": "tbz:block/mars_smithing_table_front",
+    "particle": "tbz:block/mars_smithing_table_front",
+    "south": "tbz:block/mars_smithing_table_front",
+    "up": "tbz:block/mars_smithing_table_top",
+    "west": "tbz:block/mars_smithing_table_side"
+  }
+}

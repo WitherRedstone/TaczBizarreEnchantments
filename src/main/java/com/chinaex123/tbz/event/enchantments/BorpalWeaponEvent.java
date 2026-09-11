@@ -1,7 +1,7 @@
 package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.tbz.config.TBZServerConfig;
-import com.chinaex123.tbz.enchantment.BorpalWeaponEnchantment;
+import com.chinaex123.tbz.item.enchantment.BorpalWeaponEnchantment;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import net.minecraft.world.entity.LivingEntity;

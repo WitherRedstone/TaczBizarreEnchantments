@@ -4,6 +4,7 @@ import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
 import com.chinaex123.tbz.network.hud.HUDPacketHandler;
 import com.chinaex123.tbz.network.hud.TriggeredEnchantmentSyncPacket;
+import com.chinaex123.tbz.utils.EnchantmentParticleEffects;
 import com.chinaex123.tbz.utils.ParticleUtils;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.api.item.IGun;
@@ -90,8 +91,8 @@ public class TheRightChoiceEvent {
             }
             
             // 显示粒子效果
-            if (hasNearbyTargets && TBZServerConfig.THE_RIGHT_CHOICE_SHOW_PARTICLES.get()) {
-                ParticleUtils.spawnCircleRadiusParticle(serverLevel, target.getX(), target.getY(), target.getZ(), range, 0.27f, 1.0f, 0.27f, 0.5f);
+            if (hasNearbyTargets) {
+                EnchantmentParticleEffects.showTheRightChoiceRadiusParticle(serverLevel, target.getX(), target.getY(), target.getZ(), range);
             }
         }
 

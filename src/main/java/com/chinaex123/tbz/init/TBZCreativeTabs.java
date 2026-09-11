@@ -20,7 +20,16 @@ public class TBZCreativeTabs {
                     .icon(() -> createEnchantedBookStack(TBZEnchantments.BORPAL_WEAPON.get(), 1))
                     .title(Component.translatable("itemGroup.tbz"))
                     .displayItems((parameters, output) -> {
-                        // ==================== [异域]类型附魔 ====================
+
+                        // ==================== 物品 ====================
+                        output.accept(TBZItems.ENHANCEMENT_PRISM.get());
+                        output.accept(TBZItems.ASCENDANT_SHARD.get());
+                        output.accept(TBZItems.ASCENDANT_ALLOY.get());
+
+                        // ==================== 方块 ====================
+                        output.accept(TBZBlocks.MARS_SMITHING_TABLE.get());
+
+                        // ==================== 异域类 ====================
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.PROTECTIVE_WEAVE.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.REIGN_HAVOC.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.SUROS_LEGACY.get());
@@ -32,13 +41,12 @@ public class TBZCreativeTabs {
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.VEXADECIMAL.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.PERSONAL_ASSISTANT.get());
 
-                        // ==================== [增伤]类型附魔 ====================
+                        // ==================== 增伤类 ====================
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.BORPAL_WEAPON.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.PRECISION_INSTRUMENT.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.TARGET_LOCK.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.GUTSHOT_STRAIGHT.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.THERMAL_ATOMIZATION.get());
-                        addAllLevelEnchantmentBooks(output, TBZEnchantments.COOLING_BAUBLES.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.SWASHBUCKLER.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.ONE_FOR_ALL.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.MASTER_OF_ARMS.get());
@@ -47,7 +55,7 @@ public class TBZCreativeTabs {
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.BOX_BREATHING.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.EXPLOSIVE_LIGHT.get());
 
-                        // ==================== [回子弹]类型附魔 ====================
+                        // ==================== 子弹类 ====================
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.SUBSISTENCE.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.AMBITIOUS_ASSASSIN.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.RECONSTRUCTION.get());
@@ -60,7 +68,7 @@ public class TBZCreativeTabs {
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.REVERSAL_OF_FORTUNE.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.CLOWN_CARTRIDGE.get());
 
-                        // ==================== [应用效果]类型附魔 ====================
+                        // ==================== 效果类 ====================
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.HEAL_CLIP.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.ROLLING_STORM.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.DESTABILIZING_ROUNDS.get());
@@ -70,27 +78,30 @@ public class TBZCreativeTabs {
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.SLICE.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.WITHERING_GAZE.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.BURNING_AMBITION.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.DEMORALIZE.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.REPULSOR_BRACE.get());
 
-                        // ==================== [爆炸]类型附魔 ====================
+                        // ==================== 爆炸类 ====================
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.BUTTERFLY.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.EXPLOSIVE_PAYLOAD.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.FIREFLY.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.DRAGONFLY.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.MEGANEURA.get());
 
-                        // ==================== [配件数值]类型附魔 ====================
+                        // ==================== 配件类 ====================
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.OUTLAW.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.SNAPSHOT_SIGHTS.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.FIRMLY_PLANTED.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.ADAGIO.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.ONSLAUGHT.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.EYE_OF_STORM_EYE.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.RANGEFINDER.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.KEEP_AWAY.get());
 
-                        // ==================== [持续伤害]类型附魔 ====================
+                        // ==================== 其他类 ====================
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.ATTRITION_ORBS.get());
-
-                        // ==================== [其他]类型附魔 ====================
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.WELLSPRING.get());
+                        addAllLevelEnchantmentBooks(output, TBZEnchantments.COOLING_BAUBLES.get());
                         addAllLevelEnchantmentBooks(output, TBZEnchantments.SHOOT_TP_LOOT.get());
                     })
                     .build());

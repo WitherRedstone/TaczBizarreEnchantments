@@ -90,7 +90,7 @@ public class TargetLockEvent {
         // 条件2：检查是否超过超时时间
         long lastHitTime = tag.getLong(LAST_HIT_TIME_TAG);
 
-        long timeoutTicks = (long) (TBZServerConfig.TARGET_LOCK_TIMEOUT_SECONDS.get() * 20);
+        long timeoutTicks = (long) (TBZServerConfig.TARGET_LOCK_TIMEOUT_SECONDS.get());
         if (currentTime - lastHitTime > timeoutTicks) {
             // 超时未命中，重置所有状态
             resetLock(tag, player);

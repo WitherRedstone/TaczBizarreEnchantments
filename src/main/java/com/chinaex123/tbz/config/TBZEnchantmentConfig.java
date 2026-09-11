@@ -30,7 +30,7 @@ public class TBZEnchantmentConfig {
 
     // 静态初始化块：注册附魔及其对应的配置项
     static {
-        // ========== [异域]类型附魔 ==========
+        // ========== 异域类 ==========
         // 防护编织
         ENCHANTMENT_CONFIGS.put("protective_weave", new EnchantmentConfigEntry(
                 TBZServerConfig.PROTECTIVE_WEAVE_WHITELIST_MODE,
@@ -83,7 +83,7 @@ public class TBZEnchantmentConfig {
         ));
 
 
-        // ========== [增伤]类型附魔 ==========
+        // ========== 增伤类 ==========
         // 斩首武器
         ENCHANTMENT_CONFIGS.put("borpal_weapon", new EnchantmentConfigEntry(
                 TBZServerConfig.BORPAL_WEAPON_WHITELIST_MODE,
@@ -145,7 +145,7 @@ public class TBZEnchantmentConfig {
                 TBZServerConfig.EXPLOSIVE_LIGHT_APPLICABLE_GUNS
         ));
 
-        // ========== [回子弹]类型附魔 ==========
+        // ========== 子弹类 ==========
         // 维持生计
         ENCHANTMENT_CONFIGS.put("subsistence", new EnchantmentConfigEntry(
                 TBZServerConfig.SUBSISTENCE_WHITELIST_MODE,
@@ -202,7 +202,7 @@ public class TBZEnchantmentConfig {
                 TBZServerConfig.CLOWN_CARTRIDGE_APPLICABLE_GUNS
         ));
 
-        // ========== [应用效果]类型附魔 ==========
+        // ========== 效果类 ==========
         // 治疗弹匣
         ENCHANTMENT_CONFIGS.put("heal_clip", new EnchantmentConfigEntry(
                 TBZServerConfig.HEAL_CLIP_WHITELIST_MODE,
@@ -248,8 +248,18 @@ public class TBZEnchantmentConfig {
                 TBZServerConfig.BURNING_AMBITION_WHITELIST_MODE,
                 TBZServerConfig.BURNING_AMBITION_APPLICABLE_GUNS
         ));
+        // 瓦解
+        ENCHANTMENT_CONFIGS.put("demoralize", new EnchantmentConfigEntry(
+                TBZServerConfig.DEMORALIZE_WHITELIST_MODE,
+                TBZServerConfig.DEMORALIZE_APPLICABLE_GUNS
+        ));
+        // 冲击支撑
+        ENCHANTMENT_CONFIGS.put("repulsor_brace", new EnchantmentConfigEntry(
+                TBZServerConfig.REPULSOR_BRACE_WHITELIST_MODE,
+                TBZServerConfig.REPULSOR_BRACE_APPLICABLE_GUNS
+        ));
 
-        // ========== [爆炸]类型附魔 ==========
+        // ========== 爆炸类 ==========
         // 蝴蝶
         ENCHANTMENT_CONFIGS.put("butterfly", new EnchantmentConfigEntry(
                 TBZServerConfig.BUTTERFLY_WHITELIST_MODE,
@@ -276,7 +286,7 @@ public class TBZEnchantmentConfig {
                 TBZServerConfig.MEGANEURA_APPLICABLE_GUNS
         ));
 
-        // ========== [配件数值]类型附魔 ==========
+        // ========== 配件类 ==========
         // 不法之徒
         ENCHANTMENT_CONFIGS.put("outlaw", new EnchantmentConfigEntry(
                 TBZServerConfig.OUTLAW_WHITELIST_MODE,
@@ -307,15 +317,23 @@ public class TBZEnchantmentConfig {
                 TBZServerConfig.EYE_OF_STORM_EYE_WHITELIST_MODE,
                 TBZServerConfig.EYE_OF_STORM_EYE_APPLICABLE_GUNS
         ));
+        // 测距仪
+        ENCHANTMENT_CONFIGS.put("rangefinder", new EnchantmentConfigEntry(
+                TBZServerConfig.RANGEFINDER_WHITELIST_MODE,
+                TBZServerConfig.RANGEFINDER_APPLICABLE_GUNS
+        ));
+        // 切勿靠近
+        ENCHANTMENT_CONFIGS.put("keep_away", new EnchantmentConfigEntry(
+                TBZServerConfig.KEEP_AWAY_WHITELIST_MODE,
+                TBZServerConfig.KEEP_AWAY_APPLICABLE_GUNS
+        ));
 
-        // ========== [持续伤害]类型附魔 ==========
+        // ========== 其他类 ==========
         // 羸弱能量球
         ENCHANTMENT_CONFIGS.put("attrition_orbs", new EnchantmentConfigEntry(
                 TBZServerConfig.ATTRITION_ORBS_WHITELIST_MODE,
                 TBZServerConfig.ATTRITION_ORBS_APPLICABLE_GUNS
         ));
-
-        // ========== [其他]类型附魔 ==========
         // 泉源
         ENCHANTMENT_CONFIGS.put("wellspring", new EnchantmentConfigEntry(
                 TBZServerConfig.WELLSPRING_WHITELIST_MODE,

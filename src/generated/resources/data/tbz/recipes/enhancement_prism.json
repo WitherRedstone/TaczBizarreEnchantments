@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tbz:ascendant_shard"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "tbz:enhancement_prism"
+  }
+}

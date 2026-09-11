@@ -61,7 +61,7 @@ public class SuperchargedMagazineEvent {
         UUID playerId = player.getUUID();
         long currentTime = System.currentTimeMillis();
         long lastReloadTime = lastReloadTimeMap.getOrDefault(playerId, 0L);
-        long reloadInterval = (long) (TBZServerConfig.SUPERCHARGED_MAGAZINE_RELOAD_INTERVAL.get() * 1000);
+        long reloadInterval = TBZServerConfig.SUPERCHARGED_MAGAZINE_RELOAD_INTERVAL.get();
 
         // 如果距离上次补充时间小于冷却间隔，则跳过本次补充
         if (currentTime - lastReloadTime < reloadInterval) return;

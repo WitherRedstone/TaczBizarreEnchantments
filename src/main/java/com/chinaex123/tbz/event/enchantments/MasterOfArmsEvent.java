@@ -132,10 +132,9 @@ public class MasterOfArmsEvent {
         double durationSeconds = isStack2 ?
                 TBZServerConfig.MASTER_OF_ARMS_STACK_2_DURATION_SECONDS.get() :
                 TBZServerConfig.MASTER_OF_ARMS_STACK_1_DURATION_SECONDS.get();
-        long durationTicks = (long) (durationSeconds * 20);
 
         // 检查效果是否过期
-        if (currentTime - startTime >= durationTicks) {
+        if (currentTime - startTime >= (long) durationSeconds) {
             if (currentStack == 2 && isStack2) {
                 // x2过期，恢复为x1
                 tag.putInt(STACK_TAG, 1);

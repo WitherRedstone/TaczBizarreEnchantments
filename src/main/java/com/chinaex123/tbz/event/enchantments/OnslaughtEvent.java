@@ -75,7 +75,7 @@ public class OnslaughtEvent {
 
             // 获取调整后的额外间隔和结束时间
             long additionalInterval = adjuster.tbz$GetAdditionalInterval();
-            long endTime = System.currentTimeMillis() + (long)(TBZServerConfig.ONSLAUGHT_DURATION.get() * 1000L);
+            long endTime = System.currentTimeMillis() + TBZServerConfig.ONSLAUGHT_DURATION.get();
 
             // 通过网络同步射速数据到客户端
             PacketHandler.INSTANCE.send(
@@ -89,7 +89,7 @@ public class OnslaughtEvent {
         tag.putBoolean(ONSLAUGHT_ACTIVE, true);
         tag.putLong(ONSLAUGHT_START_TIME, System.currentTimeMillis());
         tag.putInt(ONSLAUGHT_LEVEL, enchantLevel);
-        tag.putLong(ONSLAUGHT_DURATION, (long)(TBZServerConfig.ONSLAUGHT_DURATION.get() * 1000L));
+        tag.putLong(ONSLAUGHT_DURATION, TBZServerConfig.ONSLAUGHT_DURATION.get());
         tag.putFloat(ONSLAUGHT_BOOST_PERCENT, TBZServerConfig.ONSLAUGHT_FIRE_RATE_BOOST.get().floatValue() * enchantLevel);
 
         // 增加击杀计数
@@ -188,7 +188,7 @@ public class OnslaughtEvent {
         long duration = tag.getLong(ONSLAUGHT_DURATION);
 
         if (duration <= 0) {
-            duration = (long)(TBZServerConfig.ONSLAUGHT_DURATION.get() * 1000L);
+            duration = TBZServerConfig.ONSLAUGHT_DURATION.get();
         }
 
         // 检查是否在有效时间内

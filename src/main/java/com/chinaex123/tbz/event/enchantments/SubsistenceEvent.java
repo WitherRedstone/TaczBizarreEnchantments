@@ -100,7 +100,7 @@ public class SubsistenceEvent {
 
         // 计算理论补充弹药量 = 弹匣容量 × 百分比
         // 限制：至少1发，最多不超过需要量
-        int ammoToTransfer = Math.min(ammoNeeded, Math.max(1, (int)(magazineSize * percentage / 100.0)));
+        int ammoToTransfer = Math.min(ammoNeeded, Math.max(1, magazineSize * percentage));
         // 再限制：不超过背包可用弹药量
         ammoToTransfer = Math.min(ammoToTransfer, availableAmmo);
 
@@ -140,8 +140,8 @@ public class SubsistenceEvent {
      * @return 弹药补充百分比（0-100）
      */
     private static int getAmmoPercentage(int level) {
-        int basePercentage = TBZServerConfig.SUBSISTENCE_BASE_AMMO_PERCENTAGE.get();
-        int incrementPerLevel = TBZServerConfig.SUBSISTENCE_AMMO_PERCENTAGE_PER_LEVEL.get();
-        return basePercentage + (level - 1) * incrementPerLevel;
+        double basePercentage = TBZServerConfig.SUBSISTENCE_BASE_AMMO_PERCENTAGE.get();
+        double multiplierPerLevel = TBZServerConfig.SUBSISTENCE_AMMO_PERCENTAGE_PER_LEVEL.get();
+        return (int) (basePercentage + (level - 1) * multiplierPerLevel);
     }
 }

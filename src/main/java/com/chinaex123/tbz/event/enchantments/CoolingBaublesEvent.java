@@ -8,21 +8,30 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
 
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * 冷却饰物附魔的事件处理类
  * <p>
- * 功能：拾取经验球时有几率降低枪械的热量
+ * 功能：拾取经验球时降低枪械的热量
  * <p>
  * 机制：
  * <ol>
  *   <li>玩家拾取经验球时触发检测</li>
  *   <li>检查主手武器是否拥有冷却饰物附魔</li>
+ *   <li>检查冷却时间是否已过</li>
  *   <li>根据配置的几率判定是否触发冷却效果</li>
  *   <li>触发时按弹匣最大热量的一定比例降低当前热量</li>
  *   <li>降低后的热量不会低于0</li>
+ *   <li>触发后记录冷却时间</li>
  * </ol>
  */
 public class CoolingBaublesEvent {
+
+    /** 记录每个玩家上次触发冷却的时间 */
+    private static final Map<UUID, Long> lastCoolTimeMap = new ConcurrentHashMap<>();
 
     /**
      * 经验值变化事件：冷却饰物
@@ -43,6 +52,18 @@ public class CoolingBaublesEvent {
         if (enchantLevel <= 0) return;
 
         try {
+            UUID playerId = player.getUUID();
+            long currentTime = player.level().getGameTime();
+            int cooldownTicks = TBZServerConfig.COOLING_BAUBLES_COOLDOWN_TICKS.get();
+
+            // 检查冷却时间是否已过
+            if (lastCoolTimeMap.containsKey(playerId)) {
+                long lastCoolTime = lastCoolTimeMap.get(playerId);
+                if (currentTime - lastCoolTime < cooldownTicks) {
+                    return;  // 冷却中，不触发
+                }
+            }
+
             // 从配置读取触发几率和热量减少比例
             float chance = TBZServerConfig.COOLING_BAUBLES_COOL_CHANCE.get().floatValue();
             float heatReduction = TBZServerConfig.COOLING_BAUBLES_HEAT_REDUCTION.get().floatValue();
@@ -50,6 +71,8 @@ public class CoolingBaublesEvent {
             // 根据几率判定是否触发冷却效果
             if (player.level().random.nextFloat() < chance) {
                 reduceGunHeat(player, gun, heatReduction);
+                // 记录本次触发时间
+                lastCoolTimeMap.put(playerId, currentTime);
             }
         } catch (Exception e) {
             // 忽略异常
@@ -93,5 +116,14 @@ public class CoolingBaublesEvent {
         } catch (Exception e) {
             // 忽略异常
         }
+    }
+
+    /**
+     * 清除玩家的冷却时间记录
+     *
+     * @param playerId 玩家UUID
+     */
+    public static void clearCooldown(UUID playerId) {
+        lastCoolTimeMap.remove(playerId);
     }
 }

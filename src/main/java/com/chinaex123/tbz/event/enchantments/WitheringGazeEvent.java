@@ -41,8 +41,6 @@ public class WitheringGazeEvent {
     private static final String TRIGGERED_TAG = "WitheringGazeTriggered";
     /** NBT存储键：是否已播放过就绪音效 */
     private static final String SOUND_PLAYED_TAG = "WitheringGazeSoundPlayed";
-    /** 需要持续瞄准的刻数 */
-    private static final int AIMING_REQUIRED_TICKS = 50;
 
     /**
      * 枪械伤害事件：枯萎凝视
@@ -78,7 +76,7 @@ public class WitheringGazeEvent {
             int amplifier = TBZServerConfig.WITHERING_GAZE_EFFECT_LEVEL.get() - 1;
 
             // 对目标施加易伤效果
-            target.addEffect(new MobEffectInstance(FELEffects.VULNERABLE.get(), duration * 20, amplifier, false, false));
+            target.addEffect(new MobEffectInstance(FELEffects.VULNERABLE.get(), duration, amplifier, false, false));
 
             // 标记已触发
             tag.putBoolean(TRIGGERED_TAG, true);
@@ -117,7 +115,7 @@ public class WitheringGazeEvent {
                 long currentTime = player.level().getGameTime();
 
                 // 如果持续瞄准时间 >= 50刻（2.5秒），标记为就绪
-                if (currentTime - startTime >= AIMING_REQUIRED_TICKS) {
+                if (currentTime - startTime >= TBZServerConfig.WITHERING_GAZE_AIMING_REQUIRED_TICKS.get()) {
                     // 检查是否已经就绪
                     if (!tag.getBoolean(READY_TAG)) {
                         tag.putBoolean(READY_TAG, true);

@@ -24,21 +24,21 @@ import java.util.Optional;
  *   <li>射击时记录最后一次射击时间</li>
  *   <li>玩家Tick中检查是否满足自动装填条件：
  *     <ol type="a">
- *       <li>距离上次射击已超过冷却时间（从配置读取）</li>
- *       <li>距离上次自动装填已超过间隔时间（从配置读取）</li>
+ *       <li>距离上次射击已超过冷却时间（5秒）</li>
+ *       <li>距离上次自动装填已超过间隔时间（5秒）</li>
  *       <li>当前弹药未达到最大上限（弹匣容量 × 2倍）</li>
  *       <li>背包中有可用弹药</li>
  *     </ol>
  *   </li>
  *   <li>满足条件时执行自动装填：
  *     <ol type="a">
- *       <li>计算本次转移弹药量 = min(所需弹药, 每次装填量, 背包可用量)</li>
+ *       <li>计算本次转移弹药量 = min(所需弹药, 弹匣容量 × 填充百分比, 背包可用量)</li>
  *       <li>从背包扣除弹药并装填到枪械</li>
  *       <li>记录本次自动装填时间</li>
  *     </ol>
  *   </li>
  *   <li>最大弹药上限为弹匣容量的2倍（可超出标准弹匣容量）</li>
- *   <li>每次自动装填的弹药量从配置读取</li>
+ *   <li>每次自动装填填充25%的弹匣容量（从配置读取）</li>
  *   <li>射击后冷却期间不会触发自动装填</li>
  * </ol>
  */
@@ -48,8 +48,6 @@ public class ReconstructionEvent {
     private static final String LAST_RELOAD_TIME_TAG = "ReconstructionLastReloadTime";
     /** NBT存储键：上次射击时间 */
     private static final String LAST_SHOOT_TIME_TAG = "ReconstructionLastShootTime";
-    /** 最大弹匣容量倍数 */
-    private static final int MAX_MAGAZINE_MULTIPLIER = 2;
 
     /**
      * 枪械伤害事件：重建
@@ -116,7 +114,7 @@ public class ReconstructionEvent {
         Optional<ResourceLocation> ammoId = GunEnchantmentHelper.getAmmoId(mainHand);
         if (magazineSize <= 0 || currentAmmo < 0 || ammoId.isEmpty()) return;
 
-        int maxAmmo = magazineSize * MAX_MAGAZINE_MULTIPLIER;
+        int maxAmmo = magazineSize * TBZServerConfig.RECONSTRUCTION_MAX_AMMO.get();
 
         // 条件3：已达到最大弹药上限，无需补充
         if (currentAmmo >= maxAmmo) return;
@@ -125,8 +123,11 @@ public class ReconstructionEvent {
         int availableAmmo = AmmoUtils.countAmmoInInventory(player, ammoId.get());
         if (availableAmmo <= 0) return;
 
-        // 每次自动装填的弹药数量
-        int ammoPerReload = TBZServerConfig.RECONSTRUCTION_AMMO_PER_RELOAD.get();
+        // 每次自动装填的弹匣容量百分比
+        double reloadPercent = TBZServerConfig.RECONSTRUCTION_RELOAD_PERCENT.get();
+
+        // 计算本次装填的弹药数量 = 弹匣容量 × 填充百分比
+        int ammoPerReload = (int)(magazineSize * reloadPercent);
 
         // 计算需要补充的弹药量
         int ammoNeeded = maxAmmo - currentAmmo;

@@ -21,7 +21,7 @@ public class CameraSetupEventMixin {
 
     /**
      * 修改垂直后坐力值（俯仰方向）
-     * 在 applyCameraRecoil 方法中设置玩家 X 轴旋转角度之前，修改后坐力值
+     * 在 applyCameraRecoil 方法中 pitch 样条函数计算后存储到变量时，修改后坐力值
      *
      * @param value 原始垂直后坐力值
      * @return 修改后的垂直后坐力值
@@ -29,21 +29,19 @@ public class CameraSetupEventMixin {
     @ModifyVariable(
             method = "applyCameraRecoil",
             at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/player/LocalPlayer;setXRot(F)V",
-                    shift = At.Shift.BEFORE
+                    value = "STORE",
+                    ordinal = 0
             ),
-            ordinal = 0,
-            remap = false
+            remap = false,
+            name = "value"
     )
     private static double modifyPitchRecoilValue(double value) {
-        // 应用所有已注册的俯仰方向后坐力修改器
         return tbz$applyAllModifiers(value, RecoilModifierRegistry.RecoilType.PITCH);
     }
 
     /**
      * 修改水平后坐力值（偏航方向）
-     * 在 applyCameraRecoil 方法中设置玩家 Y 轴旋转角度之前，修改后坐力值
+     * 在 applyCameraRecoil 方法中 yaw 样条函数计算后存储到变量时，修改后坐力值
      *
      * @param value 原始水平后坐力值
      * @return 修改后的水平后坐力值
@@ -51,15 +49,13 @@ public class CameraSetupEventMixin {
     @ModifyVariable(
             method = "applyCameraRecoil",
             at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/player/LocalPlayer;setYRot(F)V",
-                    shift = At.Shift.BEFORE
+                    value = "STORE",
+                    ordinal = 1
             ),
-            ordinal = 0,
-            remap = false
+            remap = false,
+            name = "value"
     )
     private static double modifyYawRecoilValue(double value) {
-        // 应用所有已注册的偏航方向后坐力修改器
         return tbz$applyAllModifiers(value, RecoilModifierRegistry.RecoilType.YAW);
     }
 
@@ -75,11 +71,15 @@ public class CameraSetupEventMixin {
     private static double tbz$applyAllModifiers(double value, RecoilModifierRegistry.RecoilType type) {
         // 获取当前客户端玩家
         LocalPlayer player = Minecraft.getInstance().player;
-        if (player == null) return value;
+        if (player == null) {
+            return value;
+        }
 
         // 获取玩家主手物品
         ItemStack mainHand = player.getMainHandItem();
-        if (mainHand.isEmpty()) return value;
+        if (mainHand.isEmpty()) {
+            return value;
+        }
 
         // 通过后坐力修改器注册表应用所有符合条件的修改器
         return RecoilModifierRegistry.applyModifiers(value, type, player, mainHand);

@@ -38,8 +38,6 @@ public class MeganeuraEvent {
     public static final String HEADSHOT_COUNT_TAG = "MeganeuraHeadshotCount";
     /** NBT存储键：最后一次爆头时间 */
     public static final String LAST_HEADSHOT_TIME_TAG = "MeganeuraLastHeadshotTime";
-    /** 有效时间窗口 */
-    public static final int VALID_KILL_TICKS = 60;
 
     /**
      * 枪械伤害事件：巨脉蜻蜓
@@ -69,7 +67,7 @@ public class MeganeuraEvent {
             // 检查是否超过有效时间窗口
             if (tag.contains(LAST_HEADSHOT_TIME_TAG)) {
                 long lastHeadshotTime = tag.getLong(LAST_HEADSHOT_TIME_TAG);
-                if (currentTime - lastHeadshotTime > VALID_KILL_TICKS) {
+                if (currentTime - lastHeadshotTime > TBZServerConfig.MEGANEURA_KILL_TICKS.get()) {
                     // 超过有效时间窗口，重置爆头次数
                     tag.putInt(HEADSHOT_COUNT_TAG, 0);
                 }
@@ -84,7 +82,7 @@ public class MeganeuraEvent {
             // 非爆头命中，检查是否超过有效时间窗口
             if (tag.contains(LAST_HEADSHOT_TIME_TAG)) {
                 long lastHeadshotTime = tag.getLong(LAST_HEADSHOT_TIME_TAG);
-                if (currentTime - lastHeadshotTime > VALID_KILL_TICKS) {
+                if (currentTime - lastHeadshotTime > TBZServerConfig.MEGANEURA_KILL_TICKS.get()) {
                     // 超过有效时间窗口，重置爆头次数
                     tag.putInt(HEADSHOT_COUNT_TAG, 0);
                     tag.remove(LAST_HEADSHOT_TIME_TAG);
@@ -116,7 +114,7 @@ public class MeganeuraEvent {
         if (tag.contains(LAST_HEADSHOT_TIME_TAG)) {
             long currentTime = player.level().getGameTime();
             long lastHeadshotTime = tag.getLong(LAST_HEADSHOT_TIME_TAG);
-            if (currentTime - lastHeadshotTime > VALID_KILL_TICKS) {
+            if (currentTime - lastHeadshotTime > TBZServerConfig.MEGANEURA_KILL_TICKS.get()) {
                 // 超过有效时间窗口，重置爆头次数
                 tag.putInt(HEADSHOT_COUNT_TAG, 0);
                 tag.remove(LAST_HEADSHOT_TIME_TAG);
@@ -135,8 +133,9 @@ public class MeganeuraEvent {
         double damageBonus = Math.min(thresholdCount * bonusPerThreshold, maxBonus);
 
         // 计算最终伤害
-        float baseDamage = TBZServerConfig.MEGANEURA_BASE_DAMAGE.get().floatValue();
-        float finalDamage = baseDamage * (1.0f + (float) damageBonus);
+        float damage = TBZServerConfig.MEGANEURA_BASE_DAMAGE.get().floatValue()
+                + TBZServerConfig.MEGANEURA_DAMAGE_PER_LEVEL.get().floatValue() * enchantLevel;
+        float finalDamage = damage * (1.0f + (float) damageBonus);
 
         // 获取溅射伤害范围和数值
         float splashMin = TBZServerConfig.MEGANEURA_SPLASH_MIN.get().floatValue();
@@ -172,7 +171,7 @@ public class MeganeuraEvent {
         long lastHeadshotTime = tag.getLong(LAST_HEADSHOT_TIME_TAG);
 
         // 检查是否超过有效时间窗口
-        if (currentTime - lastHeadshotTime > VALID_KILL_TICKS) {
+        if (currentTime - lastHeadshotTime > TBZServerConfig.MEGANEURA_KILL_TICKS.get()) {
             // 超过有效时间窗口，重置爆头次数
             tag.putInt(HEADSHOT_COUNT_TAG, 0);
             tag.remove(LAST_HEADSHOT_TIME_TAG);

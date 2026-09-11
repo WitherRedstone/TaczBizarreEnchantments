@@ -5,306 +5,218 @@ import net.minecraftforge.common.ForgeConfigSpec;
 public class TBZClientConfig {
     public static final ForgeConfigSpec SPEC;
 
-    // ========== HUD显示设置 ==========
-    public static ForgeConfigSpec.DoubleValue TARGET_LOCK_HUD_RELATIVE_X;
-    public static ForgeConfigSpec.DoubleValue TARGET_LOCK_HUD_RELATIVE_Y;
+    // ========== HUD布局管理器配置 ==========
+    public static ForgeConfigSpec.DoubleValue HUD_LAYOUT_LEFT_RELATIVE_X;
+    public static ForgeConfigSpec.DoubleValue HUD_LAYOUT_LEFT_RELATIVE_Y;
+    public static ForgeConfigSpec.DoubleValue HUD_LAYOUT_RIGHT_RELATIVE_X;
+    public static ForgeConfigSpec.DoubleValue HUD_LAYOUT_RIGHT_RELATIVE_Y;
+    public static ForgeConfigSpec.IntValue HUD_LAYOUT_SPACING;
+    public static ForgeConfigSpec.DoubleValue HUD_LAYOUT_MAX_SCREEN_HEIGHT_RATIO;
+    public static ForgeConfigSpec.IntValue HUD_LAYOUT_TIMEOUT_SECONDS;
+
+    // ========== 通用HUD配置 ==========
+    public static ForgeConfigSpec.DoubleValue HUD_COMMON_SCALE;
+    public static ForgeConfigSpec.IntValue HUD_COMMON_PADDING;
+
+    // ========== 目标锁定 ==========
     public static ForgeConfigSpec.ConfigValue<String> TARGET_LOCK_HUD_COLOR_TEXT;
     public static ForgeConfigSpec.ConfigValue<String> TARGET_LOCK_HUD_COLOR_BACKGROUND;
-    public static ForgeConfigSpec.IntValue TARGET_LOCK_HUD_PADDING;
-    public static ForgeConfigSpec.DoubleValue TARGET_LOCK_HUD_SCALE;
 
-    public static ForgeConfigSpec.DoubleValue SWASHBUCKLER_RELATIVE_X;
-    public static ForgeConfigSpec.DoubleValue SWASHBUCKLER_RELATIVE_Y;
+    // ========== 斗剑士 ==========
     public static ForgeConfigSpec.ConfigValue<String> SWASHBUCKLER_COLOR_TEXT;
     public static ForgeConfigSpec.ConfigValue<String> SWASHBUCKLER_COLOR_BACKGROUND;
-    public static ForgeConfigSpec.IntValue SWASHBUCKLER_PADDING;
-    public static ForgeConfigSpec.DoubleValue SWASHBUCKLER_SCALE;
 
-    public static ForgeConfigSpec.DoubleValue ONE_FOR_ALL_RELATIVE_X;
-    public static ForgeConfigSpec.DoubleValue ONE_FOR_ALL_RELATIVE_Y;
+    // ========== 我为人人 ==========
     public static ForgeConfigSpec.ConfigValue<String> ONE_FOR_ALL_COLOR_TEXT;
     public static ForgeConfigSpec.ConfigValue<String> ONE_FOR_ALL_COLOR_BACKGROUND;
-    public static ForgeConfigSpec.IntValue ONE_FOR_ALL_PADDING;
-    public static ForgeConfigSpec.DoubleValue ONE_FOR_ALL_SCALE;
 
-    public static ForgeConfigSpec.DoubleValue MASTER_OF_ARMS_RELATIVE_X;
-    public static ForgeConfigSpec.DoubleValue MASTER_OF_ARMS_RELATIVE_Y;
+    // ========== 武器大师 ==========
     public static ForgeConfigSpec.ConfigValue<String> MASTER_OF_ARMS_COLOR_TEXT;
     public static ForgeConfigSpec.ConfigValue<String> MASTER_OF_ARMS_COLOR_BACKGROUND;
-    public static ForgeConfigSpec.IntValue MASTER_OF_ARMS_PADDING;
-    public static ForgeConfigSpec.DoubleValue MASTER_OF_ARMS_SCALE;
 
-    public static ForgeConfigSpec.DoubleValue EXPLOSIVE_LIGHT_RELATIVE_X;
-    public static ForgeConfigSpec.DoubleValue EXPLOSIVE_LIGHT_RELATIVE_Y;
+    // ========== 爆炸光能 ==========
     public static ForgeConfigSpec.ConfigValue<String> EXPLOSIVE_LIGHT_COLOR_TEXT;
     public static ForgeConfigSpec.ConfigValue<String> EXPLOSIVE_LIGHT_COLOR_BACKGROUND;
-    public static ForgeConfigSpec.IntValue EXPLOSIVE_LIGHT_PADDING;
-    public static ForgeConfigSpec.DoubleValue EXPLOSIVE_LIGHT_SCALE;
 
-    public static ForgeConfigSpec.DoubleValue REWIND_ROUNDS_RELATIVE_X;
-    public static ForgeConfigSpec.DoubleValue REWIND_ROUNDS_RELATIVE_Y;
+    // ========== 回转弹药 ==========
     public static ForgeConfigSpec.ConfigValue<String> REWIND_ROUNDS_COLOR_TEXT;
     public static ForgeConfigSpec.ConfigValue<String> REWIND_ROUNDS_COLOR_BACKGROUND;
-    public static ForgeConfigSpec.IntValue REWIND_ROUNDS_PADDING;
-    public static ForgeConfigSpec.DoubleValue REWIND_ROUNDS_SCALE;
 
-    public static ForgeConfigSpec.DoubleValue TRIPLE_TAP_RELATIVE_X;
-    public static ForgeConfigSpec.DoubleValue TRIPLE_TAP_RELATIVE_Y;
+    // ========== 精准连击 ==========
     public static ForgeConfigSpec.ConfigValue<String> TRIPLE_TAP_COLOR_TEXT;
     public static ForgeConfigSpec.ConfigValue<String> TRIPLE_TAP_COLOR_BACKGROUND;
-    public static ForgeConfigSpec.IntValue TRIPLE_TAP_PADDING;
-    public static ForgeConfigSpec.DoubleValue TRIPLE_TAP_SCALE;
-    public static ForgeConfigSpec.DoubleValue FOURTH_TIME_THE_CHARM_RELATIVE_X;
-    public static ForgeConfigSpec.DoubleValue FOURTH_TIME_THE_CHARM_RELATIVE_Y;
+    
+    // ========== 事不过四 ==========
     public static ForgeConfigSpec.ConfigValue<String> FOURTH_TIME_THE_CHARM_COLOR_TEXT;
     public static ForgeConfigSpec.ConfigValue<String> FOURTH_TIME_THE_CHARM_COLOR_BACKGROUND;
-    public static ForgeConfigSpec.IntValue FOURTH_TIME_THE_CHARM_PADDING;
-    public static ForgeConfigSpec.DoubleValue FOURTH_TIME_THE_CHARM_SCALE;
 
-    public static ForgeConfigSpec.DoubleValue TOUCH_OF_MALICE_RELATIVE_X;
-    public static ForgeConfigSpec.DoubleValue TOUCH_OF_MALICE_RELATIVE_Y;
+    // ========== 恶意触碰 ==========
     public static ForgeConfigSpec.ConfigValue<String> TOUCH_OF_MALICE_COLOR_TEXT;
     public static ForgeConfigSpec.ConfigValue<String> TOUCH_OF_MALICE_COLOR_BACKGROUND;
-    public static ForgeConfigSpec.IntValue TOUCH_OF_MALICE_PADDING;
-    public static ForgeConfigSpec.DoubleValue TOUCH_OF_MALICE_SCALE;
-    public static ForgeConfigSpec.DoubleValue THE_RIGHT_CHOICE_RELATIVE_X;
-    public static ForgeConfigSpec.DoubleValue THE_RIGHT_CHOICE_RELATIVE_Y;
+
+    // ========== 正确抉择 ==========
     public static ForgeConfigSpec.ConfigValue<String> THE_RIGHT_CHOICE_COLOR_TEXT;
     public static ForgeConfigSpec.ConfigValue<String> THE_RIGHT_CHOICE_COLOR_BACKGROUND;
-    public static ForgeConfigSpec.IntValue THE_RIGHT_CHOICE_PADDING;
-    public static ForgeConfigSpec.DoubleValue THE_RIGHT_CHOICE_SCALE;
 
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 
-        builder.push("Left Display");
-        builder.comment("左显示");
+        builder.comment("通用HUD配置").push("Common HUD Config");
+        HUD_COMMON_SCALE = builder
+                .comment("通用HUD缩放比例")
+                .comment("Common HUD scaling")
+                .defineInRange("commonScale", 1.0, 0.1, 10.0);
+        HUD_COMMON_PADDING = builder
+                .comment("通用HUD背景内边距")
+                .comment("Common HUD background padding")
+                .defineInRange("commonPadding", 4, 0, 20);
+        HUD_LAYOUT_LEFT_RELATIVE_X = builder
+                .comment("左侧HUD起始位置 X 坐标（屏幕宽度的百分比）")
+                .comment("Left HUD start position X coordinate (percentage of screen width)")
+                .defineInRange("leftRelativeX", 0.05, 0.0, 1.0);
+        HUD_LAYOUT_LEFT_RELATIVE_Y = builder
+                .comment("左侧HUD起始位置 Y 坐标（屏幕高度的百分比）")
+                .comment("Left HUD start position Y coordinate (percentage of screen height)")
+                .defineInRange("leftRelativeY", 0.85, 0.0, 1.0);
+        HUD_LAYOUT_RIGHT_RELATIVE_X = builder
+                .comment("右侧HUD起始位置 X 坐标（屏幕宽度的百分比）")
+                .comment("Right HUD start position X coordinate (percentage of screen width)")
+                .defineInRange("rightRelativeX", 0.90, 0.0, 1.0);
+        HUD_LAYOUT_RIGHT_RELATIVE_Y = builder
+                .comment("右侧HUD起始位置 Y 坐标（屏幕高度的百分比）")
+                .comment("Right HUD start position Y coordinate (percentage of screen height)")
+                .defineInRange("rightRelativeY", 0.85, 0.0, 1.0);
+        HUD_LAYOUT_SPACING = builder
+                .comment("HUD元素之间的间距（像素）")
+                .comment("Spacing between HUD elements (pixels)")
+                .defineInRange("spacing", 1, 0, 20);
+        HUD_LAYOUT_MAX_SCREEN_HEIGHT_RATIO = builder
+                .comment("HUD最大占用屏幕高度比例（0.5表示最多占屏幕高度的一半）")
+                .comment("Maximum HUD height ratio of screen (0.5 = half of screen height)")
+                .defineInRange("maxScreenHeightRatio", 0.5, 0.1, 0.9);
+        HUD_LAYOUT_TIMEOUT_SECONDS = builder
+                .comment("HUD元素超时时间（tick）")
+                .comment("HUD element timeout (ticks)")
+                .defineInRange("timeoutSeconds", 100, 1, Integer.MAX_VALUE);
+        builder.pop();
 
-        builder.push("Target Lock Display");
-        builder.comment("目标锁定显示配置");
+
+        builder.comment("左侧显示").push("Show on left side");
+
+        builder.comment("目标锁定").push("Target Lock");
         TARGET_LOCK_HUD_COLOR_TEXT = builder
-                .comment("文本颜色 (十六进制格式，如 #FFFFFF 或 0xFFFFFF)")
+                .comment("文本颜色 (十六进制格式)")
+                .comment("Text Color (Hexadecimal format)")
                 .define("colorText", "#FFFFFF");
         TARGET_LOCK_HUD_COLOR_BACKGROUND = builder
-                .comment("背景颜色 (十六进制格式，如 #88000000 或 0x88000000)")
+                .comment("背景颜色 (十六进制格式带透明度)")
+                .comment("Background Color (Hexadecimal format with alpha)")
                 .define("colorBackground", "#88000000");
-        TARGET_LOCK_HUD_RELATIVE_X = builder
-                .comment("显示位置 X 坐标（屏幕宽度的百分比，0.0-1.0）")
-                .defineInRange("relativeX", 0.01, 0.0, 1.0);
-        TARGET_LOCK_HUD_RELATIVE_Y = builder
-                .comment("显示位置 Y 坐标（屏幕高度的百分比，0.0-1.0）")
-                .defineInRange("relativeY", 0.97, 0.0, 1.0);
-        TARGET_LOCK_HUD_PADDING = builder
-                .comment("背景内边距")
-                .defineInRange("padding", 4, 0, 50);
-        TARGET_LOCK_HUD_SCALE = builder
-                .comment("缩放比例")
-                .defineInRange("scale", 1.0, 0.5, 3.0);
         builder.pop();
 
-        builder.push("Swashbuckler Display");
-        builder.comment("斗剑士显示配置");
+        builder.comment("斗剑士").push("Swashbuckler");
         SWASHBUCKLER_COLOR_TEXT = builder
-                .comment("文本颜色 (十六进制格式，如 #FFFFFF 或 0xFFFFFF)")
+                .comment("文本颜色 (十六进制格式)")
+                .comment("Text Color (Hexadecimal format)")
                 .define("colorText", "#FFFFFF");
         SWASHBUCKLER_COLOR_BACKGROUND = builder
-                .comment("背景颜色 (十六进制格式，如 #88000000 或 0x88000000)")
+                .comment("背景颜色 (十六进制格式带透明度)")
+                .comment("Background Color (Hexadecimal format with alpha)")
                 .define("colorBackground", "#88000000");
-        SWASHBUCKLER_RELATIVE_X = builder
-                .comment("显示位置 X 坐标（屏幕宽度的百分比，0.0-1.0）")
-                .defineInRange("relativeX", 0.01, 0.0, 1.0);
-        SWASHBUCKLER_RELATIVE_Y = builder
-                .comment("显示位置 Y 坐标（屏幕高度的百分比，0.0-1.0）")
-                .defineInRange("relativeY", 0.93, 0.0, 1.0);
-        SWASHBUCKLER_PADDING = builder
-                .comment("背景内边距")
-                .defineInRange("padding", 4, 0, 50);
-        SWASHBUCKLER_SCALE = builder
-                .comment("缩放比例")
-                .defineInRange("scale", 1.0, 0.5, 3.0);
         builder.pop();
 
-        builder.push("OneForAll Display");
-        builder.comment("我为人人显示配置");
+        builder.comment("我为人人").push("One For All");
         ONE_FOR_ALL_COLOR_TEXT = builder
-                .comment("文本颜色 (十六进制格式，如 #FFFFFF 或 0xFFFFFF)")
+                .comment("文本颜色 (十六进制格式)")
+                .comment("Text Color (Hexadecimal format)")
                 .define("colorText", "#FFFFFF");
         ONE_FOR_ALL_COLOR_BACKGROUND = builder
-                .comment("背景颜色 (十六进制格式，如 #88000000 或 0x88000000)")
+                .comment("背景颜色 (十六进制格式带透明度)")
+                .comment("Background Color (Hexadecimal format with alpha)")
                 .define("colorBackground", "#88000000");
-        ONE_FOR_ALL_RELATIVE_X = builder
-                .comment("显示位置 X 坐标（屏幕宽度的百分比，0.0-1.0）")
-                .defineInRange("relativeX", 0.01, 0.0, 1.0);
-        ONE_FOR_ALL_RELATIVE_Y = builder
-                .comment("显示位置 Y 坐标（屏幕高度的百分比，0.0-1.0）")
-                .defineInRange("relativeY", 0.89, 0.0, 1.0);
-        ONE_FOR_ALL_PADDING = builder
-                .comment("背景内边距")
-                .defineInRange("padding", 4, 0, 50);
-        ONE_FOR_ALL_SCALE = builder
-                .comment("缩放比例")
-                .defineInRange("scale", 1.0, 0.5, 3.0);
         builder.pop();
 
-        builder.push("MasterOfArms Display");
-        builder.comment("武器大师显示配置");
+        builder.comment("武器大师").push("Master Of Arms");
         MASTER_OF_ARMS_COLOR_TEXT = builder
-                .comment("文本颜色 (十六进制格式，如 #FFFFFF 或 0xFFFFFF)")
+                .comment("文本颜色 (十六进制格式)")
+                .comment("Text Color (Hexadecimal format)")
                 .define("colorText", "#FFFFFF");
         MASTER_OF_ARMS_COLOR_BACKGROUND = builder
-                .comment("背景颜色 (十六进制格式，如 #88000000 或 0x88000000)")
+                .comment("背景颜色 (十六进制格式带透明度)")
+                .comment("Background Color (Hexadecimal format with alpha)")
                 .define("colorBackground", "#88000000");
-        MASTER_OF_ARMS_RELATIVE_X = builder
-                .comment("显示位置 X 坐标（屏幕宽度的百分比，0.0-1.0）")
-                .defineInRange("relativeX", 0.01, 0.0, 1.0);
-        MASTER_OF_ARMS_RELATIVE_Y = builder
-                .comment("显示位置 Y 坐标（屏幕高度的百分比，0.0-1.0）")
-                .defineInRange("relativeY", 0.85, 0.0, 1.0);
-        MASTER_OF_ARMS_PADDING = builder
-                .comment("背景内边距")
-                .defineInRange("padding", 4, 0, 50);
-        MASTER_OF_ARMS_SCALE = builder
-                .comment("缩放比例")
-                .defineInRange("scale", 1.0, 0.5, 3.0);
         builder.pop();
 
-        builder.push("ExplosiveLight Display");
-        builder.comment("爆炸光能显示配置");
+        builder.comment("爆炸光能").push("Explosive Light");
         EXPLOSIVE_LIGHT_COLOR_TEXT = builder
-                .comment("文本颜色 (十六进制格式，如 #FFFFFF 或 0xFFFFFF)")
+                .comment("文本颜色 (十六进制格式)")
+                .comment("Text Color (Hexadecimal format)")
                 .define("colorText", "#FFD700");
         EXPLOSIVE_LIGHT_COLOR_BACKGROUND = builder
-                .comment("背景颜色 (十六进制格式，如 #88000000 或 0x88000000)")
+                .comment("背景颜色 (十六进制格式带透明度)")
+                .comment("Background Color (Hexadecimal format with alpha)")
                 .define("colorBackground", "#88000000");
-        EXPLOSIVE_LIGHT_RELATIVE_X = builder
-                .comment("显示位置 X 坐标（屏幕宽度的百分比，0.0-1.0）")
-                .defineInRange("relativeX", 0.08, 0.0, 1.0);
-        EXPLOSIVE_LIGHT_RELATIVE_Y = builder
-                .comment("显示位置 Y 坐标（屏幕高度的百分比，0.0-1.0）")
-                .defineInRange("relativeY", 0.75, 0.0, 1.0);
-        EXPLOSIVE_LIGHT_PADDING = builder
-                .comment("背景内边距")
-                .defineInRange("padding", 4, 0, 50);
-        EXPLOSIVE_LIGHT_SCALE = builder
-                .comment("缩放比例")
-                .defineInRange("scale", 1.0, 0.5, 3.0);
         builder.pop();
 
         builder.pop();
 
 
-        builder.push("Right Display");
-        builder.comment("右显示");
+        builder.comment("右侧显示").push("Show on right side");
 
-        builder.push("RewindRounds Display");
-        builder.comment("回转弹药显示配置");
+        builder.comment("回转弹药").push("Rewind Rounds");
         REWIND_ROUNDS_COLOR_TEXT = builder
-                .comment("文本颜色 (十六进制格式，如 #FFFFFF 或 0xFFFFFF)")
+                .comment("文本颜色 (十六进制格式)")
+                .comment("Text Color (Hexadecimal format)")
                 .define("colorText", "#FFFFFF");
         REWIND_ROUNDS_COLOR_BACKGROUND = builder
-                .comment("背景颜色 (十六进制格式，如 #88000000 或 0x88000000)")
+                .comment("背景颜色 (十六进制格式带透明度)")
+                .comment("Background Color (Hexadecimal format with alpha)")
                 .define("colorBackground", "#88000000");
-        REWIND_ROUNDS_RELATIVE_X = builder
-                .comment("显示位置 X 坐标（屏幕宽度的百分比，0.0-1.0）")
-                .defineInRange("relativeX", 0.08, 0.0, 1.0);
-        REWIND_ROUNDS_RELATIVE_Y = builder
-                .comment("显示位置 Y 坐标（屏幕高度的百分比，0.0-1.0）")
-                .defineInRange("relativeY", 0.97, 0.0, 1.0);
-        REWIND_ROUNDS_PADDING = builder
-                .comment("背景内边距")
-                .defineInRange("padding", 4, 0, 50);
-        REWIND_ROUNDS_SCALE = builder
-                .comment("缩放比例")
-                .defineInRange("scale", 1.0, 0.5, 3.0);
         builder.pop();
 
-        builder.push("TripleTap Display");
-        builder.comment("精准连击显示配置");
+        builder.comment("精准连击").push("Triple Tap");
         TRIPLE_TAP_COLOR_TEXT = builder
-                .comment("文本颜色 (十六进制格式，如 #FFFFFF 或 0xFFFFFF)")
+                .comment("文本颜色 (十六进制格式)")
+                .comment("Text Color (Hexadecimal format)")
                 .define("colorText", "#FFFFFF");
         TRIPLE_TAP_COLOR_BACKGROUND = builder
-                .comment("背景颜色 (十六进制格式，如 #88000000 或 0x88000000)")
+                .comment("背景颜色 (十六进制格式带透明度)")
+                .comment("Background Color (Hexadecimal format with alpha)")
                 .define("colorBackground", "#88000000");
-        TRIPLE_TAP_RELATIVE_X = builder
-                .comment("显示位置 X 坐标（屏幕宽度的百分比，0.0-1.0）")
-                .defineInRange("relativeX", 0.08, 0.0, 1.0);
-        TRIPLE_TAP_RELATIVE_Y = builder
-                .comment("显示位置 Y 坐标（屏幕高度的百分比，0.0-1.0）")
-                .defineInRange("relativeY", 0.93, 0.0, 1.0);
-        TRIPLE_TAP_PADDING = builder
-                .comment("背景内边距")
-                .defineInRange("padding", 4, 0, 50);
-        TRIPLE_TAP_SCALE = builder
-                .comment("缩放比例")
-                .defineInRange("scale", 1.0, 0.5, 3.0);
         builder.pop();
 
-        builder.push("FourthTimeTheCharm Display");
-        builder.comment("事不过四显示配置");
+        builder.comment("事不过四").push("Fourth Time's The Charm");
         FOURTH_TIME_THE_CHARM_COLOR_TEXT = builder
-                .comment("文本颜色 (十六进制格式，如 #FFFFFF 或 0xFFFFFF)")
+                .comment("文本颜色 (十六进制格式)")
+                .comment("Text Color (Hexadecimal format)")
                 .define("colorText", "#FFFFFF");
         FOURTH_TIME_THE_CHARM_COLOR_BACKGROUND = builder
-                .comment("背景颜色 (十六进制格式，如 #88000000 或 0x88000000)")
+                .comment("背景颜色 (十六进制格式带透明度)")
+                .comment("Background Color (Hexadecimal format with alpha)")
                 .define("colorBackground", "#88000000");
-        FOURTH_TIME_THE_CHARM_RELATIVE_X = builder
-                .comment("显示位置 X 坐标（屏幕宽度的百分比，0.0-1.0）")
-                .defineInRange("relativeX", 0.08, 0.0, 1.0);
-        FOURTH_TIME_THE_CHARM_RELATIVE_Y = builder
-                .comment("显示位置 Y 坐标（屏幕高度的百分比，0.0-1.0）")
-                .defineInRange("relativeY", 0.89, 0.0, 1.0);
-        FOURTH_TIME_THE_CHARM_PADDING = builder
-                .comment("背景内边距")
-                .defineInRange("padding", 4, 0, 50);
-        FOURTH_TIME_THE_CHARM_SCALE = builder
-                .comment("缩放比例")
-                .defineInRange("scale", 1.0, 0.5, 3.0);
         builder.pop();
 
-        builder.push("TouchOfMalice Display");
-        builder.comment("恶意触碰显示配置");
+        builder.comment("恶意触碰").push("Touch of Malice");
         TOUCH_OF_MALICE_COLOR_TEXT = builder
-                .comment("文本颜色 (十六进制格式，如 #FFFFFF 或 0xFFFFFF)")
+                .comment("文本颜色 (十六进制格式)")
+                .comment("Text Color (Hexadecimal format)")
                 .define("colorText", "#FF4444");
         TOUCH_OF_MALICE_COLOR_BACKGROUND = builder
-                .comment("背景颜色 (十六进制格式，如 #88000000 或 0x88000000)")
+                .comment("背景颜色 (十六进制格式带透明度)")
+                .comment("Background Color (Hexadecimal format with alpha)")
                 .define("colorBackground", "#88000000");
-        TOUCH_OF_MALICE_RELATIVE_X = builder
-                .comment("显示位置 X 坐标（屏幕宽度的百分比，0.0-1.0）")
-                .defineInRange("relativeX", 0.08, 0.0, 1.0);
-        TOUCH_OF_MALICE_RELATIVE_Y = builder
-                .comment("显示位置 Y 坐标（屏幕高度的百分比，0.0-1.0）")
-                .defineInRange("relativeY", 0.85, 0.0, 1.0);
-        TOUCH_OF_MALICE_PADDING = builder
-                .comment("背景内边距")
-                .defineInRange("padding", 4, 0, 50);
-        TOUCH_OF_MALICE_SCALE = builder
-                .comment("缩放比例")
-                .defineInRange("scale", 1.0, 0.5, 3.0);
         builder.pop();
 
-        builder.push("TheRightChoice Display");
-        builder.comment("正确抉择显示配置");
+        builder.comment("正确抉择").push("The Right Choice");
         THE_RIGHT_CHOICE_COLOR_TEXT = builder
-                .comment("文本颜色 (十六进制格式，如 #FFFFFF 或 0xFFFFFF)")
+                .comment("文本颜色 (十六进制格式)")
+                .comment("Text Color (Hexadecimal format)")
                 .define("colorText", "#44FF44");
         THE_RIGHT_CHOICE_COLOR_BACKGROUND = builder
-                .comment("背景颜色 (十六进制格式，如 #88000000 或 0x88000000)")
+                .comment("背景颜色 (十六进制格式带透明度)")
+                .comment("Background Color (Hexadecimal format with alpha)")
                 .define("colorBackground", "#88000000");
-        THE_RIGHT_CHOICE_RELATIVE_X = builder
-                .comment("显示位置 X 坐标（屏幕宽度的百分比，0.0-1.0）")
-                .defineInRange("relativeX", 0.08, 0.0, 1.0);
-        THE_RIGHT_CHOICE_RELATIVE_Y = builder
-                .comment("显示位置 Y 坐标（屏幕高度的百分比，0.0-1.0）")
-                .defineInRange("relativeY", 0.81, 0.0, 1.0);
-        THE_RIGHT_CHOICE_PADDING = builder
-                .comment("背景内边距")
-                .defineInRange("padding", 4, 0, 50);
-        THE_RIGHT_CHOICE_SCALE = builder
-                .comment("缩放比例")
-                .defineInRange("scale", 1.0, 0.5, 3.0);
         builder.pop();
 
         builder.pop();

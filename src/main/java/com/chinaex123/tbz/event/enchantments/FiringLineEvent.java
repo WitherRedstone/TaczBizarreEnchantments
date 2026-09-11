@@ -2,6 +2,7 @@ package com.chinaex123.tbz.event.enchantments;
 
 import com.chinaex123.tbz.config.TBZServerConfig;
 import com.chinaex123.tbz.init.TBZEnchantments;
+import com.chinaex123.tbz.utils.EnchantmentParticleEffects;
 import com.chinaex123.tbz.utils.ParticleUtils;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.api.item.IGun;
@@ -98,13 +99,10 @@ public class FiringLineEvent {
         Level level = player.level();
         if (!(level instanceof ServerLevel serverLevel)) return;
 
-        // 检查是否显示粒子
-        if (!TBZServerConfig.FIRING_LINE_SHOW_PARTICLES.get()) return;
-
         // 获取配置的半径
         double radius = TBZServerConfig.FIRING_LINE_RADIUS.get();
 
         // 生成圆形粒子
-        ParticleUtils.spawnCircleRadiusParticle(serverLevel, player.getX(), player.getY(), player.getZ(), radius, 255, 255, 255, 0.5f);
+        EnchantmentParticleEffects.showFiringLineRadiusParticle(serverLevel, player.getX(), player.getY(), player.getZ(), radius);
     }
 }

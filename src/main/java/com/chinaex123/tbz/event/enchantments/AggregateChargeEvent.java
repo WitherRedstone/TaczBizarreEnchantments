@@ -20,10 +20,13 @@ import net.minecraft.world.item.ItemStack;
  * <ol>
  *   <li>检查目标身上的所有效果</li>
  *   <li>统计负面效果数量（动态判断，不硬编码）</li>
- *   <li>每个负面效果增加10%伤害</li>
+ *   <li>根据负面效果数量增加伤害：1种=11%，2种=22%，...，6种=66%（上限）</li>
  * </ol>
  */
 public class AggregateChargeEvent {
+
+    /** 最大生效的负面效果数量 **/
+    private static final int MAX_DEBUFF_COUNT = 6;
 
     /**
      * 枪械伤害事件：聚合充能
@@ -60,11 +63,14 @@ public class AggregateChargeEvent {
         // 如果没有负面效果，不增加伤害
         if (debuffCount <= 0) return;
 
-        // 每个负面效果增加的伤害百分比（默认10%）
-        float damageBonusPerDebuff = TBZServerConfig.AGGREGATE_CHARGE_DAMAGE_BONUS_PER_DEBUFF.get().floatValue();
+        // 限制最大生效的负面效果数量为6
+        int effectiveDebuffCount = Math.min(debuffCount, MAX_DEBUFF_COUNT);
 
-        // 计算总伤害加成
-        float totalDamageBonus = event.getBaseAmount() * damageBonusPerDebuff * debuffCount;
+        // 获取配置的伤害增加百分比
+        float damageBonusPerDebuff = TBZServerConfig.AGGREGATE_CHARGE_DAMAGE_BONUS_PERCENT.get().floatValue();
+
+        // 计算总伤害加成：负面效果数量 × 每种减益的伤害增加百分比
+        float totalDamageBonus = event.getBaseAmount() * damageBonusPerDebuff * effectiveDebuffCount;
 
         // 应用伤害加成
         event.setBaseAmount(event.getBaseAmount() + totalDamageBonus);

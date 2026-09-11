@@ -41,10 +41,6 @@ public class OneForAllEvent {
     private static final String ACTIVE_TAG = "OneForAllActive";
     /** NBT存储键：效果开始时间（游戏刻） **/
     private static final String START_TIME_TAG = "OneForAllStartTime";
-    /** 需要命中的不同目标数量 **/
-    private static final int REQUIRED_HITS = 3;
-    /** 效果持续时间（游戏刻，6秒 = 120刻） **/
-    private static final long DURATION_TICKS = 120;
 
     /**
      * 枪械伤害事件：我为人人
@@ -87,7 +83,7 @@ public class OneForAllEvent {
                 saveHitTargets(tag, hitTargets);
 
                 // 检查是否达到激活条件
-                if (hitTargets.size() >= REQUIRED_HITS) {
+                if (hitTargets.size() >= TBZServerConfig.ONE_FOR_ALL_REQUIRED_HITS.get()) {
                     // 激活效果
                     long currentTime = player.level().getGameTime();
                     tag.putBoolean(ACTIVE_TAG, true);
@@ -135,7 +131,7 @@ public class OneForAllEvent {
         long startTime = tag.getLong(START_TIME_TAG);
 
         // 检查效果是否过期
-        if (currentTime - startTime >= DURATION_TICKS) {
+        if (currentTime - startTime >= TBZServerConfig.ONE_FOR_ALL_DURATION_SECONDS.get()) {
             // 效果过期，清除激活状态
             tag.putBoolean(ACTIVE_TAG, false);
             tag.remove(START_TIME_TAG);

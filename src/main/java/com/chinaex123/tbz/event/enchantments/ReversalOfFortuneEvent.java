@@ -103,8 +103,8 @@ public class ReversalOfFortuneEvent {
         long currentTime = System.currentTimeMillis();
 
         // 获取配置参数
-        long missTimeout = (long) (TBZServerConfig.REVERSAL_OF_FORTUNE_MISS_TIMEOUT.get() * 1000);
-        long cooldown = (long) (TBZServerConfig.REVERSAL_OF_FORTUNE_COOLDOWN.get() * 1000);
+        int missTimeout = TBZServerConfig.REVERSAL_OF_FORTUNE_MISS_TIMEOUT.get();
+        int cooldown = TBZServerConfig.REVERSAL_OF_FORTUNE_COOLDOWN.get();
         int requiredMisses = TBZServerConfig.REVERSAL_OF_FORTUNE_REQUIRED_MISSES.get();
 
         // 获取当前弹匣弹药数，并与上一 tick 对比检测是否开火

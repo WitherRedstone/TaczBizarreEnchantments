@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "tbz:block/mars_smithing_table",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "tbz:block/mars_smithing_table",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "tbz:block/mars_smithing_table"
+    },
+    "facing=west": {
+      "model": "tbz:block/mars_smithing_table",
+      "y": 90
+    }
+  }
+}

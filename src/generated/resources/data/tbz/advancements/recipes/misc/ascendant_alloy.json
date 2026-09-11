@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ascendant_alloy_ascendant_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tbz:ascendant_shard"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_ascendant_alloy_diamond": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:diamond"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_ascendant_alloy_enhancement_prism": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tbz:enhancement_prism"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tbz:ascendant_alloy"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_ascendant_alloy_enhancement_prism",
+      "has_ascendant_alloy_ascendant_shard",
+      "has_ascendant_alloy_diamond",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tbz:ascendant_alloy"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,22 @@
+{
+  "forge:conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mekanism"
+    }
+  ],
+  "type": "mekanism:nucleosynthesizing",
+  "duration": 1200,
+  "gasInput": {
+    "amount": 10,
+    "gas": "mekanism:antimatter"
+  },
+  "itemInput": {
+    "ingredient": {
+      "item": "tbz:ascendant_shard"
+    }
+  },
+  "output": {
+    "item": "tbz:ascendant_alloy"
+  }
+}

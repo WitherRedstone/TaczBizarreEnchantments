@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tbz:ascendant_alloy"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "tbz:ascendant_shard"
+  }
+}

@@ -1,6 +1,6 @@
 package com.chinaex123.tbz.network.hud;
 
-import com.chinaex123.tbz.client.hud.EnchantmentStatusHUD;
+import com.chinaex123.tbz.client.hud.DurationBasedHUD;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
@@ -64,7 +64,7 @@ public record EnchantmentStatusSyncPacket(UUID playerId, String enchantmentType,
         NetworkEvent.Context context = contextSupplier.get();
         context.enqueueWork(() -> {
             // 更新客户端缓存
-            EnchantmentStatusHUD.setEnchantmentStatus(
+            DurationBasedHUD.setEnchantmentStatus(
                     packet.playerId(),
                     packet.enchantmentType(),
                     packet.value(),

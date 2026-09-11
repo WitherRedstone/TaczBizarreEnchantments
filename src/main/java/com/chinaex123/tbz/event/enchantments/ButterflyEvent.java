@@ -36,8 +36,6 @@ public class ButterflyEvent {
     private static final String AIMING_START_TIME_TAG = "ButterflyAimingStartTime";
     /** NBT存储键：附魔是否已激活 */
     private static final String ACTIVE_TAG = "ButterflyActive";
-    /** 需要持续瞄准的刻数 */
-    private static final int AIMING_REQUIRED_TICKS = 50;
 
     /**
      * 实体死亡事件：蝴蝶
@@ -105,8 +103,8 @@ public class ButterflyEvent {
                 long startTime = tag.getLong(AIMING_START_TIME_TAG);
                 long currentTime = player.level().getGameTime();
 
-                // 如果持续瞄准时间 >= 50刻（2.5秒），激活附魔
-                if (currentTime - startTime >= AIMING_REQUIRED_TICKS) {
+                // 如果持续瞄准时间 >= 配置的持续瞄准时间，激活附魔状态
+                if (currentTime - startTime >= TBZServerConfig.BUTTERFLY_AIMING_REQUIRED_TICKS.get()) {
                     tag.putBoolean(ACTIVE_TAG, true);
                 }
             }

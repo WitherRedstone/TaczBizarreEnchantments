@@ -68,16 +68,16 @@ public class GunReloadSpeedHelper {
      * 检查并触发换弹加速
      * 验证加速标记是否在有效期内，如果是则触发换弹加速
      *
-     * @param gun 武器物品
-     * @param player 玩家对象
-     * @param speedTag 加速标记的NBT键名
-     * @param timeTag 时间戳的NBT键名
+     * @param gun        武器物品
+     * @param player     玩家对象
+     * @param speedTag   加速标记的NBT键名
+     * @param timeTag    时间戳的NBT键名
      * @param validTicks 有效时间窗口（游戏刻）
      */
     public static void checkAndTriggerSpeed(ItemStack gun, Player player, String speedTag, String timeTag, int validTicks) {
         CompoundTag tag = gun.getOrCreateTag();
 
-        // 如果没有加速标记，直接返回
+        // 如果没有加速标记，直接返回false
         if (!tag.getBoolean(speedTag)) {
             return;
         }
@@ -98,6 +98,7 @@ public class GunReloadSpeedHelper {
                 PacketDistributor.ALL.noArg(),
                 new GunReloadSpeedPacket(true, gun.copy(), speedTag)
         );
+
     }
 
     /**

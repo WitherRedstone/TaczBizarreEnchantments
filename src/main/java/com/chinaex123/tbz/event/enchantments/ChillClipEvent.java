@@ -15,7 +15,7 @@ import net.minecraft.world.level.Level;
 /**
  * 冰冷弹匣附魔的事件处理类
  * <p>
- * 功能：持续攻击可对目标施加霜寒效果
+ * 功能：持续攻击可对目标施加减速效果
  * <p>
  * 机制：
  * <ol>
@@ -66,24 +66,24 @@ public class ChillClipEvent {
         CompoundTag tag = gun.getOrCreateTag();
         long lastHitTime = tag.getLong(LAST_HIT_TIME_TAG);
 
-        // 检查目标是否已有"霜寒"效果
-        MobEffectInstance currentEffect = target.getEffect(FELEffects.FROSTBITE.get());
+        // 检查目标是否已有"减速"效果
+        MobEffectInstance currentEffect = target.getEffect(FELEffects.SLOW.get());
 
         if (currentEffect != null) {
             // 情况1：已有霜寒效果 -> 延长持续时间
-            int extendDuration = TBZServerConfig.CHILL_CLIP_EXTEND_DURATION.get();   // 每次延长的刻数
-            int maxDuration = TBZServerConfig.CHILL_CLIP_MAX_DURATION.get();  // 最大持续时间（刻）
+            int extendDuration = TBZServerConfig.CHILL_CLIP_EXTEND_DURATION.get();
+            int maxDuration = TBZServerConfig.CHILL_CLIP_MAX_DURATION.get();
             int newDuration = Math.min(currentEffect.getDuration() + extendDuration, maxDuration);
 
             // 保留原有效果的等级（不改变效果强度）
-            int frostbiteAmplifier = currentEffect.getAmplifier();
+            int slowAmplifier = currentEffect.getAmplifier();
 
-            // 施加新的霜寒效果（覆盖旧的，持续时间延长）
+            // 施加新的减速效果（覆盖旧的，持续时间延长）
             target.addEffect(new MobEffectInstance(
-                    FELEffects.FROSTBITE.get(), newDuration, frostbiteAmplifier, false, true
+                    FELEffects.SLOW.get(), newDuration, slowAmplifier, false, true
             ));
         } else {
-            // 情况2：没有霜寒效果 -> 检查冷却，尝试施加新效果
+            // 情况2：没有减速效果 -> 检查冷却，尝试施加新效果
             int cooldownTicks = TBZServerConfig.CHILL_CLIP_COOLDOWN_TICKS.get();
 
             // 如果在上次触发后的冷却时间内，不触发新效果
@@ -91,22 +91,21 @@ public class ChillClipEvent {
                 return;
             }
 
-            // 获取霜寒效果的持续时间和等级范围
-            int frostbiteDuration = TBZServerConfig.CHILL_CLIP_FROSTBITE_DURATION.get();
-            int frostbiteMinAmplifier = TBZServerConfig.CHILL_CLIP_FROSTBITE_MIN_AMPLIFIER.get();  // 最小等级
-            int frostbiteMaxAmplifier = TBZServerConfig.CHILL_CLIP_FROSTBITE_MAX_AMPLIFIER.get();  // 最大等级
+            // 获取减速效果的持续时间和等级范围
+            int slowDuration = TBZServerConfig.CHILL_CLIP_SLOW_DURATION.get();
+            int slowMinAmplifier = TBZServerConfig.CHILL_CLIP_SLOW_MIN_AMPLIFIER.get();
+            int slowMaxAmplifier = TBZServerConfig.CHILL_CLIP_SLOW_MAX_AMPLIFIER.get();
 
             // 随机生成效果等级（在最小和最大之间随机）
-            int frostbiteAmplifier = frostbiteMinAmplifier
-                    + player.getRandom().nextInt(frostbiteMaxAmplifier - frostbiteMinAmplifier + 1);
+            int slowAmplifier = slowMinAmplifier + player.getRandom().nextInt(slowMaxAmplifier - slowMinAmplifier + 1);
 
-            // 创建新的霜寒效果
-            MobEffectInstance frostbiteEffect = new MobEffectInstance(
-                    FELEffects.FROSTBITE.get(), frostbiteDuration, frostbiteAmplifier, false, true
+            // 创建新的减速效果
+            MobEffectInstance slowEffect = new MobEffectInstance(
+                    FELEffects.SLOW.get(), slowDuration, slowAmplifier, false, true
             );
 
             // 施加效果
-            target.addEffect(frostbiteEffect);
+            target.addEffect(slowEffect);
         }
 
         // 更新最后命中时间

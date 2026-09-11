@@ -99,7 +99,8 @@ public class GunEnchantmentHelper {
         // 获取武器类型配置
         List<? extends String> allowedTypes = null;
         boolean whitelistMode = switch (enchantmentName) {
-            // ========== [异域]类型附魔 ==========
+
+            // ========== 异域类 ==========
             // 防护编织
             case "protective_weave" -> {
                 allowedTypes = TBZServerConfig.PROTECTIVE_WEAVE_APPLICABLE_WEAPON_TYPES.get();
@@ -151,7 +152,7 @@ public class GunEnchantmentHelper {
                 yield TBZServerConfig.PERSONAL_ASSISTANT_WEAPON_TYPE_WHITELIST_MODE.get();
             }
 
-            // ========== [增伤]类型附魔 ==========
+            // ========== 增伤类 ==========
             // 斩首武器
             case "borpal_weapon" -> {
                 allowedTypes = TBZServerConfig.BORPAL_WEAPON_APPLICABLE_WEAPON_TYPES.get();
@@ -213,7 +214,7 @@ public class GunEnchantmentHelper {
                 yield TBZServerConfig.EXPLOSIVE_LIGHT_WEAPON_TYPE_WHITELIST_MODE.get();
             }
 
-            // ========== [回子弹]类型附魔 ==========
+            // ========== 子弹类 ==========
             // 维持生计
             case "subsistence" -> {
                 allowedTypes = TBZServerConfig.SUBSISTENCE_APPLICABLE_WEAPON_TYPES.get();
@@ -270,7 +271,7 @@ public class GunEnchantmentHelper {
                 yield TBZServerConfig.CLOWN_CARTRIDGE_WEAPON_TYPE_WHITELIST_MODE.get();
             }
 
-            // ========== [应用效果]类型附魔 ==========
+            // ========== 效果类 ==========
             // 治疗弹匣
             case "heal_clip" -> {
                 allowedTypes = TBZServerConfig.HEAL_CLIP_APPLICABLE_WEAPON_TYPES.get();
@@ -316,8 +317,18 @@ public class GunEnchantmentHelper {
                 allowedTypes = TBZServerConfig.BURNING_AMBITION_APPLICABLE_WEAPON_TYPES.get();
                 yield TBZServerConfig.BURNING_AMBITION_WEAPON_TYPE_WHITELIST_MODE.get();
             }
+            // 瓦解
+            case "demoralize" -> {
+                allowedTypes = TBZServerConfig.DEMORALIZE_APPLICABLE_WEAPON_TYPES.get();
+                yield TBZServerConfig.DEMORALIZE_WEAPON_TYPE_WHITELIST_MODE.get();
+            }
+            // 冲击支撑
+            case "repulsor_brace" -> {
+                allowedTypes = TBZServerConfig.REPULSOR_BRACE_APPLICABLE_WEAPON_TYPES.get();
+                yield TBZServerConfig.REPULSOR_BRACE_WEAPON_TYPE_WHITELIST_MODE.get();
+            }
 
-            // ========== [爆炸]类型附魔 ==========
+            // ========== 爆炸类 ==========
             // 蝴蝶
             case "butterfly" -> {
                 allowedTypes = TBZServerConfig.BUTTERFLY_APPLICABLE_WEAPON_TYPES.get();
@@ -344,7 +355,7 @@ public class GunEnchantmentHelper {
                 yield TBZServerConfig.MEGANEURA_WEAPON_TYPE_WHITELIST_MODE.get();
             }
 
-            // ========== [配件数值]类型附魔 ==========
+            // ========== 配件类 ==========
             // 不法之徒
             case "outlaw" -> {
                 allowedTypes = TBZServerConfig.OUTLAW_APPLICABLE_WEAPON_TYPES.get();
@@ -375,15 +386,23 @@ public class GunEnchantmentHelper {
                 allowedTypes = TBZServerConfig.EYE_OF_STORM_EYE_APPLICABLE_WEAPON_TYPES.get();
                 yield TBZServerConfig.EYE_OF_STORM_EYE_WEAPON_TYPE_WHITELIST_MODE.get();
             }
+            // 测距仪
+            case "rangefinder" -> {
+                allowedTypes = TBZServerConfig.RANGEFINDER_APPLICABLE_WEAPON_TYPES.get();
+                yield TBZServerConfig.RANGEFINDER_WEAPON_TYPE_WHITELIST_MODE.get();
+            }
+            // 切勿靠近
+            case "keep_away" -> {
+                allowedTypes = TBZServerConfig.KEEP_AWAY_APPLICABLE_WEAPON_TYPES.get();
+                yield TBZServerConfig.KEEP_AWAY_WEAPON_TYPE_WHITELIST_MODE.get();
+            }
 
-            // ========== [持续伤害]类型附魔 ==========
+            // ========== 其他类 ==========
             // 羸弱能量球
             case "attrition_orbs" -> {
                 allowedTypes = TBZServerConfig.ATTRITION_ORBS_APPLICABLE_WEAPON_TYPES.get();
                 yield TBZServerConfig.ATTRITION_ORBS_WEAPON_TYPE_WHITELIST_MODE.get();
             }
-
-            // ========== [其他]类型附魔 ==========
             // 泉源
             case "wellspring" -> {
                 allowedTypes = TBZServerConfig.WELLSPRING_APPLICABLE_WEAPON_TYPES.get();

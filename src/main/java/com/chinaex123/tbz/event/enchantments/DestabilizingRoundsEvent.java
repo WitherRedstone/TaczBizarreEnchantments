@@ -69,8 +69,8 @@ public class DestabilizingRoundsEvent {
 
             if (currentEffect != null) {
                 // 情况1：已有不稳定效果 -> 延长持续时间
-                int extendDuration = TBZServerConfig.DESTABILIZING_ROUNDS_EXTEND_DURATION.get(); // 每次延长的刻数
-                int maxDuration = TBZServerConfig.DESTABILIZING_ROUNDS_MAX_DURATION.get(); // 最大持续时间
+                int extendDuration = TBZServerConfig.DESTABILIZING_ROUNDS_EXTEND_DURATION.get();
+                int maxDuration = TBZServerConfig.DESTABILIZING_ROUNDS_MAX_DURATION.get();
                 int newDuration = Math.min(currentEffect.getDuration() + extendDuration, maxDuration);
 
                 // 获取效果等级
